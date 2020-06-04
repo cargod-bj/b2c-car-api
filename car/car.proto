@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package car;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-staff-api/carProto";
+
+/*
+  获取车辆服务
+ */
+service Car {
+  // 添加指定车辆，返回 data：CarDto 类型
+  rpc Add(CarDto) returns (common.Response) {}
+  // 根据车辆id删除车辆，返回 data：nil
+  rpc Delete(CarIdDto) returns (common.Response) {}
+  // 更新指定车辆，返回 data：nil
+  rpc Update(CarDto) returns (common.Response) {}
+  // 获取指定id的车辆：返回 data: CarDto
+  rpc Get(CarIdDto) returns (common.Response) {}
+}
+
+// 新增车辆dto
+message CarDto {
+  // 车辆id，如果为新增，则此字段为0，否则为车辆id
+  uint64 id = 1;
+  // 车辆的创建时间，如果为新增，或更新，则此字段无效
+  uint64 create_time = 2;
+  // 车辆的更新时间，如果为新增，或更新，则此字段无效
+  uint64 update_time = 3;
+  // 检查报告id
+  uint64 inspection_id = 101;
+  // 车辆状态
+  uint32 status = 102;
+  // 门店id
+  uint64 store_id = 103;
+  // 停车场id
+  uint64 parking_id = 104;
+  // 品牌id
+  uint32 brand_id = 201;
+  // 车型id
+  uint32 model_id = 202;
+  // 车variant
+  string car_variant = 203;
+  // 车照片url
+  string image = 301;
+  // 排量
+  string car_engine = 401;
+  // 年份
+  uint32 car_year = 402;
+  // 里程
+  uint32 car_mileage = 403;
+  // 驾驶类型 手动,自动
+  string car_transmission = 404;
+  // 卖价
+  double exp_selling_price = 501;
+  // 来源
+  string source = 601;
+  // 城市地区
+  string location = 701;
+  // 城市地区
+  string location_id = 702;
+}
+
+// 车辆的id
+message CarIdDto {
+  // 车辆id
+  uint64 id = 1;
+}
