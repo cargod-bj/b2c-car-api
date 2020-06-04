@@ -4,7 +4,7 @@ package car;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-staff-api/carProto";
+option go_package = "github.com/cargod-bj/b2c-car-api/carProto";
 
 /*
   获取车辆服务
