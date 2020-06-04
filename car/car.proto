@@ -58,8 +58,8 @@ message CarDto {
   string source = 601;
   // 城市地区
   string location = 701;
-  // 城市地区
-  string location_id = 702;
+  // 城市地区id
+  uint64 location_id = 702;
 }
 
 // 车辆的id
