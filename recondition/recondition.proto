@@ -25,10 +25,11 @@ service Recondition {
 // 整备信息
 message ReconditionDto {
   uint64 Id = 1;
-  uint64 LeadId = 2;
+  uint64 CarId = 2;
   uint64 StoreId = 3;
-  int64  StartTime = 4;
-  int64  EndTime = 5;
-  int64  CreateTime = 6;
-  int64  UpdateTime = 7;
+  uint32 Status = 4;
+  int64  StartTime = 5;
+  int64  EndTime = 6;
+  int64  CreateTime = 7;
+  int64  UpdateTime = 8;
 }
