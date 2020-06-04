@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package recondition;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/recondition";
+
+/*
+ * 整备服务
+ */
+service Recondition {
+  // 添加整备，返回 data：CarDto 类型
+  rpc Add(ReconditionDto) returns (common.Response) {}
+  // 根据ID 删除，返回 data：nil
+  rpc Delete(ReconditionDto) returns (common.Response) {}
+  // 跟新整备信息，返回 data：nil
+  rpc Update(ReconditionDto) returns (common.Response) {}
+  // 获取整备信息：返回 data: CarDto
+  rpc Get(ReconditionDto) returns (common.Response) {}
+  rpc List(common.Page) returns (common.Response) {}
+
+}
+
+// 整备信息
+message ReconditionDto {
+  uint64 Id = 1;
+  uint64 LeadId = 2;
+  uint64 StoreId = 3;
+  uint64 StartTime = 4;
+  int64  EndTime = 5;
+  int64  CreateTime = 6;
+  int64  UpdateTime = 7;
+}
