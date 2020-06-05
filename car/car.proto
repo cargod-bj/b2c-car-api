@@ -18,6 +18,8 @@ service Car {
   rpc Update(CarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto
   rpc Get(CarIdDto) returns (common.Response) {}
+  //获取车辆列表: 返回data：common.PagedList：CarDto
+  rpc List(common.Page) returns (common.Response) {}
 }
 
 // 新增车辆dto
@@ -58,8 +60,8 @@ message CarDto {
   string source = 601;
   // 城市地区
   string location = 701;
-  // 城市地区
-  string location_id = 702;
+  // 城市地区id
+  uint64 location_id = 702;
 }
 
 // 车辆的id

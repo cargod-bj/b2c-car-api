@@ -44,15 +44,15 @@ func NewCarListEndpoints() []*api.Endpoint {
 // Client API for CarList service
 
 type CarListService interface {
-	// 添加指定车辆，返回 data：CarDto 类型
+	// 添加指定车辆，返回 data：nil
 	Add(ctx context.Context, in *CarListDto, opts ...client.CallOption) (*common.Response, error)
 	// 根据车辆id删除车辆，返回 data：nil
 	Delete(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error)
 	// 更新指定车辆，返回 data：nil
 	Update(ctx context.Context, in *CarListDto, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的车辆：返回 data: CarDto
+	// 获取指定id的车辆：返回 data: CarListDto
 	Get(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error)
-	//获取车辆列表信息
+	//获取车辆列表信息: 返回data：common.PagedList
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 }
 
@@ -121,15 +121,15 @@ func (c *carListService) List(ctx context.Context, in *common.Page, opts ...clie
 // Server API for CarList service
 
 type CarListHandler interface {
-	// 添加指定车辆，返回 data：CarDto 类型
+	// 添加指定车辆，返回 data：nil
 	Add(context.Context, *CarListDto, *common.Response) error
 	// 根据车辆id删除车辆，返回 data：nil
 	Delete(context.Context, *CarListIdDto, *common.Response) error
 	// 更新指定车辆，返回 data：nil
 	Update(context.Context, *CarListDto, *common.Response) error
-	// 获取指定id的车辆：返回 data: CarDto
+	// 获取指定id的车辆：返回 data: CarListDto
 	Get(context.Context, *CarListIdDto, *common.Response) error
-	//获取车辆列表信息
+	//获取车辆列表信息: 返回data：common.PagedList
 	List(context.Context, *common.Page, *common.Response) error
 }
 
