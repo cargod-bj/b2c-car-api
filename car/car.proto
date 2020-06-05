@@ -18,6 +18,8 @@ service Car {
   rpc Update(CarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto
   rpc Get(CarIdDto) returns (common.Response) {}
+  //获取车辆列表: 返回data：common.PagedList：CarDto
+  rpc List(common.Page) returns (common.Response) {}
 }
 
 // 新增车辆dto
