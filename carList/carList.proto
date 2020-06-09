@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package car;
-import "google/protobuf/timestamp.proto";
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carList";
