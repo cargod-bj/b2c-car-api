@@ -29,9 +29,9 @@ message CarListDto {
   //车辆在car表里的id
   uint64 car_id = 2;
   // 车辆的创建时间，如果为新增，或更新，则此字段无效
-  google.protobuf.Timestamp create_time = 3;
+  uint64 create_time = 3;
   // 车辆的更新时间，如果为新增，或更新，则此字段无效
-  google.protobuf.Timestamp update_time = 4;
+  uint64 update_time = 4;
   // 检查报告id
   uint64 inspection_id = 101;
   // 车辆状态
