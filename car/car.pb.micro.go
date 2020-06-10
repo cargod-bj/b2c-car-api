@@ -53,6 +53,7 @@ type CarService interface {
 	Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -117,6 +118,16 @@ func (c *carService) List(ctx context.Context, in *common.Page, opts ...client.C
 	return out, nil
 }
 
+func (c *carService) SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.SourceList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -130,6 +141,7 @@ type CarHandler interface {
 	Get(context.Context, *CarIdDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(context.Context, *common.Page, *common.Response) error
+	SourceList(context.Context, *SourceParams, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -139,6 +151,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		Update(ctx context.Context, in *CarDto, out *common.Response) error
 		Get(ctx context.Context, in *CarIdDto, out *common.Response) error
 		List(ctx context.Context, in *common.Page, out *common.Response) error
+		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -169,4 +182,8 @@ func (h *carHandler) Get(ctx context.Context, in *CarIdDto, out *common.Response
 
 func (h *carHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
 	return h.CarHandler.List(ctx, in, out)
+}
+
+func (h *carHandler) SourceList(ctx context.Context, in *SourceParams, out *common.Response) error {
+	return h.CarHandler.SourceList(ctx, in, out)
 }

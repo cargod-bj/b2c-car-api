@@ -20,6 +20,13 @@ service Car {
   rpc Get(CarIdDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
   rpc List(common.Page) returns (common.Response) {}
+
+  rpc SourceList(SourceParams) returns (common.Response) {}
+}
+
+message SourceParams{
+  common.Page page = 1;
+  string lead_id = 2;
 }
 
 // 新增车辆dto
