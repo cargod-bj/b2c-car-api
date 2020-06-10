@@ -38,7 +38,7 @@ message CarSourceDto {
   string car_brand = 6;
   string car_model = 7;
   string car_variant = 8;
-  string car_enginer = 9;
+  string car_engine = 9;
   string car_year = 10;
   string car_mileage = 11;
   string car_transmission = 12;
