@@ -29,6 +29,22 @@ message SourceParams{
   string lead_id = 2;
 }
 
+message CarSourceDto {
+  string location = 1;
+  uint64 inspection_id = 2;
+  uint64 lead_id = 3;
+  uint64 inspection_date = 4;
+  string inspector = 5;
+  string car_brand = 6;
+  string car_model = 7;
+  string car_variant = 8;
+  string car_enginer = 9;
+  string car_year = 10;
+  string car_mileage = 11;
+  string car_transmission = 12;
+  string license_plate = 13;
+  int32 status = 14;
+}
 // 新增车辆dto
 message CarDto {
   // 车辆id，如果为新增，则此字段为0，否则为车辆id
