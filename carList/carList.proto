@@ -19,6 +19,8 @@ service CarList {
   rpc Get(CarListIdDto) returns (common.Response) {}
   //获取车辆列表信息: 返回data：common.PagedList
   rpc List(common.Page) returns (common.Response){}
+  //根据条件查询carlist
+  rpc ListCondition(CarListCondition) returns (common.Response){}
 }
 
 // 新增上架车辆dto
