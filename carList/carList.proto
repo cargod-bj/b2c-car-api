@@ -68,6 +68,8 @@ message CarListDto {
   //排序
   uint32 seq = 704;
 
+  string  model_name = 705;
+  string  brand_name = 706;
 }
 
 //carlist查询条件

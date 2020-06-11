@@ -72,6 +72,8 @@ type CarListDto struct {
 	Location string `protobuf:"bytes,701,opt,name=location,proto3" json:"location,omitempty"`
 	// 城市地区
 	LocationAddress string `protobuf:"bytes,702,opt,name=location_address,json=locationAddress,proto3" json:"location_address,omitempty"`
+	ModelName       string `protobuf:"bytes,702,opt,name=model_name,json=modelName,proto3" json:"model_name,omitempty"`
+	BrandName       string `protobuf:"bytes,702,opt,name=brand_name,json=brandName,proto3" json:"brand_name,omitempty"`
 	// 是否是Dealer发布
 	IsDealer uint32 `protobuf:"varint,703,opt,name=is_dealer,json=isDealer,proto3" json:"is_dealer,omitempty"`
 	//排序
