@@ -99,9 +99,9 @@ message CarListCondition {
   uint64 milage_to = 12;
   repeated string transmission = 13;//驾驶类型 手动，自动
   repeated string engine = 14; //排量
-  repeated string color = 15;//颜色
-  repeated string fuel_type = 16;//燃油
-  repeated string seat_type = 17;//座位数
+  repeated uint32 color = 15;//颜色
+  repeated uint32 fuel_type = 16;//燃油
+  repeated uint32 seat_type = 17;//座位数
   repeated uint64 parking_id = 18;//停车场
   repeated uint64 store_id = 20;//店铺
   repeated string source = 22;//来源
