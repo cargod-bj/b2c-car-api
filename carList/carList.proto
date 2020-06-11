@@ -79,6 +79,8 @@ message CarListDto {
   uint32 seat_size = 710;
   //车漆颜色
   uint32 color = 711;
+  //车辆特征
+  string  car_type_name = 712;
   string  model_name = 705;
   string  brand_name = 706;
 }
@@ -100,7 +102,7 @@ message CarListCondition {
   repeated string transmission = 13;//驾驶类型 手动，自动
   repeated string engine = 14; //排量
   repeated uint32 color = 15;//颜色
-  repeated uint32 fuel_type = 16;//燃油
+  repeated uint32 fuel_type = 16;/*燃油*/
   repeated uint32 seat_type = 17;//座位数
   repeated uint64 parking_id = 18;//停车场
   repeated uint64 store_id = 20;//店铺
