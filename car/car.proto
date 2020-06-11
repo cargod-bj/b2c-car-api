@@ -20,8 +20,10 @@ service Car {
   rpc Get(CarIdDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
   rpc List(common.Page) returns (common.Response) {}
-
+  //获取车辆来源李彪
   rpc SourceList(SourceParams) returns (common.Response) {}
+  //添加车辆到平台
+  rpc AddFromSource(common.IdDto) returns (common.Response) {}
 }
 
 message SourceParams{

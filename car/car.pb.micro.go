@@ -53,7 +53,10 @@ type CarService interface {
 	Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	//获取车辆来源李彪
 	SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error)
+	//添加车辆到平台
+	AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -128,6 +131,16 @@ func (c *carService) SourceList(ctx context.Context, in *SourceParams, opts ...c
 	return out, nil
 }
 
+func (c *carService) AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.AddFromSource", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -141,7 +154,10 @@ type CarHandler interface {
 	Get(context.Context, *CarIdDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(context.Context, *common.Page, *common.Response) error
+	//获取车辆来源李彪
 	SourceList(context.Context, *SourceParams, *common.Response) error
+	//添加车辆到平台
+	AddFromSource(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -152,6 +168,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		Get(ctx context.Context, in *CarIdDto, out *common.Response) error
 		List(ctx context.Context, in *common.Page, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
+		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -186,4 +203,8 @@ func (h *carHandler) List(ctx context.Context, in *common.Page, out *common.Resp
 
 func (h *carHandler) SourceList(ctx context.Context, in *SourceParams, out *common.Response) error {
 	return h.CarHandler.SourceList(ctx, in, out)
+}
+
+func (h *carHandler) AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.CarHandler.AddFromSource(ctx, in, out)
 }
