@@ -53,6 +53,8 @@ type CarListService interface {
 	Get(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表信息: 返回data：common.PagedList
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	//根据条件查询carlist
+	ListCondition(ctx context.Context, in *CarListCondition, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -117,6 +119,16 @@ func (c *carListService) List(ctx context.Context, in *common.Page, opts ...clie
 	return out, nil
 }
 
+func (c *carListService) ListCondition(ctx context.Context, in *CarListCondition, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.ListCondition", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarList service
 
 type CarListHandler interface {
@@ -130,6 +142,8 @@ type CarListHandler interface {
 	Get(context.Context, *CarListIdDto, *common.Response) error
 	//获取车辆列表信息: 返回data：common.PagedList
 	List(context.Context, *common.Page, *common.Response) error
+	//根据条件查询carlist
+	ListCondition(context.Context, *CarListCondition, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -139,6 +153,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		Update(ctx context.Context, in *CarListDto, out *common.Response) error
 		Get(ctx context.Context, in *CarListIdDto, out *common.Response) error
 		List(ctx context.Context, in *common.Page, out *common.Response) error
+		ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -169,4 +184,8 @@ func (h *carListHandler) Get(ctx context.Context, in *CarListIdDto, out *common.
 
 func (h *carListHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
 	return h.CarListHandler.List(ctx, in, out)
+}
+
+func (h *carListHandler) ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error {
+	return h.CarListHandler.ListCondition(ctx, in, out)
 }
