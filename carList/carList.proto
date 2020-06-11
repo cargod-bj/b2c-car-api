@@ -70,6 +70,39 @@ message CarListDto {
 
 }
 
+//carlist查询条件
+message CarListCondition {
+  uint64 exp_selling_price_from = 1;//卖价
+  uint64 exp_selling_price_to = 2;
+  uint64 model_id = 3; //车系
+  string model_name = 4;
+  uint64 brand_id = 5; //品牌
+  string brand_name = 6;
+  string variant = 7; //型号
+  uint32 status = 8;
+  uint32 year_from = 9;//年份
+  uint32 year_to = 10;
+  uint64 milage_from = 11;//里程
+  uint64 milage_to = 12;
+  string transmission = 13;//驾驶类型 手动，自动
+  string engine = 14; //排量
+  string color = 15;//颜色
+  string fuel_type = 16;//燃油
+  string seat_type = 17;//座位数
+  uint64 parking_id = 18;//停车场
+  uint64 store_id = 20;//店铺
+  string source = 22;//来源
+  string location = 23;//城市
+  uint64 location_id = 27;//地址id
+  string dealer = 24;//经销商
+  //carlist排序条件
+  string sort_key = 25;
+  uint32 sort_type = 26;
+  uint32 page = 28;
+  uint32 limit = 29;
+}
+
+
 // 上架车辆的id
 message CarListIdDto {
   // 车辆id
