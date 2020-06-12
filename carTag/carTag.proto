@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package car;
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carList";
+
+/*
+  获取上架车辆服务
+ */
+service CarTag {
+  // 添加指定车辆，返回 data：nil
+  rpc Add(CarTagDto) returns (common.Response) {}
+  // 根据车辆id删除车辆，返回 data：nil
+  rpc Delete(CarTagConditionDto) returns (common.Response) {}
+  // 更新指定车辆，返回 data：nil
+  rpc Update(CarTagDto) returns (common.Response) {}
+  // 获取指定id的车辆：返回 data: CarTagDto
+  rpc Get(CarTagConditionDto) returns (common.Response) {}
+  //获取车辆列表信息: 返回data：common.PagedList
+  rpc List(common.Page) returns (common.Response){}
+
+}
+
+// 新增Tagdto
+message CarTagDto {
+  // 标签id，如果为新增，则此字段为0
+  uint64 id = 1;
+  //tag名称
+  string name = 2;
+  // tag类型id
+  uint32 type_id = 3;
+  // tag是否可用
+  uint32 status = 4;
+  //tag新增时间
+  uint64 create_time = 5;
+  // tag的更新时间，如果为新增，或更新，则此字段无效
+  uint64 update_time = 6;
+}
+
+// Tag搜索条件
+message CarTagConditionDto {
+  // tag的id
+  uint64 id = 1;
+  string name = 2;
+  uint32 type_id = 3;
+
+}
