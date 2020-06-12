@@ -9,16 +9,14 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carTag";
   获取上架车辆服务
  */
 service CarTag {
-  // 添加指定车辆，返回 data：nil
+  // 添加Tag，返回 data：nil
   rpc Add(CarTagDto) returns (common.Response) {}
-  // 根据车辆id删除车辆，返回 data：nil
+  // 根据Tagid删除车辆，返回 data：nil
   rpc Delete(CarTagConditionDto) returns (common.Response) {}
-  // 更新指定车辆，返回 data：nil
+  // 更新Tag，返回 data：nil
   rpc Update(CarTagDto) returns (common.Response) {}
-  // 获取指定id的车辆：返回 data: CarTagDto
-  rpc Get(CarTagConditionDto) returns (common.Response) {}
-  //获取车辆列表信息: 返回data：common.PagedList
-  rpc List(common.Page) returns (common.Response){}
+  //获取Tag信息: 返回data：common.PagedList
+  rpc List(CarTagConditionDto) returns (common.Response){}
 
 }
 
@@ -44,5 +42,7 @@ message CarTagConditionDto {
   uint64 id = 1;
   string name = 2;
   uint32 type_id = 3;
+  uint32 page = 4;
+  uint32 limit = 5;
 
 }
