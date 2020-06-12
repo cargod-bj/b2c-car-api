@@ -43,16 +43,14 @@ func NewCarTagEndpoints() []*api.Endpoint {
 // Client API for CarTag service
 
 type CarTagService interface {
-	// 添加指定车辆，返回 data：nil
+	// 添加Tag，返回 data：nil
 	Add(ctx context.Context, in *CarTagDto, opts ...client.CallOption) (*common.Response, error)
-	// 根据车辆id删除车辆，返回 data：nil
+	// 根据Tagid删除车辆，返回 data：nil
 	Delete(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error)
-	// 更新指定车辆，返回 data：nil
+	// 更新Tag，返回 data：nil
 	Update(ctx context.Context, in *CarTagDto, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的车辆：返回 data: CarTagDto
-	Get(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error)
-	//获取车辆列表信息: 返回data：common.PagedList
-	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	//获取Tag信息: 返回data：common.PagedList
+	List(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carTagService struct {
@@ -97,17 +95,7 @@ func (c *carTagService) Update(ctx context.Context, in *CarTagDto, opts ...clien
 	return out, nil
 }
 
-func (c *carTagService) Get(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarTag.Get", in)
-	out := new(common.Response)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carTagService) List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error) {
+func (c *carTagService) List(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarTag.List", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -120,16 +108,14 @@ func (c *carTagService) List(ctx context.Context, in *common.Page, opts ...clien
 // Server API for CarTag service
 
 type CarTagHandler interface {
-	// 添加指定车辆，返回 data：nil
+	// 添加Tag，返回 data：nil
 	Add(context.Context, *CarTagDto, *common.Response) error
-	// 根据车辆id删除车辆，返回 data：nil
+	// 根据Tagid删除车辆，返回 data：nil
 	Delete(context.Context, *CarTagConditionDto, *common.Response) error
-	// 更新指定车辆，返回 data：nil
+	// 更新Tag，返回 data：nil
 	Update(context.Context, *CarTagDto, *common.Response) error
-	// 获取指定id的车辆：返回 data: CarTagDto
-	Get(context.Context, *CarTagConditionDto, *common.Response) error
-	//获取车辆列表信息: 返回data：common.PagedList
-	List(context.Context, *common.Page, *common.Response) error
+	//获取Tag信息: 返回data：common.PagedList
+	List(context.Context, *CarTagConditionDto, *common.Response) error
 }
 
 func RegisterCarTagHandler(s server.Server, hdlr CarTagHandler, opts ...server.HandlerOption) error {
@@ -137,8 +123,7 @@ func RegisterCarTagHandler(s server.Server, hdlr CarTagHandler, opts ...server.H
 		Add(ctx context.Context, in *CarTagDto, out *common.Response) error
 		Delete(ctx context.Context, in *CarTagConditionDto, out *common.Response) error
 		Update(ctx context.Context, in *CarTagDto, out *common.Response) error
-		Get(ctx context.Context, in *CarTagConditionDto, out *common.Response) error
-		List(ctx context.Context, in *common.Page, out *common.Response) error
+		List(ctx context.Context, in *CarTagConditionDto, out *common.Response) error
 	}
 	type CarTag struct {
 		carTag
@@ -163,10 +148,6 @@ func (h *carTagHandler) Update(ctx context.Context, in *CarTagDto, out *common.R
 	return h.CarTagHandler.Update(ctx, in, out)
 }
 
-func (h *carTagHandler) Get(ctx context.Context, in *CarTagConditionDto, out *common.Response) error {
-	return h.CarTagHandler.Get(ctx, in, out)
-}
-
-func (h *carTagHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
+func (h *carTagHandler) List(ctx context.Context, in *CarTagConditionDto, out *common.Response) error {
 	return h.CarTagHandler.List(ctx, in, out)
 }
