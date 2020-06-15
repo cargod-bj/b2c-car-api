@@ -34,6 +34,7 @@ message CarTagDto {
   uint64 create_time = 5;
   // tag的更新时间，如果为新增，或更新，则此字段无效
   uint64 update_time = 6;
+  string type_name = 7;
 }
 
 // Tag搜索条件
@@ -42,6 +43,7 @@ message CarTagConditionDto {
   uint64 id = 1;
   string name = 2;
   uint32 type_id = 3;
+  string type_name = 6;
   uint32 page = 4;
   uint32 limit = 5;
 
