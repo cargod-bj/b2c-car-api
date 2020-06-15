@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package car;
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/keywords";
+
+/*
+  获取关键字服务
+ */
+service Keywords {
+  // 添加关键字，返回 data：nil
+  rpc Add(KeywordsDto) returns (common.Response) {}
+  // 根据关键字id删除关键字，返回 data：nil
+  rpc Delete(KeywordsConditionDto) returns (common.Response) {}
+  // 更新关键字，返回 data：nil
+  rpc Update(KeywordsDto) returns (common.Response) {}
+  //获取关键字信息: 返回data：common.PagedList
+  rpc List(KeywordsConditionDto) returns (common.Response){}
+
+}
+
+// 新增Tagdto
+message KeywordsDto {
+  // 标签id，如果为新增，则此字段为0
+  uint64 id = 1;
+  //keywords名称
+  string name = 2;
+  // keywords类型
+  string type = 3;
+  // keywords是否可用
+  uint32 status = 4;
+  //keywords新增时间
+  uint64 create_time = 5;
+  // 关键字的更新时间，如果为新增，或更新，则此字段无效
+  uint64 update_time = 6;
+}
+
+// 关键字搜索条件
+message KeywordsConditionDto {
+  // 关键字的id
+  uint64 id = 1;
+  string name = 2;
+  string type = 3;
+  uint32 page = 4;
+  uint32 limit = 5;
+
+}
