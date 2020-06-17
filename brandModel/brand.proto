@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package brandModel;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-localization-api/brandModelProto";
+
+/*
+  获取车辆品牌服务
+ */
+service Brand {
+  // 新增车辆品牌
+  // response.Data = nil
+  rpc Add(BrandDto) returns (common.Response) {}
+  // 删除指定id的车辆品牌
+  // response.Data = nil
+  rpc Delete(common.IdDto) returns (common.Response) {}
+  // 更新指定车辆品牌，其中有部分不能更新字段，请参照 BrandDto 字段说明
+  // response.Data = nil
+  rpc Update(BrandDto) returns (common.Response) {}
+  // 获取指定id的车辆品牌
+  // response.Data = BrandDto
+  rpc Get(common.IdDto) returns (common.Response) {}
+}
+
+// 品牌dto
+message BrandDto {
+  // id，如果为新增，则此字段为0，否则为id
+  uint64 id = 1;
+  // 创建时间，如果为新增，或更新，则此字段无效
+  uint64 create_time = 2;
+  // 更新时间，如果为新增，或更新，则此字段无效
+  uint64 update_time = 3;
+  // 当前key的描述信息, 如果为更新，则此字段无效
+  string name = 4;
+}
+

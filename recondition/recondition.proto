@@ -19,7 +19,6 @@ service Recondition {
   // 获取整备信息：返回 data: CarDto
   rpc Get(ReconditionDto) returns (common.Response) {}
   rpc List(common.Page) returns (common.Response) {}
-
 }
 
 // 整备信息
