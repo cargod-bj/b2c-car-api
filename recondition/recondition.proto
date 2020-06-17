@@ -19,10 +19,6 @@ service Recondition {
   // 获取整备信息：返回 data: CarDto
   rpc Get(ReconditionDto) returns (common.Response) {}
   rpc List(common.Page) returns (common.Response) {}
-
-  // 根据leadId获取report的damage信息
-  // 返回：common.Response -> List<Any> = List<ReconditionDto>
-  rpc GetReportDamageInfo(common.IdDto) returns (common.Response) {}
 }
 
 // 整备信息
@@ -35,36 +31,4 @@ message ReconditionDto {
   int64  EndTime = 6;
   int64  CreateTime = 7;
   int64  UpdateTime = 8;
-}
-
-// damage的顶层类别，每个顶层类别可能包含多个 子类别
-message ReportDamageCategoryDto {
-  // 当前category的id
-  uint64 Id = 1;
-  // 当前category的Name
-  uint64 Name = 2;
-  // 当前category的子项，如果没有子项则为nil
-  repeated ReportDamageSubCategoryDto children = 3;
-}
-
-// damage的子类别，每个子类别可能包含多个 监测点
-message ReportDamageSubCategoryDto {
-  // 当前category的id
-  uint64 Id = 1;
-  // 当前category的Name
-  uint64 Name = 2;
-  // 当前category的子项，如果没有子项则为nil
-  repeated ReportDamagePointDto children = 3;
-}
-
-// damage的监测点，每个监测点可能包含多个 tag点，多个 损坏照片
-message ReportDamagePointDto {
-  // 当前point的id
-  uint64 Id = 1;
-  // 当前point的Name
-  uint64 Name = 2;
-  // 当前point上的损坏点列表
-  repeated string tags = 3;
-  // 当前point上的损坏点图片
-  repeated string photos = 4;
 }
