@@ -57,6 +57,8 @@ message CarDto {
   uint64 update_time = 3;
   // 检查报告id
   uint64 inspection_id = 101;
+  // 线索id
+  uint64 lead_id = 105;
   // 车辆状态
   uint32 status = 102;
   // 门店id
