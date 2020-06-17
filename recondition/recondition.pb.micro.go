@@ -52,6 +52,9 @@ type ReconditionService interface {
 	// 获取整备信息：返回 data: CarDto
 	Get(ctx context.Context, in *ReconditionDto, opts ...client.CallOption) (*common.Response, error)
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	// 根据leadId获取report的damage信息
+	// 返回：common.Response -> List<Any> = List<ReconditionDto>
+	GetReportDamageInfo(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type reconditionService struct {
@@ -116,6 +119,16 @@ func (c *reconditionService) List(ctx context.Context, in *common.Page, opts ...
 	return out, nil
 }
 
+func (c *reconditionService) GetReportDamageInfo(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Recondition.GetReportDamageInfo", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Recondition service
 
 type ReconditionHandler interface {
@@ -128,6 +141,9 @@ type ReconditionHandler interface {
 	// 获取整备信息：返回 data: CarDto
 	Get(context.Context, *ReconditionDto, *common.Response) error
 	List(context.Context, *common.Page, *common.Response) error
+	// 根据leadId获取report的damage信息
+	// 返回：common.Response -> List<Any> = List<ReconditionDto>
+	GetReportDamageInfo(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterReconditionHandler(s server.Server, hdlr ReconditionHandler, opts ...server.HandlerOption) error {
@@ -137,6 +153,7 @@ func RegisterReconditionHandler(s server.Server, hdlr ReconditionHandler, opts .
 		Update(ctx context.Context, in *ReconditionDto, out *common.Response) error
 		Get(ctx context.Context, in *ReconditionDto, out *common.Response) error
 		List(ctx context.Context, in *common.Page, out *common.Response) error
+		GetReportDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type Recondition struct {
 		recondition
@@ -167,4 +184,8 @@ func (h *reconditionHandler) Get(ctx context.Context, in *ReconditionDto, out *c
 
 func (h *reconditionHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
 	return h.ReconditionHandler.List(ctx, in, out)
+}
+
+func (h *reconditionHandler) GetReportDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.ReconditionHandler.GetReportDamageInfo(ctx, in, out)
 }
