@@ -54,7 +54,7 @@ message CarListDto {
   // 年份
   uint32 car_year = 402;
   // 里程
-  uint32 car_mileage = 403;
+  uint32 car_milage = 403;
   // 驾驶类型 手动,自动
   string car_transmission = 404;
   // 卖价
