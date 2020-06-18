@@ -84,7 +84,7 @@ func (c *keywordsService) PublistKeywords(ctx context.Context, in *common.Page, 
 }
 
 func (c *keywordsService) GetCarListByKeywords(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "Keywords.getCarListByKeywords", in)
+	req := c.c.NewRequest(c.name, "Keywords.GetCarListByKeywords", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
