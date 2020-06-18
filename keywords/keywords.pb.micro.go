@@ -45,6 +45,10 @@ func NewKeywordsEndpoints() []*api.Endpoint {
 type KeywordsService interface {
 	//获取keywords信息: 返回data：common.PagedList
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	//将所有keywords从redis取出生成json文件
+	PublistKeywords(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	//通过name查询出对应carlist列表返回
+	GetCarListByKeywords(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type keywordsService struct {
@@ -69,16 +73,42 @@ func (c *keywordsService) List(ctx context.Context, in *common.Page, opts ...cli
 	return out, nil
 }
 
+func (c *keywordsService) PublistKeywords(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Keywords.PublistKeywords", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keywordsService) GetCarListByKeywords(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Keywords.GetCarListByKeywords", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Keywords service
 
 type KeywordsHandler interface {
 	//获取keywords信息: 返回data：common.PagedList
 	List(context.Context, *common.Page, *common.Response) error
+	//将所有keywords从redis取出生成json文件
+	PublistKeywords(context.Context, *common.Page, *common.Response) error
+	//通过name查询出对应carlist列表返回
+	GetCarListByKeywords(context.Context, *KeywordsDto, *common.Response) error
 }
 
 func RegisterKeywordsHandler(s server.Server, hdlr KeywordsHandler, opts ...server.HandlerOption) error {
 	type keywords interface {
 		List(ctx context.Context, in *common.Page, out *common.Response) error
+		PublistKeywords(ctx context.Context, in *common.Page, out *common.Response) error
+		GetCarListByKeywords(ctx context.Context, in *KeywordsDto, out *common.Response) error
 	}
 	type Keywords struct {
 		keywords
@@ -93,4 +123,12 @@ type keywordsHandler struct {
 
 func (h *keywordsHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
 	return h.KeywordsHandler.List(ctx, in, out)
+}
+
+func (h *keywordsHandler) PublistKeywords(ctx context.Context, in *common.Page, out *common.Response) error {
+	return h.KeywordsHandler.PublistKeywords(ctx, in, out)
+}
+
+func (h *keywordsHandler) GetCarListByKeywords(ctx context.Context, in *KeywordsDto, out *common.Response) error {
+	return h.KeywordsHandler.GetCarListByKeywords(ctx, in, out)
 }
