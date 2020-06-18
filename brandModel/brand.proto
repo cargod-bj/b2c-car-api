@@ -4,7 +4,7 @@ package brandModel;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-localization-api/brandModelProto";
+option go_package = "github.com/cargod-bj/b2c-car-api/brandModelProto";
 
 /*
   获取车辆品牌服务
