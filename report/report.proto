@@ -49,4 +49,6 @@ message ReportDamagePointDto {
   bool isPassed = 5;
   // 是否为na
   bool isNA = 6;
+  // 当前监测点上的value值
+  string tagValue = 7;
 }
