@@ -12,7 +12,7 @@ service Keywords {
   //将所有keywords从redis取出生成json文件
   rpc PublistKeywords(common.Page) returns (common.Response) {}
   //通过name查询出对应carlist列表返回
-  rpc getCarListByKeywords(KeywordsDto) returns (common.Response) {}
+  rpc GetCarListByKeywords(KeywordsDto) returns (common.Response) {}
 }
 
 // 新增Tagdto
