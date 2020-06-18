@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package car;
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carTagRel";
+
+/*
+  获取上架车辆服务
+ */
+service CarTagRel {
+  // 添加Tagrel，返回 data：nil
+  rpc Add(CarTagRelDto) returns (common.Response) {}
+  // 根据id删除车辆，返回 data：nil
+  rpc Delete(CarTagRelDto) returns (common.Response) {}
+  // 更新Tagrel，返回 data：nil
+  rpc Update(CarTagRelDto) returns (common.Response) {}
+  //获取Tagrel信息: 返回data：common.PagedList
+  rpc List(common.Page) returns (common.Response){}
+
+}
+
+// 新增Tagreldto
+message CarTagRelDto {
+  // 标签id，如果为新增，则此字段为0
+  uint64 id = 1;
+  //tag的id
+  uint64 tag_id = 2;
+  // taglist类型id
+  uint64 car_list_id = 3;
+  //tagrel新增时间
+  uint64 create_time = 5;
+  // tagrel的更新时间，如果为新增，或更新，则此字段无效
+  uint64 update_time = 6;
+}
