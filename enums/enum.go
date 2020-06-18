@@ -20,6 +20,18 @@ func FuelTypeText(code int) string {
 	return fuelTypeText[code]
 }
 
+var fuelTypeCode = map[string]int{
+	"Petrol":          FuelTypePetrol,
+	"Petrol with NGV": FuelTypePetrolWithNGV,
+	"Diesel":          FuelTypeDiesel,
+	"Diesel with NGV": FuelTypeDieselWithNGV,
+	"Hybrid/Electric": FuelTypeHybridElectric,
+}
+
+func FuelTypeCode(text string) int {
+	return fuelTypeCode[text]
+}
+
 const (
 	ColorBlack  = 1
 	ColorBlue   = 2
@@ -54,6 +66,25 @@ func ColorText(code int) string {
 	return colorText[code]
 }
 
+var colorCode = map[string]int{
+	"Black":  ColorBlack,
+	"Blue":   ColorBlue,
+	"Brown":  ColorBrown,
+	"Gold":   ColorGold,
+	"Gray":   ColorGray,
+	"Green":  ColorGreen,
+	"Orange": ColorOrange,
+	"Purple": ColorPurple,
+	"Red":    ColorRed,
+	"Sliver": ColorSliver,
+	"Tan":    ColorTan,
+	"White":  ColorWhite,
+}
+
+func ColorCode(text string) int {
+	return colorCode[text]
+}
+
 const (
 	TransmissionManual = 1
 	TransmissionAuto   = 2
@@ -68,6 +99,15 @@ func TransmissionText(code int) string {
 	return transmissionText[code]
 }
 
+var transmissionCode = map[string]int{
+	"Manual": TransmissionManual,
+	"Auto":   TransmissionAuto,
+}
+
+func TransmissionCode(text string) int {
+	return transmissionCode[text]
+}
+
 const (
 	RegistrationTypePrivate = 1
 	RegistrationTypeCompany = 2
@@ -80,4 +120,13 @@ var registrationTypeText = map[int]string{
 
 func RegistrationTypeText(code int) string {
 	return registrationTypeText[code]
+}
+
+var registrationTypeCode = map[string]int{
+	"Private": RegistrationTypePrivate,
+	"Company": RegistrationTypeCompany,
+}
+
+func RegistrationTypeCode(text string) int {
+	return registrationTypeCode[text]
 }
