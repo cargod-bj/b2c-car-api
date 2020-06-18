@@ -25,11 +25,11 @@ message CarTagRelDto {
   // 标签id，如果为新增，则此字段为0
   uint64 id = 1;
   //tag的id
-  uint64 tag_id = 2;
+  uint64 tagId = 2;
   // taglist类型id
-  uint64 car_list_id = 3;
+  uint64 carListId = 3;
   //tagrel新增时间
-  uint64 create_time = 5;
+  uint64 createTime = 5;
   // tagrel的更新时间，如果为新增，或更新，则此字段无效
-  uint64 update_time = 6;
+  uint64 updateTime = 6;
 }
