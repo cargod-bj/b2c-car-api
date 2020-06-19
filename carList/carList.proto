@@ -16,7 +16,7 @@ service CarList {
   // 更新指定车辆，返回 data：nil
   rpc Update(CarListDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarListDto
-  rpc Get(CarListIdDto) returns (common.Response) {}
+  rpc Get(CarListIdDto) returns (CarListDtoList) {}
   //获取车辆列表信息: 返回data：common.PagedList
   rpc List(common.Page) returns (common.Response){}
   //根据条件查询carlist
@@ -125,4 +125,7 @@ message CarListIdDto {
   // 车辆id
   repeated uint64 id = 1;
 
+}
+message CarListDtoList{
+  repeated CarListDto CarListDto = 1;
 }
