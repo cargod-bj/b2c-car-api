@@ -123,5 +123,6 @@ message CarListCondition {
 // 上架车辆的id
 message CarListIdDto {
   // 车辆id
-  uint64 id = 1;
+  repeated uint64 id = 1;
+
 }
