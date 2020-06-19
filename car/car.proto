@@ -97,6 +97,7 @@ message CarDto {
   uint32 color = 410;
   uint32 fuel_type = 411;
   string fuel_type_name = 412;
+  string colorName = 413;
   // 卖价
   double exp_selling_price = 501;
   // 来源
