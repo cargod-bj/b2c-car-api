@@ -17,7 +17,7 @@ service Car {
   // 更新指定车辆，返回 data：nil
   rpc Update(CarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto
-  rpc Get(CarIdDto) returns (common.Response) {}
+  rpc Get(CarIdDto) returns (CarDtoList) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
   rpc List(common.Page) returns (common.Response) {}
   //获取车辆来源李彪
@@ -111,4 +111,8 @@ message CarDto {
 message CarIdDto {
   // 车辆id
   uint64 id = 1;
+}
+
+message CarDtoList{
+  repeated CarDto CarDto = 1;
 }
