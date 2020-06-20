@@ -83,6 +83,7 @@ message CarListDto {
   string  car_type_name = 712;
   string  model_name = 705;
   string  brand_name = 706;
+  uint32  recommend_order = 713;
 }
 
 //carlist查询条件
