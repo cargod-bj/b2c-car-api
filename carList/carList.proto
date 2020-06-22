@@ -83,6 +83,9 @@ message CarListDto {
   string  car_type_name = 712;
   string  model_name = 705;
   string  brand_name = 706;
+  uint32  recommend_order = 713;
+  uint32 type = 714;
+  string url = 715;
 }
 
 //carlist查询条件
@@ -123,5 +126,9 @@ message CarListCondition {
 // 上架车辆的id
 message CarListIdDto {
   // 车辆id
-  uint64 id = 1;
+  repeated uint64 id = 1;
+
+}
+message CarListDtoList{
+  repeated CarListDto CarListDto = 1;
 }

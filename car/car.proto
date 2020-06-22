@@ -57,20 +57,27 @@ message CarDto {
   uint64 update_time = 3;
   // 检查报告id
   uint64 inspection_id = 101;
-  // 线索id
-  uint64 lead_id = 105;
   // 车辆状态
   uint32 status = 102;
   // 门店id
   uint64 store_id = 103;
   // 停车场id
   uint64 parking_id = 104;
+  // 线索id
+  uint64 lead_id = 105;
   // 品牌id
   uint32 brand_id = 201;
   // 车型id
   uint32 model_id = 202;
   // 车variant
   string car_variant = 203;
+  // 品牌id
+  string brand_name = 204;
+  // 车型id
+  string model_name = 205;
+  // 车variant
+  uint32 variant_id = 206;
+
   // 车照片url
   string image = 301;
   // 排量
@@ -80,7 +87,17 @@ message CarDto {
   // 里程
   uint32 car_mileage = 403;
   // 驾驶类型 手动,自动
-  string car_transmission = 404;
+  uint32 car_transmission = 404;
+
+  string car_transmission_name = 405;
+  uint32 registration_type = 406;
+  string registration_type_name = 407;
+  uint64 registration_date = 408;
+  uint32 seat = 409;
+  uint32 color = 410;
+  uint32 fuel_type = 411;
+  string fuel_type_name = 412;
+  string colorName = 413;
   // 卖价
   double exp_selling_price = 501;
   // 来源

@@ -9,25 +9,25 @@ option go_package = "github.com/cargod-bj/b2c-car-api/brandModelProto";
 /*
   获取车辆品牌服务
  */
-service Brand {
+service Variant {
   // 新增车辆品牌
   // response.Data = nil
-  rpc Add(BrandDto) returns (common.Response) {}
+  rpc Add(VariantDto) returns (common.Response) {}
   // 删除指定id的车辆品牌
   // response.Data = nil
   rpc Delete(common.IdDto) returns (common.Response) {}
   // 更新指定车辆品牌，其中有部分不能更新字段，请参照 BrandDto 字段说明
   // response.Data = nil
-  rpc Update(BrandDto) returns (common.Response) {}
+  rpc Update(VariantDto) returns (common.Response) {}
   // 获取指定id的车辆品牌
   // response.Data = BrandDto
   rpc Get(common.IdDto) returns (common.Response) {}
 
-  rpc List(common.Page) returns (common.Response) {}
+  rpc ListByModelId(common.IdDto) returns (common.Response) {}
 }
 
 // 品牌dto
-message BrandDto {
+message VariantDto {
   // id，如果为新增，则此字段为0，否则为id
   uint32 id = 1;
   // 创建时间，如果为新增，或更新，则此字段无效
@@ -37,7 +37,11 @@ message BrandDto {
   // 当前key的描述信息, 如果为更新，则此字段无效
   string name = 4;
 
-  uint32 status = 5;
-  uint32 order = 6;
+  uint32 brand_id = 5;
+
+  uint32 model_id = 6;
+
+  uint32 status = 7;
+  uint32 order = 8;
 }
 
