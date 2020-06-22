@@ -116,6 +116,7 @@ message CarListCondition {
   repeated uint32 car_type_id = 30;//汽车类型
   uint32 recommendCount = 31; //推荐个数
   string keywords = 32; //关键字
+  uint32 dealerType = 33;//经销商类型
   //carlist排序条件
   string sort_key = 25;
   uint32 sort_type = 26;
