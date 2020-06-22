@@ -88,6 +88,8 @@ message CarListDto {
   string url = 715;
 }
 
+
+
 //carlist查询条件
 message CarListCondition {
   uint64 exp_selling_price_from = 1;//卖价
@@ -133,4 +135,9 @@ message CarListIdDto {
 }
 message CarListDtoList{
   repeated CarListDto CarListDto = 1;
+}
+//返回包含推荐位的结果
+message ResultList {
+  CarListDtoList carLists = 1;
+  CarListDtoList recommendList = 2;
 }
