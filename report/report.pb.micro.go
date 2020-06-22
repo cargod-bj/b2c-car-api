@@ -46,6 +46,9 @@ type ReportService interface {
 	// 根据leadId获取report的damage信息
 	// 返回：common.Response -> List<Any> = List<ReconditionDto>
 	GetDamageInfo(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 对指定pointId的检测点做整备
+	// 返回：common.Response
+	DoPointRecondition(ctx context.Context, in *PointReconditionDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type reportService struct {
@@ -70,17 +73,31 @@ func (c *reportService) GetDamageInfo(ctx context.Context, in *common.IdDto, opt
 	return out, nil
 }
 
+func (c *reportService) DoPointRecondition(ctx context.Context, in *PointReconditionDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.DoPointRecondition", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Report service
 
 type ReportHandler interface {
 	// 根据leadId获取report的damage信息
 	// 返回：common.Response -> List<Any> = List<ReconditionDto>
 	GetDamageInfo(context.Context, *common.IdDto, *common.Response) error
+	// 对指定pointId的检测点做整备
+	// 返回：common.Response
+	DoPointRecondition(context.Context, *PointReconditionDto, *common.Response) error
 }
 
 func RegisterReportHandler(s server.Server, hdlr ReportHandler, opts ...server.HandlerOption) error {
 	type report interface {
 		GetDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error
+		DoPointRecondition(ctx context.Context, in *PointReconditionDto, out *common.Response) error
 	}
 	type Report struct {
 		report
@@ -95,4 +112,8 @@ type reportHandler struct {
 
 func (h *reportHandler) GetDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.ReportHandler.GetDamageInfo(ctx, in, out)
+}
+
+func (h *reportHandler) DoPointRecondition(ctx context.Context, in *PointReconditionDto, out *common.Response) error {
+	return h.ReportHandler.DoPointRecondition(ctx, in, out)
 }
