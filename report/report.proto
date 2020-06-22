@@ -13,6 +13,9 @@ service Report {
   // 根据leadId获取report的damage信息
   // 返回：common.Response -> List<Any> = List<ReconditionDto>
   rpc GetDamageInfo(common.IdDto) returns (common.Response);
+  // 对指定pointId的检测点做整备
+  // 返回：common.Response
+  rpc DoPointRecondition(PointReconditionDto) returns (common.Response);
 }
 
 // damage的顶层类别，每个顶层类别可能包含多个 子类别
@@ -23,6 +26,10 @@ message ReportDamageCategoryDto {
   string name = 2;
   // 当前category的子项，如果没有子项则为nil
   repeated ReportDamageSubCategoryDto children = 3;
+  // 包含多少个point点
+  uint32 totalPoint = 4;
+  // 包含多少个没有修复的损坏点
+  uint32 totalDamage = 5;
 }
 
 // damage的子类别，每个子类别可能包含多个 监测点
@@ -32,7 +39,11 @@ message ReportDamageSubCategoryDto {
   // 当前category的Name
   string name = 2;
   // 当前category的子项，如果没有子项则为nil
-  repeated ReportDamagePointDto children = 3;
+  repeated ReportDamagePointDto points = 3;
+  // 包含多少个point点
+  uint32 totalPoint = 4;
+  // 包含多少个没有修复的损坏点
+  uint32 totalDamage = 5;
 }
 
 // damage的监测点，每个监测点可能包含多个 tag点，多个 损坏照片
@@ -51,4 +62,30 @@ message ReportDamagePointDto {
   bool isNA = 6;
   // 当前监测点上的value值
   string tagValue = 7;
+  // 当前监测点上备注的信息
+  string remark = 8;
+  // 当前监测点的损坏照片
+  repeated string damagePhotos = 9;
+  // 当前监测点的整备照片
+  repeated string reconditionPhotos = 10;
+}
+
+// 做Damage的整备message
+message PointReconditionDto {
+  // 当前point的id
+  uint64 id = 1;
+  // 当前point的remark，可以为空
+  string remark = 2;
+  // 当前point的整备类型：0 没有整备过，1 已修复，2 已更新
+  ReconditionType reconditionType = 3;
+}
+
+// 整备类型
+enum ReconditionType {
+  // 没有整备过
+  NO = 0;
+  // 已修复
+  FIXED = 1;
+  // 已更新
+  REPLACED = 2;
 }
