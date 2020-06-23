@@ -56,7 +56,7 @@ message CarListDto {
   // 里程
   uint32 car_milage = 403;
   // 驾驶类型 手动,自动
-  string car_transmission = 404;
+  uint32 car_transmission = 404;
   // 卖价
   double exp_selling_price = 501;
   // 来源
