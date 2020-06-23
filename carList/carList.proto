@@ -138,6 +138,6 @@ message CarListDtoList{
 }
 //返回包含推荐位的结果
 message ResultList {
-  CarListDtoList carLists = 1;
-  CarListDtoList recommendList = 2;
+  repeated CarListDto carLists = 1;
+  repeated CarListDto recommendList = 2;
 }
