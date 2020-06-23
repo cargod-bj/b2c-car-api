@@ -136,6 +136,12 @@ message CarListIdDto {
   repeated uint64 id = 1;
 
 }
+// 上架车辆的位置
+message LocationDto {
+  // 车辆位置
+  repeated string location  = 1;
+
+}
 message CarListDtoList{
   repeated CarListDto CarListDto = 1;
 }
