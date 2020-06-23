@@ -21,6 +21,8 @@ service CarList {
   rpc List(common.Page) returns (common.Response){}
   //根据条件查询carlist
   rpc ListCondition(CarListCondition) returns (common.Response){}
+  //根据查询carlist的location
+  rpc ListLocation(common.Page) returns (common.Response){}
 }
 
 // 新增上架车辆dto
