@@ -16,12 +16,12 @@ service Report {
   // 对指定pointId的检测点做整备
   // 返回：common.Response  -> List = nil
   rpc DoPointRecondition(PointReconditionDto) returns (common.Response);
-  // 绑定Damage图片
+  // 绑定Point上的图片，一次只能绑定一种类型，根据type区分
   // 返回：common.Response -> List = nil
-  rpc BindDamagePhotos(DamagePhotoDto) returns (common.Response);
-  // 解绑Damage图片
+  rpc BindPointPhotos(BindPointPhotoDto) returns (common.Response);
+  // 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
   // 返回：common.Response -> List = nil
-  rpc UnbindDamagePhotos(DamagePhotoDto) returns (common.Response);
+  rpc UnbindPointPhotos(BindPointPhotoDto) returns (common.Response);
 }
 
 // damage的顶层类别，每个顶层类别可能包含多个 子类别
@@ -87,11 +87,13 @@ message PointReconditionDto {
 }
 
 // DamagePhotos
-message DamagePhotoDto {
+message BindPointPhotoDto {
   // 当前point的Id
   uint64 id = 1;
   // 要进行绑定的url或者解绑的url
   repeated string urls = 2;
+  // 图片类型：0 damage，1 recondition
+  uint64 type = 3;
 }
 
 // 整备类型

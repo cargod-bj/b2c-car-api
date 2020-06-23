@@ -49,12 +49,12 @@ type ReportService interface {
 	// 对指定pointId的检测点做整备
 	// 返回：common.Response  -> List = nil
 	DoPointRecondition(ctx context.Context, in *PointReconditionDto, opts ...client.CallOption) (*common.Response, error)
-	// 绑定Damage图片
+	// 绑定Point上的图片，一次只能绑定一种类型，根据type区分
 	// 返回：common.Response -> List = nil
-	BindDamagePhotos(ctx context.Context, in *DamagePhotoDto, opts ...client.CallOption) (*common.Response, error)
-	// 解绑Damage图片
+	BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error)
+	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
 	// 返回：common.Response -> List = nil
-	UnbindDamagePhotos(ctx context.Context, in *DamagePhotoDto, opts ...client.CallOption) (*common.Response, error)
+	UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type reportService struct {
@@ -89,8 +89,8 @@ func (c *reportService) DoPointRecondition(ctx context.Context, in *PointRecondi
 	return out, nil
 }
 
-func (c *reportService) BindDamagePhotos(ctx context.Context, in *DamagePhotoDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "Report.BindDamagePhotos", in)
+func (c *reportService) BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.BindPointPhotos", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -99,8 +99,8 @@ func (c *reportService) BindDamagePhotos(ctx context.Context, in *DamagePhotoDto
 	return out, nil
 }
 
-func (c *reportService) UnbindDamagePhotos(ctx context.Context, in *DamagePhotoDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "Report.UnbindDamagePhotos", in)
+func (c *reportService) UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.UnbindPointPhotos", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -118,20 +118,20 @@ type ReportHandler interface {
 	// 对指定pointId的检测点做整备
 	// 返回：common.Response  -> List = nil
 	DoPointRecondition(context.Context, *PointReconditionDto, *common.Response) error
-	// 绑定Damage图片
+	// 绑定Point上的图片，一次只能绑定一种类型，根据type区分
 	// 返回：common.Response -> List = nil
-	BindDamagePhotos(context.Context, *DamagePhotoDto, *common.Response) error
-	// 解绑Damage图片
+	BindPointPhotos(context.Context, *BindPointPhotoDto, *common.Response) error
+	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
 	// 返回：common.Response -> List = nil
-	UnbindDamagePhotos(context.Context, *DamagePhotoDto, *common.Response) error
+	UnbindPointPhotos(context.Context, *BindPointPhotoDto, *common.Response) error
 }
 
 func RegisterReportHandler(s server.Server, hdlr ReportHandler, opts ...server.HandlerOption) error {
 	type report interface {
 		GetDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error
 		DoPointRecondition(ctx context.Context, in *PointReconditionDto, out *common.Response) error
-		BindDamagePhotos(ctx context.Context, in *DamagePhotoDto, out *common.Response) error
-		UnbindDamagePhotos(ctx context.Context, in *DamagePhotoDto, out *common.Response) error
+		BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
+		UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
 	}
 	type Report struct {
 		report
@@ -152,10 +152,10 @@ func (h *reportHandler) DoPointRecondition(ctx context.Context, in *PointRecondi
 	return h.ReportHandler.DoPointRecondition(ctx, in, out)
 }
 
-func (h *reportHandler) BindDamagePhotos(ctx context.Context, in *DamagePhotoDto, out *common.Response) error {
-	return h.ReportHandler.BindDamagePhotos(ctx, in, out)
+func (h *reportHandler) BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error {
+	return h.ReportHandler.BindPointPhotos(ctx, in, out)
 }
 
-func (h *reportHandler) UnbindDamagePhotos(ctx context.Context, in *DamagePhotoDto, out *common.Response) error {
-	return h.ReportHandler.UnbindDamagePhotos(ctx, in, out)
+func (h *reportHandler) UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error {
+	return h.ReportHandler.UnbindPointPhotos(ctx, in, out)
 }
