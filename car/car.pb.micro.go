@@ -46,11 +46,11 @@ type CarService interface {
 	// 添加指定车辆，返回 data：CarDto 类型
 	Add(ctx context.Context, in *CarDto, opts ...client.CallOption) (*common.Response, error)
 	// 根据车辆id删除车辆，返回 data：nil
-	Delete(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
+	Delete(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
 	// 更新指定车辆，返回 data：nil
 	Update(ctx context.Context, in *CarDto, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的车辆：返回 data: CarDto
-	Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取指定id的车辆：返回 data: CarDto List
+	Get(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆来源李彪
@@ -81,7 +81,7 @@ func (c *carService) Add(ctx context.Context, in *CarDto, opts ...client.CallOpt
 	return out, nil
 }
 
-func (c *carService) Delete(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) Delete(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.Delete", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -101,7 +101,7 @@ func (c *carService) Update(ctx context.Context, in *CarDto, opts ...client.Call
 	return out, nil
 }
 
-func (c *carService) Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) Get(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.Get", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -147,11 +147,11 @@ type CarHandler interface {
 	// 添加指定车辆，返回 data：CarDto 类型
 	Add(context.Context, *CarDto, *common.Response) error
 	// 根据车辆id删除车辆，返回 data：nil
-	Delete(context.Context, *CarIdDto, *common.Response) error
+	Delete(context.Context, *CarIdsDto, *common.Response) error
 	// 更新指定车辆，返回 data：nil
 	Update(context.Context, *CarDto, *common.Response) error
-	// 获取指定id的车辆：返回 data: CarDto
-	Get(context.Context, *CarIdDto, *common.Response) error
+	// 获取指定id的车辆：返回 data: CarDto List
+	Get(context.Context, *CarIdsDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(context.Context, *CarListParams, *common.Response) error
 	//获取车辆来源李彪
@@ -163,9 +163,9 @@ type CarHandler interface {
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
 	type car interface {
 		Add(ctx context.Context, in *CarDto, out *common.Response) error
-		Delete(ctx context.Context, in *CarIdDto, out *common.Response) error
+		Delete(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		Update(ctx context.Context, in *CarDto, out *common.Response) error
-		Get(ctx context.Context, in *CarIdDto, out *common.Response) error
+		Get(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
@@ -185,7 +185,7 @@ func (h *carHandler) Add(ctx context.Context, in *CarDto, out *common.Response) 
 	return h.CarHandler.Add(ctx, in, out)
 }
 
-func (h *carHandler) Delete(ctx context.Context, in *CarIdDto, out *common.Response) error {
+func (h *carHandler) Delete(ctx context.Context, in *CarIdsDto, out *common.Response) error {
 	return h.CarHandler.Delete(ctx, in, out)
 }
 
@@ -193,7 +193,7 @@ func (h *carHandler) Update(ctx context.Context, in *CarDto, out *common.Respons
 	return h.CarHandler.Update(ctx, in, out)
 }
 
-func (h *carHandler) Get(ctx context.Context, in *CarIdDto, out *common.Response) error {
+func (h *carHandler) Get(ctx context.Context, in *CarIdsDto, out *common.Response) error {
 	return h.CarHandler.Get(ctx, in, out)
 }
 

@@ -47,8 +47,14 @@ type ReportService interface {
 	// 返回：common.Response -> List<Any> = List<ReconditionDto>
 	GetDamageInfo(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 对指定pointId的检测点做整备
-	// 返回：common.Response
+	// 返回：common.Response  -> List = nil
 	DoPointRecondition(ctx context.Context, in *PointReconditionDto, opts ...client.CallOption) (*common.Response, error)
+	// 绑定Point上的图片，一次只能绑定一种类型，根据type区分
+	// 返回：common.Response -> List = nil
+	BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error)
+	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
+	// 返回：common.Response -> List = nil
+	UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type reportService struct {
@@ -83,6 +89,26 @@ func (c *reportService) DoPointRecondition(ctx context.Context, in *PointRecondi
 	return out, nil
 }
 
+func (c *reportService) BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.BindPointPhotos", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *reportService) UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.UnbindPointPhotos", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Report service
 
 type ReportHandler interface {
@@ -90,14 +116,22 @@ type ReportHandler interface {
 	// 返回：common.Response -> List<Any> = List<ReconditionDto>
 	GetDamageInfo(context.Context, *common.IdDto, *common.Response) error
 	// 对指定pointId的检测点做整备
-	// 返回：common.Response
+	// 返回：common.Response  -> List = nil
 	DoPointRecondition(context.Context, *PointReconditionDto, *common.Response) error
+	// 绑定Point上的图片，一次只能绑定一种类型，根据type区分
+	// 返回：common.Response -> List = nil
+	BindPointPhotos(context.Context, *BindPointPhotoDto, *common.Response) error
+	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
+	// 返回：common.Response -> List = nil
+	UnbindPointPhotos(context.Context, *BindPointPhotoDto, *common.Response) error
 }
 
 func RegisterReportHandler(s server.Server, hdlr ReportHandler, opts ...server.HandlerOption) error {
 	type report interface {
 		GetDamageInfo(ctx context.Context, in *common.IdDto, out *common.Response) error
 		DoPointRecondition(ctx context.Context, in *PointReconditionDto, out *common.Response) error
+		BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
+		UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
 	}
 	type Report struct {
 		report
@@ -116,4 +150,12 @@ func (h *reportHandler) GetDamageInfo(ctx context.Context, in *common.IdDto, out
 
 func (h *reportHandler) DoPointRecondition(ctx context.Context, in *PointReconditionDto, out *common.Response) error {
 	return h.ReportHandler.DoPointRecondition(ctx, in, out)
+}
+
+func (h *reportHandler) BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error {
+	return h.ReportHandler.BindPointPhotos(ctx, in, out)
+}
+
+func (h *reportHandler) UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error {
+	return h.ReportHandler.UnbindPointPhotos(ctx, in, out)
 }
