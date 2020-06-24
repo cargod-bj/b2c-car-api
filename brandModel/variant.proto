@@ -21,9 +21,9 @@ service Variant {
   rpc Update(VariantDto) returns (common.Response) {}
   // 获取指定id的车辆品牌
   // response.Data = BrandDto
-  rpc Get(common.IdDto) returns (common.Response) {}
+  rpc Get(common.IdLocalDTO) returns (common.Response) {}
 
-  rpc ListByModelId(common.IdDto) returns (common.Response) {}
+  rpc ListByModelId(common.IdLocalDTO) returns (common.Response) {}
 }
 
 // 品牌dto

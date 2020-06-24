@@ -48,14 +48,14 @@ type ModelService interface {
 	Add(ctx context.Context, in *ModelDto, opts ...client.CallOption) (*common.Response, error)
 	// 删除指定id的车辆品牌
 	// response.Data = nil
-	Delete(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	Delete(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 	// 更新指定车辆品牌，其中有部分不能更新字段，请参照 BrandDto 字段说明
 	// response.Data = nil
 	Update(ctx context.Context, in *ModelDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆品牌
 	// response.Data = BrandDto
-	Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
-	ListByBrandId(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
+	ListByBrandId(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 }
 
 type modelService struct {
@@ -80,7 +80,7 @@ func (c *modelService) Add(ctx context.Context, in *ModelDto, opts ...client.Cal
 	return out, nil
 }
 
-func (c *modelService) Delete(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *modelService) Delete(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Model.Delete", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -100,7 +100,7 @@ func (c *modelService) Update(ctx context.Context, in *ModelDto, opts ...client.
 	return out, nil
 }
 
-func (c *modelService) Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *modelService) Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Model.Get", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -110,7 +110,7 @@ func (c *modelService) Get(ctx context.Context, in *common.IdDto, opts ...client
 	return out, nil
 }
 
-func (c *modelService) ListByBrandId(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *modelService) ListByBrandId(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Model.ListByBrandId", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -128,23 +128,23 @@ type ModelHandler interface {
 	Add(context.Context, *ModelDto, *common.Response) error
 	// 删除指定id的车辆品牌
 	// response.Data = nil
-	Delete(context.Context, *common.IdDto, *common.Response) error
+	Delete(context.Context, *common.IdLocalDTO, *common.Response) error
 	// 更新指定车辆品牌，其中有部分不能更新字段，请参照 BrandDto 字段说明
 	// response.Data = nil
 	Update(context.Context, *ModelDto, *common.Response) error
 	// 获取指定id的车辆品牌
 	// response.Data = BrandDto
-	Get(context.Context, *common.IdDto, *common.Response) error
-	ListByBrandId(context.Context, *common.IdDto, *common.Response) error
+	Get(context.Context, *common.IdLocalDTO, *common.Response) error
+	ListByBrandId(context.Context, *common.IdLocalDTO, *common.Response) error
 }
 
 func RegisterModelHandler(s server.Server, hdlr ModelHandler, opts ...server.HandlerOption) error {
 	type model interface {
 		Add(ctx context.Context, in *ModelDto, out *common.Response) error
-		Delete(ctx context.Context, in *common.IdDto, out *common.Response) error
+		Delete(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 		Update(ctx context.Context, in *ModelDto, out *common.Response) error
-		Get(ctx context.Context, in *common.IdDto, out *common.Response) error
-		ListByBrandId(ctx context.Context, in *common.IdDto, out *common.Response) error
+		Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
+		ListByBrandId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 	}
 	type Model struct {
 		model
@@ -161,7 +161,7 @@ func (h *modelHandler) Add(ctx context.Context, in *ModelDto, out *common.Respon
 	return h.ModelHandler.Add(ctx, in, out)
 }
 
-func (h *modelHandler) Delete(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *modelHandler) Delete(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.ModelHandler.Delete(ctx, in, out)
 }
 
@@ -169,10 +169,10 @@ func (h *modelHandler) Update(ctx context.Context, in *ModelDto, out *common.Res
 	return h.ModelHandler.Update(ctx, in, out)
 }
 
-func (h *modelHandler) Get(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *modelHandler) Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.ModelHandler.Get(ctx, in, out)
 }
 
-func (h *modelHandler) ListByBrandId(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *modelHandler) ListByBrandId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.ModelHandler.ListByBrandId(ctx, in, out)
 }

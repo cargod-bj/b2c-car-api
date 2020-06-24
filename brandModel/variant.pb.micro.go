@@ -54,8 +54,8 @@ type VariantService interface {
 	Update(ctx context.Context, in *VariantDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆品牌
 	// response.Data = BrandDto
-	Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
-	ListByModelId(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
+	ListByModelId(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 }
 
 type variantService struct {
@@ -100,7 +100,7 @@ func (c *variantService) Update(ctx context.Context, in *VariantDto, opts ...cli
 	return out, nil
 }
 
-func (c *variantService) Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *variantService) Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Variant.Get", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -110,7 +110,7 @@ func (c *variantService) Get(ctx context.Context, in *common.IdDto, opts ...clie
 	return out, nil
 }
 
-func (c *variantService) ListByModelId(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *variantService) ListByModelId(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Variant.ListByModelId", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -134,8 +134,8 @@ type VariantHandler interface {
 	Update(context.Context, *VariantDto, *common.Response) error
 	// 获取指定id的车辆品牌
 	// response.Data = BrandDto
-	Get(context.Context, *common.IdDto, *common.Response) error
-	ListByModelId(context.Context, *common.IdDto, *common.Response) error
+	Get(context.Context, *common.IdLocalDTO, *common.Response) error
+	ListByModelId(context.Context, *common.IdLocalDTO, *common.Response) error
 }
 
 func RegisterVariantHandler(s server.Server, hdlr VariantHandler, opts ...server.HandlerOption) error {
@@ -143,8 +143,8 @@ func RegisterVariantHandler(s server.Server, hdlr VariantHandler, opts ...server
 		Add(ctx context.Context, in *VariantDto, out *common.Response) error
 		Delete(ctx context.Context, in *common.IdDto, out *common.Response) error
 		Update(ctx context.Context, in *VariantDto, out *common.Response) error
-		Get(ctx context.Context, in *common.IdDto, out *common.Response) error
-		ListByModelId(ctx context.Context, in *common.IdDto, out *common.Response) error
+		Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
+		ListByModelId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 	}
 	type Variant struct {
 		variant
@@ -169,10 +169,10 @@ func (h *variantHandler) Update(ctx context.Context, in *VariantDto, out *common
 	return h.VariantHandler.Update(ctx, in, out)
 }
 
-func (h *variantHandler) Get(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *variantHandler) Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.VariantHandler.Get(ctx, in, out)
 }
 
-func (h *variantHandler) ListByModelId(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *variantHandler) ListByModelId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.VariantHandler.ListByModelId(ctx, in, out)
 }

@@ -19,7 +19,7 @@ service Car {
   // 获取指定id的车辆：返回 data: CarDto
   rpc Get(CarIdDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
-  rpc List(common.Page) returns (common.Response) {}
+  rpc List(CarListParams) returns (common.Response) {}
   //获取车辆来源李彪
   rpc SourceList(SourceParams) returns (common.Response) {}
   //添加车辆到平台
@@ -30,6 +30,12 @@ message SourceParams{
   common.Page page = 1;
   string lead_id = 2;
 }
+
+message CarListParams{
+  common.Page page = 1;
+  string local = 2;
+}
+
 
 message CarSourceDto {
   string location = 1;
@@ -112,4 +118,6 @@ message CarDto {
 message CarIdDto {
   // 车辆id
   uint64 id = 1;
+
+  string local = 2;
 }

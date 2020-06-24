@@ -52,7 +52,7 @@ type CarService interface {
 	// 获取指定id的车辆：返回 data: CarDto
 	Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
-	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	List(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆来源李彪
 	SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error)
 	//添加车辆到平台
@@ -111,7 +111,7 @@ func (c *carService) Get(ctx context.Context, in *CarIdDto, opts ...client.CallO
 	return out, nil
 }
 
-func (c *carService) List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) List(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.List", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -153,7 +153,7 @@ type CarHandler interface {
 	// 获取指定id的车辆：返回 data: CarDto
 	Get(context.Context, *CarIdDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
-	List(context.Context, *common.Page, *common.Response) error
+	List(context.Context, *CarListParams, *common.Response) error
 	//获取车辆来源李彪
 	SourceList(context.Context, *SourceParams, *common.Response) error
 	//添加车辆到平台
@@ -166,7 +166,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		Delete(ctx context.Context, in *CarIdDto, out *common.Response) error
 		Update(ctx context.Context, in *CarDto, out *common.Response) error
 		Get(ctx context.Context, in *CarIdDto, out *common.Response) error
-		List(ctx context.Context, in *common.Page, out *common.Response) error
+		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
@@ -197,7 +197,7 @@ func (h *carHandler) Get(ctx context.Context, in *CarIdDto, out *common.Response
 	return h.CarHandler.Get(ctx, in, out)
 }
 
-func (h *carHandler) List(ctx context.Context, in *common.Page, out *common.Response) error {
+func (h *carHandler) List(ctx context.Context, in *CarListParams, out *common.Response) error {
 	return h.CarHandler.List(ctx, in, out)
 }
 
