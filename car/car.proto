@@ -113,3 +113,6 @@ message CarIdsDto {
   // 车辆id
   repeated uint64 ids = 1;
 }
+message CarDtoList{
+  repeated CarDto CarDtoList = 1;
+}
