@@ -15,15 +15,15 @@ service Model {
   rpc Add(ModelDto) returns (common.Response) {}
   // 删除指定id的车辆品牌
   // response.Data = nil
-  rpc Delete(common.IdDto) returns (common.Response) {}
+  rpc Delete(common.IdLocalDTO) returns (common.Response) {}
   // 更新指定车辆品牌，其中有部分不能更新字段，请参照 BrandDto 字段说明
   // response.Data = nil
   rpc Update(ModelDto) returns (common.Response) {}
   // 获取指定id的车辆品牌
   // response.Data = BrandDto
-  rpc Get(common.IdDto) returns (common.Response) {}
+  rpc Get(common.IdLocalDTO) returns (common.Response) {}
 
-  rpc ListByBrandId(common.IdDto) returns (common.Response) {}
+  rpc ListByBrandId(common.IdLocalDTO) returns (common.Response) {}
 }
 
 // 品牌dto

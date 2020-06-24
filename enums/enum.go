@@ -118,7 +118,7 @@ func TransmissionText(code int) string {
 	return transmissionText[code]
 }
 
-func TransmissionList() []int{
+func TransmissionList() []int {
 	return getKeys(transmissionText)
 }
 
@@ -145,10 +145,9 @@ func RegistrationTypeText(code int) string {
 	return registrationTypeText[code]
 }
 
-func RegistrationTypeList() []int{
+func RegistrationTypeList() []int {
 	return getKeys(registrationTypeText)
 }
-
 
 var registrationTypeCode = map[string]int{
 	"Private": RegistrationTypePrivate,
