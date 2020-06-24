@@ -57,6 +57,8 @@ type CarListService interface {
 	ListCondition(ctx context.Context, in *CarListCondition, opts ...client.CallOption) (*common.Response, error)
 	//根据查询carlist的location
 	ListLocation(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
+	// 获取指定id的车辆：返回 data: CarListDto
+	GetCarList(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -141,6 +143,16 @@ func (c *carListService) ListLocation(ctx context.Context, in *common.Page, opts
 	return out, nil
 }
 
+func (c *carListService) GetCarList(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetCarList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarList service
 
 type CarListHandler interface {
@@ -158,6 +170,8 @@ type CarListHandler interface {
 	ListCondition(context.Context, *CarListCondition, *common.Response) error
 	//根据查询carlist的location
 	ListLocation(context.Context, *common.Page, *common.Response) error
+	// 获取指定id的车辆：返回 data: CarListDto
+	GetCarList(context.Context, *CarListIdDto, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -169,6 +183,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		List(ctx context.Context, in *common.Page, out *common.Response) error
 		ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 		ListLocation(ctx context.Context, in *common.Page, out *common.Response) error
+		GetCarList(ctx context.Context, in *CarListIdDto, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -207,4 +222,8 @@ func (h *carListHandler) ListCondition(ctx context.Context, in *CarListCondition
 
 func (h *carListHandler) ListLocation(ctx context.Context, in *common.Page, out *common.Response) error {
 	return h.CarListHandler.ListLocation(ctx, in, out)
+}
+
+func (h *carListHandler) GetCarList(ctx context.Context, in *CarListIdDto, out *common.Response) error {
+	return h.CarListHandler.GetCarList(ctx, in, out)
 }
