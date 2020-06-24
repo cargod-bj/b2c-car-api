@@ -134,7 +134,7 @@ message CarListCondition {
 message CarListIdDto {
   // 车辆id
   repeated uint64 id = 1;
-
+  uint32 recommendCount = 2;
 }
 // 上架车辆的位置
 message LocationDto {
