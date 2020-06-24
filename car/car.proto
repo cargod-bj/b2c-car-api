@@ -13,11 +13,11 @@ service Car {
   // 添加指定车辆，返回 data：CarDto 类型
   rpc Add(CarDto) returns (common.Response) {}
   // 根据车辆id删除车辆，返回 data：nil
-  rpc Delete(CarIdDto) returns (common.Response) {}
+  rpc Delete(CarIdsDto) returns (common.Response) {}
   // 更新指定车辆，返回 data：nil
   rpc Update(CarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto List
-  rpc Get(CarIdDto) returns (common.Response) {}
+  rpc Get(CarIdsDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
   rpc List(common.Page) returns (common.Response) {}
   //获取车辆来源李彪
@@ -109,7 +109,7 @@ message CarDto {
 }
 
 // 车辆的id
-message CarIdDto {
+message CarIdsDto {
   // 车辆id
-  repeated uint64 id = 1;
+  repeated uint64 ids = 1;
 }
