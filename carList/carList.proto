@@ -21,6 +21,8 @@ service CarList {
   rpc List(common.Page) returns (common.Response){}
   //根据条件查询carlist
   rpc ListCondition(CarListCondition) returns (common.Response){}
+  //根据查询carlist的location
+  rpc ListLocation(common.Page) returns (common.Response){}
 }
 
 // 新增上架车辆dto
@@ -56,7 +58,7 @@ message CarListDto {
   // 里程
   uint32 car_milage = 403;
   // 驾驶类型 手动,自动
-  string car_transmission = 404;
+  uint32 car_transmission = 404;
   // 卖价
   double exp_selling_price = 501;
   // 来源
@@ -86,6 +88,7 @@ message CarListDto {
   uint32  recommend_order = 713;
   uint32 type = 714;
   string url = 715;
+  uint64 location_id = 716;
 }
 
 
@@ -132,6 +135,12 @@ message CarListIdDto {
   // 车辆id
   repeated uint64 id = 1;
 
+}
+// 上架车辆的位置
+message LocationDto {
+  // 车辆位置
+  string location  = 1;
+  uint32 location_id = 2;
 }
 message CarListDtoList{
   repeated CarListDto CarListDto = 1;
