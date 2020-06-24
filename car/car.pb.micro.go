@@ -49,7 +49,7 @@ type CarService interface {
 	Delete(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
 	// 更新指定车辆，返回 data：nil
 	Update(ctx context.Context, in *CarDto, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的车辆：返回 data: CarDto
+	// 获取指定id的车辆：返回 data: CarDto List
 	Get(ctx context.Context, in *CarIdDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
@@ -150,7 +150,7 @@ type CarHandler interface {
 	Delete(context.Context, *CarIdDto, *common.Response) error
 	// 更新指定车辆，返回 data：nil
 	Update(context.Context, *CarDto, *common.Response) error
-	// 获取指定id的车辆：返回 data: CarDto
+	// 获取指定id的车辆：返回 data: CarDto List
 	Get(context.Context, *CarIdDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(context.Context, *common.Page, *common.Response) error
