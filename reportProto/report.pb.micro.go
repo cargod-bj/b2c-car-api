@@ -60,7 +60,7 @@ type ReportService interface {
 	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
 	// 返回：common.Response -> Data = nil
 	UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, opts ...client.CallOption) (*common.Response, error)
-	// 完成整备
+	// 根据车辆id完成整备
 	// 返回：common.Response -> Data = nil
 	CompleteRecondition(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
@@ -157,7 +157,7 @@ type ReportHandler interface {
 	// 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
 	// 返回：common.Response -> Data = nil
 	UnbindPointPhotos(context.Context, *BindPointPhotoDto, *common.Response) error
-	// 完成整备
+	// 根据车辆id完成整备
 	// 返回：common.Response -> Data = nil
 	CompleteRecondition(context.Context, *common.IdDto, *common.Response) error
 }
