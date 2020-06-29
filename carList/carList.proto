@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package car;
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
-import "github.com/cargod-bj/b2c-car-api/reportProto/report.proto";
+import "reportProto/report.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carList";
 

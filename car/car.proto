@@ -24,6 +24,8 @@ service Car {
   rpc SourceList(SourceParams) returns (common.Response) {}
   //添加车辆到平台
   rpc AddFromSource(common.IdDto) returns (common.Response) {}
+  // 上架车辆
+  rpc LaunchCar(common.IdDto) returns (common.Response) {}
 }
 
 message SourceParams{

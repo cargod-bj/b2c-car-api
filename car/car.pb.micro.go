@@ -57,6 +57,8 @@ type CarService interface {
 	SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error)
 	//添加车辆到平台
 	AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 上架车辆
+	LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -141,6 +143,16 @@ func (c *carService) AddFromSource(ctx context.Context, in *common.IdDto, opts .
 	return out, nil
 }
 
+func (c *carService) LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.LaunchCar", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -158,6 +170,8 @@ type CarHandler interface {
 	SourceList(context.Context, *SourceParams, *common.Response) error
 	//添加车辆到平台
 	AddFromSource(context.Context, *common.IdDto, *common.Response) error
+	// 上架车辆
+	LaunchCar(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -169,6 +183,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
+		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -207,4 +222,8 @@ func (h *carHandler) SourceList(ctx context.Context, in *SourceParams, out *comm
 
 func (h *carHandler) AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.CarHandler.AddFromSource(ctx, in, out)
+}
+
+func (h *carHandler) LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.CarHandler.LaunchCar(ctx, in, out)
 }

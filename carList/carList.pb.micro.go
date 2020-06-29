@@ -5,6 +5,7 @@ package carList
 
 import (
 	fmt "fmt"
+	_ "github.com/cargod-bj/b2c-car-api/reportProto"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
@@ -58,7 +59,7 @@ type CarListService interface {
 	//根据查询carlist的location
 	ListLocation(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆：返回 data: CarListDto
-	GetCarList(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error)
+	GetCarList(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -143,7 +144,7 @@ func (c *carListService) ListLocation(ctx context.Context, in *common.Page, opts
 	return out, nil
 }
 
-func (c *carListService) GetCarList(ctx context.Context, in *CarListIdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carListService) GetCarList(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarList.GetCarList", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -171,7 +172,7 @@ type CarListHandler interface {
 	//根据查询carlist的location
 	ListLocation(context.Context, *common.Page, *common.Response) error
 	// 获取指定id的车辆：返回 data: CarListDto
-	GetCarList(context.Context, *CarListIdDto, *common.Response) error
+	GetCarList(context.Context, *CarListId, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -183,7 +184,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		List(ctx context.Context, in *common.Page, out *common.Response) error
 		ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 		ListLocation(ctx context.Context, in *common.Page, out *common.Response) error
-		GetCarList(ctx context.Context, in *CarListIdDto, out *common.Response) error
+		GetCarList(ctx context.Context, in *CarListId, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -224,6 +225,6 @@ func (h *carListHandler) ListLocation(ctx context.Context, in *common.Page, out 
 	return h.CarListHandler.ListLocation(ctx, in, out)
 }
 
-func (h *carListHandler) GetCarList(ctx context.Context, in *CarListIdDto, out *common.Response) error {
+func (h *carListHandler) GetCarList(ctx context.Context, in *CarListId, out *common.Response) error {
 	return h.CarListHandler.GetCarList(ctx, in, out)
 }
