@@ -142,6 +142,8 @@ message CarListCondition {
 message CarListIdDto {
   // 车辆id
   repeated uint64 id = 1;
+  // 本地化
+  string local = 3;
 }
 //查询单个车辆
 message CarListId {
