@@ -91,6 +91,10 @@ message CarListDto {
   uint32 type = 714;
   string url = 715;
   uint64 location_id = 716;
+  string car_transmission_name = 717;
+  string registration_type_name = 718;
+  string fuel_type_name = 719;
+  string colorName = 720;
 }
 
 
@@ -138,6 +142,8 @@ message CarListIdDto {
   // 车辆id
   repeated uint64 id = 1;
   uint32 recommendCount = 2;
+  // 本地化
+  string local = 3;
 }
 // 上架车辆的位置
 message LocationDto {
