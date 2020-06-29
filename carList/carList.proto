@@ -16,7 +16,7 @@ service CarList {
   rpc Delete(CarListIdDto) returns (common.Response) {}
   // 更新指定车辆，返回 data：nil
   rpc Update(CarListDto) returns (common.Response) {}
-  // 获取指定id的车辆：返回 data: CarListDto
+  // 获取指定id的车辆（多个）：返回 data: CarListDto
   rpc Get(CarListIdDto) returns (common.Response) {}
   //获取车辆列表信息: 返回data：common.PagedList
   rpc List(common.Page) returns (common.Response){}
