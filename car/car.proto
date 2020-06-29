@@ -105,7 +105,7 @@ message CarDto {
   string fuel_type_name = 412;
   string colorName = 413;
   // 卖价
-  double exp_selling_price = 501;
+  string exp_selling_price = 501;
   // 来源
   string source = 601;
   // 城市地区

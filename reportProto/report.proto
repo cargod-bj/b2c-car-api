@@ -10,18 +10,34 @@ option go_package = "github.com/cargod-bj/b2c-car-api/reportProto";
  * 报告服务
  */
 service Report {
+  // 根据carId获取report的详细信息
+  // 返回：common.Response -> Data = ReportInfoDto
+  rpc GetReportInfo(common.IdDto) returns (common.Response);
   // 根据leadId获取report的damage信息
-  // 返回：common.Response -> List<Any> = List<ReconditionDto>
+  // 返回：common.Response -> Data = common.PagedList {
+  //                  List<Any> = List<ReportDamageCategoryDto>
+  //              }
   rpc GetDamageInfo(common.IdDto) returns (common.Response);
   // 对指定pointId的检测点做整备
-  // 返回：common.Response  -> List = nil
+  // 返回：common.Response  -> Data = nil
   rpc DoPointRecondition(PointReconditionDto) returns (common.Response);
   // 绑定Point上的图片，一次只能绑定一种类型，根据type区分
-  // 返回：common.Response -> List = nil
+  // 返回：common.Response -> Data = nil
   rpc BindPointPhotos(BindPointPhotoDto) returns (common.Response);
   // 解绑Point上的图片，一次只能解绑定一种类型，根据type区分
-  // 返回：common.Response -> List = nil
+  // 返回：common.Response -> Data = nil
   rpc UnbindPointPhotos(BindPointPhotoDto) returns (common.Response);
+  // 根据车辆id完成整备
+  // 返回：common.Response -> Data = nil
+  rpc CompleteRecondition(common.IdDto) returns (common.Response);
+}
+
+// report的详细信息
+message ReportInfoDto {
+  // 车辆信息
+  CarDto car = 1;
+  // damage信息
+  repeated ReportDamageCategoryDto damagePoints = 2;
 }
 
 // damage的顶层类别，每个顶层类别可能包含多个 子类别
@@ -104,4 +120,48 @@ enum ReconditionType {
   FIXED = 1;
   // 已更新
   REPLACED = 2;
+}
+
+
+// 车辆dto，从car.proto复制过来的。后面修复了carProto包名问题后再考虑引用的方式解决
+message CarDto {
+  // 车辆id，如果为新增，则此字段为0，否则为车辆id
+  uint64 id = 1;
+  // 线索id
+  uint64 leadId = 105;
+  // 品牌id
+  uint32 brandId = 201;
+  // 车型id
+  uint32 modelId = 202;
+  // 品牌id
+  string brandName = 204;
+  // 车型id
+  string modelName = 205;
+  // 车variant
+  uint32 variantId = 206;
+  // 车variant
+  string variant = 203;
+
+  // 车照片url
+  string image = 301;
+  // 排量
+  string engine = 401;
+  // 年份
+  uint32 year = 402;
+  // 里程
+  uint32 mileage = 403;
+  // 驾驶类型 手动,自动
+  uint32 transmission = 404;
+  string transmissionName = 405;
+  uint32 seat = 409;
+  string fuelTypeName = 412;
+  string colorName = 413;
+  // 卖价
+  double price = 501;
+  // 来源
+  string source = 601;
+  // 城市地区
+  string location = 701;
+  // 城市地区id
+  uint64 locationId = 702;
 }
