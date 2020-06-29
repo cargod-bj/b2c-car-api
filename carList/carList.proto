@@ -141,7 +141,7 @@ message CarListCondition {
 // 上架车辆的id
 message CarListIdDto {
   // 车辆id
-  repeated uint64 id = 1;
+  repeated uint64 ids = 1;
   // 本地化
   string local = 3;
 }
