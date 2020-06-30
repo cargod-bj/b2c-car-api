@@ -59,7 +59,7 @@ message CarListDto {
   // 年份
   uint32 car_year = 402;
   // 里程
-  uint32 car_milage = 403;
+  uint32 car_mileage = 403;
   // 驾驶类型 手动,自动
   uint32 car_transmission = 404;
   // 卖价
@@ -81,7 +81,7 @@ message CarListDto {
   //燃油类型
   uint32 fuel_type = 709;
   //座椅个数
-  uint32 seat_size = 710;
+  uint32 seat = 710;
   //车漆颜色
   uint32 color = 711;
   //车辆特征
