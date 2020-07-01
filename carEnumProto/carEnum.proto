@@ -21,8 +21,9 @@ service CarEnum {
 message EnumTypeDto {
   // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"
   string type = 1;
+  // 语言类型：en
+  string local = 2;
 }
-
 
 // 根据EnumTypeDto获取出来的key value值
 message KeyValueDto {
