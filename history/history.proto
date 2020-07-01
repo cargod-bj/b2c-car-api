@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package history;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/historyProto";
+
+/*
+  * 用户历史记录
+ */
+service history {
+  // 添加用户历史记录，返回 data：History 类型
+  rpc SaveHistory(History) returns (common.Response) {}
+  // 根据Userid获取历史记录，返回 data：nil
+  rpc GetHistory(History) returns (common.Response) {}
+}
+
+message History{
+  int64 CarId = 1;
+  int64 UserId = 2;
+}
+
+
+
