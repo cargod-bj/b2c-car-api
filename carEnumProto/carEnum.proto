@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package carEnum;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carEnumProto";
+
+/*
+ * 获取车辆参数枚举服务
+ */
+service CarEnum {
+  // 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"
+  // 返回：common.Response -> Data = common.PagedList {
+  //                  List<Any> = List<KeyValueDto>
+  //              }
+  rpc GetCarEnum(EnumTypeDto) returns (common.Response);
+}
+
+// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"
+message EnumTypeDto {
+  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"
+  string type = 1;
+}
+
+
+// 根据EnumTypeDto获取出来的key value值
+message KeyValueDto {
+  // key值，如：Red
+  string key = 1;
+  // value值，如：1
+  uint32 value = 2;
+}
+
