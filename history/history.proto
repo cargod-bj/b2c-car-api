@@ -19,6 +19,7 @@ service history {
 message History{
   int64 CarId = 1;
   int64 UserId = 2;
+  string Local = 3;
 }
 
 
