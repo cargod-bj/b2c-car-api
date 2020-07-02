@@ -96,7 +96,7 @@ message CarListDto {
   string registration_type_name = 718;
   string fuel_type_name = 719;
   string colorName = 720;
-  string registration_date = 721;
+  uint64 registration_date = 721;
   uint32 registration_type = 722;
 }
 
