@@ -69,8 +69,6 @@ message CarDto {
   uint32 status = 102;
   // 门店id
   uint64 store_id = 103;
-  // 停车场id
-  uint64 parking_id = 104;
   // 线索id
   uint64 lead_id = 105;
   // 品牌id
@@ -108,12 +106,26 @@ message CarDto {
   string colorName = 413;
   // 卖价
   string exp_selling_price = 501;
+  // 收车价
+  string purchase_price = 502;
   // 来源
   string source = 601;
   // 城市地区
   string location = 701;
   // 城市地区id
   uint64 location_id = 702;
+
+  // 整备渠道
+  string recondition_channel = 801;
+  // 整备金
+  string recondition_cost = 802;
+  // 整备项目
+  string recondition_content = 803;
+  // 整备状态
+  string recondition_state = 804;
+
+  // 库存状态
+  string inventory_status = 901;
 }
 
 // 车辆的id
