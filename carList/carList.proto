@@ -27,7 +27,7 @@ service CarList {
   // 获取指定id的车辆：返回 data: CarListDto
   rpc GetCarList(CarListId) returns (common.Response) {}
   // 获取车辆ID模糊搜索车辆信息：返回 data: CarListDtoList
-  rpc GetCarListByCarId(CarListId) returns (common.Response) {}
+  rpc GetCarListByIdFuzzy(CarListId) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
