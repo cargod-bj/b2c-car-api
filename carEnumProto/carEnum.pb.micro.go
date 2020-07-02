@@ -43,7 +43,7 @@ func NewCarEnumEndpoints() []*api.Endpoint {
 // Client API for CarEnum service
 
 type CarEnumService interface {
-	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"
+	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"
 	// 返回：common.Response -> Data = common.PagedList {
 	//                  List<Any> = List<KeyValueDto>
 	//              }
@@ -75,7 +75,7 @@ func (c *carEnumService) GetCarEnum(ctx context.Context, in *EnumTypeDto, opts .
 // Server API for CarEnum service
 
 type CarEnumHandler interface {
-	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"
+	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"
 	// 返回：common.Response -> Data = common.PagedList {
 	//                  List<Any> = List<KeyValueDto>
 	//              }
