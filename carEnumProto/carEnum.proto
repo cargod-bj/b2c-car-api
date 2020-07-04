@@ -10,16 +10,16 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carEnumProto";
  * 获取车辆参数枚举服务
  */
 service CarEnum {
-  // 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"
+  // 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"
   // 返回：common.Response -> Data = common.PagedList {
   //                  List<Any> = List<KeyValueDto>
   //              }
   rpc GetCarEnum(EnumTypeDto) returns (common.Response);
 }
 
-// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"
+// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"
 message EnumTypeDto {
-  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"
+  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"
   string type = 1;
   // 语言类型：en
   string local = 2;
