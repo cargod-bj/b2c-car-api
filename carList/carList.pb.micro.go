@@ -59,7 +59,7 @@ type CarListService interface {
 	//根据查询carlist的location
 	ListLocation(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆：返回 data: CarListDto
-	GetCarList(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
+	GetCarListDetail(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆ID模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByIdFuzzy(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
 }
@@ -146,8 +146,8 @@ func (c *carListService) ListLocation(ctx context.Context, in *common.Page, opts
 	return out, nil
 }
 
-func (c *carListService) GetCarList(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarList.GetCarList", in)
+func (c *carListService) GetCarListDetail(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetCarListDetail", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -184,7 +184,7 @@ type CarListHandler interface {
 	//根据查询carlist的location
 	ListLocation(context.Context, *common.Page, *common.Response) error
 	// 获取指定id的车辆：返回 data: CarListDto
-	GetCarList(context.Context, *CarListId, *common.Response) error
+	GetCarListDetail(context.Context, *CarListId, *common.Response) error
 	// 获取车辆ID模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByIdFuzzy(context.Context, *CarListId, *common.Response) error
 }
@@ -198,7 +198,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		List(ctx context.Context, in *common.Page, out *common.Response) error
 		ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 		ListLocation(ctx context.Context, in *common.Page, out *common.Response) error
-		GetCarList(ctx context.Context, in *CarListId, out *common.Response) error
+		GetCarListDetail(ctx context.Context, in *CarListId, out *common.Response) error
 		GetCarListByIdFuzzy(ctx context.Context, in *CarListId, out *common.Response) error
 	}
 	type CarList struct {
@@ -240,8 +240,8 @@ func (h *carListHandler) ListLocation(ctx context.Context, in *common.Page, out 
 	return h.CarListHandler.ListLocation(ctx, in, out)
 }
 
-func (h *carListHandler) GetCarList(ctx context.Context, in *CarListId, out *common.Response) error {
-	return h.CarListHandler.GetCarList(ctx, in, out)
+func (h *carListHandler) GetCarListDetail(ctx context.Context, in *CarListId, out *common.Response) error {
+	return h.CarListHandler.GetCarListDetail(ctx, in, out)
 }
 
 func (h *carListHandler) GetCarListByIdFuzzy(ctx context.Context, in *CarListId, out *common.Response) error {
