@@ -101,6 +101,8 @@ message CarListDto {
   string colorName = 720;
   uint64 registration_date = 721;
   uint32 registration_type = 722;
+  repeated string inner_image = 723;
+  repeated string outer_image = 724;
 }
 
 
