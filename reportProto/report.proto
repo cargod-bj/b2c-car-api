@@ -52,6 +52,10 @@ message ReportDamageCategoryDto {
   uint32 totalPoint = 4;
   // 包含多少个没有修复的损坏点
   uint32 totalDamage = 5;
+  // 包含多少个fixed数量
+  uint32 totalFixed = 6;
+  // 包含多少个replace数量
+  uint32 totalReplace = 7;
 }
 
 // damage的子类别，每个子类别可能包含多个 监测点
@@ -66,6 +70,10 @@ message ReportDamageSubCategoryDto {
   uint32 totalPoint = 4;
   // 包含多少个没有修复的损坏点
   uint32 totalDamage = 5;
+  // 包含多少个fixed数量
+  uint32 totalFixed = 6;
+  // 包含多少个replace数量
+  uint32 totalReplace = 7;
 }
 
 // damage的监测点，每个监测点可能包含多个 tag点，多个 损坏照片
@@ -90,6 +98,10 @@ message ReportDamagePointDto {
   repeated string damagePhotos = 9;
   // 当前监测点的整备照片
   repeated string reconditionPhotos = 10;
+  // 当前点的整备状态：0未整备，1 passed，2 damage, 3 fixed, 4 replaced
+  uint32 reconditionType = 11;
+  // 当前整备名称
+  string reconditionTypeName = 12;
 }
 
 // 做Damage的整备message

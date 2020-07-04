@@ -26,13 +26,13 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"
+// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
 type EnumTypeDto struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"
+	// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	// 语言类型：en
 	Local string `protobuf:"bytes,2,opt,name=local,proto3" json:"local,omitempty"`
