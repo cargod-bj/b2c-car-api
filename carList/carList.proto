@@ -65,7 +65,7 @@ message CarListDto {
   // 驾驶类型 手动,自动
   uint32 car_transmission = 404;
   // 卖价
-  double exp_selling_price = 501;
+  string exp_selling_price = 501;
   // 来源
   string source = 601;
   // 城市地区
