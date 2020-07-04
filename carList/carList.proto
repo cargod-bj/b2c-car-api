@@ -25,7 +25,7 @@ service CarList {
   //根据查询carlist的location
   rpc ListLocation(common.Page) returns (common.Response){}
   // 获取指定id的车辆：返回 data: CarListDto
-  rpc GetCarList(CarListId) returns (common.Response) {}
+  rpc GetCarListDetail(CarListId) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
