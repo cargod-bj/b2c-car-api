@@ -2,6 +2,8 @@ package enums
 
 import "sort"
 
+const Rate float32 = 5.39
+
 const (
 	FuelTypePetrol         = 1
 	FuelTypePetrolWithNGV  = 2
