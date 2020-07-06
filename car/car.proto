@@ -66,7 +66,9 @@ message CarDto {
   // 车辆编码
   string car_no = 4;
   // 车辆状态：100 待整备，110整备中，120待核查，130核查失败，200待交易，210交易中，220已出售
-  string car_state = 5;
+  uint32 car_state = 5;
+  // 上架状态：1 已上架，2未上架
+  uint32 sale_status = 6;
   // 检查报告id
   uint64 inspection_id = 101;
   // 车辆状态
