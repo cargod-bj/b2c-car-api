@@ -103,6 +103,7 @@ message CarListDto {
   uint32 registration_type = 722;
   repeated string inner_image = 723;
   repeated string outer_image = 724;
+  uint64  show_time = 725;//浏览时间
 }
 
 
