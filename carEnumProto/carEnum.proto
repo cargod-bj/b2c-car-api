@@ -10,19 +10,45 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carEnumProto";
  * 获取车辆参数枚举服务
  */
 service CarEnum {
-  // 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
+  // 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+  // 最新的支持枚举以car_utils.go中定义的为准
   // 返回：common.Response -> Data = common.PagedList {
   //                  List<Any> = List<KeyValueDto>
   //              }
   rpc GetCarEnum(EnumTypeDto) returns (common.Response);
+  // 根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+  // 返回：common.Response -> Data = EnumsDto
+  rpc GetCarEnums(EnumTypesDto) returns (common.Response);
 }
 
-// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
+// 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+// 最新的支持枚举以car_utils.go中定义的为准
 message EnumTypeDto {
-  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
+  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+  // 最新的支持枚举以car_utils.go中定义的为准
   string type = 1;
   // 语言类型：en
   string local = 2;
+  // 此参数和type互斥，查询多个分组，只有在GetCarEnums方法中可用
+  string types = 3;
+}
+// 查询多个枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+// 最新的支持枚举以car_utils.go中定义的为准
+message EnumTypesDto {
+  // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+  // 最新的支持枚举以car_utils.go中定义的为准
+  repeated string types = 1;
+  // 语言类型：en
+  string local = 2;
+}
+
+// 多个查询
+message EnumsDto {
+  map<string, KVMap> enums = 1;
+}
+
+message KVMap {
+  map<string, uint32> kvs = 1;
 }
 
 // 根据EnumTypeDto获取出来的key value值

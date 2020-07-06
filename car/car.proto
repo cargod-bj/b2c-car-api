@@ -63,6 +63,10 @@ message CarDto {
   uint64 create_time = 2;
   // 车辆的更新时间，如果为新增，或更新，则此字段无效
   uint64 update_time = 3;
+  // 车辆编码
+  string car_no = 4;
+  // 车辆状态：100 待整备，110整备中，120待核查，130核查失败，200待交易，210交易中，220已出售
+  string car_state = 5;
   // 检查报告id
   uint64 inspection_id = 101;
   // 车辆状态
@@ -121,8 +125,6 @@ message CarDto {
   string recondition_cost = 802;
   // 整备项目
   string recondition_content = 803;
-  // 整备状态
-  string recondition_state = 804;
 
   // 库存状态
   string inventory_status = 901;

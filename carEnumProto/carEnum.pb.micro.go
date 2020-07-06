@@ -43,11 +43,15 @@ func NewCarEnumEndpoints() []*api.Endpoint {
 // Client API for CarEnum service
 
 type CarEnumService interface {
-	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
+	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+	// 最新的支持枚举以car_utils.go中定义的为准
 	// 返回：common.Response -> Data = common.PagedList {
 	//                  List<Any> = List<KeyValueDto>
 	//              }
 	GetCarEnum(ctx context.Context, in *EnumTypeDto, opts ...client.CallOption) (*common.Response, error)
+	// 根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+	// 返回：common.Response -> Data = EnumsDto
+	GetCarEnums(ctx context.Context, in *EnumTypesDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carEnumService struct {
@@ -72,19 +76,34 @@ func (c *carEnumService) GetCarEnum(ctx context.Context, in *EnumTypeDto, opts .
 	return out, nil
 }
 
+func (c *carEnumService) GetCarEnums(ctx context.Context, in *EnumTypesDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarEnum.GetCarEnums", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarEnum service
 
 type CarEnumHandler interface {
-	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"ReconditionState"、"InventoryStatus"、"ReconditionPointType"
+	// 根据指定类型获取枚举结果, 支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+	// 最新的支持枚举以car_utils.go中定义的为准
 	// 返回：common.Response -> Data = common.PagedList {
 	//                  List<Any> = List<KeyValueDto>
 	//              }
 	GetCarEnum(context.Context, *EnumTypeDto, *common.Response) error
+	// 根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+	// 返回：common.Response -> Data = EnumsDto
+	GetCarEnums(context.Context, *EnumTypesDto, *common.Response) error
 }
 
 func RegisterCarEnumHandler(s server.Server, hdlr CarEnumHandler, opts ...server.HandlerOption) error {
 	type carEnum interface {
 		GetCarEnum(ctx context.Context, in *EnumTypeDto, out *common.Response) error
+		GetCarEnums(ctx context.Context, in *EnumTypesDto, out *common.Response) error
 	}
 	type CarEnum struct {
 		carEnum
@@ -99,4 +118,8 @@ type carEnumHandler struct {
 
 func (h *carEnumHandler) GetCarEnum(ctx context.Context, in *EnumTypeDto, out *common.Response) error {
 	return h.CarEnumHandler.GetCarEnum(ctx, in, out)
+}
+
+func (h *carEnumHandler) GetCarEnums(ctx context.Context, in *EnumTypesDto, out *common.Response) error {
+	return h.CarEnumHandler.GetCarEnums(ctx, in, out)
 }
