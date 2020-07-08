@@ -20,6 +20,13 @@ var fuelTypeText = map[int]string{
 	FuelTypeHybridElectric: "Hybrid/Electric",
 }
 
+// 附件类型
+const (
+	EnclosureTypeZero uint32 = iota
+	// 整备单据
+	EnclosureTypeRecondition
+)
+
 func FuelTypeText(code int) string {
 	return fuelTypeText[code]
 }

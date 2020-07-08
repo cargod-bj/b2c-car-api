@@ -127,6 +127,8 @@ message CarDto {
   string recondition_cost = 802;
   // 整备项目
   string recondition_content = 803;
+  // 整备单据url
+  repeated string recondition_file_urls = 804;
 
   // 库存状态
   string inventory_status = 901;

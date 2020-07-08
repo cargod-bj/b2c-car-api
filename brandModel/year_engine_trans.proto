@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package brandModel;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/brandModelProto";
+
+/*
+  获取车辆品牌服务
+ */
+service YearEngineTrans {
+  // 根据model查询year列表
+  // response.Data = common.Page{
+  //        List = List<IdNameDto>
+  //      }
+  rpc FindYearByModel(common.IdDto) returns (common.Response) {}
+  // 根据year查询engine列表
+  // response.Data = common.Page{
+  //         List = List<IdNameDto>
+  //       }
+  rpc FindVariantByYear(ModelYearReq) returns (common.Response) {}
+  // 根据year查询engine列表
+  // response.Data = common.Page{
+  //         List = List<IdNameDto>
+  //       }
+  rpc FindEngineByVariant(ModelYearVariantReq) returns (common.Response) {}
+  // 根据engine查询transmission列表
+  // response.Data = common.Page{
+  //          List = List<IdNameDto>
+  //       }
+  rpc FindTransmissionByEngine(ModelYearVariantEngineReq) returns (common.Response) {}
+}
+
+// key dto
+message KeyDto {
+  // key
+  string key = 1;
+}
+
+// model和year的入参
+message ModelYearReq {
+  string year = 1;
+  uint32 modelId = 2;
+}
+// model、year和variant的入参
+message ModelYearVariantReq {
+  string year = 1;
+  uint32 modelId = 2;
+  uint32 variantId = 3;
+}
+// model、year、variant、engine的入参
+message ModelYearVariantEngineReq {
+  string year = 1;
+  uint32 modelId = 2;
+  uint32 variantId = 3;
+  string engine = 4;
+}
+
+// model和year的入参
+message VariantEngineReq {
+  string engine = 1;
+  uint32 variantId = 2;
+}
+
+message IdNameDto {
+  uint32 id = 1;
+  string name = 2;
+}
