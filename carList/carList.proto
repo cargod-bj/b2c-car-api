@@ -175,6 +175,7 @@ message CarListDtoList{
 message ResultList {
   repeated CarListDto carLists = 1;
   repeated CarListDto recommendList = 2;
+  uint32 total = 3;
 }
 
 //返回包含推荐位的车辆详情结果
