@@ -54,8 +54,8 @@ message ReportDamageCategoryDto {
   uint32 totalDamage = 5;
   // 包含多少个fixed数量
   uint32 totalFixed = 6;
-  // 包含多少个replace数量
-  uint32 totalReplace = 7;
+  // 包含多少个replaced数量
+  uint32 totalReplaced = 7;
 }
 
 // damage的子类别，每个子类别可能包含多个 监测点
@@ -73,7 +73,7 @@ message ReportDamageSubCategoryDto {
   // 包含多少个fixed数量
   uint32 totalFixed = 6;
   // 包含多少个replace数量
-  uint32 totalReplace = 7;
+  uint32 totalReplaced = 7;
 }
 
 // damage的监测点，每个监测点可能包含多个 tag点，多个 损坏照片

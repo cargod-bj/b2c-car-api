@@ -59,6 +59,10 @@ type CarService interface {
 	AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 上架车辆
 	LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
+	//              List = List<carEnumProto.KeyValueDto>
+	//          }
+	GetValidState(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -153,6 +157,16 @@ func (c *carService) LaunchCar(ctx context.Context, in *common.IdDto, opts ...cl
 	return out, nil
 }
 
+func (c *carService) GetValidState(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetValidState", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -172,6 +186,10 @@ type CarHandler interface {
 	AddFromSource(context.Context, *common.IdDto, *common.Response) error
 	// 上架车辆
 	LaunchCar(context.Context, *common.IdDto, *common.Response) error
+	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
+	//              List = List<carEnumProto.KeyValueDto>
+	//          }
+	GetValidState(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -184,6 +202,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
 		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
+		GetValidState(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -226,4 +245,8 @@ func (h *carHandler) AddFromSource(ctx context.Context, in *common.IdDto, out *c
 
 func (h *carHandler) LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.CarHandler.LaunchCar(ctx, in, out)
+}
+
+func (h *carHandler) GetValidState(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.CarHandler.GetValidState(ctx, in, out)
 }

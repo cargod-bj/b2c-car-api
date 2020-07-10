@@ -26,6 +26,10 @@ service Car {
   rpc AddFromSource(common.IdDto) returns (common.Response) {}
   // 上架车辆
   rpc LaunchCar(common.IdDto) returns (common.Response) {}
+  // 查询车辆可能变更的状态列表：返回 Data = common.PageList{
+  //              List = List<carEnumProto.KeyValueDto>
+  //          }
+  rpc GetValidState(common.IdDto) returns (common.Response) {}
 }
 
 message SourceParams{
@@ -89,6 +93,10 @@ message CarDto {
   string model_name = 205;
   // 车variant
   uint32 variant_id = 206;
+  // vin码
+  string vin_code = 207;
+  // 车票号
+  string license_plate = 208;
 
   // 车照片url
   string image = 301;
@@ -114,6 +122,8 @@ message CarDto {
   string exp_selling_price = 501;
   // 收车价
   string purchase_price = 502;
+  // 交易佣金
+  string handling_fee = 503;
   // 来源
   string source = 601;
   // 城市地区
