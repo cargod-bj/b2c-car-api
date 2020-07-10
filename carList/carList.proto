@@ -143,6 +143,7 @@ message CarListCondition {
   uint32 page = 28;
   uint32 limit = 29;
   uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
+  uint32 isHomePage = 35;//是否是首页
 }
 
 
