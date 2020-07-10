@@ -118,6 +118,10 @@ message CarDto {
   uint32 fuel_type = 411;
   string fuel_type_name = 412;
   string colorName = 413;
+
+  // 车辆上绑定的tags
+  repeated CarTags tags = 414;
+
   // 卖价
   string exp_selling_price = 501;
   // 收车价
@@ -152,4 +156,10 @@ message CarIdsDto {
 }
 message CarDtoList{
   repeated CarDto CarDtoList = 1;
+}
+
+message CarTags {
+  uint64 id = 1;
+  uint64 tagId = 2;
+  string name = 3;
 }
