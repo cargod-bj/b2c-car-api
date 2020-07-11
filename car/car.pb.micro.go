@@ -5,6 +5,7 @@ package carProto
 
 import (
 	fmt "fmt"
+	_ "github.com/cargod-bj/b2c-car-api/reportProto"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
@@ -48,7 +49,7 @@ type CarService interface {
 	// 根据车辆id删除车辆，返回 data：nil
 	Delete(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
 	// 更新指定车辆，返回 data：nil
-	Update(ctx context.Context, in *CarDto, opts ...client.CallOption) (*common.Response, error)
+	Update(ctx context.Context, in *UpdateCarDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆：返回 data: CarDto List
 	Get(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
@@ -97,7 +98,7 @@ func (c *carService) Delete(ctx context.Context, in *CarIdsDto, opts ...client.C
 	return out, nil
 }
 
-func (c *carService) Update(ctx context.Context, in *CarDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) Update(ctx context.Context, in *UpdateCarDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.Update", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -175,7 +176,7 @@ type CarHandler interface {
 	// 根据车辆id删除车辆，返回 data：nil
 	Delete(context.Context, *CarIdsDto, *common.Response) error
 	// 更新指定车辆，返回 data：nil
-	Update(context.Context, *CarDto, *common.Response) error
+	Update(context.Context, *UpdateCarDto, *common.Response) error
 	// 获取指定id的车辆：返回 data: CarDto List
 	Get(context.Context, *CarIdsDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
@@ -196,7 +197,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 	type car interface {
 		Add(ctx context.Context, in *CarDto, out *common.Response) error
 		Delete(ctx context.Context, in *CarIdsDto, out *common.Response) error
-		Update(ctx context.Context, in *CarDto, out *common.Response) error
+		Update(ctx context.Context, in *UpdateCarDto, out *common.Response) error
 		Get(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
@@ -223,7 +224,7 @@ func (h *carHandler) Delete(ctx context.Context, in *CarIdsDto, out *common.Resp
 	return h.CarHandler.Delete(ctx, in, out)
 }
 
-func (h *carHandler) Update(ctx context.Context, in *CarDto, out *common.Response) error {
+func (h *carHandler) Update(ctx context.Context, in *UpdateCarDto, out *common.Response) error {
 	return h.CarHandler.Update(ctx, in, out)
 }
 

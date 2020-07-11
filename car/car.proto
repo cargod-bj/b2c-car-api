@@ -3,6 +3,7 @@ syntax = "proto3";
 package car;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+import "reportProto/report.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carProto";
 
@@ -15,7 +16,7 @@ service Car {
   // 根据车辆id删除车辆，返回 data：nil
   rpc Delete(CarIdsDto) returns (common.Response) {}
   // 更新指定车辆，返回 data：nil
-  rpc Update(CarDto) returns (common.Response) {}
+  rpc Update(UpdateCarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto List
   rpc Get(CarIdsDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
@@ -148,6 +149,13 @@ message CarDto {
 
   // 库存状态
   string inventory_status = 901;
+}
+
+// 车辆更新Dto
+message UpdateCarDto {
+  CarDto car = 1;
+  // 当编辑时变更的point信息
+  repeated report.ReportDamagePointDto points = 2;
 }
 
 // 车辆的id
