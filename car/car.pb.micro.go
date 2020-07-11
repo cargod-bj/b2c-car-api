@@ -57,7 +57,7 @@ type CarService interface {
 	//获取车辆来源李彪
 	SourceList(ctx context.Context, in *SourceParams, opts ...client.CallOption) (*common.Response, error)
 	//添加车辆到平台
-	AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	AddFromSource(ctx context.Context, in *AddFromSourceParams, opts ...client.CallOption) (*common.Response, error)
 	// 上架车辆
 	LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -138,7 +138,7 @@ func (c *carService) SourceList(ctx context.Context, in *SourceParams, opts ...c
 	return out, nil
 }
 
-func (c *carService) AddFromSource(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) AddFromSource(ctx context.Context, in *AddFromSourceParams, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.AddFromSource", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -184,7 +184,7 @@ type CarHandler interface {
 	//获取车辆来源李彪
 	SourceList(context.Context, *SourceParams, *common.Response) error
 	//添加车辆到平台
-	AddFromSource(context.Context, *common.IdDto, *common.Response) error
+	AddFromSource(context.Context, *AddFromSourceParams, *common.Response) error
 	// 上架车辆
 	LaunchCar(context.Context, *common.IdDto, *common.Response) error
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -201,7 +201,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		Get(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
-		AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error
+		AddFromSource(ctx context.Context, in *AddFromSourceParams, out *common.Response) error
 		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
 		GetValidState(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
@@ -240,7 +240,7 @@ func (h *carHandler) SourceList(ctx context.Context, in *SourceParams, out *comm
 	return h.CarHandler.SourceList(ctx, in, out)
 }
 
-func (h *carHandler) AddFromSource(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *carHandler) AddFromSource(ctx context.Context, in *AddFromSourceParams, out *common.Response) error {
 	return h.CarHandler.AddFromSource(ctx, in, out)
 }
 
