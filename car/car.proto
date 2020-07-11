@@ -146,6 +146,8 @@ message CarDto {
 
   // 库存状态
   string inventory_status = 901;
+  // 是否是Dealer发布
+  uint32 is_dealer = 703;
 }
 
 // 车辆的id
