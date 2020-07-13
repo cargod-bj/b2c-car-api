@@ -115,7 +115,7 @@ message CarDto {
   // 车照片url
   string image = 301;
   // 图片列表
-  repeated ImageDto images = 302;
+  repeated CarResourceDto images = 302;
   // spinCar链接
   string spin_car_url = 303;
   // 排量
@@ -159,8 +159,8 @@ message CarDto {
   string recondition_cost = 802;
   // 整备项目
   string recondition_content = 803;
-  // 整备单据url
-  repeated string recondition_file_urls = 804;
+  // 整备单据
+  repeated CarResourceDto recondition_files = 804;
 
   // 库存状态
   string inventory_status = 901;
@@ -190,7 +190,7 @@ message CarTags {
   string name = 3;
 }
 
-message ImageDto {
+message CarResourceDto {
   uint64 id = 1;
   string name = 2;
   string url = 3;
