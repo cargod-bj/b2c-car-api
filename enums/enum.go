@@ -166,3 +166,23 @@ var registrationTypeCode = map[string]int{
 func RegistrationTypeCode(text string) int {
 	return registrationTypeCode[text]
 }
+
+const (
+	InventoryStatusIn  = 1
+	InventoryStatusNot = 2
+)
+
+
+const (
+	CarStateToDoRecondition = 1
+	CarStateReconditioning  = 2
+	CarStateUnchecked       = 3
+	CarStateWaitingTrade    = 4
+	CarStateTrading         = 5
+	CarStateTraded          = 6
+)
+
+const (
+	SaleStatusOnline  = 1
+	SaleStatusOffline = 2
+)

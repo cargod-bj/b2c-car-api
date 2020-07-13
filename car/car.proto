@@ -24,7 +24,7 @@ service Car {
   //获取车辆来源李彪
   rpc SourceList(SourceParams) returns (common.Response) {}
   //添加车辆到平台
-  rpc AddFromSource(common.IdDto) returns (common.Response) {}
+  rpc AddFromSource(AddFromSourceParams) returns (common.Response) {}
   // 上架车辆
   rpc LaunchCar(common.IdDto) returns (common.Response) {}
   // 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -36,6 +36,15 @@ service Car {
 message SourceParams{
   common.Page page = 1;
   string lead_id = 2;
+}
+
+
+message AddFromSourceParams{
+  uint64 id = 1;
+  uint64 dealerId = 2;
+  uint64 storeId = 3;
+  uint64 dealershipType = 4;
+
 }
 
 message CarListParams{
