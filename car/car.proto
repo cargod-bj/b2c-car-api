@@ -98,11 +98,17 @@ message CarDto {
   uint32 variant_id = 206;
   // vin码
   string vin_code = 207;
-  // 车票号
+  // 车牌号
   string license_plate = 208;
+  // carBodyType
+  uint32 car_type_id = 209;
 
   // 车照片url
   string image = 301;
+  // 图片列表
+  repeated ImageDto images = 302;
+  // spinCar链接
+  string spin_car_url = 303;
   // 排量
   string car_engine = 401;
   // 年份
@@ -172,6 +178,11 @@ message CarDtoList{
 
 message CarTags {
   uint64 id = 1;
-  uint64 tagId = 2;
   string name = 3;
+}
+
+message ImageDto {
+  uint64 id = 1;
+  string name = 2;
+  string url = 3;
 }
