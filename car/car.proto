@@ -164,6 +164,7 @@ message CarDto {
 
   // 库存状态
   string inventory_status = 901;
+
   // 是否是Dealer发布
   uint32 is_dealer = 703;
 }
@@ -173,6 +174,7 @@ message UpdateCarDto {
   CarDto car = 1;
   // 当编辑时变更的point信息
   repeated report.ReportDamagePointDto points = 2;
+  string remark = 3;
 }
 
 // 车辆的id
