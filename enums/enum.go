@@ -167,21 +167,23 @@ func RegistrationTypeCode(text string) int {
 	return registrationTypeCode[text]
 }
 
+// 库存状态：1在库，2离库
 const (
 	InventoryStatusIn  = 1
 	InventoryStatusNot = 2
 )
 
-
+// 车辆状态：100 待整备，110整备中，120待核查，200待交易，210交易中，220已出售
 const (
-	CarStateToDoRecondition = 1
-	CarStateReconditioning  = 2
-	CarStateUnchecked       = 3
-	CarStateWaitingTrade    = 4
-	CarStateTrading         = 5
-	CarStateTraded          = 6
+	CarStateToDoRecondition = 100
+	CarStateReconditioning  = 110
+	CarStateUnchecked       = 120
+	CarStateWaitingTrade    = 200
+	CarStateTrading         = 210
+	CarStateTraded          = 220
 )
 
+// 上架状态：1未上架，2已上架
 const (
 	SaleStatusOnline  = 1
 	SaleStatusOffline = 2

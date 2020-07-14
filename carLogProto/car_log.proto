@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package carLog;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carLogProto";
+
+/*
+  获取车辆服务
+ */
+service CarLog {
+  // 获取指定车辆id的log信息，返回 data：PageList {
+  //            List = List<CarLogResp>
+  //          }
+  rpc List(CarLogReq) returns (common.Response) {}
+}
+
+message CarLogReq {
+  uint64 id = 1;
+  uint32 pageNo = 2;
+  uint32 pageSize = 3;
+}
+
+// 车辆日志结果
+message CarLogResp {
+  // 日志id
+  uint64 id = 1;
+  // 车辆id
+  uint64 CarId = 2;
+  // 日志的uuid
+  string Uuid = 3;
+  // 日志remark
+  string Remark = 4;
+  // 当前操作者名称
+  string Operator = 5;
+  // 操作者id
+  uint64 OperatorId = 6;
+  // 操作后的车辆状态
+  uint32 CarState = 7;
+  // 操作后的车辆状态名称
+  string CarStateName = 8;
+  // 操作后的上架状态
+  uint32 SaleStatus = 9;
+  // 操作后的上架状态名称
+  string SaleStatusName = 10;
+  // 操作后的库存状态
+  uint32 InventoryStatus = 11;
+  // 操作后的库存状态名称
+  string InventoryStatusName = 12;
+  // 操作时间
+  uint64 CreateTime = 14;
+}
