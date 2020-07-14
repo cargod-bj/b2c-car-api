@@ -25,6 +25,7 @@ service Car {
   rpc SourceList(SourceParams) returns (common.Response) {}
   //添加车辆到平台
   rpc AddFromSource(AddFromSourceParams) returns (common.Response) {}
+  rpc AddFromSourceList(AddFromSourceListParams) returns (common.Response) {}
   // 上架车辆
   rpc LaunchCar(common.IdDto) returns (common.Response) {}
   // 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -45,6 +46,10 @@ message AddFromSourceParams{
   uint64 storeId = 3;
   uint64 dealershipType = 4;
 
+}
+
+message AddFromSourceListParams{
+  repeated AddFromSourceParams list = 1;
 }
 
 message CarListParams{
