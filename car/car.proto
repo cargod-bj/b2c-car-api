@@ -114,10 +114,12 @@ message CarDto {
 
   // 车照片url
   string image = 301;
-  // 图片列表
-  repeated CarResourceDto images = 302;
+  // 图片列表: 内饰
+  repeated CarResourceDto images_inner = 302;
+  // 图片列表：外部
+  repeated CarResourceDto images_outer = 303;
   // spinCar链接
-  string spin_car_url = 303;
+  string spin_car_url = 304;
   // 排量
   string car_engine = 401;
   // 年份
