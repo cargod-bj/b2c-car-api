@@ -119,10 +119,12 @@ message CarDto {
 
   // 车照片url
   string image = 301;
-  // 图片列表
-  repeated ImageDto images = 302;
+  // 图片列表: 内饰
+  repeated CarResourceDto images_inner = 302;
+  // 图片列表：外部
+  repeated CarResourceDto images_outer = 303;
   // spinCar链接
-  string spin_car_url = 303;
+  string spin_car_url = 304;
   // 排量
   string car_engine = 401;
   // 年份
@@ -164,11 +166,12 @@ message CarDto {
   string recondition_cost = 802;
   // 整备项目
   string recondition_content = 803;
-  // 整备单据url
-  repeated string recondition_file_urls = 804;
+  // 整备单据
+  repeated CarResourceDto recondition_files = 804;
 
   // 库存状态
   string inventory_status = 901;
+
   // 是否是Dealer发布
   uint32 is_dealer = 703;
 }
@@ -178,6 +181,7 @@ message UpdateCarDto {
   CarDto car = 1;
   // 当编辑时变更的point信息
   repeated report.ReportDamagePointDto points = 2;
+  string remark = 3;
 }
 
 // 车辆的id
@@ -195,7 +199,7 @@ message CarTags {
   string name = 3;
 }
 
-message ImageDto {
+message CarResourceDto {
   uint64 id = 1;
   string name = 2;
   string url = 3;
