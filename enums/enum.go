@@ -188,3 +188,11 @@ const (
 	SaleStatusOnline  = 1
 	SaleStatusOffline = 2
 )
+
+// 经销商类型：2 Carsome，3 Partner
+const (
+	// 经销商类型：0自营
+	DealerTypeCarsome = 2
+	// 经销商类型：1第三方
+	DealerTypePartner = 3
+)
