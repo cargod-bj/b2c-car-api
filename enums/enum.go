@@ -196,3 +196,37 @@ const (
 	// 经销商类型：1第三方
 	DealerTypePartner = 3
 )
+
+// 枚举类型名称，对应car_enums_config表中的type字段
+const (
+	// 车体类型
+	EnumNameBodyType = "BodyType"
+	// 颜色
+	EnumNameColor = "Color"
+	// 变速箱类型：手动、自动
+	EnumNameTransmission = "Transmission"
+	// 几座车
+	EnumNameSeat = "Seat"
+	// 注册类型
+	EnumNameRegistrationType = "RegistrationType"
+	// 车辆状态
+	EnumNameCarState = "CarState"
+	// 库存状态
+	EnumNameInventoryStatus = "InventoryStatus"
+	// 检测点状态类型
+	EnumNameReconditionPointType = "ReconditionPointType"
+	// 上架状态
+	EnumNameSaleStatus = "SaleStatus"
+	// 经销商类型
+	EnumNameCarDealerType = "CarDealerType"
+)
+
+// 车辆资源类型枚举
+const (
+	// 车辆资源：内部照片
+	CarResImgInner uint32 = iota
+	// 车辆资源：外部照片
+	CarResImgOuter
+	// 整备单据
+	CarResReconditionFiles = 10
+)

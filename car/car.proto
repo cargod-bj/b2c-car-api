@@ -162,9 +162,9 @@ message CarDto {
   // dealerId
   uint64 dealer_id = 703;
   // dealerType
-  uint64 dealer_type = 704;
+  uint32 dealer_type = 704;
   // dealerTypeName
-  uint64 dealer_type_name = 705;
+  string dealer_type_name = 705;
 
   // 整备渠道
   string recondition_channel = 801;

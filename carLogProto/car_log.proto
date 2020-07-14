@@ -27,27 +27,27 @@ message CarLogResp {
   // 日志id
   uint64 id = 1;
   // 车辆id
-  uint64 CarId = 2;
+  uint64 carId = 2;
   // 日志的uuid
-  string Uuid = 3;
+  string uuid = 3;
   // 日志remark
-  string Remark = 4;
+  string remark = 4;
   // 当前操作者名称
-  string Operator = 5;
+  string operator = 5;
   // 操作者id
-  uint64 OperatorId = 6;
+  uint64 operatorId = 6;
   // 操作后的车辆状态
-  uint32 CarState = 7;
+  uint32 carState = 7;
   // 操作后的车辆状态名称
-  string CarStateName = 8;
+  string carStateName = 8;
   // 操作后的上架状态
-  uint32 SaleStatus = 9;
+  uint32 saleStatus = 9;
   // 操作后的上架状态名称
-  string SaleStatusName = 10;
+  string saleStatusName = 10;
   // 操作后的库存状态
-  uint32 InventoryStatus = 11;
+  uint32 inventoryStatus = 11;
   // 操作后的库存状态名称
-  string InventoryStatusName = 12;
+  string inventoryStatusName = 12;
   // 操作时间
-  uint64 CreateTime = 14;
+  uint64 createTime = 14;
 }
