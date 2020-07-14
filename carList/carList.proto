@@ -73,14 +73,12 @@ message CarListDto {
   string location = 701;
   // 城市地区
   string location_address = 702;
-  // 是否是Dealer发布
-  uint32 is_dealer = 703;
-  //排序
-  uint32 seq = 704;
-  //汽车类型例如suv
-  uint32 car_type_id = 707;
   //经销商id
   uint64 dealer_id = 708;
+  // 经销商类型
+  uint32 dealer_type = 704;
+  //汽车类型例如suv
+  uint32 car_type_id = 707;
   //燃油类型
   uint32 fuel_type = 709;
   //座椅个数
@@ -106,6 +104,8 @@ message CarListDto {
   repeated string inner_image = 723;
   repeated string outer_image = 724;
   uint64  show_time = 725;//浏览时间
+  //排序
+  uint32 seq = 800;
 }
 
 
