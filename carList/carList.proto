@@ -87,6 +87,8 @@ message CarListDto {
   uint32 seat = 710;
   //车漆颜色
   uint32 color = 711;
+  // spinCar链接
+  string spin_car_url = 303;
   //车辆特征
   string  car_type_name = 712;
   string  model_name = 705;
