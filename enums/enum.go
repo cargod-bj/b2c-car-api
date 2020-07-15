@@ -224,7 +224,8 @@ const (
 // 车辆资源类型枚举
 const (
 	// 车辆资源：内部照片
-	CarResImgInner uint32 = iota
+	CarRes uint32 = iota
+	CarResImgInner
 	// 车辆资源：外部照片
 	CarResImgOuter
 	// 整备单据
