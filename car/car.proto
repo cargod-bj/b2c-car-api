@@ -37,6 +37,7 @@ service Car {
   rpc ChangeCarState(ChangeCarStateReq) returns (common.Response) {}
 }
 
+// 更改车辆状态入参对象
 message ChangeCarStateReq {
   // 要更改的车辆id
   uint64 carId = 1;
