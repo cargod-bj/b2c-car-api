@@ -32,13 +32,23 @@ service Car {
   //              List = List<carEnumProto.KeyValueDto>
   //          }
   rpc GetValidState(common.IdDto) returns (common.Response) {}
+
+  // 更改车辆状态：返回 Data = nil
+  rpc ChangeCarState(ChangeCarStateReq) returns (common.Response) {}
+}
+
+// 更改车辆状态入参对象
+message ChangeCarStateReq {
+  // 要更改的车辆id
+  uint64 carId = 1;
+  // 要更改的目标state，参见car-api项目 enums.CarStateXxx 枚举进行入参
+  uint32 toState = 2;
 }
 
 message SourceParams{
   common.Page page = 1;
   string lead_id = 2;
 }
-
 
 message AddFromSourceParams{
   uint64 id = 1;
@@ -162,9 +172,11 @@ message CarDto {
   // dealerId
   uint64 dealer_id = 703;
   // dealerType
-  uint64 dealer_type = 704;
+  uint32 dealer_type = 704;
   // dealerTypeName
-  uint64 dealer_type_name = 705;
+  string dealer_type_name = 705;
+  // 详细地址，如：地下停车场，B105车位
+  string location_address = 706;
 
   // 整备渠道
   string recondition_channel = 801;
