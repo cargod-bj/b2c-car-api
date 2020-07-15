@@ -165,6 +165,8 @@ message CarDto {
   uint32 dealer_type = 704;
   // dealerTypeName
   string dealer_type_name = 705;
+  // 详细地址，如：地下停车场，B105车位
+  string location_address = 706;
 
   // 整备渠道
   string recondition_channel = 801;
