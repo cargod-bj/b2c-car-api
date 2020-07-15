@@ -156,6 +156,8 @@ message CarDto {
 
   // 车辆上绑定的tags
   repeated CarTags tags = 414;
+  // 车辆描述，主要是partner填写
+  string description = 415;
 
   // 卖价
   string exp_selling_price = 501;
