@@ -106,6 +106,8 @@ message CarListDto {
   uint64  show_time = 725;//浏览时间
   //排序
   uint32 seq = 800;
+  string carNo = 801;
+  string vinCode = 802;
 }
 
 
