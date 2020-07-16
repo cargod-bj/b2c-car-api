@@ -26,6 +26,8 @@ service CarList {
   rpc ListLocation(common.Page) returns (common.Response){}
   // 获取指定id的车辆：返回 data: CarListDto
   rpc GetCarListDetail(CarListId) returns (common.Response) {}
+  // 查询置顶车辆信息：返回 data: CarListDtoList
+  rpc GetTopCarList(common.EmptyDto) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
   rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
 
