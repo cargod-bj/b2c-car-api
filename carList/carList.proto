@@ -192,7 +192,7 @@ message CarListDetailResult {
 //根据车辆No查询车辆信息
 message CarListNo {
   // 车辆No
-  string No = 1;
+  string CarNo = 1;
   // 本地化
   string local = 3;
 }
