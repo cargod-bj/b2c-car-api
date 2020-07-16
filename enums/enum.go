@@ -188,8 +188,8 @@ const (
 
 // 上架状态：1未上架，2已上架
 const (
-	SaleStatusOnline  = 1
-	SaleStatusOffline = 2
+	SaleStatusOffline = 1
+	SaleStatusOnline  = 2
 )
 
 // 经销商类型：2 Carsome，3 Partner
