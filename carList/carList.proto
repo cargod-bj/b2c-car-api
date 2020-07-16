@@ -26,8 +26,8 @@ service CarList {
   rpc ListLocation(common.Page) returns (common.Response){}
   // 获取指定id的车辆：返回 data: CarListDto
   rpc GetCarListDetail(CarListId) returns (common.Response) {}
-  // 获取车辆ID模糊搜索车辆信息：返回 data: CarListDtoList
-  rpc GetCarListByIdFuzzy(CarListId) returns (common.Response) {}
+  // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
+  rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
 
 }
 
@@ -187,4 +187,12 @@ message CarListDetailResult {
   CarListDto carList = 1;
   repeated CarListDto recommendList = 2;
   repeated report.ReportDamageCategoryDto report = 3;
+}
+
+//根据车辆No查询车辆信息
+message CarListNo {
+  // 车辆No
+  string No = 1;
+  // 本地化
+  string local = 3;
 }
