@@ -62,6 +62,8 @@ type CarListService interface {
 	GetCarListDetail(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, opts ...client.CallOption) (*common.Response, error)
+	// 查询置顶车辆信息：返回 data: CarListDtoList
+	GetTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -166,6 +168,16 @@ func (c *carListService) GetCarListByNoFuzzy(ctx context.Context, in *CarListNo,
 	return out, nil
 }
 
+func (c *carListService) GetTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetTopCarList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarList service
 
 type CarListHandler interface {
@@ -187,6 +199,8 @@ type CarListHandler interface {
 	GetCarListDetail(context.Context, *CarListId, *common.Response) error
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByNoFuzzy(context.Context, *CarListNo, *common.Response) error
+	// 查询置顶车辆信息：返回 data: CarListDtoList
+	GetTopCarList(context.Context, *common.EmptyDto, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -200,6 +214,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		ListLocation(ctx context.Context, in *common.Page, out *common.Response) error
 		GetCarListDetail(ctx context.Context, in *CarListId, out *common.Response) error
 		GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error
+		GetTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -246,4 +261,8 @@ func (h *carListHandler) GetCarListDetail(ctx context.Context, in *CarListId, ou
 
 func (h *carListHandler) GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error {
 	return h.CarListHandler.GetCarListByNoFuzzy(ctx, in, out)
+}
+
+func (h *carListHandler) GetTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
+	return h.CarListHandler.GetTopCarList(ctx, in, out)
 }
