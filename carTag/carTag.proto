@@ -18,6 +18,8 @@ service CarTag {
   //获取Tag信息: 返回data：common.PagedList
   rpc List(CarTagConditionDto) returns (common.Response){}
 
+  //获取Tag类型
+  rpc TagType(CarTagType) returns (common.Response){}
 }
 
 // 新增Tagdto
@@ -47,4 +49,11 @@ message CarTagConditionDto {
   uint32 page = 4;
   uint32 limit = 5;
 
+}
+message CarTagType {
+  uint64 id = 1;
+  string name = 2;
+}
+message CarTagTypes {
+  repeated CarTagType carTagType = 1;
 }
