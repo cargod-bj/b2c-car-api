@@ -109,6 +109,10 @@ message CarListDto {
   uint32 seq = 800;
   string carNo = 801;
   string vinCode = 802;
+  string storeCity = 803;
+  string openHours = 804;
+  string testDriverServiceHours = 805;
+  string storeName = 806;
 }
 
 
