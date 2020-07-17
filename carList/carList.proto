@@ -27,11 +27,13 @@ service CarList {
   // 获取指定id的车辆：返回 data: CarListDto
   rpc GetCarListDetail(CarListId) returns (common.Response) {}
   // 查询置顶车辆信息：返回 data: CarListDtoList
-  rpc GetTopCarList(common.EmptyDto) returns (common.Response) {}
+  rpc GetTopCarList(LocationDto) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
   rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
-  // 查询置顶车辆信息：返回 data: CarListDtoList
-  rpc GetTopCarList(common.EmptyDto) returns (common.Response) {}
+  // 保存车辆置顶排序
+  rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
+  // 刷新车辆置顶排序
+  rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
@@ -109,6 +111,7 @@ message CarListDto {
   uint64  show_time = 725;//浏览时间
   //排序
   uint32 seq = 800;
+  uint32 seqTmp = 810;
   string carNo = 801;
   string vinCode = 802;
   string storeCity = 803;
@@ -205,4 +208,19 @@ message CarListNo {
   string CarNo = 1;
   // 本地化
   string local = 3;
+}
+
+//保存车辆置顶排序
+message TopCarDto {
+  // 车辆Id
+  uint64 id = 1;
+  // 排序
+  uint32 tmpSeq = 3;
+}
+
+//保存车辆置顶排序
+message TopCarListDto {
+  // 车辆排序DTO
+  repeated TopCarDto TopCarListDto = 1;
+
 }
