@@ -31,10 +31,18 @@ service Car {
   // 查询车辆可能变更的状态列表：返回 Data = common.PageList{
   //              List = List<carEnumProto.KeyValueDto>
   //          }
-  rpc GetValidState(common.IdDto) returns (common.Response) {}
+  rpc GetValidState(GetValidStateReq) returns (common.Response) {}
 
   // 更改车辆状态：返回 Data = nil
   rpc ChangeCarState(ChangeCarStateReq) returns (common.Response) {}
+}
+
+
+message GetValidStateReq {
+  // 车辆id
+  uint64 carId = 1;
+  // 获取类型：1 只获取整备相关，2 只获取交易中(不包含)前 3 全量获取
+  uint32 getType = 2;
 }
 
 // 更改车辆状态入参对象
@@ -65,6 +73,8 @@ message AddFromSourceListParams{
 message CarListParams{
   common.Page page = 1;
   string local = 2;
+  // 车辆所属门店id
+  uint64 StoreId = 3;
 }
 
 

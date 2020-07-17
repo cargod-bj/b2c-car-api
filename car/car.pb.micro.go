@@ -64,7 +64,7 @@ type CarService interface {
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
 	//              List = List<carEnumProto.KeyValueDto>
 	//          }
-	GetValidState(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	GetValidState(ctx context.Context, in *GetValidStateReq, opts ...client.CallOption) (*common.Response, error)
 	// 更改车辆状态：返回 Data = nil
 	ChangeCarState(ctx context.Context, in *ChangeCarStateReq, opts ...client.CallOption) (*common.Response, error)
 }
@@ -171,7 +171,7 @@ func (c *carService) LaunchCar(ctx context.Context, in *common.IdDto, opts ...cl
 	return out, nil
 }
 
-func (c *carService) GetValidState(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) GetValidState(ctx context.Context, in *GetValidStateReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.GetValidState", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -214,7 +214,7 @@ type CarHandler interface {
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
 	//              List = List<carEnumProto.KeyValueDto>
 	//          }
-	GetValidState(context.Context, *common.IdDto, *common.Response) error
+	GetValidState(context.Context, *GetValidStateReq, *common.Response) error
 	// 更改车辆状态：返回 Data = nil
 	ChangeCarState(context.Context, *ChangeCarStateReq, *common.Response) error
 }
@@ -230,7 +230,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		AddFromSource(ctx context.Context, in *AddFromSourceParams, out *common.Response) error
 		AddFromSourceList(ctx context.Context, in *AddFromSourceListParams, out *common.Response) error
 		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
-		GetValidState(ctx context.Context, in *common.IdDto, out *common.Response) error
+		GetValidState(ctx context.Context, in *GetValidStateReq, out *common.Response) error
 		ChangeCarState(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
 	}
 	type Car struct {
@@ -280,7 +280,7 @@ func (h *carHandler) LaunchCar(ctx context.Context, in *common.IdDto, out *commo
 	return h.CarHandler.LaunchCar(ctx, in, out)
 }
 
-func (h *carHandler) GetValidState(ctx context.Context, in *common.IdDto, out *common.Response) error {
+func (h *carHandler) GetValidState(ctx context.Context, in *GetValidStateReq, out *common.Response) error {
 	return h.CarHandler.GetValidState(ctx, in, out)
 }
 
