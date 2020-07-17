@@ -113,6 +113,8 @@ message CarListDto {
   string openHours = 804;
   string testDriverServiceHours = 805;
   string storeName = 806;
+  string storeAddress = 807;
+  string storePhone = 808;
 }
 
 
