@@ -115,6 +115,7 @@ message CarListDto {
   string storeName = 806;
   string storeAddress = 807;
   string storePhone = 808;
+  uint32 carState = 809;
 }
 
 
