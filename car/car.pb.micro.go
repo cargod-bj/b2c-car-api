@@ -67,6 +67,8 @@ type CarService interface {
 	GetValidState(ctx context.Context, in *GetValidStateReq, opts ...client.CallOption) (*common.Response, error)
 	// 更改车辆状态：返回 Data = nil
 	ChangeCarState(ctx context.Context, in *ChangeCarStateReq, opts ...client.CallOption) (*common.Response, error)
+	// 更改库存状态
+	ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -191,6 +193,16 @@ func (c *carService) ChangeCarState(ctx context.Context, in *ChangeCarStateReq, 
 	return out, nil
 }
 
+func (c *carService) ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.ChangeInventoryStatus", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -217,6 +229,8 @@ type CarHandler interface {
 	GetValidState(context.Context, *GetValidStateReq, *common.Response) error
 	// 更改车辆状态：返回 Data = nil
 	ChangeCarState(context.Context, *ChangeCarStateReq, *common.Response) error
+	// 更改库存状态
+	ChangeInventoryStatus(context.Context, *ChangeCarStateReq, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -232,6 +246,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
 		GetValidState(ctx context.Context, in *GetValidStateReq, out *common.Response) error
 		ChangeCarState(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
+		ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -286,4 +301,8 @@ func (h *carHandler) GetValidState(ctx context.Context, in *GetValidStateReq, ou
 
 func (h *carHandler) ChangeCarState(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error {
 	return h.CarHandler.ChangeCarState(ctx, in, out)
+}
+
+func (h *carHandler) ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error {
+	return h.CarHandler.ChangeInventoryStatus(ctx, in, out)
 }
