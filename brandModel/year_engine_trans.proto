@@ -30,6 +30,21 @@ service YearEngineTrans {
   //          List = List<IdNameDto>
   //       }
   rpc FindTransmissionByEngine(ModelYearVariantEngineReq) returns (common.Response) {}
+  // 根据model查询year列表, 如果modelId=0, 将查询所有有车的model列表
+  // response.Data = common.Page{
+  //          List = List<IdNameDto>
+  //       }
+  rpc FindYearByModelHasCar(common.IdLocalDTO) returns (common.Response) {}
+  // 根据variant查询engine列表, 入参为variantId
+  // response.Data = common.Page{
+  //          List = List<IdNameDto>
+  //       }
+  rpc FindEngineByVariantHasCar(common.IdLocalDTO) returns (common.Response) {}
+  // 根据year查询variant列表, year不能为null, modelId 不能为null
+  // response.Data = common.Page{
+  //          List = List<IdNameDto>
+  //       }
+  rpc FindVariantByYearHasCar(ModelYearReq) returns (common.Response) {}
 }
 
 // key dto

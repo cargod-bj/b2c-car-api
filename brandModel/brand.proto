@@ -24,6 +24,10 @@ service Brand {
   rpc Get(common.IdLocalDTO) returns (common.Response) {}
 
   rpc List(common.LocalPage) returns (common.Response) {}
+
+  // 获取有车辆的brand列表
+  // response.Data = BrandDto
+  rpc ListBrandHasCar(common.LocalPage) returns (common.Response) {}
 }
 
 // 品牌dto

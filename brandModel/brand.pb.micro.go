@@ -56,6 +56,9 @@ type BrandService interface {
 	// response.Data = BrandDto
 	Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 	List(ctx context.Context, in *common.LocalPage, opts ...client.CallOption) (*common.Response, error)
+	// 获取有车辆的brand列表
+	// response.Data = BrandDto
+	ListBrandHasCar(ctx context.Context, in *common.LocalPage, opts ...client.CallOption) (*common.Response, error)
 }
 
 type brandService struct {
@@ -120,6 +123,16 @@ func (c *brandService) List(ctx context.Context, in *common.LocalPage, opts ...c
 	return out, nil
 }
 
+func (c *brandService) ListBrandHasCar(ctx context.Context, in *common.LocalPage, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Brand.ListBrandHasCar", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Brand service
 
 type BrandHandler interface {
@@ -136,6 +149,9 @@ type BrandHandler interface {
 	// response.Data = BrandDto
 	Get(context.Context, *common.IdLocalDTO, *common.Response) error
 	List(context.Context, *common.LocalPage, *common.Response) error
+	// 获取有车辆的brand列表
+	// response.Data = BrandDto
+	ListBrandHasCar(context.Context, *common.LocalPage, *common.Response) error
 }
 
 func RegisterBrandHandler(s server.Server, hdlr BrandHandler, opts ...server.HandlerOption) error {
@@ -145,6 +161,7 @@ func RegisterBrandHandler(s server.Server, hdlr BrandHandler, opts ...server.Han
 		Update(ctx context.Context, in *BrandDto, out *common.Response) error
 		Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 		List(ctx context.Context, in *common.LocalPage, out *common.Response) error
+		ListBrandHasCar(ctx context.Context, in *common.LocalPage, out *common.Response) error
 	}
 	type Brand struct {
 		brand
@@ -175,4 +192,8 @@ func (h *brandHandler) Get(ctx context.Context, in *common.IdLocalDTO, out *comm
 
 func (h *brandHandler) List(ctx context.Context, in *common.LocalPage, out *common.Response) error {
 	return h.BrandHandler.List(ctx, in, out)
+}
+
+func (h *brandHandler) ListBrandHasCar(ctx context.Context, in *common.LocalPage, out *common.Response) error {
+	return h.BrandHandler.ListBrandHasCar(ctx, in, out)
 }

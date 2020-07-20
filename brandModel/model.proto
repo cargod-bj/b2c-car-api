@@ -24,6 +24,10 @@ service Model {
   rpc Get(common.IdLocalDTO) returns (common.Response) {}
 
   rpc ListByBrandId(common.IdLocalDTO) returns (common.Response) {}
+
+  // 获取有车辆的model列表，如果id=0表示查询所有model
+  // response.Data = ModelDto
+  rpc ListModelHasCar(common.IdLocalDTO) returns (common.Response) {}
 }
 
 // 品牌dto

@@ -73,8 +73,42 @@ message AddFromSourceListParams{
 message CarListParams{
   common.Page page = 1;
   string local = 2;
-  // 车辆所属门店id
-  uint64 StoreId = 3;
+  // 车辆状态
+  uint32 carState = 4;
+  // 在架状态
+  uint32 saleStatus = 5;
+  // 库存状态
+  uint32 inventoryStatus = 6;
+  // dealer类型：carsome、partner
+  uint32 dealerType = 7;
+  // dealer id
+  uint64 dealerId = 8;
+  // store id
+  uint64 storeId = 9;
+  // brand id
+  uint64 brandId = 20;
+  // model id
+  uint64 modelId = 21;
+  // 车辆年份
+  uint32 year = 22;
+  // 车辆variant
+  uint64 variantId = 23;
+  // 车辆engine
+  string engine = 24;
+  // 车辆变速箱：手动、自动
+  uint32 transmission = 25;
+  // 导入时间：开始
+  uint64 importTimeStart = 40;
+  // 导入时间：结束
+  uint64 importTimeEnd = 41;
+  // 更新时间：开始
+  uint64 updateTimeStart = 42;
+  // 更新时间：结束
+  uint64 updateTimeEnd = 43;
+  // 车辆编号
+  string carNo = 50;
+  // c2b中的id
+  uint64 inspectionId = 51;
 }
 
 

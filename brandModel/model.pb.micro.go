@@ -56,6 +56,9 @@ type ModelService interface {
 	// response.Data = BrandDto
 	Get(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 	ListByBrandId(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
+	// 获取有车辆的model列表，如果id=0表示查询所有model
+	// response.Data = ModelDto
+	ListModelHasCar(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 }
 
 type modelService struct {
@@ -120,6 +123,16 @@ func (c *modelService) ListByBrandId(ctx context.Context, in *common.IdLocalDTO,
 	return out, nil
 }
 
+func (c *modelService) ListModelHasCar(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Model.ListModelHasCar", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Model service
 
 type ModelHandler interface {
@@ -136,6 +149,9 @@ type ModelHandler interface {
 	// response.Data = BrandDto
 	Get(context.Context, *common.IdLocalDTO, *common.Response) error
 	ListByBrandId(context.Context, *common.IdLocalDTO, *common.Response) error
+	// 获取有车辆的model列表，如果id=0表示查询所有model
+	// response.Data = ModelDto
+	ListModelHasCar(context.Context, *common.IdLocalDTO, *common.Response) error
 }
 
 func RegisterModelHandler(s server.Server, hdlr ModelHandler, opts ...server.HandlerOption) error {
@@ -145,6 +161,7 @@ func RegisterModelHandler(s server.Server, hdlr ModelHandler, opts ...server.Han
 		Update(ctx context.Context, in *ModelDto, out *common.Response) error
 		Get(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 		ListByBrandId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
+		ListModelHasCar(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 	}
 	type Model struct {
 		model
@@ -175,4 +192,8 @@ func (h *modelHandler) Get(ctx context.Context, in *common.IdLocalDTO, out *comm
 
 func (h *modelHandler) ListByBrandId(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
 	return h.ModelHandler.ListByBrandId(ctx, in, out)
+}
+
+func (h *modelHandler) ListModelHasCar(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
+	return h.ModelHandler.ListModelHasCar(ctx, in, out)
 }
