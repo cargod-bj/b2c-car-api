@@ -60,10 +60,14 @@ type CarListService interface {
 	ListLocation(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆：返回 data: CarListDto
 	GetCarListDetail(ctx context.Context, in *CarListId, opts ...client.CallOption) (*common.Response, error)
+	// 查询置顶车辆信息：返回 data: CarListDtoList
+	GetTopCarList(ctx context.Context, in *LocationDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, opts ...client.CallOption) (*common.Response, error)
-	// 查询置顶车辆信息：返回 data: CarListDtoList
-	GetTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
+	// 保存车辆置顶排序
+	SaveTopCarList(ctx context.Context, in *TopCarListDto, opts ...client.CallOption) (*common.Response, error)
+	// 刷新车辆置顶排序
+	RefreshTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -158,6 +162,16 @@ func (c *carListService) GetCarListDetail(ctx context.Context, in *CarListId, op
 	return out, nil
 }
 
+func (c *carListService) GetTopCarList(ctx context.Context, in *LocationDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetTopCarList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *carListService) GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarList.GetCarListByNoFuzzy", in)
 	out := new(common.Response)
@@ -168,8 +182,18 @@ func (c *carListService) GetCarListByNoFuzzy(ctx context.Context, in *CarListNo,
 	return out, nil
 }
 
-func (c *carListService) GetTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarList.GetTopCarList", in)
+func (c *carListService) SaveTopCarList(ctx context.Context, in *TopCarListDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.SaveTopCarList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carListService) RefreshTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.RefreshTopCarList", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -197,10 +221,14 @@ type CarListHandler interface {
 	ListLocation(context.Context, *common.Page, *common.Response) error
 	// 获取指定id的车辆：返回 data: CarListDto
 	GetCarListDetail(context.Context, *CarListId, *common.Response) error
+	// 查询置顶车辆信息：返回 data: CarListDtoList
+	GetTopCarList(context.Context, *LocationDto, *common.Response) error
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
 	GetCarListByNoFuzzy(context.Context, *CarListNo, *common.Response) error
-	// 查询置顶车辆信息：返回 data: CarListDtoList
-	GetTopCarList(context.Context, *common.EmptyDto, *common.Response) error
+	// 保存车辆置顶排序
+	SaveTopCarList(context.Context, *TopCarListDto, *common.Response) error
+	// 刷新车辆置顶排序
+	RefreshTopCarList(context.Context, *common.EmptyDto, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -213,8 +241,10 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		ListCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 		ListLocation(ctx context.Context, in *common.Page, out *common.Response) error
 		GetCarListDetail(ctx context.Context, in *CarListId, out *common.Response) error
+		GetTopCarList(ctx context.Context, in *LocationDto, out *common.Response) error
 		GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error
-		GetTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
+		SaveTopCarList(ctx context.Context, in *TopCarListDto, out *common.Response) error
+		RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -259,10 +289,18 @@ func (h *carListHandler) GetCarListDetail(ctx context.Context, in *CarListId, ou
 	return h.CarListHandler.GetCarListDetail(ctx, in, out)
 }
 
+func (h *carListHandler) GetTopCarList(ctx context.Context, in *LocationDto, out *common.Response) error {
+	return h.CarListHandler.GetTopCarList(ctx, in, out)
+}
+
 func (h *carListHandler) GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error {
 	return h.CarListHandler.GetCarListByNoFuzzy(ctx, in, out)
 }
 
-func (h *carListHandler) GetTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
-	return h.CarListHandler.GetTopCarList(ctx, in, out)
+func (h *carListHandler) SaveTopCarList(ctx context.Context, in *TopCarListDto, out *common.Response) error {
+	return h.CarListHandler.SaveTopCarList(ctx, in, out)
+}
+
+func (h *carListHandler) RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
+	return h.CarListHandler.RefreshTopCarList(ctx, in, out)
 }
