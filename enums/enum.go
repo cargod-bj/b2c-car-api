@@ -1,11 +1,10 @@
 package enums
 
 import (
-	"fmt"
 	"sort"
 )
 
-const Rate float32 = 5.39
+const Rate float32 = 4
 
 const (
 	FuelTypePetrol         = 1
@@ -234,9 +233,3 @@ const (
 	// 整备单据
 	CarResReconditionFiles = 10
 )
-
-// float64转string
-func Decimal(value float64) string {
-	result := fmt.Sprintf("%.2f", value)
-	return result
-}
