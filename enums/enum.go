@@ -4,7 +4,7 @@ import (
 	"sort"
 )
 
-const Rate float32 = 4
+const Rate float32 = 0.04
 
 const (
 	FuelTypePetrol         = 1
