@@ -61,17 +61,21 @@ func FuelTypeCode(text string) int {
 
 const (
 	ColorBlack  = 1
-	ColorBlue   = 2
-	ColorBrown  = 3
-	ColorGold   = 4
-	ColorGray   = 5
-	ColorGreen  = 6
-	ColorOrange = 7
-	ColorPurple = 8
-	ColorRed    = 9
-	ColorSliver = 10
-	ColorTan    = 11
-	ColorWhite  = 12
+	ColorWhite  = 2
+	ColorGray   = 3
+	ColorSliver = 4
+	ColorRed    = 5
+	ColorBlue   = 6
+	ColorBrown  = 7
+	ColorGold   = 8
+
+	ColorGreen  = 9
+	ColorOrange = 10
+	ColorBeige  = 11
+	ColorPurple = 12
+	ColorBronze = 13
+
+	ColorOther = 14
 )
 
 var colorText = map[int]string{
@@ -85,8 +89,10 @@ var colorText = map[int]string{
 	ColorPurple: "Purple",
 	ColorRed:    "Red",
 	ColorSliver: "Sliver",
-	ColorTan:    "Tan",
+	ColorOther:  "Other",
 	ColorWhite:  "White",
+	ColorBronze: "Bronze",
+	ColorBeige:  "Beige",
 }
 
 func ColorText(code int) string {
