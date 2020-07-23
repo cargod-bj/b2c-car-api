@@ -22,7 +22,13 @@ const (
 
 // v 是否是合法的transmission
 func IsColor(v uint32) bool {
-	return v == TransmissionManual || v == TransmissionAuto
+	return v == ColorBlack || v == ColorWhite ||
+		v == ColorGray || v == ColorSilver ||
+		v == ColorRed || v == ColorBlue ||
+		v == ColorBrown || v == ColorGold ||
+		v == ColorGreen || v == ColorOrange ||
+		v == ColorBeige || v == ColorPurple ||
+		v == ColorBronze || v == ColorOther
 }
 
 // 变速箱
