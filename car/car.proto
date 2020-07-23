@@ -273,6 +273,6 @@ message CarResourceDto {
 // 车辆的id
 message CarNoDto {
   // 车辆id
-  uint64 carNo = 1;
+  string carNo = 1;
   string local = 2;
 }
