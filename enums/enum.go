@@ -24,6 +24,18 @@ const (
 	EnumNameSaleStatus = "SaleStatus"
 	// 经销商类型
 	EnumNameCarDealerType = "CarDealerType"
+	// 燃油类型
+	EnumNameFuelType = "FuelType"
+)
+
+// 燃油类型：fuelType
+const (
+	fuelType uint32 = iota
+	FuelTypePetrol
+	FuelTypePetrolWithNGV
+	FuelTypeDiesel
+	FuelTypeDieselWithNGV
+	FuelTypeHybridElectric
 )
 
 // 车辆颜色
