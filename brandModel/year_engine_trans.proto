@@ -45,7 +45,7 @@ service YearEngineTrans {
   //          List = List<IdNameDto>
   //       }
   rpc FindVariantByYearHasCar(ModelYearReq) returns (common.Response) {}
-  // 根据year查询variant列表, year不能为null, modelId 不能为null
+  // 根据brand、model、year、variant、engine的入参查询有车辆的列表
   // response.Data = common.Page{
   //          List = List<IdNameDto>
   //       }
@@ -69,7 +69,7 @@ message ModelYearVariantReq {
   uint32 modelId = 2;
   uint32 variantId = 3;
 }
-// model、year、variant、engine的入参
+// brand、model、year、variant、engine的入参
 message ModelYearVariantEngineReq {
   string year = 1;
   uint32 modelId = 2;
