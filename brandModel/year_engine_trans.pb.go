@@ -195,7 +195,7 @@ func (x *ModelYearVariantReq) GetVariantId() uint32 {
 	return 0
 }
 
-// model、year、variant、engine的入参
+// brand、model、year、variant、engine的入参
 type ModelYearVariantEngineReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

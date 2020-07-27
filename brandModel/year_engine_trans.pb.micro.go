@@ -78,7 +78,7 @@ type YearEngineTransService interface {
 	//          List = List<IdNameDto>
 	//       }
 	FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, opts ...client.CallOption) (*common.Response, error)
-	// 根据year查询variant列表, year不能为null, modelId 不能为null
+	// 根据brand、model、year、variant、engine的入参查询有车辆的列表
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
 	//       }
@@ -215,7 +215,7 @@ type YearEngineTransHandler interface {
 	//          List = List<IdNameDto>
 	//       }
 	FindVariantByYearHasCar(context.Context, *ModelYearReq, *common.Response) error
-	// 根据year查询variant列表, year不能为null, modelId 不能为null
+	// 根据brand、model、year、variant、engine的入参查询有车辆的列表
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
 	//       }

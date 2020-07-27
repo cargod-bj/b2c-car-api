@@ -67,11 +67,14 @@ message AddFromSourceParams{
   uint64 dealerId = 2;
   uint64 storeId = 3;
   uint64 dealershipType = 4;
-
+  // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
+  uint64 operatorId = 5;
 }
 
 message AddFromSourceListParams{
   repeated AddFromSourceParams list = 1;
+  // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
+  uint64 operatorId = 2;
 }
 
 message CarListParams{
@@ -247,6 +250,8 @@ message UpdateCarDto {
   // 当编辑时变更的point信息
   repeated report.ReportDamagePointDto points = 2;
   string remark = 3;
+  // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
+  uint64 operatorId = 4;
 }
 
 // 车辆的id
