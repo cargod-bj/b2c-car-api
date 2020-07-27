@@ -121,6 +121,8 @@ message CarListDto {
   string storeAddress = 807;
   string storePhone = 808;
   uint32 carState = 809;
+  //座椅个数
+  string seatSize = 811;
 }
 
 
