@@ -281,7 +281,7 @@ message CarResourceDto {
 message CarNoDto {
   // 车辆id
   string carNo = 1;
-  string storeId = 2;
+  uint64 storeId = 2;
   repeated uint32 carStatus = 4;
   string local = 5;
 }
