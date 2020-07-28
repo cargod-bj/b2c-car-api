@@ -71,6 +71,8 @@ type CarService interface {
 	ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定carNo的车辆：返回 data: CarDto
 	GetCarByCarNo(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
+	GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -215,6 +217,16 @@ func (c *carService) GetCarByCarNo(ctx context.Context, in *CarNoDto, opts ...cl
 	return out, nil
 }
 
+func (c *carService) GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarByNoFuzzy", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -245,6 +257,8 @@ type CarHandler interface {
 	ChangeInventoryStatus(context.Context, *ChangeCarStateReq, *common.Response) error
 	// 获取指定carNo的车辆：返回 data: CarDto
 	GetCarByCarNo(context.Context, *CarNoDto, *common.Response) error
+	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
+	GetCarByNoFuzzy(context.Context, *CarNoDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -262,6 +276,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		ChangeCarState(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
 		ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
 		GetCarByCarNo(ctx context.Context, in *CarNoDto, out *common.Response) error
+		GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -324,4 +339,8 @@ func (h *carHandler) ChangeInventoryStatus(ctx context.Context, in *ChangeCarSta
 
 func (h *carHandler) GetCarByCarNo(ctx context.Context, in *CarNoDto, out *common.Response) error {
 	return h.CarHandler.GetCarByCarNo(ctx, in, out)
+}
+
+func (h *carHandler) GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *common.Response) error {
+	return h.CarHandler.GetCarByNoFuzzy(ctx, in, out)
 }

@@ -39,6 +39,8 @@ service Car {
   rpc ChangeInventoryStatus(ChangeCarStateReq) returns (common.Response) {}
   // 获取指定carNo的车辆：返回 data: CarDto
   rpc GetCarByCarNo(CarNoDto) returns (common.Response) {}
+  // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
+  rpc GetCarByNoFuzzy(CarNoDto) returns (common.Response) {}
 }
 
 
@@ -279,5 +281,7 @@ message CarResourceDto {
 message CarNoDto {
   // 车辆id
   string carNo = 1;
-  string local = 2;
+  string storeId = 2;
+  repeated uint32 carStatus = 4;
+  string local = 5;
 }
