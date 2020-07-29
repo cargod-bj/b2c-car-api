@@ -185,7 +185,7 @@ message CarListId {
 message LocationDto {
   // 车辆位置
   string location = 1;
-  uint32 location_id = 2;
+  string location_id = 2;
 }
 message CarListDtoList{
   repeated CarListDto CarListDto = 1;
