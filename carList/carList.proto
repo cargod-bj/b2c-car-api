@@ -150,7 +150,7 @@ message CarListCondition {
   repeated uint64 store_id = 20;//店铺
   repeated string source = 22;//来源
   string location = 23;//城市
-  repeated uint64 location_id = 27;//地址id
+  repeated string location_id = 27;//地址id
   repeated uint64 dealer_id = 24;//经销商id
   repeated uint32 car_type_id = 30;//汽车类型
   uint32 recommendCount = 31; //推荐个数
