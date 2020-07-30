@@ -101,7 +101,7 @@ message CarListParams{
   // 车辆年份
   uint32 year = 22;
   // 车辆variant
-  uint64 variantId = 23;
+  int64 variantId = 23;
   // 车辆engine
   string engine = 24;
   // 车辆变速箱：手动、自动
@@ -172,7 +172,7 @@ message CarDto {
   // 车型id
   string model_name = 205;
   // 车variant
-  uint32 variant_id = 206;
+  int64 variant_id = 206;
   // vin码
   string vin_code = 207;
   // 车牌号

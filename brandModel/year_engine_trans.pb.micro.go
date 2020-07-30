@@ -68,16 +68,16 @@ type YearEngineTransService interface {
 	//          List = List<IdNameDto>
 	//       }
 	FindYearByModelHasCar(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
-	// 根据variant查询engine列表, 入参为variantId
-	// response.Data = common.Page{
-	//          List = List<IdNameDto>
-	//       }
-	FindEngineByVariantHasCar(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error)
 	// 根据year查询variant列表, year不能为null, modelId 不能为null
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
 	//       }
 	FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, opts ...client.CallOption) (*common.Response, error)
+	// 根据variant查询engine列表, 入参为variantId
+	// response.Data = common.Page{
+	//          List = List<IdNameDto>
+	//       }
+	FindEngineByVariantHasCar(ctx context.Context, in *FindEngineByVariantHasCarReq, opts ...client.CallOption) (*common.Response, error)
 	// 根据brand、model、year、variant、engine的入参查询有车辆的列表
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
@@ -147,8 +147,8 @@ func (c *yearEngineTransService) FindYearByModelHasCar(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *yearEngineTransService) FindEngineByVariantHasCar(ctx context.Context, in *common.IdLocalDTO, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "YearEngineTrans.FindEngineByVariantHasCar", in)
+func (c *yearEngineTransService) FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "YearEngineTrans.FindVariantByYearHasCar", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -157,8 +157,8 @@ func (c *yearEngineTransService) FindEngineByVariantHasCar(ctx context.Context, 
 	return out, nil
 }
 
-func (c *yearEngineTransService) FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "YearEngineTrans.FindVariantByYearHasCar", in)
+func (c *yearEngineTransService) FindEngineByVariantHasCar(ctx context.Context, in *FindEngineByVariantHasCarReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "YearEngineTrans.FindEngineByVariantHasCar", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -205,16 +205,16 @@ type YearEngineTransHandler interface {
 	//          List = List<IdNameDto>
 	//       }
 	FindYearByModelHasCar(context.Context, *common.IdLocalDTO, *common.Response) error
-	// 根据variant查询engine列表, 入参为variantId
-	// response.Data = common.Page{
-	//          List = List<IdNameDto>
-	//       }
-	FindEngineByVariantHasCar(context.Context, *common.IdLocalDTO, *common.Response) error
 	// 根据year查询variant列表, year不能为null, modelId 不能为null
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
 	//       }
 	FindVariantByYearHasCar(context.Context, *ModelYearReq, *common.Response) error
+	// 根据variant查询engine列表, 入参为variantId
+	// response.Data = common.Page{
+	//          List = List<IdNameDto>
+	//       }
+	FindEngineByVariantHasCar(context.Context, *FindEngineByVariantHasCarReq, *common.Response) error
 	// 根据brand、model、year、variant、engine的入参查询有车辆的列表
 	// response.Data = common.Page{
 	//          List = List<IdNameDto>
@@ -229,8 +229,8 @@ func RegisterYearEngineTransHandler(s server.Server, hdlr YearEngineTransHandler
 		FindEngineByVariant(ctx context.Context, in *ModelYearVariantReq, out *common.Response) error
 		FindTransmissionByEngine(ctx context.Context, in *ModelYearVariantEngineReq, out *common.Response) error
 		FindYearByModelHasCar(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
-		FindEngineByVariantHasCar(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error
 		FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, out *common.Response) error
+		FindEngineByVariantHasCar(ctx context.Context, in *FindEngineByVariantHasCarReq, out *common.Response) error
 		FindTransmissionHasCar(ctx context.Context, in *ModelYearVariantEngineReq, out *common.Response) error
 	}
 	type YearEngineTrans struct {
@@ -264,12 +264,12 @@ func (h *yearEngineTransHandler) FindYearByModelHasCar(ctx context.Context, in *
 	return h.YearEngineTransHandler.FindYearByModelHasCar(ctx, in, out)
 }
 
-func (h *yearEngineTransHandler) FindEngineByVariantHasCar(ctx context.Context, in *common.IdLocalDTO, out *common.Response) error {
-	return h.YearEngineTransHandler.FindEngineByVariantHasCar(ctx, in, out)
-}
-
 func (h *yearEngineTransHandler) FindVariantByYearHasCar(ctx context.Context, in *ModelYearReq, out *common.Response) error {
 	return h.YearEngineTransHandler.FindVariantByYearHasCar(ctx, in, out)
+}
+
+func (h *yearEngineTransHandler) FindEngineByVariantHasCar(ctx context.Context, in *FindEngineByVariantHasCarReq, out *common.Response) error {
+	return h.YearEngineTransHandler.FindEngineByVariantHasCar(ctx, in, out)
 }
 
 func (h *yearEngineTransHandler) FindTransmissionHasCar(ctx context.Context, in *ModelYearVariantEngineReq, out *common.Response) error {

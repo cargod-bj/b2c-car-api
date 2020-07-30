@@ -150,7 +150,7 @@ message CarDto {
   // 车型id
   string modelName = 205;
   // 车variant
-  uint32 variantId = 206;
+  int64 variantId = 206;
   // 车variant
   string variant = 203;
 
