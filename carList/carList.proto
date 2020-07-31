@@ -124,6 +124,7 @@ message CarListDto {
   //座椅个数
   string seatSize = 811;
   string skipUrl = 812;//广告位跳转url
+  uint32 saleStatus = 813;//是否上架
 }
 
 
