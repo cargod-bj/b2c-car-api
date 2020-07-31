@@ -123,6 +123,7 @@ message CarListDto {
   uint32 carState = 809;
   //座椅个数
   string seatSize = 811;
+  string skipUrl = 812;//广告位跳转url
 }
 
 
