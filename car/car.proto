@@ -180,7 +180,7 @@ message CarDto {
   // carBodyType
   uint32 car_type_id = 209;
   // 车辆原始信息
-  uint32 car_original_info = 210;
+  string car_original_info = 210;
 
   // 车照片url
   string image = 301;
