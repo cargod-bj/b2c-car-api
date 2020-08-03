@@ -180,7 +180,7 @@ message CarDto {
   // carBodyType
   uint32 car_type_id = 209;
   // 车辆原始信息
-  uint32 car_original_info = 210;
+  string car_original_info = 210;
 
   // 车照片url
   string image = 301;
@@ -209,8 +209,8 @@ message CarDto {
   string fuel_type_name = 412;
   string colorName = 413;
 
-  // 车辆上绑定的tags
-  repeated CarTags tags = 414;
+  // 车辆上绑定的tag, 单选
+  CarTags tag = 414;
   // 车辆描述，主要是partner填写
   string description = 415;
   // c2b中的颜色
