@@ -127,6 +127,7 @@ message CarListDto {
   uint32 saleStatus = 813;//是否上架
   string mapUrl = 814;//地图
   string carTag = 815;//标签
+  uint32 carTagType = 816;//标签类型
 }
 
 
