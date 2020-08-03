@@ -126,6 +126,7 @@ message CarListDto {
   string skipUrl = 812;//广告位跳转url
   uint32 saleStatus = 813;//是否上架
   string mapUrl = 814;//地图
+  string carTag = 815;//标签
 }
 
 
