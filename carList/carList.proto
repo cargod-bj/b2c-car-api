@@ -128,6 +128,7 @@ message CarListDto {
   string mapUrl = 814;//地图
   string carTag = 815;//标签
   uint32 carTagType = 816;//标签类型
+  string description = 817;//第三方车描述
 }
 
 
@@ -168,6 +169,7 @@ message CarListCondition {
   uint32 limit = 29;
   uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
   uint32 isHomePage = 35;//是否是首页
+
 }
 
 
