@@ -99,7 +99,7 @@ message CarListDto {
   uint32  recommend_order = 713;
   uint32 type = 714;
   string url = 715;
-  uint64 location_id = 716;
+  string location_id = 716;
   string car_transmission_name = 717;
   string registration_type_name = 718;
   string fuel_type_name = 719;
