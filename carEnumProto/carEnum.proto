@@ -19,6 +19,9 @@ service CarEnum {
   // 根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
   // 返回：common.Response -> Data = EnumsDto
   rpc GetCarEnums(EnumTypesDto) returns (common.Response);
+  // 专供website使用的，根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
+  // 返回：common.Response -> Data = EnumsDto
+  rpc GetCarEnumsForWebsite(EnumTypesDto) returns (common.Response);
 }
 
 // 枚举类型，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
