@@ -129,6 +129,7 @@ message CarListDto {
   string carTag = 815;//标签
   uint32 carTagType = 816;//标签类型
   string description = 817;//第三方车描述
+  string storeBusinessHours = 818;//门店营业时间
 }
 
 
