@@ -120,6 +120,8 @@ message CarListParams{
   string carNo = 50;
   // c2b中的id
   uint64 inspectionId = 51;
+  // 车牌号
+  uint64 licensePlate = 52;
 }
 
 
