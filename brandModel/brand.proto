@@ -28,6 +28,8 @@ service Brand {
   // 获取有车辆的brand列表
   // response.Data = BrandDto
   rpc ListBrandHasCar(common.LocalPage) returns (common.Response) {}
+
+  rpc Notice(NoticeCarMasterDTO) returns (common.Response) {}
 }
 
 // 品牌dto
@@ -43,5 +45,21 @@ message BrandDto {
 
   uint32 status = 5;
   uint32 order = 6;
+}
+
+message NoticeCarMasterDTO{
+  uint32   CarMasterId = 1;
+  uint32   CarBrandId = 2;
+  uint32   CarModelId = 3;
+  uint32   CarVariantId = 4;
+  uint32   CarYearId = 5;
+  uint32   CarEngineId = 6;
+  uint32   CarTransmissionId = 7;
+  uint32   Year = 8;
+  string Transmission = 9;
+  string BrandName = 10;
+  string ModelName = 11;
+  string VariantName = 12;
+  string Engine = 13;
 }
 
