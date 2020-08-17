@@ -99,7 +99,7 @@ message CarListDto {
   uint32  recommend_order = 713;
   uint32 type = 714;
   string url = 715;
-  uint64 location_id = 716;
+  string location_id = 716;
   string car_transmission_name = 717;
   string registration_type_name = 718;
   string fuel_type_name = 719;
@@ -129,6 +129,7 @@ message CarListDto {
   string carTag = 815;//标签
   uint32 carTagType = 816;//标签类型
   string description = 817;//第三方车描述
+  string storeBusinessHours = 818;//门店营业时间
 }
 
 

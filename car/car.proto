@@ -19,6 +19,8 @@ service Car {
   rpc Update(UpdateCarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto List
   rpc Get(CarIdsDto) returns (common.Response) {}
+  // 给website专用的接口，获取指定id的车辆：返回 data: CarDto List
+  rpc GetForWebsite(CarIdsDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
   rpc List(CarListParams) returns (common.Response) {}
   //获取车辆来源李彪
@@ -118,6 +120,8 @@ message CarListParams{
   string carNo = 50;
   // c2b中的id
   uint64 inspectionId = 51;
+  // 车牌号
+  string licensePlate = 52;
 }
 
 

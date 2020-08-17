@@ -52,6 +52,8 @@ type CarService interface {
 	Update(ctx context.Context, in *UpdateCarDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定id的车辆：返回 data: CarDto List
 	Get(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
+	// 给website专用的接口，获取指定id的车辆：返回 data: CarDto List
+	GetForWebsite(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 	//获取车辆来源李彪
@@ -119,6 +121,16 @@ func (c *carService) Update(ctx context.Context, in *UpdateCarDto, opts ...clien
 
 func (c *carService) Get(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.Get", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carService) GetForWebsite(ctx context.Context, in *CarIdsDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetForWebsite", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -238,6 +250,8 @@ type CarHandler interface {
 	Update(context.Context, *UpdateCarDto, *common.Response) error
 	// 获取指定id的车辆：返回 data: CarDto List
 	Get(context.Context, *CarIdsDto, *common.Response) error
+	// 给website专用的接口，获取指定id的车辆：返回 data: CarDto List
+	GetForWebsite(context.Context, *CarIdsDto, *common.Response) error
 	//获取车辆列表: 返回data：common.PagedList：CarDto
 	List(context.Context, *CarListParams, *common.Response) error
 	//获取车辆来源李彪
@@ -267,6 +281,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		Delete(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		Update(ctx context.Context, in *UpdateCarDto, out *common.Response) error
 		Get(ctx context.Context, in *CarIdsDto, out *common.Response) error
+		GetForWebsite(ctx context.Context, in *CarIdsDto, out *common.Response) error
 		List(ctx context.Context, in *CarListParams, out *common.Response) error
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *AddFromSourceParams, out *common.Response) error
@@ -303,6 +318,10 @@ func (h *carHandler) Update(ctx context.Context, in *UpdateCarDto, out *common.R
 
 func (h *carHandler) Get(ctx context.Context, in *CarIdsDto, out *common.Response) error {
 	return h.CarHandler.Get(ctx, in, out)
+}
+
+func (h *carHandler) GetForWebsite(ctx context.Context, in *CarIdsDto, out *common.Response) error {
+	return h.CarHandler.GetForWebsite(ctx, in, out)
 }
 
 func (h *carHandler) List(ctx context.Context, in *CarListParams, out *common.Response) error {
