@@ -61,5 +61,6 @@ message NoticeCarMasterDTO{
   string ModelName = 11;
   string VariantName = 12;
   string Engine = 13;
+  string BrandLogo = 14;
 }
 
