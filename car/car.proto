@@ -59,6 +59,9 @@ message ChangeCarStateReq {
   uint64 carId = 1;
   // 要更改的目标state，参见car-api项目 enums.CarStateXxx 枚举进行入参
   uint32 toState = 2;
+  string city = 3;
+  string cityName = 4;
+  uint64 storeId = 5;
 }
 
 message SourceParams{
@@ -122,6 +125,7 @@ message CarListParams{
   uint64 inspectionId = 51;
   // 车牌号
   string licensePlate = 52;
+
 }
 
 
@@ -252,6 +256,9 @@ message CarDto {
 
   // 库存状态
   string inventory_status = 901;
+  string city = 902;
+  string cityName = 903;
+
 }
 
 // 车辆更新Dto
