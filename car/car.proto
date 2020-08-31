@@ -43,6 +43,8 @@ service Car {
   rpc GetCarByCarNo(CarNoDto) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
   rpc GetCarByNoFuzzy(CarNoDto) returns (common.Response) {}
+  // 获取车辆详情页的访问token：返回 Data = CarDetailAccessTokenResp
+  rpc GetCarDetailAccessToken(CarNoReq) returns (common.Response) {}
 }
 
 
@@ -299,4 +301,16 @@ message CarNoDto {
   uint64 storeId = 2;
   repeated uint32 carStatus = 4;
   string local = 5;
+}
+
+// 车辆no的请求实体
+message CarNoReq {
+  // 车辆no
+  string carNo = 1;
+  // 本地化信息
+  string local = 10;
+}
+// 获取车辆详情页的访问token的返回结果。
+message CarDetailAccessTokenResp {
+  string token = 1;
 }
