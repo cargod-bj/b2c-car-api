@@ -183,8 +183,8 @@ message CarListIdDto {
 }
 //查询单个车辆
 message CarListId {
-  // 车辆id
-  uint64 id = 1;
+  // 车辆编号
+  string carNo = 1;
   uint32 recommendCount = 2;
   // 本地化
   string local = 3;
