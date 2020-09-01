@@ -220,6 +220,7 @@ message CarListNo {
   uint32 recommendCount = 2;
   // 本地化
   string local = 3;
+  string token = 4;
 }
 
 //保存车辆置顶排序
