@@ -25,7 +25,7 @@ service CarList {
   //根据查询carlist的location
   rpc ListLocation(common.Page) returns (common.Response){}
   // 获取指定id的车辆：返回 data: CarListDto
-  rpc GetCarListDetail(CarListId) returns (common.Response) {}
+  rpc GetCarListDetail(CarListNo) returns (common.Response) {}
   // 查询置顶车辆信息：返回 data: CarListDtoList
   rpc GetTopCarList(LocationDto) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
@@ -203,6 +203,7 @@ message ResultList {
   repeated CarListDto carLists = 1;
   repeated CarListDto recommendList = 2;
   uint32 total = 3;
+  uint32 advertSize = 4;
 }
 
 //返回包含推荐位的车辆详情结果
@@ -216,6 +217,7 @@ message CarListDetailResult {
 message CarListNo {
   // 车辆No
   string CarNo = 1;
+  uint32 recommendCount = 2;
   // 本地化
   string local = 3;
 }
