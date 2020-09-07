@@ -225,6 +225,8 @@ message CarDto {
   string description = 415;
   // c2b中的颜色
   string c2b_color = 416;
+  // c2b中的fuelType
+  string c2b_fuel_type = 417;
 
   // 卖价
   string exp_selling_price = 501;
