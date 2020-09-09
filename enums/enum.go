@@ -1,6 +1,6 @@
 package enums
 
-const Rate float32 = 0.04
+const Rate float32 = 0.035
 
 // 枚举类型名称，对应car_enums_config表中的type字段
 const (
