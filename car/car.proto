@@ -127,7 +127,10 @@ message CarListParams{
   uint64 inspectionId = 51;
   // 车牌号
   string licensePlate = 52;
-
+  // 下次保养时间：开始
+  uint64 nextMaintenanceDateStart = 53;
+  // 下次保养时间：结束
+  uint64 nextMaintenanceDateEnd = 54;
 }
 
 
@@ -191,6 +194,19 @@ message CarDto {
   uint32 car_type_id = 209;
   // 车辆原始信息
   string car_original_info = 210;
+  // 车辆钥匙：1有、2没有
+  uint32 spare_key = 211;
+  string spare_key_name = 212;
+  // 车辆保修证书：1有、2没有
+  uint32 service_book = 213;
+  string service_book_name = 214;
+  // 主机厂保修：1有、2没有
+  uint32 principle_warranty = 215;
+  string principle_warranty_name = 216;
+  // 主机厂保修到期日
+  uint64 warranty_expiration_date = 217;
+  // 主机厂保修最大公里
+  uint64 warranty_max_mileage = 218;
 
   // 车照片url
   string image = 301;
@@ -227,6 +243,8 @@ message CarDto {
   string c2b_color = 416;
   // c2b中的fuelType
   string c2b_fuel_type = 417;
+  // 下次整备日期
+  uint64 next_maintenance_date = 418;
 
   // 卖价
   string exp_selling_price = 501;

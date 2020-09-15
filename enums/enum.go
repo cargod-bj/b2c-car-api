@@ -26,6 +26,8 @@ const (
 	EnumNameCarDealerType = "CarDealerType"
 	// 燃油类型
 	EnumNameFuelType = "FuelType"
+	// 是否有某项配置
+	EnumNameWithWithout = "WithWithout"
 )
 
 // 燃油类型：fuelType
@@ -122,4 +124,13 @@ const (
 	CarResImgOuter
 	// 整备单据
 	CarResReconditionFiles = 10
+)
+
+// 车辆 '是否有' 枚举
+const (
+	carWithWithout uint32 = iota
+	// 车辆 有 某项资源
+	carWith
+	// 车辆 没有 某项资源
+	carWithout
 )
