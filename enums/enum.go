@@ -27,7 +27,7 @@ const (
 	// 燃油类型
 	EnumNameFuelType = "FuelType"
 	// 是否有某项配置
-	EnumNameWithWithout = "WithWithout"
+	EnumNameWithOrWithout = "WithOrWithout"
 )
 
 // 燃油类型：fuelType
@@ -128,7 +128,7 @@ const (
 
 // 车辆 '是否有' 枚举
 const (
-	carWithWithout uint32 = iota
+	carWithOrWithout uint32 = iota
 	// 车辆 有 某项资源
 	carWith
 	// 车辆 没有 某项资源
