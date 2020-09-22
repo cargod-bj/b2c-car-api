@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+package carCostProto;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carCostProto";
+
+/*
+  获取车辆费用
+ */
+service CarCost {
+  // 添加指定车辆的费用，返回 data：nil
+  rpc Add(AddCarCostReq) returns (common.Response) {}
+  // 删除指定车辆的费用，返回 data：nil
+  rpc Delete(DeleteCostReq) returns (common.Response) {}
+  // 获取指定车辆id的车辆费用详情：返回 data: CarCostDetailProtoDto
+  rpc Get(common.IdDto) returns (common.Response) {}
+  // 查询车辆费用列表：返回 Data = common.PageList{
+  //              List = List<CarCostListProtoDto>
+  //          }
+  rpc List(ListCostReq) returns (common.Response) {}
+}
+
+// 添加车辆费用
+message AddCarCostReq {
+  // 费用详情
+  CarCostItemProtoDto costItem = 1;
+  // 本地化类型
+  string local = 100;
+}
+
+// 删除车辆费用
+message DeleteCostReq {
+  // 删除的费用id
+  uint64 id = 2;
+  // 执行当前操作的用户id
+  uint64 operatorId = 3;
+}
+
+// 获取车辆费用列表
+message ListCostReq {
+  // 车辆id
+  uint64 carId = 1;
+  // 车牌号
+  string licensePlate = 2;
+  // 车牌号
+  uint64 puspakomValidUntilDate = 3;
+  // 导入日期：开始
+  uint64 importTimeStart = 4;
+  // 导入日期：结束
+  uint64 importTimeEnd = 5;
+  // 更新日期：开始
+  uint64 updateTimeStart = 6;
+  // 更新日期：开始
+  uint64 updateTimeEnd = 7;
+  // 车型：品牌id
+  uint64 brandId = 8;
+  // 车型：车系id
+  uint64 modelId = 9;
+  // 车型：车型id
+  uint64 variantId = 10;
+  // 车型：引擎
+  string engine = 11;
+  // 车型：变速箱
+  uint32 transmission = 12;
+  // 车辆编号
+  string carNo = 13;
+  // 门店id
+  uint64 storeId = 14;
+
+  // 本地化类型
+  string local = 100;
+  // 分页信息
+  common.Page page = 101;
+}
+
+message CarCostListProtoDto {
+  // 车辆no
+  string carNo = 1;
+  // 车辆描述
+  string carDesc = 2;
+  // 车牌
+  string licensePlate = 3;
+  // 总费用
+  string totalCost = 4;
+  // 整备次数
+  uint32 reconditionTimes = 5;
+  // 整备总费用
+  string reconditionCost = 6;
+  // 保养次数
+  uint32 maintenanceTimes = 7;
+  // 保养总费用
+  string maintenanceCost = 8;
+  // 检车次数
+  uint32 puspakomTimes = 9;
+  // 检车总费用
+  string puspakomCost = 10;
+  // 检车:最晚有效期
+  uint64 puspakomValidUntilDate = 11;
+  // CarCost最后更新时间
+  uint64 updateTime = 12;
+  // 车辆导入时间
+  uint64 createTime = 13;
+  // 车辆id
+  uint64 id = 50;
+}
+
+message CarCostDetailProtoDto {
+  // 车辆no
+  string carNo = 1;
+  // 车辆描述
+  string carDesc = 2;
+  // 检车总费用
+  string totalCost = 3;
+  // 整备费用
+  CarCostGroupProtoDto recondition = 4;
+  // 保养费用
+  CarCostGroupProtoDto maintenance = 5;
+  // 检车费用
+  CarCostGroupProtoDto puspakom = 6;
+}
+
+message CarCostGroupProtoDto {
+  // 检车总次数
+  uint32 totalTimes = 1;
+  // 检车总费用
+  string totalCost = 2;
+  // 类型
+  uint32 type = 3;
+  // 费用列表
+  repeated CarCostItemProtoDto costs = 4;
+}
+
+message CarCostItemProtoDto {
+  // 添加费用的车辆id
+  uint64 carId = 1;
+  // 费用类型：1 recondition、2 maintenance、3 puspakom
+  uint32 type = 2;
+  // 费用
+  string cost = 3;
+  // 费用描述
+  string content = 4;
+  // 费用详情
+  string detail = 5;
+  // 执行项目
+  uint32 item = 6;
+  // 执行项目
+  string itemName = 15;
+  // 附件列表
+  repeated string enclosures = 7;
+  // 开始时间
+  uint64 startDate = 8;
+  // 结束时间
+  uint64 endDate = 9;
+  // pic名称
+  string pic = 10;
+  // 操作人员id
+  uint64 operatorId = 11;
+  // 记录更新时间
+  uint64 updateTime = 13;
+  // id
+  uint64 id = 14;
+}

@@ -28,6 +28,8 @@ const (
 	EnumNameFuelType = "FuelType"
 	// 是否有某项配置
 	EnumNameWithOrWithout = "WithOrWithout"
+	// 车检类型
+	EnumNamePuspakomItem = "PuspakomItem"
 )
 
 // 燃油类型：fuelType
@@ -133,4 +135,13 @@ const (
 	carWith
 	// 车辆 没有 某项资源
 	carWithout
+)
+
+// 车检类型
+const (
+	carPuspakomItem uint32 = iota
+	// 车检类型：B5
+	PuspakomItemB5
+	// 车检类型：B7
+	PuspakomItemB7
 )
