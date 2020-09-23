@@ -158,7 +158,7 @@ message CarCostItemProtoDto {
   // 操作人员id
   uint64 operatorId = 11;
   // 操作人员
-  uint64 operatorName = 12;
+  string operatorName = 12;
   // 记录更新时间
   uint64 updateTime = 13;
   // id
