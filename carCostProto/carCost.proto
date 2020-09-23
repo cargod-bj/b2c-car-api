@@ -165,8 +165,4 @@ message CarCostItemProtoDto {
   uint64 updateTime = 13;
   // id
   uint64 id = 14;
-  // 检车：开始
-  uint64 puspakomUntilDateStart = 16;
-  // 检车：结束
-  uint64 puspakomUntilDateEnd = 17;
 }
