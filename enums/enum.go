@@ -132,9 +132,9 @@ const (
 const (
 	carWithOrWithout uint32 = iota
 	// 车辆 有 某项资源
-	carWith
+	CarWith
 	// 车辆 没有 某项资源
-	carWithout
+	CarWithout
 )
 
 // 车检类型
@@ -144,4 +144,15 @@ const (
 	PuspakomItemB5
 	// 车检类型：B7
 	PuspakomItemB7
+)
+
+// 车辆费用类型
+const (
+	carCostType uint32 = iota
+	// 车辆费用类型: 整备
+	CarCostTypeRecondition
+	// 车辆费用类型: 保养
+	CarCostTypeMaintenance
+	// 车辆费用类型: 车检
+	CarCostTypePuspakom
 )
