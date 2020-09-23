@@ -131,6 +131,10 @@ message CarListParams{
   uint64 nextMaintenanceDateStart = 53;
   // 下次保养时间：结束
   uint64 nextMaintenanceDateEnd = 54;
+  // 检车：开始
+  uint64 puspakomUntilDateStart = 55;
+  // 检车：结束
+  uint64 puspakomUntilDateEnd = 56;
 }
 
 
