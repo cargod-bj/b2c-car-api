@@ -44,8 +44,6 @@ message ListCostReq {
   uint64 carId = 1;
   // 车牌号
   string licensePlate = 2;
-  // 车牌号
-  uint64 puspakomValidUntilDate = 3;
   // 导入日期：开始
   uint64 importTimeStart = 4;
   // 导入日期：结束
@@ -68,6 +66,10 @@ message ListCostReq {
   string carNo = 13;
   // 门店id
   uint64 storeId = 14;
+  // 检车：开始
+  uint64 puspakomUntilDateStart = 15;
+  // 检车：结束
+  uint64 puspakomUntilDateEnd = 16;
 
   // 本地化类型
   string local = 100;
