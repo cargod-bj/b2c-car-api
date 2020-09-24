@@ -53,6 +53,8 @@ type CarCostService interface {
 	//              List = List<CarCostListProtoDto>
 	//          }
 	List(ctx context.Context, in *ListCostReq, opts ...client.CallOption) (*common.Response, error)
+	// 将车辆表中的整备信息整合到cost表中，返回 data：nil
+	MoveOldReconditionData2CostTable(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carCostService struct {
@@ -107,6 +109,16 @@ func (c *carCostService) List(ctx context.Context, in *ListCostReq, opts ...clie
 	return out, nil
 }
 
+func (c *carCostService) MoveOldReconditionData2CostTable(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCost.MoveOldReconditionData2CostTable", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarCost service
 
 type CarCostHandler interface {
@@ -120,6 +132,8 @@ type CarCostHandler interface {
 	//              List = List<CarCostListProtoDto>
 	//          }
 	List(context.Context, *ListCostReq, *common.Response) error
+	// 将车辆表中的整备信息整合到cost表中，返回 data：nil
+	MoveOldReconditionData2CostTable(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterCarCostHandler(s server.Server, hdlr CarCostHandler, opts ...server.HandlerOption) error {
@@ -128,6 +142,7 @@ func RegisterCarCostHandler(s server.Server, hdlr CarCostHandler, opts ...server
 		Delete(ctx context.Context, in *DeleteCostReq, out *common.Response) error
 		Get(ctx context.Context, in *common.IdDto, out *common.Response) error
 		List(ctx context.Context, in *ListCostReq, out *common.Response) error
+		MoveOldReconditionData2CostTable(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type CarCost struct {
 		carCost
@@ -154,4 +169,8 @@ func (h *carCostHandler) Get(ctx context.Context, in *common.IdDto, out *common.
 
 func (h *carCostHandler) List(ctx context.Context, in *ListCostReq, out *common.Response) error {
 	return h.CarCostHandler.List(ctx, in, out)
+}
+
+func (h *carCostHandler) MoveOldReconditionData2CostTable(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.CarCostHandler.MoveOldReconditionData2CostTable(ctx, in, out)
 }

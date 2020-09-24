@@ -20,6 +20,8 @@ service CarCost {
   //              List = List<CarCostListProtoDto>
   //          }
   rpc List(ListCostReq) returns (common.Response) {}
+  // 将车辆表中的整备信息整合到cost表中，返回 data：nil
+  rpc MoveOldReconditionData2CostTable(common.IdDto) returns (common.Response) {}
 }
 
 // 添加车辆费用
