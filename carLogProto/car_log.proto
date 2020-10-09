@@ -50,4 +50,6 @@ message CarLogResp {
   string inventoryStatusName = 12;
   // 操作时间
   uint64 createTime = 14;
+  // 价格
+  string expSellingPrice = 15;
 }
