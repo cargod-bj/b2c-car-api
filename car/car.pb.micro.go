@@ -61,6 +61,8 @@ type CarService interface {
 	//添加车辆到平台
 	AddFromSource(ctx context.Context, in *AddFromSourceParams, opts ...client.CallOption) (*common.Response, error)
 	AddFromSourceList(ctx context.Context, in *AddFromSourceListParams, opts ...client.CallOption) (*common.Response, error)
+	// 添加第三方车辆，返回 data：nil
+	AddPartnerCar(ctx context.Context, in *AddPartnerCarReq, opts ...client.CallOption) (*common.Response, error)
 	// 上架车辆
 	LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -181,6 +183,16 @@ func (c *carService) AddFromSourceList(ctx context.Context, in *AddFromSourceLis
 	return out, nil
 }
 
+func (c *carService) AddPartnerCar(ctx context.Context, in *AddPartnerCarReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.AddPartnerCar", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *carService) LaunchCar(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.LaunchCar", in)
 	out := new(common.Response)
@@ -271,6 +283,8 @@ type CarHandler interface {
 	//添加车辆到平台
 	AddFromSource(context.Context, *AddFromSourceParams, *common.Response) error
 	AddFromSourceList(context.Context, *AddFromSourceListParams, *common.Response) error
+	// 添加第三方车辆，返回 data：nil
+	AddPartnerCar(context.Context, *AddPartnerCarReq, *common.Response) error
 	// 上架车辆
 	LaunchCar(context.Context, *common.IdDto, *common.Response) error
 	// 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -300,6 +314,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		SourceList(ctx context.Context, in *SourceParams, out *common.Response) error
 		AddFromSource(ctx context.Context, in *AddFromSourceParams, out *common.Response) error
 		AddFromSourceList(ctx context.Context, in *AddFromSourceListParams, out *common.Response) error
+		AddPartnerCar(ctx context.Context, in *AddPartnerCarReq, out *common.Response) error
 		LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error
 		GetValidState(ctx context.Context, in *GetValidStateReq, out *common.Response) error
 		ChangeCarState(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
@@ -353,6 +368,10 @@ func (h *carHandler) AddFromSource(ctx context.Context, in *AddFromSourceParams,
 
 func (h *carHandler) AddFromSourceList(ctx context.Context, in *AddFromSourceListParams, out *common.Response) error {
 	return h.CarHandler.AddFromSourceList(ctx, in, out)
+}
+
+func (h *carHandler) AddPartnerCar(ctx context.Context, in *AddPartnerCarReq, out *common.Response) error {
+	return h.CarHandler.AddPartnerCar(ctx, in, out)
 }
 
 func (h *carHandler) LaunchCar(ctx context.Context, in *common.IdDto, out *common.Response) error {

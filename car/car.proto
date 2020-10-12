@@ -28,6 +28,10 @@ service Car {
   //添加车辆到平台
   rpc AddFromSource(AddFromSourceParams) returns (common.Response) {}
   rpc AddFromSourceList(AddFromSourceListParams) returns (common.Response) {}
+
+  // 添加第三方车辆，返回 data：nil
+  rpc AddPartnerCar(AddPartnerCarReq) returns (common.Response) {}
+
   // 上架车辆
   rpc LaunchCar(common.IdDto) returns (common.Response) {}
   // 查询车辆可能变更的状态列表：返回 Data = common.PageList{
@@ -84,6 +88,21 @@ message AddFromSourceListParams{
   repeated AddFromSourceParams list = 1;
   // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
   uint64 operatorId = 2;
+}
+
+//新增第三方车辆
+message AddPartnerCarReq{
+  // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
+  uint64 operatorId = 1;
+  uint32 dealerId = 2;
+  uint64 storeId = 3;
+  uint32 brandId = 4;
+  uint32 modelId = 5;
+  uint32 year = 6;
+  uint32 variantId = 7;
+  string engine = 8;
+  uint32 transmission = 9;
+  string licensePlateNumber = 10;
 }
 
 message CarListParams{
