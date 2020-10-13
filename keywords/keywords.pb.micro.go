@@ -49,6 +49,8 @@ type KeywordsService interface {
 	PublistKeywords(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 	//通过name查询出对应carlist列表返回
 	GetCarListByKeywords(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error)
+	//通过name模糊查询keywords
+	GetKeywordsByName(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type keywordsService struct {
@@ -93,6 +95,16 @@ func (c *keywordsService) GetCarListByKeywords(ctx context.Context, in *Keywords
 	return out, nil
 }
 
+func (c *keywordsService) GetKeywordsByName(ctx context.Context, in *KeywordsDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Keywords.GetKeywordsByName", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Keywords service
 
 type KeywordsHandler interface {
@@ -102,6 +114,8 @@ type KeywordsHandler interface {
 	PublistKeywords(context.Context, *common.Page, *common.Response) error
 	//通过name查询出对应carlist列表返回
 	GetCarListByKeywords(context.Context, *KeywordsDto, *common.Response) error
+	//通过name模糊查询keywords
+	GetKeywordsByName(context.Context, *KeywordsDto, *common.Response) error
 }
 
 func RegisterKeywordsHandler(s server.Server, hdlr KeywordsHandler, opts ...server.HandlerOption) error {
@@ -109,6 +123,7 @@ func RegisterKeywordsHandler(s server.Server, hdlr KeywordsHandler, opts ...serv
 		List(ctx context.Context, in *common.Page, out *common.Response) error
 		PublistKeywords(ctx context.Context, in *common.Page, out *common.Response) error
 		GetCarListByKeywords(ctx context.Context, in *KeywordsDto, out *common.Response) error
+		GetKeywordsByName(ctx context.Context, in *KeywordsDto, out *common.Response) error
 	}
 	type Keywords struct {
 		keywords
@@ -131,4 +146,8 @@ func (h *keywordsHandler) PublistKeywords(ctx context.Context, in *common.Page, 
 
 func (h *keywordsHandler) GetCarListByKeywords(ctx context.Context, in *KeywordsDto, out *common.Response) error {
 	return h.KeywordsHandler.GetCarListByKeywords(ctx, in, out)
+}
+
+func (h *keywordsHandler) GetKeywordsByName(ctx context.Context, in *KeywordsDto, out *common.Response) error {
+	return h.KeywordsHandler.GetKeywordsByName(ctx, in, out)
 }
