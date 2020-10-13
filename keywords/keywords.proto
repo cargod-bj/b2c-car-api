@@ -13,6 +13,8 @@ service Keywords {
   rpc PublistKeywords(common.Page) returns (common.Response) {}
   //通过name查询出对应carlist列表返回
   rpc GetCarListByKeywords(KeywordsDto) returns (common.Response) {}
+  //通过name模糊查询keywords
+  rpc GetKeywordsByName(KeywordsDto) returns (common.Response) {}
 }
 
 // 新增Tagdto
