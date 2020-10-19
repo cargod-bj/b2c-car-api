@@ -66,12 +66,12 @@ message ListCostReq {
   uint32 transmission = 12;
   // 车辆编号
   string carNo = 13;
-  // 门店id
-  uint64 storeId = 14;
   // 检车：开始
   uint64 puspakomUntilDateStart = 15;
   // 检车：结束
   uint64 puspakomUntilDateEnd = 16;
+  // 门店ids
+  repeated uint64 storeIds = 17;
 
   // 本地化类型
   string local = 100;

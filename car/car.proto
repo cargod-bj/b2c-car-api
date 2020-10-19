@@ -118,8 +118,6 @@ message CarListParams{
   uint32 dealerType = 7;
   // dealer id
   uint64 dealerId = 8;
-  // store id
-  uint64 storeId = 9;
   // brand id
   uint64 brandId = 20;
   // model id
@@ -154,6 +152,8 @@ message CarListParams{
   uint64 puspakomUntilDateStart = 55;
   // 检车：结束
   uint64 puspakomUntilDateEnd = 56;
+  // store ids
+  repeated uint64 storeIds = 57;
 }
 
 
