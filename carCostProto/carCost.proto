@@ -59,7 +59,7 @@ message ListCostReq {
   // 车型：车系id
   uint64 modelId = 9;
   // 车型：车型id
-  uint64 variantId = 10;
+  int64 variantId = 10;
   // 车型：引擎
   string engine = 11;
   // 车型：变速箱
