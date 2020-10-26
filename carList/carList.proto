@@ -130,6 +130,10 @@ message CarListDto {
   uint32 carTagType = 816;//标签类型
   string description = 817;//第三方车描述
   string storeBusinessHours = 818;//门店营业时间
+  uint64 campaignStartTime = 819;//限时活动开始时间
+  uint64 campaignEndTime = 820;//限时活动结束时间
+  string campaignPrice = 821;//限时活动车价
+  string campaignTag = 822;//限时活动tag
 }
 
 
