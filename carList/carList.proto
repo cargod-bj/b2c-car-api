@@ -133,7 +133,13 @@ message CarListDto {
   uint64 campaignStartTime = 819;//限时活动开始时间
   uint64 campaignEndTime = 820;//限时活动结束时间
   string campaignPrice = 821;//限时活动车价
-  string campaignTag = 822;//限时活动tag
+  string campaignId = 822;//限时活动id
+  string campaignName = 823;//限时活动名称
+  string ResWebPriceBarLogo = 824;//限时活动logo
+  string ResWebPriceBarBackground = 825;//限时活动背景
+  string ResH5PriceBarLogo = 826;//限时活动logo
+  string ResH5PriceBarBackground = 827;//限时活动背景
+
 }
 
 
