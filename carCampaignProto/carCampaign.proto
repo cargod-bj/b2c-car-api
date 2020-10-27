@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package carCostProto;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carCampaignProto";
+
+/*
+  获取车辆活动
+ */
+service CarCampaign {
+  // 添加活动，返回 data：nil
+  rpc Add(CarCampaignReq) returns (common.Response) {}
+  // 删除指定活动，返回 data：nil
+  rpc Delete(DeleteCarCampaignReq) returns (common.Response) {}
+  // 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+  rpc Get(common.IdDto) returns (common.Response) {}
+  // 查询活动列表：返回 Data = common.PageList{
+  //              List = List<CarCampaignList>
+  //          }
+  rpc List(ListCarCampaignReq) returns (common.Response) {}
+  // 更新活动，返回 data：nil
+  rpc Update(CarCampaignReq) returns (common.Response) {}
+}
+
+// 添加车辆费用
+message CarCampaignReq {
+  // 活动详情
+  CarCampaignDetail campaign = 1;
+  // 活动车辆列表
+  repeated CarCampaignCar cars = 2;
+  // 本地化类型
+  string local = 100;
+}
+
+// 删除活动
+message DeleteCarCampaignReq {
+  // 活动id
+  uint64 id = 2;
+  // 执行当前操作的用户id
+  uint64 operatorId = 3;
+}
+// 删除活动
+message ListCarCampaignReq {
+  // 本地化类型
+  string local = 100;
+  // 分页信息
+  common.Page page = 101;
+}
+
+message CarCampaignList {
+  // id
+  uint64 id = 1;
+  // 名称
+  string name = 2;
+  // 开始时间
+  uint64 startTime = 4;
+  // 结束时间
+  uint64 endTime = 5;
+  // 活动状态
+  string campaignStatus = 6;
+  // 活动创建人id
+  uint64 creatorId = 7;
+  // 创建时间
+  uint64 createTime = 8;
+  // 车辆数
+  uint64 carCount = 9;
+}
+
+// 车辆活动
+message CarCampaignDetail {
+  // id
+  uint64 id = 1;
+  // 名称
+  string name = 2;
+  // 开始时间
+  uint64 startTime = 4;
+  // 结束时间
+  uint64 endTime = 5;
+  // 活动tagid
+  uint64 tagId = 6;
+  // 活动创建人id
+  uint64 creatorId = 7;
+  // 活动页面图片资源
+  uint64 resWebPriceBar = 8;
+  // 活动页面图片资源
+  uint64 resWebListItemTag = 9;
+  // 活动页面图片资源
+  int64 resWebFilterTagSelected = 10;
+  // 活动页面图片资源
+  string resWebFilterTagUnselected = 11;
+  // 活动页面图片资源
+  uint32 resH5PriceBar = 12;
+  // 活动页面图片资源
+  string resH5ListItemTag = 13;
+  // 活动页面图片资源
+  uint64 resH5FilterTagSelected = 14;
+  // 活动页面图片资源
+  uint64 resH5FilterTagUnselected = 15;
+  // 活动是否有效：1有效，2无效
+  uint64 activeStatus = 16;
+}
+
+// 活动车辆
+message CarCampaignCar {
+  // 活动车辆id
+  uint64 carId = 1;
+  // 活动价
+  string campaignPrice = 2;
+}
