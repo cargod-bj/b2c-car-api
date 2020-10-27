@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-package carCompaign;
+package carCampaign;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-car-api/carCompaign";
+option go_package = "github.com/cargod-bj/b2c-car-api/carCampaign";
 
 /*
   获取限时活动
  */
-service CarCompaign {
+service CarCampaign {
   // 获取当前生效的限时活动，返回 data：nil
   rpc GetCurrentActiveCampaign(common.IdDto) returns (common.Response) {}
 }
