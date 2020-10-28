@@ -85,7 +85,7 @@ message CarCampaignDetail {
   // 活动创建人id
   uint64 creatorId = 7;
   // 活动页面图片资源
-  uint64 resWebPriceBar = 8;
+  uint64 resWebDetailPriceBar = 8;
   // 活动页面图片资源
   uint64 resWebListItemTag = 9;
   // 活动页面图片资源
@@ -93,7 +93,7 @@ message CarCampaignDetail {
   // 活动页面图片资源
   string resWebFilterTagUnselected = 11;
   // 活动页面图片资源
-  uint32 resH5PriceBar = 12;
+  uint32 resH5DetailPriceBar = 12;
   // 活动页面图片资源
   string resH5ListItemTag = 13;
   // 活动页面图片资源
