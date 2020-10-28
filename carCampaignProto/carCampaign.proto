@@ -61,7 +61,7 @@ message CarCampaignList {
   // 结束时间
   uint64 endTime = 5;
   // 活动状态
-  string campaignStatus = 6;
+  uint32 campaignStatus = 6;
   // 活动创建人id
   uint64 creatorId = 7;
   // 创建时间
@@ -85,23 +85,23 @@ message CarCampaignDetail {
   // 活动创建人id
   uint64 creatorId = 7;
   // 活动页面图片资源
-  uint64 resWebDetailPriceBar = 8;
+  string resWebDetailPriceBar = 8;
   // 活动页面图片资源
-  uint64 resWebListItemTag = 9;
+  string resWebListItemTag = 9;
   // 活动页面图片资源
-  int64 resWebFilterTagSelected = 10;
+  string resWebFilterTagSelected = 10;
   // 活动页面图片资源
   string resWebFilterTagUnselected = 11;
   // 活动页面图片资源
-  uint32 resH5DetailPriceBar = 12;
+  string resH5DetailPriceBar = 12;
   // 活动页面图片资源
   string resH5ListItemTag = 13;
   // 活动页面图片资源
-  uint64 resH5FilterTagSelected = 14;
+  string resH5FilterTagSelected = 14;
   // 活动页面图片资源
-  uint64 resH5FilterTagUnselected = 15;
+  string resH5FilterTagUnselected = 15;
   // 活动是否有效：1有效，2无效
-  uint64 activeStatus = 16;
+  uint32 activeStatus = 16;
 }
 
 // 活动车辆
