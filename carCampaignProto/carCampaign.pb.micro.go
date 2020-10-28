@@ -55,7 +55,7 @@ type CarCampaignService interface {
 	List(ctx context.Context, in *ListCarCampaignReq, opts ...client.CallOption) (*common.Response, error)
 	// 更新活动，返回 data：nil
 	Update(ctx context.Context, in *CarCampaignReq, opts ...client.CallOption) (*common.Response, error)
-	// 获取当前生效的限时活动，返回 data：nil
+	// 获取当前生效的限时活动，返回 data：CarCampaignDetail
 	GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
@@ -146,7 +146,7 @@ type CarCampaignHandler interface {
 	List(context.Context, *ListCarCampaignReq, *common.Response) error
 	// 更新活动，返回 data：nil
 	Update(context.Context, *CarCampaignReq, *common.Response) error
-	// 获取当前生效的限时活动，返回 data：nil
+	// 获取当前生效的限时活动，返回 data：CarCampaignDetail
 	GetCurrentActiveCampaign(context.Context, *common.IdDto, *common.Response) error
 }
 

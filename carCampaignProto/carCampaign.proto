@@ -22,7 +22,7 @@ service CarCampaign {
   rpc List(ListCarCampaignReq) returns (common.Response) {}
   // 更新活动，返回 data：nil
   rpc Update(CarCampaignReq) returns (common.Response) {}
-  // 获取当前生效的限时活动，返回 data：nil
+  // 获取当前生效的限时活动，返回 data：CarCampaignDetail
   rpc GetCurrentActiveCampaign(common.IdDto) returns (common.Response) {}
 }
 
@@ -110,15 +110,4 @@ message CarCampaignCar {
   uint64 carId = 1;
   // 活动价
   string campaignPrice = 2;
-}
-// 限时活动
-message CarCampaignDto {
-  // 活动id
-  uint64 id = 1;
-  // 活动名称
-  uint64 name = 2;
-  string ResWebFilterTagSelected = 4;
-  string ResWebFilterTagUnselected = 5;
-  string ResH5FilterTagSelected = 6;
-  string ResH5FilterTagUnselected = 7;
 }

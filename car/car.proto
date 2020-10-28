@@ -304,6 +304,10 @@ message CarDto {
   string city = 902;
   string cityName = 903;
 
+  // 活动
+  uint64 campaign_id = 1001;
+  string campaign_price = 1002;
+
 }
 
 // 车辆更新Dto
