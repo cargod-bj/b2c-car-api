@@ -57,6 +57,8 @@ type CarCampaignService interface {
 	Update(ctx context.Context, in *CarCampaignReq, opts ...client.CallOption) (*common.Response, error)
 	// 获取当前生效的限时活动，返回 data：CarCampaignDetail
 	GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取指定ID的车辆活动信息
+	GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carCampaignService struct {
@@ -131,6 +133,16 @@ func (c *carCampaignService) GetCurrentActiveCampaign(ctx context.Context, in *c
 	return out, nil
 }
 
+func (c *carCampaignService) GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCampaign.GetCarCampaignInfo", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarCampaign service
 
 type CarCampaignHandler interface {
@@ -148,6 +160,8 @@ type CarCampaignHandler interface {
 	Update(context.Context, *CarCampaignReq, *common.Response) error
 	// 获取当前生效的限时活动，返回 data：CarCampaignDetail
 	GetCurrentActiveCampaign(context.Context, *common.IdDto, *common.Response) error
+	// 获取指定ID的车辆活动信息
+	GetCarCampaignInfo(context.Context, *CarCampaignCond, *common.Response) error
 }
 
 func RegisterCarCampaignHandler(s server.Server, hdlr CarCampaignHandler, opts ...server.HandlerOption) error {
@@ -158,6 +172,7 @@ func RegisterCarCampaignHandler(s server.Server, hdlr CarCampaignHandler, opts .
 		List(ctx context.Context, in *ListCarCampaignReq, out *common.Response) error
 		Update(ctx context.Context, in *CarCampaignReq, out *common.Response) error
 		GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, out *common.Response) error
+		GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, out *common.Response) error
 	}
 	type CarCampaign struct {
 		carCampaign
@@ -192,4 +207,8 @@ func (h *carCampaignHandler) Update(ctx context.Context, in *CarCampaignReq, out
 
 func (h *carCampaignHandler) GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.CarCampaignHandler.GetCurrentActiveCampaign(ctx, in, out)
+}
+
+func (h *carCampaignHandler) GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, out *common.Response) error {
+	return h.CarCampaignHandler.GetCarCampaignInfo(ctx, in, out)
 }

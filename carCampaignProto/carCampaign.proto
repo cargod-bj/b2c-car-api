@@ -24,6 +24,8 @@ service CarCampaign {
   rpc Update(CarCampaignReq) returns (common.Response) {}
   // 获取当前生效的限时活动，返回 data：CarCampaignDetail
   rpc GetCurrentActiveCampaign(common.IdDto) returns (common.Response) {}
+  // 获取指定ID的车辆活动信息
+  rpc GetCarCampaignInfo(CarCampaignCond) returns (common.Response) {}
 }
 
 // 添加车辆费用
@@ -110,4 +112,12 @@ message CarCampaignCar {
   uint64 carId = 1;
   // 活动价
   string campaignPrice = 2;
+}
+
+// 查询活动信息
+message CarCampaignCond {
+  // carId
+  uint64 carId = 1;
+  // campaign ID
+  string campaignId = 2;
 }
