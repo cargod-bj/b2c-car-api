@@ -119,5 +119,5 @@ message CarCampaignCond {
   // carId
   uint64 carId = 1;
   // campaign ID
-  string campaignId = 2;
+  uint64 campaignId = 2;
 }
