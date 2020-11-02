@@ -307,7 +307,11 @@ message CarDto {
   // 活动
   uint64 campaign_id = 1001;
   string campaign_price = 1002;
-
+  string campaignName = 1003;//限时活动名称
+  string resWebDetailPriceBar = 1004;//限时活动详情图片
+  string resWebListItemTag = 1005;//限时活动背景
+  string resH5DetailPriceBar = 1006;//限时活动详情图片
+  string resH5ListItemTag = 1007;//限时活动背景
 }
 
 // 车辆更新Dto
