@@ -3,6 +3,7 @@ syntax = "proto3";
 package carCampaignProto;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+import "carProto/car.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carCampaignProto";
 
@@ -14,7 +15,7 @@ service CarCampaign {
   rpc Add(CarCampaignReq) returns (common.Response) {}
   // 删除指定活动，返回 data：nil
   rpc Delete(DeleteCarCampaignReq) returns (common.Response) {}
-  // 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+  // 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
   rpc Get(common.IdDto) returns (common.Response) {}
   // 查询活动列表：返回 Data = common.PageList{
   //              List = List<CarCampaignList>
@@ -72,6 +73,12 @@ message CarCampaignList {
   uint64 carCount = 9;
 }
 
+// 活动详情
+message CarCampaignDetailWithCars {
+  CarCampaignDetail detail = 1;
+  repeated CarCampaignWithPrice cars = 2;
+}
+
 // 车辆活动
 message CarCampaignDetail {
   // id
@@ -110,6 +117,13 @@ message CarCampaignDetail {
 message CarCampaignCar {
   // 活动车辆id
   uint64 carId = 1;
+  // 活动价
+  string campaignPrice = 2;
+}
+// 活动车辆
+message CarCampaignWithPrice {
+  // 活动车辆
+  car.CarDto car = 1;
   // 活动价
   string campaignPrice = 2;
 }

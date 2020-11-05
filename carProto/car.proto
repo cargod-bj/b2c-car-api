@@ -154,6 +154,10 @@ message CarListParams{
   uint64 puspakomUntilDateStart = 55;
   // 检车：结束
   uint64 puspakomUntilDateEnd = 56;
+  // 最小车辆价格
+  string minPrice = 57;
+  // 最大车辆价格
+  string maxPrice = 58;
 }
 
 

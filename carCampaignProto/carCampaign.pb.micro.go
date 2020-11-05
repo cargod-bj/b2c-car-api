@@ -5,6 +5,7 @@ package carCampaignProto
 
 import (
 	fmt "fmt"
+	_ "github.com/cargod-bj/b2c-car-api/carProto"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
@@ -47,7 +48,7 @@ type CarCampaignService interface {
 	Add(ctx context.Context, in *CarCampaignReq, opts ...client.CallOption) (*common.Response, error)
 	// 删除指定活动，返回 data：nil
 	Delete(ctx context.Context, in *DeleteCarCampaignReq, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+	// 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
 	Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 查询活动列表：返回 Data = common.PageList{
 	//              List = List<CarCampaignList>
@@ -150,7 +151,7 @@ type CarCampaignHandler interface {
 	Add(context.Context, *CarCampaignReq, *common.Response) error
 	// 删除指定活动，返回 data：nil
 	Delete(context.Context, *DeleteCarCampaignReq, *common.Response) error
-	// 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+	// 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
 	Get(context.Context, *common.IdDto, *common.Response) error
 	// 查询活动列表：返回 Data = common.PageList{
 	//              List = List<CarCampaignList>
