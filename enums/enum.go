@@ -30,6 +30,8 @@ const (
 	EnumNameWithOrWithout = "WithOrWithout"
 	// 车检类型
 	EnumNamePuspakomItem = "PuspakomItem"
+	// 活动状态
+	EnumNameCampaignStatus = "CarCampaignStatus"
 )
 
 // 燃油类型：fuelType
@@ -155,4 +157,15 @@ const (
 	CarCostTypeMaintenance
 	// 车辆费用类型: 车检
 	CarCostTypePuspakom
+)
+
+// 车辆活动类型
+const (
+	carCampaignStatus uint32 = iota
+	// 活动类型：未激活
+	CarCampaignStatusInactive
+	// 活动类型：激活
+	CarCampaignStatusActive
+	// 活动类型：无效
+	CarCampaignStatusExpired
 )

@@ -48,6 +48,24 @@ message DeleteCarCampaignReq {
 }
 // 删除活动
 message ListCarCampaignReq {
+
+  // 活动
+  string name = 2;
+  // 开始时间：开始
+  uint64 startTimeStart = 3;
+  // 开始时间：结束
+  uint64 startTimeEnd = 4;
+  // 结束时间：开始
+  uint64 endTimeStart = 5;
+  // 结束时间：结束
+  uint64 endTimeEnd = 6;
+  // 创建时间：开始
+  uint64 createTimeStart = 7;
+  // 创建时间：结束
+  uint64 createTimeEnd = 8;
+  // 活动状态
+  uint32 campaignStatus = 9;
+
   // 本地化类型
   string local = 100;
   // 分页信息
@@ -65,12 +83,14 @@ message CarCampaignList {
   uint64 endTime = 5;
   // 活动状态
   uint32 campaignStatus = 6;
+  // 活动状态
+  string campaignStatusName = 7;
   // 活动创建人id
-  uint64 creatorId = 7;
+  uint64 creatorId = 8;
   // 创建时间
-  uint64 createTime = 8;
+  uint64 createTime = 9;
   // 车辆数
-  uint64 carCount = 9;
+  uint32 carCount = 10;
 }
 
 // 活动详情
