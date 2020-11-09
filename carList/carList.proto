@@ -130,6 +130,16 @@ message CarListDto {
   uint32 carTagType = 816;//标签类型
   string description = 817;//第三方车描述
   string storeBusinessHours = 818;//门店营业时间
+  uint64 campaignStartTime = 819;//限时活动开始时间
+  uint64 campaignEndTime = 820;//限时活动结束时间
+  string campaignPrice = 821;//限时活动车价
+  uint64 campaignId = 822;//限时活动id
+  string campaignName = 823;//限时活动名称
+  string resWebDetailPriceBar = 824;//限时活动详情图片
+  string resWebListItemTag = 825;//限时活动背景
+  string resH5DetailPriceBar = 826;//限时活动详情图片
+  string resH5ListItemTag = 827;//限时活动背景
+
 }
 
 
@@ -170,7 +180,7 @@ message CarListCondition {
   uint32 limit = 29;
   uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
   uint32 isHomePage = 35;//是否是首页
-
+  uint64 campaignId = 36;//活动id
 }
 
 
