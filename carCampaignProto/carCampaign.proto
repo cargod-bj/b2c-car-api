@@ -13,8 +13,8 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carCampaignProto";
 service CarCampaign {
   // 添加活动，返回 data：nil
   rpc Add(CarCampaignReq) returns (common.Response) {}
-  // 删除指定活动，返回 data：nil
-  rpc Delete(DeleteCarCampaignReq) returns (common.Response) {}
+  // 停止指定活动，返回 data：nil
+  rpc Stop(DeleteCarCampaignReq) returns (common.Response) {}
   // 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
   rpc Get(common.IdDto) returns (common.Response) {}
   // 查询活动列表：返回 Data = common.PageList{
@@ -27,6 +27,10 @@ service CarCampaign {
   rpc GetCurrentActiveCampaign(common.IdDto) returns (common.Response) {}
   // 获取指定ID的车辆活动信息
   rpc GetCarCampaignInfo(CarCampaignCond) returns (common.Response) {}
+  // 查询活动列表：返回 Data = common.PageList{
+  //              List = List<CarCampaignLogList>
+  //          }
+  rpc RemarkList(ListCarCampaignLogReq) returns (common.Response) {}
 }
 
 // 添加车辆费用
@@ -35,6 +39,10 @@ message CarCampaignReq {
   CarCampaignDetail campaign = 1;
   // 活动车辆列表
   repeated CarCampaignCar cars = 2;
+  // 执行当前操作的用户id
+  uint64 operatorId = 3;
+  // remark
+  string remark = 4;
   // 本地化类型
   string local = 100;
 }
@@ -72,6 +80,18 @@ message ListCarCampaignReq {
   common.Page page = 101;
 }
 
+// 活动日志
+message ListCarCampaignLogReq {
+
+  // 活动id
+  uint64 id = 1;
+
+  // 本地化类型
+  string local = 100;
+  // 分页信息
+  common.Page page = 101;
+}
+
 message CarCampaignList {
   // id
   uint64 id = 1;
@@ -91,6 +111,20 @@ message CarCampaignList {
   uint64 createTime = 9;
   // 车辆数
   uint32 carCount = 10;
+}
+message CarCampaignLogList {
+  // 操作人员Id
+  uint64 operatorId = 2;
+  // 备注
+  string remarks = 3;
+  // 活动状态
+  string campaignStatus = 5;
+  // 活动状态
+  string campaignStatusName = 8;
+  // 车辆数
+  uint32 carCount = 6;
+  // 创建时间
+  uint64 createTime = 7;
 }
 
 // 活动详情

@@ -279,6 +279,7 @@ message CarDto {
   string purchase_price = 502;
   // 交易佣金
   string handling_fee = 503;
+
   // 来源
   string source = 601;
   // 城市地区
