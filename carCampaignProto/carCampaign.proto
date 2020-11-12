@@ -31,6 +31,8 @@ service CarCampaign {
   //              List = List<CarCampaignLogList>
   //          }
   rpc RemarkList(ListCarCampaignLogReq) returns (common.Response) {}
+  // 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+  rpc CheckImportCars(CheckImportCarsReq) returns (common.Response) {}
 }
 
 // 添加车辆费用
@@ -91,6 +93,21 @@ message ListCarCampaignLogReq {
   // 分页信息
   common.Page page = 101;
 }
+
+// 检查导入车辆信息
+message CheckImportCarsReq {
+  repeated CheckImportCarsItemDto cars = 1;
+  repeated uint64 storeIds = 2;
+}
+
+// 检查导入车辆信息
+message CheckImportCarsItemDto {
+  // 车辆no
+  string carNo = 1;
+  // 车辆placeNo
+  string licensePlate = 2;
+}
+
 
 message CarCampaignList {
   // id
@@ -188,4 +205,23 @@ message CarCampaignCond {
   uint64 carId = 1;
   // campaign ID
   uint64 campaignId = 2;
+}
+
+// 检查导入车辆信息结果
+message CheckImportCarsResp {
+  // 成功总数
+  uint32 successCount = 1;
+  // 失败总数
+  uint32 failedCount = 2;
+  // 具体结果
+  repeated CheckImportCarsItem list = 3;
+}
+// 检查导入车辆信息结果
+message CheckImportCarsItem {
+  // 行号
+  uint32 index = 3;
+  // 失败原因，枚举值，对应enums.carCampaignImportFailed
+  uint32 failedReasonType = 4;
+  // 活动车辆
+  car.CarDto car = 5;
 }

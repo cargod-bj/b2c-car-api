@@ -64,6 +64,8 @@ type CarCampaignService interface {
 	//              List = List<CarCampaignLogList>
 	//          }
 	RemarkList(ctx context.Context, in *ListCarCampaignLogReq, opts ...client.CallOption) (*common.Response, error)
+	// 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+	CheckImportCars(ctx context.Context, in *CheckImportCarsReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carCampaignService struct {
@@ -158,6 +160,16 @@ func (c *carCampaignService) RemarkList(ctx context.Context, in *ListCarCampaign
 	return out, nil
 }
 
+func (c *carCampaignService) CheckImportCars(ctx context.Context, in *CheckImportCarsReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCampaign.CheckImportCars", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarCampaign service
 
 type CarCampaignHandler interface {
@@ -181,6 +193,8 @@ type CarCampaignHandler interface {
 	//              List = List<CarCampaignLogList>
 	//          }
 	RemarkList(context.Context, *ListCarCampaignLogReq, *common.Response) error
+	// 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+	CheckImportCars(context.Context, *CheckImportCarsReq, *common.Response) error
 }
 
 func RegisterCarCampaignHandler(s server.Server, hdlr CarCampaignHandler, opts ...server.HandlerOption) error {
@@ -193,6 +207,7 @@ func RegisterCarCampaignHandler(s server.Server, hdlr CarCampaignHandler, opts .
 		GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, out *common.Response) error
 		GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, out *common.Response) error
 		RemarkList(ctx context.Context, in *ListCarCampaignLogReq, out *common.Response) error
+		CheckImportCars(ctx context.Context, in *CheckImportCarsReq, out *common.Response) error
 	}
 	type CarCampaign struct {
 		carCampaign
@@ -235,4 +250,8 @@ func (h *carCampaignHandler) GetCarCampaignInfo(ctx context.Context, in *CarCamp
 
 func (h *carCampaignHandler) RemarkList(ctx context.Context, in *ListCarCampaignLogReq, out *common.Response) error {
 	return h.CarCampaignHandler.RemarkList(ctx, in, out)
+}
+
+func (h *carCampaignHandler) CheckImportCars(ctx context.Context, in *CheckImportCarsReq, out *common.Response) error {
+	return h.CarCampaignHandler.CheckImportCars(ctx, in, out)
 }

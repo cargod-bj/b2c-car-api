@@ -294,6 +294,8 @@ message CarDto {
   string dealer_type_name = 705;
   // 详细地址，如：地下停车场，B105车位
   string location_address = 706;
+  // 车辆名称
+  string carName = 707;
 
   // 整备渠道
   string recondition_channel = 801;
@@ -305,7 +307,7 @@ message CarDto {
   repeated CarResourceDto recondition_files = 804;
 
   // 库存状态
-  string inventory_status = 901;
+  uint32 inventory_status = 901;
   string city = 902;
   string cityName = 903;
 
