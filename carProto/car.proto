@@ -273,6 +273,22 @@ message CarDto {
   // 下次整备日期
   uint64 next_maintenance_date = 418;
 
+
+  // 总费用
+  string totalCost = 419;
+  // 整备次数
+  string ReconditionTimes = 420;
+  // 整备总花费
+  string ReconditionCostCount = 421;
+  // 保险总次数
+  string MaintenanceTimes = 422;
+  // 保险总费用
+  string MaintenanceCostCount = 423;
+  // 验车总次数
+  string PuspakomTimes = 424;
+  // 验车总费用
+  string PuspakomCostCount = 425;
+
   // 卖价
   string exp_selling_price = 501;
   // 收车价
@@ -319,6 +335,7 @@ message CarDto {
   string resWebListItemTag = 1005;//限时活动背景
   string resH5DetailPriceBar = 1006;//限时活动详情图片
   string resH5ListItemTag = 1007;//限时活动背景
+
 }
 
 // 车辆更新Dto
