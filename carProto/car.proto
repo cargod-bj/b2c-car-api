@@ -273,19 +273,18 @@ message CarDto {
   // 下次整备日期
   uint64 next_maintenance_date = 418;
 
-
   // 总费用
   string totalCost = 419;
   // 整备次数
-  string ReconditionTimes = 420;
+  uint32 ReconditionTimes = 420;
   // 整备总花费
   string ReconditionCostCount = 421;
   // 保险总次数
-  string MaintenanceTimes = 422;
+  uint32 MaintenanceTimes = 422;
   // 保险总费用
   string MaintenanceCostCount = 423;
   // 验车总次数
-  string PuspakomTimes = 424;
+  uint32 PuspakomTimes = 424;
   // 验车总费用
   string PuspakomCostCount = 425;
 
