@@ -135,7 +135,7 @@ message CarCampaignLogList {
   // 备注
   string remark = 3;
   // 活动状态
-  string campaignStatus = 5;
+  uint32 campaignStatus = 5;
   // 活动状态
   string campaignStatusName = 8;
   // 车辆数
