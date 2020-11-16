@@ -127,7 +127,7 @@ message CarCampaignList {
   // 创建时间
   uint64 createTime = 9;
   // 车辆数
-  uint32 carCount = 10;
+  uint32 carsCount = 10;
 }
 message CarCampaignLogList {
   // 操作人员Id
@@ -139,7 +139,7 @@ message CarCampaignLogList {
   // 活动状态
   string campaignStatusName = 8;
   // 车辆数
-  uint32 carCount = 6;
+  uint32 carsCount = 6;
   // 创建时间
   uint64 createTime = 7;
 }
