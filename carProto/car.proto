@@ -158,6 +158,8 @@ message CarListParams{
   string minPrice = 57;
   // 最大车辆价格
   string maxPrice = 58;
+  // 查询时忽略的车辆id
+  repeated uint64 ignoreIds = 59;
 }
 
 
