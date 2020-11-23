@@ -82,6 +82,8 @@ message AddFromSourceParams{
   uint64 dealershipType = 4;
   // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
   uint64 operatorId = 5;
+  // 收车日期，只有自营车辆有
+  uint64 collectionDate = 6;
 }
 
 message AddFromSourceListParams{
@@ -289,6 +291,8 @@ message CarDto {
   uint32 PuspakomTimes = 424;
   // 验车总费用
   string PuspakomCostCount = 425;
+  // 收车日期，只对carsome车辆有效
+  uint64 collectionDate = 426;
 
   // 卖价
   string exp_selling_price = 501;
