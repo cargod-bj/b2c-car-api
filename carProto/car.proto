@@ -82,6 +82,8 @@ message AddFromSourceParams{
   uint64 dealershipType = 4;
   // 操作人员id，现在对应b2c-gateway库中的sys_user表中的id字段
   uint64 operatorId = 5;
+  // 收车日期，只有自营车辆有
+  uint64 collectionDate = 6;
 }
 
 message AddFromSourceListParams{
@@ -118,8 +120,6 @@ message CarListParams{
   uint32 dealerType = 7;
   // dealer id
   uint64 dealerId = 8;
-  // store id
-  uint64 storeId = 9;
   // brand id
   uint64 brandId = 20;
   // model id
@@ -154,6 +154,14 @@ message CarListParams{
   uint64 puspakomUntilDateStart = 55;
   // 检车：结束
   uint64 puspakomUntilDateEnd = 56;
+  // store ids
+  repeated uint64 storeIds = 57;
+  // 最小车辆价格
+  string minPrice = 58;
+  // 最大车辆价格
+  string maxPrice = 59;
+  // 查询时忽略的车辆id
+  repeated uint64 ignoreIds = 60;
 }
 
 
@@ -269,12 +277,30 @@ message CarDto {
   // 下次整备日期
   uint64 next_maintenance_date = 418;
 
+  // 总费用
+  string totalCost = 419;
+  // 整备次数
+  uint32 ReconditionTimes = 420;
+  // 整备总花费
+  string ReconditionCostCount = 421;
+  // 保险总次数
+  uint32 MaintenanceTimes = 422;
+  // 保险总费用
+  string MaintenanceCostCount = 423;
+  // 验车总次数
+  uint32 PuspakomTimes = 424;
+  // 验车总费用
+  string PuspakomCostCount = 425;
+  // 收车日期，只对carsome车辆有效
+  uint64 collectionDate = 426;
+
   // 卖价
   string exp_selling_price = 501;
   // 收车价
   string purchase_price = 502;
   // 交易佣金
   string handling_fee = 503;
+
   // 来源
   string source = 601;
   // 城市地区
@@ -289,6 +315,8 @@ message CarDto {
   string dealer_type_name = 705;
   // 详细地址，如：地下停车场，B105车位
   string location_address = 706;
+  // 车辆名称
+  string carName = 707;
 
   // 整备渠道
   string recondition_channel = 801;
@@ -300,7 +328,7 @@ message CarDto {
   repeated CarResourceDto recondition_files = 804;
 
   // 库存状态
-  string inventory_status = 901;
+  uint32 inventory_status = 901;
   string city = 902;
   string cityName = 903;
 
@@ -312,6 +340,7 @@ message CarDto {
   string resWebListItemTag = 1005;//限时活动背景
   string resH5DetailPriceBar = 1006;//限时活动详情图片
   string resH5ListItemTag = 1007;//限时活动背景
+
 }
 
 // 车辆更新Dto

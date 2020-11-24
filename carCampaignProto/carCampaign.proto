@@ -3,6 +3,7 @@ syntax = "proto3";
 package carCampaignProto;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+import "carProto/car.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carCampaignProto";
 
@@ -12,9 +13,9 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carCampaignProto";
 service CarCampaign {
   // 添加活动，返回 data：nil
   rpc Add(CarCampaignReq) returns (common.Response) {}
-  // 删除指定活动，返回 data：nil
-  rpc Delete(DeleteCarCampaignReq) returns (common.Response) {}
-  // 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+  // 停止指定活动，返回 data：nil
+  rpc Stop(DeleteCarCampaignReq) returns (common.Response) {}
+  // 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
   rpc Get(common.IdDto) returns (common.Response) {}
   // 查询活动列表：返回 Data = common.PageList{
   //              List = List<CarCampaignList>
@@ -26,6 +27,12 @@ service CarCampaign {
   rpc GetCurrentActiveCampaign(common.IdDto) returns (common.Response) {}
   // 获取指定ID的车辆活动信息
   rpc GetCarCampaignInfo(CarCampaignCond) returns (common.Response) {}
+  // 查询活动列表：返回 Data = common.PageList{
+  //              List = List<CarCampaignLogList>
+  //          }
+  rpc RemarkList(ListCarCampaignLogReq) returns (common.Response) {}
+  // 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+  rpc CheckImportCars(CheckImportCarsReq) returns (common.Response) {}
 }
 
 // 添加车辆费用
@@ -34,6 +41,10 @@ message CarCampaignReq {
   CarCampaignDetail campaign = 1;
   // 活动车辆列表
   repeated CarCampaignCar cars = 2;
+  // 执行当前操作的用户id
+  uint64 operatorId = 3;
+  // remark
+  string remark = 4;
   // 本地化类型
   string local = 100;
 }
@@ -47,11 +58,56 @@ message DeleteCarCampaignReq {
 }
 // 删除活动
 message ListCarCampaignReq {
+
+  // 活动
+  string name = 2;
+  // 开始时间：开始
+  uint64 startTimeStart = 3;
+  // 开始时间：结束
+  uint64 startTimeEnd = 4;
+  // 结束时间：开始
+  uint64 endTimeStart = 5;
+  // 结束时间：结束
+  uint64 endTimeEnd = 6;
+  // 创建时间：开始
+  uint64 createTimeStart = 7;
+  // 创建时间：结束
+  uint64 createTimeEnd = 8;
+  // 活动状态
+  uint32 campaignStatus = 9;
+
   // 本地化类型
   string local = 100;
   // 分页信息
   common.Page page = 101;
 }
+
+// 活动日志
+message ListCarCampaignLogReq {
+
+  // 活动id
+  uint64 id = 1;
+
+  // 本地化类型
+  string local = 100;
+  // 分页信息
+  common.Page page = 101;
+}
+
+// 检查导入车辆信息
+message CheckImportCarsReq {
+  repeated CheckImportCarsItemDto cars = 1;
+  repeated uint64 storeIds = 2;
+}
+
+// 检查导入车辆信息
+message CheckImportCarsItemDto {
+  // 车辆no
+  string carNo = 1;
+  // 车辆placeNo
+  string licensePlate = 2;
+}
+
 
 message CarCampaignList {
   // id
@@ -64,12 +120,34 @@ message CarCampaignList {
   uint64 endTime = 5;
   // 活动状态
   uint32 campaignStatus = 6;
+  // 活动状态
+  string campaignStatusName = 7;
   // 活动创建人id
-  uint64 creatorId = 7;
+  uint64 creatorId = 8;
   // 创建时间
-  uint64 createTime = 8;
+  uint64 createTime = 9;
   // 车辆数
-  uint64 carCount = 9;
+  uint32 carsCount = 10;
+}
+message CarCampaignLogList {
+  // 操作人员Id
+  uint64 operatorId = 2;
+  // 备注
+  string remark = 3;
+  // 活动状态
+  uint32 campaignStatus = 5;
+  // 活动状态
+  string campaignStatusName = 8;
+  // 车辆数
+  uint32 carsCount = 6;
+  // 创建时间
+  uint64 createTime = 7;
+}
+
+// 活动详情
+message CarCampaignDetailWithCars {
+  CarCampaignDetail detail = 1;
+  repeated CarCampaignWithPrice cars = 2;
 }
 
 // 车辆活动
@@ -113,6 +191,13 @@ message CarCampaignCar {
   // 活动价
   string campaignPrice = 2;
 }
+// 活动车辆
+message CarCampaignWithPrice {
+  // 活动车辆
+  car.CarDto car = 1;
+  // 活动价
+  string campaignPrice = 2;
+}
 
 // 查询活动信息
 message CarCampaignCond {
@@ -120,4 +205,23 @@ message CarCampaignCond {
   uint64 carId = 1;
   // campaign ID
   uint64 campaignId = 2;
+}
+
+// 检查导入车辆信息结果
+message CheckImportCarsResp {
+  // 成功总数
+  uint32 successCount = 1;
+  // 失败总数
+  uint32 failedCount = 2;
+  // 具体结果
+  repeated CheckImportCarsItem list = 3;
+}
+// 检查导入车辆信息结果
+message CheckImportCarsItem {
+  // 行号
+  uint32 index = 3;
+  // 失败原因，枚举值，对应enums.carCampaignImportFailed
+  uint32 failedReasonType = 4;
+  // 活动车辆
+  car.CarDto car = 5;
 }
