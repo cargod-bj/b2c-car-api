@@ -30,6 +30,8 @@ const (
 	EnumNameWithOrWithout = "WithOrWithout"
 	// 车检类型
 	EnumNamePuspakomItem = "PuspakomItem"
+	// 活动状态
+	EnumNameCampaignStatus = "CarCampaignStatus"
 )
 
 // 燃油类型：fuelType
@@ -155,4 +157,28 @@ const (
 	CarCostTypeMaintenance
 	// 车辆费用类型: 车检
 	CarCostTypePuspakom
+)
+
+// 车辆活动类型
+const (
+	carCampaignStatus uint32 = iota
+	// 活动类型：未激活
+	CarCampaignStatusInactive
+	// 活动类型：激活
+	CarCampaignStatusActive
+	// 活动类型：无效
+	CarCampaignStatusExpired
+)
+
+// 导入活动车辆失败
+const (
+	carCampaignImportFailed uint32 = iota
+	// 导入失败：carNo错误
+	CarCampaignImportFailedNo
+	// 导入失败：carNo和LicensePlate不匹配
+	CarCampaignImportFailedNoAndPlateNoMatch
+	// 导入失败：车辆状态不支持活动
+	CarCampaignImportFailedCarStateError
+	// 导入失败：车辆价格为空
+	CarCampaignImportFailedCarPriceZero
 )

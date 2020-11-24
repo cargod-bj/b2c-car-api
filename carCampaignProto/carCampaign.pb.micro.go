@@ -5,6 +5,7 @@ package carCampaignProto
 
 import (
 	fmt "fmt"
+	_ "github.com/cargod-bj/b2c-car-api/carProto"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
@@ -45,9 +46,9 @@ func NewCarCampaignEndpoints() []*api.Endpoint {
 type CarCampaignService interface {
 	// 添加活动，返回 data：nil
 	Add(ctx context.Context, in *CarCampaignReq, opts ...client.CallOption) (*common.Response, error)
-	// 删除指定活动，返回 data：nil
-	Delete(ctx context.Context, in *DeleteCarCampaignReq, opts ...client.CallOption) (*common.Response, error)
-	// 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+	// 停止指定活动，返回 data：nil
+	Stop(ctx context.Context, in *DeleteCarCampaignReq, opts ...client.CallOption) (*common.Response, error)
+	// 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
 	Get(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 查询活动列表：返回 Data = common.PageList{
 	//              List = List<CarCampaignList>
@@ -59,6 +60,12 @@ type CarCampaignService interface {
 	GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定ID的车辆活动信息
 	GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, opts ...client.CallOption) (*common.Response, error)
+	// 查询活动列表：返回 Data = common.PageList{
+	//              List = List<CarCampaignLogList>
+	//          }
+	RemarkList(ctx context.Context, in *ListCarCampaignLogReq, opts ...client.CallOption) (*common.Response, error)
+	// 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+	CheckImportCars(ctx context.Context, in *CheckImportCarsReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carCampaignService struct {
@@ -83,8 +90,8 @@ func (c *carCampaignService) Add(ctx context.Context, in *CarCampaignReq, opts .
 	return out, nil
 }
 
-func (c *carCampaignService) Delete(ctx context.Context, in *DeleteCarCampaignReq, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarCampaign.Delete", in)
+func (c *carCampaignService) Stop(ctx context.Context, in *DeleteCarCampaignReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCampaign.Stop", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -143,14 +150,34 @@ func (c *carCampaignService) GetCarCampaignInfo(ctx context.Context, in *CarCamp
 	return out, nil
 }
 
+func (c *carCampaignService) RemarkList(ctx context.Context, in *ListCarCampaignLogReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCampaign.RemarkList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carCampaignService) CheckImportCars(ctx context.Context, in *CheckImportCarsReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarCampaign.CheckImportCars", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarCampaign service
 
 type CarCampaignHandler interface {
 	// 添加活动，返回 data：nil
 	Add(context.Context, *CarCampaignReq, *common.Response) error
-	// 删除指定活动，返回 data：nil
-	Delete(context.Context, *DeleteCarCampaignReq, *common.Response) error
-	// 获取指定id的活动详情：返回 data: CarCostDetailProtoDto
+	// 停止指定活动，返回 data：nil
+	Stop(context.Context, *DeleteCarCampaignReq, *common.Response) error
+	// 获取指定id的活动详情：返回 data: CarCampaignDetailWithCars
 	Get(context.Context, *common.IdDto, *common.Response) error
 	// 查询活动列表：返回 Data = common.PageList{
 	//              List = List<CarCampaignList>
@@ -162,17 +189,25 @@ type CarCampaignHandler interface {
 	GetCurrentActiveCampaign(context.Context, *common.IdDto, *common.Response) error
 	// 获取指定ID的车辆活动信息
 	GetCarCampaignInfo(context.Context, *CarCampaignCond, *common.Response) error
+	// 查询活动列表：返回 Data = common.PageList{
+	//              List = List<CarCampaignLogList>
+	//          }
+	RemarkList(context.Context, *ListCarCampaignLogReq, *common.Response) error
+	// 检查导入的车辆信息：返回 Data = CheckImportCarsResp
+	CheckImportCars(context.Context, *CheckImportCarsReq, *common.Response) error
 }
 
 func RegisterCarCampaignHandler(s server.Server, hdlr CarCampaignHandler, opts ...server.HandlerOption) error {
 	type carCampaign interface {
 		Add(ctx context.Context, in *CarCampaignReq, out *common.Response) error
-		Delete(ctx context.Context, in *DeleteCarCampaignReq, out *common.Response) error
+		Stop(ctx context.Context, in *DeleteCarCampaignReq, out *common.Response) error
 		Get(ctx context.Context, in *common.IdDto, out *common.Response) error
 		List(ctx context.Context, in *ListCarCampaignReq, out *common.Response) error
 		Update(ctx context.Context, in *CarCampaignReq, out *common.Response) error
 		GetCurrentActiveCampaign(ctx context.Context, in *common.IdDto, out *common.Response) error
 		GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, out *common.Response) error
+		RemarkList(ctx context.Context, in *ListCarCampaignLogReq, out *common.Response) error
+		CheckImportCars(ctx context.Context, in *CheckImportCarsReq, out *common.Response) error
 	}
 	type CarCampaign struct {
 		carCampaign
@@ -189,8 +224,8 @@ func (h *carCampaignHandler) Add(ctx context.Context, in *CarCampaignReq, out *c
 	return h.CarCampaignHandler.Add(ctx, in, out)
 }
 
-func (h *carCampaignHandler) Delete(ctx context.Context, in *DeleteCarCampaignReq, out *common.Response) error {
-	return h.CarCampaignHandler.Delete(ctx, in, out)
+func (h *carCampaignHandler) Stop(ctx context.Context, in *DeleteCarCampaignReq, out *common.Response) error {
+	return h.CarCampaignHandler.Stop(ctx, in, out)
 }
 
 func (h *carCampaignHandler) Get(ctx context.Context, in *common.IdDto, out *common.Response) error {
@@ -211,4 +246,12 @@ func (h *carCampaignHandler) GetCurrentActiveCampaign(ctx context.Context, in *c
 
 func (h *carCampaignHandler) GetCarCampaignInfo(ctx context.Context, in *CarCampaignCond, out *common.Response) error {
 	return h.CarCampaignHandler.GetCarCampaignInfo(ctx, in, out)
+}
+
+func (h *carCampaignHandler) RemarkList(ctx context.Context, in *ListCarCampaignLogReq, out *common.Response) error {
+	return h.CarCampaignHandler.RemarkList(ctx, in, out)
+}
+
+func (h *carCampaignHandler) CheckImportCars(ctx context.Context, in *CheckImportCarsReq, out *common.Response) error {
+	return h.CarCampaignHandler.CheckImportCars(ctx, in, out)
 }
