@@ -359,27 +359,25 @@ message CarIdsDto {
 }
 // 车辆的id
 message CarSimpleInfoParams {
-  // 查询车辆param
-  repeated CarSimpleInfoParam params = 1;
+  // 查询的车辆ids
+  repeated uint64 ids = 1;
+
   string local = 2;
-}
-// 车辆的id
-message CarSimpleInfoParam {
-  // 车辆id,必填
-  uint64 carId = 1;
+
   // 是否查询tags，默认为false
-  bool useTags = 2;
+  bool useTags = 3;
   // 是否查询内饰照片，默认为false
-  bool useInnerImages = 3;
+  bool useInnerImages = 4;
   // 是否查询外饰照片，默认为false
-  bool useOuterImages = 4;
+  bool useOuterImages = 5;
   // 是否查询整备信息，默认为false
-  bool useRecondition = 5;
+  bool useRecondition = 6;
   // 是否查询活动信息，默认为false
-  bool useCampaign = 6;
+  bool useCampaign = 7;
   // 是否查询费用信息，默认为false
-  bool useCost = 7;
+  bool useCost = 8;
 }
+
 message CarDtoList{
   repeated CarDto CarDtoList = 1;
 }
