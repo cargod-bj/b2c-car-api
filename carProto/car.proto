@@ -155,11 +155,11 @@ message CarListParams{
   // store ids
   repeated uint64 storeIds = 57;
   // 最小车辆价格
-  string minPrice = 57;
+  string minPrice = 58;
   // 最大车辆价格
-  string maxPrice = 58;
+  string maxPrice = 59;
   // 查询时忽略的车辆id
-  repeated uint64 ignoreIds = 59;
+  repeated uint64 ignoreIds = 60;
 }
 
 
