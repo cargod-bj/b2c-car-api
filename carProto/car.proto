@@ -19,6 +19,8 @@ service Car {
   rpc Update(UpdateCarDto) returns (common.Response) {}
   // 获取指定id的车辆：返回 data: CarDto List
   rpc Get(CarIdsDto) returns (common.Response) {}
+  // 获取指定id的车辆,并且可以指定获取内容：返回 data: CarDto List
+  rpc GetSimpleInfo(CarSimpleInfoParams) returns (common.Response) {}
   // 给website专用的接口，获取指定id的车辆：返回 data: CarDto List
   rpc GetForWebsite(CarIdsDto) returns (common.Response) {}
   //获取车辆列表: 返回data：common.PagedList：CarDto
@@ -354,6 +356,29 @@ message CarIdsDto {
   // 车辆id
   repeated uint64 ids = 1;
   string local = 2;
+}
+// 车辆的id
+message CarSimpleInfoParams {
+  // 查询车辆param
+  repeated CarSimpleInfoParam params = 1;
+  string local = 2;
+}
+// 车辆的id
+message CarSimpleInfoParam {
+  // 车辆id,必填
+  uint64 ids = 1;
+  // 是否查询tags，默认为false
+  bool useTags = 2;
+  // 是否查询内饰照片，默认为false
+  bool useInnerImages = 3;
+  // 是否查询外饰照片，默认为false
+  bool useOuterImages = 4;
+  // 是否查询整备信息，默认为false
+  bool useRecondition = 5;
+  // 是否查询活动信息，默认为false
+  bool useCampaign = 6;
+  // 是否查询费用信息，默认为false
+  bool useCost = 7;
 }
 message CarDtoList{
   repeated CarDto CarDtoList = 1;
