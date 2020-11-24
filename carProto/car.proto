@@ -366,7 +366,7 @@ message CarSimpleInfoParams {
 // 车辆的id
 message CarSimpleInfoParam {
   // 车辆id,必填
-  uint64 ids = 1;
+  uint64 carId = 1;
   // 是否查询tags，默认为false
   bool useTags = 2;
   // 是否查询内饰照片，默认为false
