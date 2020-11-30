@@ -107,6 +107,7 @@ message AddPartnerCarReq{
   string engine = 8;
   uint32 transmission = 9;
   string licensePlateNumber = 10;
+  string vinCode = 11;
 }
 
 message CarListParams{
