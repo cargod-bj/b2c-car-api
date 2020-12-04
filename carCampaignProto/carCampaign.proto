@@ -106,6 +106,8 @@ message CheckImportCarsItemDto {
   string carNo = 1;
   // 车辆placeNo
   string licensePlate = 2;
+  // 导入车辆时指定的活动价格
+  string campaignPrice = 3;
 }
 
 
@@ -224,4 +226,6 @@ message CheckImportCarsItem {
   uint32 failedReasonType = 4;
   // 活动车辆
   car.CarDto car = 5;
+  // 导入车辆时指定的活动价格
+  string campaignPrice = 6;
 }
