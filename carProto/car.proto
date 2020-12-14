@@ -283,19 +283,23 @@ message CarDto {
   // 总费用
   string totalCost = 419;
   // 整备次数
-  uint32 ReconditionTimes = 420;
+  uint32 reconditionTimes = 420;
   // 整备总花费
-  string ReconditionCostCount = 421;
+  string reconditionCostCount = 421;
   // 保险总次数
-  uint32 MaintenanceTimes = 422;
+  uint32 maintenanceTimes = 422;
   // 保险总费用
-  string MaintenanceCostCount = 423;
+  string maintenanceCostCount = 423;
   // 验车总次数
-  uint32 PuspakomTimes = 424;
+  uint32 puspakomTimes = 424;
   // 验车总费用
-  string PuspakomCostCount = 425;
+  string puspakomCostCount = 425;
   // 收车日期，只对carsome车辆有效
   uint64 collectionDate = 426;
+  // 运费次数
+  uint32 logisticTimes = 427;
+  // 运费总数
+  string logisticCostCount = 428;
 
   // 卖价
   string exp_selling_price = 501;

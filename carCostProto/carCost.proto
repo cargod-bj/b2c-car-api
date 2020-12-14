@@ -102,6 +102,10 @@ message CarCostListProtoDto {
   string puspakomCost = 10;
   // 检车:最晚有效期
   uint64 puspakomValidUntilDate = 11;
+  // 运费次数
+  uint32 logisticTimes = 14;
+  // 运费
+  string logisticCost = 15;
   // CarCost最后更新时间
   uint64 updateTime = 12;
   // 车辆导入时间
@@ -123,6 +127,8 @@ message CarCostDetailProtoDto {
   CarCostGroupProtoDto maintenance = 5;
   // 检车费用
   CarCostGroupProtoDto puspakom = 6;
+  // 运费
+  CarCostGroupProtoDto logistics = 7;
 }
 
 message CarCostGroupProtoDto {
@@ -147,6 +153,8 @@ message CarCostItemProtoDto {
   string content = 4;
   // 费用详情
   string detail = 5;
+  // 费用详情:运费的to字段
+  string detailTo = 16;
   // 执行项目
   uint32 item = 6;
   // 执行项目
