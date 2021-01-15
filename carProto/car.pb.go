@@ -2275,7 +2275,7 @@ func (x *CarNoReq) GetLocal() string {
 }
 
 // 获取车辆详情页的访问token的返回结果。
-type CarDetailAccessDateResp struct {
+type CarDetailAccessDataResp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -2284,8 +2284,8 @@ type CarDetailAccessDateResp struct {
 	Url   string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
 }
 
-func (x *CarDetailAccessDateResp) Reset() {
-	*x = CarDetailAccessDateResp{}
+func (x *CarDetailAccessDataResp) Reset() {
+	*x = CarDetailAccessDataResp{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_carProto_car_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2293,13 +2293,13 @@ func (x *CarDetailAccessDateResp) Reset() {
 	}
 }
 
-func (x *CarDetailAccessDateResp) String() string {
+func (x *CarDetailAccessDataResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CarDetailAccessDateResp) ProtoMessage() {}
+func (*CarDetailAccessDataResp) ProtoMessage() {}
 
-func (x *CarDetailAccessDateResp) ProtoReflect() protoreflect.Message {
+func (x *CarDetailAccessDataResp) ProtoReflect() protoreflect.Message {
 	mi := &file_carProto_car_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2311,19 +2311,19 @@ func (x *CarDetailAccessDateResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CarDetailAccessDateResp.ProtoReflect.Descriptor instead.
-func (*CarDetailAccessDateResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use CarDetailAccessDataResp.ProtoReflect.Descriptor instead.
+func (*CarDetailAccessDataResp) Descriptor() ([]byte, []int) {
 	return file_carProto_car_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *CarDetailAccessDateResp) GetToken() string {
+func (x *CarDetailAccessDataResp) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-func (x *CarDetailAccessDateResp) GetUrl() string {
+func (x *CarDetailAccessDataResp) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
@@ -2750,7 +2750,7 @@ var file_carProto_car_proto_rawDesc = []byte{
 	0x4e, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x72, 0x4e, 0x6f, 0x12,
 	0x14, 0x0a, 0x05, 0x6c, 0x6f, 0x63, 0x61, 0x6c, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
 	0x6c, 0x6f, 0x63, 0x61, 0x6c, 0x22, 0x41, 0x0a, 0x17, 0x43, 0x61, 0x72, 0x44, 0x65, 0x74, 0x61,
-	0x69, 0x6c, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x69, 0x6c, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70,
 	0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x32, 0xe8, 0x07, 0x0a, 0x03, 0x43, 0x61, 0x72,
@@ -2813,7 +2813,7 @@ var file_carProto_car_proto_rawDesc = []byte{
 	0x7a, 0x7a, 0x79, 0x12, 0x0d, 0x2e, 0x63, 0x61, 0x72, 0x2e, 0x43, 0x61, 0x72, 0x4e, 0x6f, 0x44,
 	0x74, 0x6f, 0x1a, 0x10, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3b, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72,
-	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x65,
+	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x61, 0x74, 0x61,
 	0x12, 0x0d, 0x2e, 0x63, 0x61, 0x72, 0x2e, 0x43, 0x61, 0x72, 0x4e, 0x6f, 0x52, 0x65, 0x71, 0x1a,
 	0x10, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x22, 0x00, 0x42, 0x2b, 0x5a, 0x29, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
@@ -2853,7 +2853,7 @@ var file_carProto_car_proto_goTypes = []interface{}{
 	(*CarResourceDto)(nil),                   // 14: car.CarResourceDto
 	(*CarNoDto)(nil),                         // 15: car.CarNoDto
 	(*CarNoReq)(nil),                         // 16: car.CarNoReq
-	(*CarDetailAccessDateResp)(nil),          // 17: car.CarDetailAccessDateResp
+	(*CarDetailAccessDataResp)(nil),          // 17: car.CarDetailAccessDataResp
 	(*common.Page)(nil),                      // 18: common.Page
 	(*reportProto.ReportDamagePointDto)(nil), // 19: report.ReportDamagePointDto
 	(*common.IdDto)(nil),                     // 20: common.IdDto
@@ -2887,7 +2887,7 @@ var file_carProto_car_proto_depIdxs = []int32{
 	1,  // 24: car.Car.ChangeInventoryStatus:input_type -> car.ChangeCarStateReq
 	15, // 25: car.Car.GetCarByCarNo:input_type -> car.CarNoDto
 	15, // 26: car.Car.GetCarByNoFuzzy:input_type -> car.CarNoDto
-	16, // 27: car.Car.GetCarDetailAccessDate:input_type -> car.CarNoReq
+	16, // 27: car.Car.GetCarDetailAccessData:input_type -> car.CarNoReq
 	21, // 28: car.Car.Add:output_type -> common.Response
 	21, // 29: car.Car.Delete:output_type -> common.Response
 	21, // 30: car.Car.Update:output_type -> common.Response
@@ -2905,7 +2905,7 @@ var file_carProto_car_proto_depIdxs = []int32{
 	21, // 42: car.Car.ChangeInventoryStatus:output_type -> common.Response
 	21, // 43: car.Car.GetCarByCarNo:output_type -> common.Response
 	21, // 44: car.Car.GetCarByNoFuzzy:output_type -> common.Response
-	21, // 45: car.Car.GetCarDetailAccessDate:output_type -> common.Response
+	21, // 45: car.Car.GetCarDetailAccessData:output_type -> common.Response
 	28, // [28:46] is the sub-list for method output_type
 	10, // [10:28] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name
@@ -3124,7 +3124,7 @@ func file_carProto_car_proto_init() {
 			}
 		}
 		file_carProto_car_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CarDetailAccessDateResp); i {
+			switch v := v.(*CarDetailAccessDataResp); i {
 			case 0:
 				return &v.state
 			case 1:

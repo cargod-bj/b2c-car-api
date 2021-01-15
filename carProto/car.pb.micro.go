@@ -79,8 +79,8 @@ type CarService interface {
 	GetCarByCarNo(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error)
-	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDateResp
-	GetCarDetailAccessDate(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error)
+	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
+	GetCarDetailAccessData(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -265,8 +265,8 @@ func (c *carService) GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, opts ...
 	return out, nil
 }
 
-func (c *carService) GetCarDetailAccessDate(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "Car.GetCarDetailAccessDate", in)
+func (c *carService) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarDetailAccessData", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -313,8 +313,8 @@ type CarHandler interface {
 	GetCarByCarNo(context.Context, *CarNoDto, *common.Response) error
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByNoFuzzy(context.Context, *CarNoDto, *common.Response) error
-	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDateResp
-	GetCarDetailAccessDate(context.Context, *CarNoReq, *common.Response) error
+	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
+	GetCarDetailAccessData(context.Context, *CarNoReq, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -336,7 +336,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		ChangeInventoryStatus(ctx context.Context, in *ChangeCarStateReq, out *common.Response) error
 		GetCarByCarNo(ctx context.Context, in *CarNoDto, out *common.Response) error
 		GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *common.Response) error
-		GetCarDetailAccessDate(ctx context.Context, in *CarNoReq, out *common.Response) error
+		GetCarDetailAccessData(ctx context.Context, in *CarNoReq, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -417,6 +417,6 @@ func (h *carHandler) GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *com
 	return h.CarHandler.GetCarByNoFuzzy(ctx, in, out)
 }
 
-func (h *carHandler) GetCarDetailAccessDate(ctx context.Context, in *CarNoReq, out *common.Response) error {
-	return h.CarHandler.GetCarDetailAccessDate(ctx, in, out)
+func (h *carHandler) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, out *common.Response) error {
+	return h.CarHandler.GetCarDetailAccessData(ctx, in, out)
 }
