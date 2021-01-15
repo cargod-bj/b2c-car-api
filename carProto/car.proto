@@ -49,8 +49,8 @@ service Car {
   rpc GetCarByCarNo(CarNoDto) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
   rpc GetCarByNoFuzzy(CarNoDto) returns (common.Response) {}
-  // 获取车辆详情页的访问token：返回 Data = CarDetailAccessTokenResp
-  rpc GetCarDetailAccessToken(CarNoReq) returns (common.Response) {}
+  // 获取车辆详情页的访问token：返回 Data = CarDetailAccessDateResp
+  rpc GetCarDetailAccessDate(CarNoReq) returns (common.Response) {}
 }
 
 
@@ -419,6 +419,7 @@ message CarNoReq {
   string local = 10;
 }
 // 获取车辆详情页的访问token的返回结果。
-message CarDetailAccessTokenResp {
+message CarDetailAccessDateResp {
   string token = 1;
+  string url = 2;
 }
