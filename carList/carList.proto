@@ -140,6 +140,11 @@ message CarListDto {
   string resH5DetailPriceBar = 826;//限时活动详情图片
   string resH5ListItemTag = 827;//限时活动背景
 
+  uint32 spareKey = 828;
+  uint32 serviceBook = 829;
+  uint32 principleWarranty = 830;
+  uint64 warrantyExpirationDate = 831;
+  uint64 warrantyMaxMileage = 832;
 }
 
 
