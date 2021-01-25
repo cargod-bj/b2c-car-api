@@ -1,0 +1,136 @@
+syntax = "proto3";
+
+package carCostProto;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carReconditionProto";
+
+/*
+  整备信息服务
+ */
+service CarRecondition {
+  // 添加整备类型，返回 data：nil
+  rpc AddReconditionType(ReconditionTypePDto) returns (common.Response) {}
+  // 批量添加整备类型，返回 data：nil
+  rpc AddReconditionTypeBatch(AddReconditionBatchPDto) returns (common.Response) {}
+  // 更新指定整备类型，返回 data：nil
+  rpc UpdateReconditionType(ReconditionTypePDto) returns (common.Response) {}
+  // 删除指定整备类型，返回 data：nil
+  rpc DeleteReconditionType(ReconditionTypeIdPDto) returns (common.Response) {}
+  // 查询整备类型列表：返回 Data = common.PageList{
+  //              List = List<ReconditionTypePDto>
+  //          }
+  rpc ListReconditionType(ReconditionTypeListReq) returns (common.Response) {}
+
+  // 以Category-Detail的父子结构返回所有的recondition类型：
+  //     返回 Data = common.PageList{
+  //              List = List<ReconditionCategoryPDto>
+  //          }
+  rpc ListAllReconditionTypeWithCategory(ReconditionTypeIdPDto) returns (common.Response) {}
+
+  // 查询整备类型列表：返回 Data = common.PageList{
+  //              List = List<ReconditionTypePDto>
+  //          }
+  rpc ListReconditionTypeByWorkshop(ReconditionTypeIdPDto) returns (common.Response) {}
+
+  // 添加整备门店，返回 data：nil
+  rpc AddReconditionWorkshop(ReconditionWorkshopPDto) returns (common.Response) {}
+  // 更新指定整备门店，返回 data：nil
+  rpc UpdateReconditionWorkshop(ReconditionWorkshopPDto) returns (common.Response) {}
+  // 删除指定整备门店，返回 data：nil
+  rpc DeleteReconditionWorkshop(ReconditionTypeIdPDto) returns (common.Response) {}
+  // 查询整备门店列表：返回 Data = common.PageList{
+  //              List = List<ReconditionWorkshopPDto>
+  //          }
+  rpc ListReconditionWorkshop(ReconditionWorkshopListReq) returns (common.Response) {}
+}
+
+// 添加整备类型
+message ReconditionTypePDto {
+  // id
+  uint64 id = 1;
+  // 整备类别id
+  uint32 categoryId = 2;
+  // 整备类别Name
+  string categoryName = 3;
+  // 详细描述
+  string reconditionDetail = 4;
+  // 更新时间
+  uint64 updateTime = 5;
+  // 创建时间
+  uint64 createTime = 6;
+  // 最后操作人员id
+  uint64 lastOptPic = 7;
+}
+
+message ReconditionCategoryPDto{
+  // 整备类别id
+  uint32 categoryId = 1;
+  // 整备类别Name
+  string categoryName = 2;
+  // 当前类型下的detail列表
+  repeated ReconditionTypePDto details = 3;
+}
+
+// 添加整备类型
+message AddReconditionBatchPDto {
+  // 整备类别id
+  uint32 categoryId = 2;
+  // 详细描述
+  repeated string details = 3;
+  // 最后操作人员id
+  uint64 lastOptPic = 6;
+}
+
+// id dto
+message ReconditionTypeIdPDto {
+  // id
+  uint64 id = 1;
+  // 执行当前操作的用户id
+  uint64 operatorId = 2;
+}
+
+// 获取车辆整备类型列表
+message ReconditionTypeListReq {
+  // 车辆整备类别id
+  repeated uint64 categoryIds = 1;
+  // 车辆整备详情
+  string detail = 2;
+
+  // 分页信息
+  common.Page page = 101;
+}
+
+// 添加整备类型
+message ReconditionWorkshopPDto {
+  // id
+  uint64 id = 1;
+  // 门店名称
+  string name = 2;
+  // 门店所属州
+  string stateCode = 3;
+  // 门店所属城市
+  string areaCode = 4;
+  // 门店详细地址
+  string address = 5;
+  // 更新时间
+  uint64 updateTime = 6;
+  // 创建时间
+  uint64 createTime = 7;
+  // 最后操作人员id
+  uint64 lastOptPic = 8;
+  // 门店提供的具体整备服务数量
+  uint64 reconditionCount = 9;
+  // 门店提供的具体整备id
+  repeated uint64 reconditionDetailIds = 10;
+}
+
+// 获取整备门店列表
+message ReconditionWorkshopListReq {
+  // 整备门店名称
+  string name = 1;
+
+  // 分页信息
+  common.Page page = 101;
+}

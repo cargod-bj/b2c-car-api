@@ -32,6 +32,8 @@ const (
 	EnumNamePuspakomItem = "PuspakomItem"
 	// 活动状态
 	EnumNameCampaignStatus = "CarCampaignStatus"
+	// 整备类型
+	EnumNameCarReconditionCategory = "CarReconditionCategory"
 )
 
 // 燃油类型：fuelType
@@ -181,4 +183,15 @@ const (
 	CarCampaignImportFailedCarStateError
 	// 导入失败：车辆价格为空
 	CarCampaignImportFailedCarPriceZero
+)
+
+// 整备类型
+const (
+	carReconditionCategory uint32 = iota
+	// 整备类型：Car service and repair
+	CarReconditionCategoryServiceAndRepair
+	// 整备类型：Cleaning/Auto spa
+	CarReconditionCategoryCleanSpa
+	// 整备类型：Painting
+	CarReconditionCategoryPainting
 )
