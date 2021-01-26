@@ -88,14 +88,10 @@ message CarCostListProtoDto {
   string licensePlate = 3;
   // 总费用
   string totalCost = 4;
-  // 整备次数
+  // 整备保养次数
   uint32 reconditionTimes = 5;
-  // 整备总费用
+  // 整备保养总费用
   string reconditionCost = 6;
-  // 保养次数
-  uint32 maintenanceTimes = 7;
-  // 保养总费用
-  string maintenanceCost = 8;
   // 检车次数
   uint32 puspakomTimes = 9;
   // 检车总费用
@@ -121,14 +117,18 @@ message CarCostDetailProtoDto {
   string carDesc = 2;
   // 检车总费用
   string totalCost = 3;
-  // 整备费用
+  // 整备和保养费用
   CarCostGroupProtoDto recondition = 4;
-  // 保养费用
-  CarCostGroupProtoDto maintenance = 5;
   // 检车费用
   CarCostGroupProtoDto puspakom = 6;
   // 运费
   CarCostGroupProtoDto logistics = 7;
+  // 车辆storeId
+  uint64 carStoreId = 8;
+  // 车辆dealerType
+  uint32 carDealerType = 9;
+  // 车辆id
+  uint64 carId = 10;
 }
 
 message CarCostGroupProtoDto {
@@ -145,20 +145,20 @@ message CarCostGroupProtoDto {
 message CarCostItemProtoDto {
   // 添加费用的车辆id
   uint64 carId = 1;
-  // 费用类型：1 recondition、2 maintenance、3 puspakom
+  // 费用类型：1 recondition、2 maintenance、3 puspakom、4 logistic
   uint32 type = 2;
   // 费用
   string cost = 3;
-  // 费用描述
-  string content = 4;
-  // 费用详情
-  string detail = 5;
-  // 费用详情:运费的to字段
-  string detailTo = 16;
-  // 执行项目
-  uint32 item = 6;
-  // 执行项目
-  string itemName = 15;
+  // 运输提供商
+  string logisticProvider = 4;
+  // 运输开始地址
+  string logisticFrom = 5;
+  // 运输目的地
+  string logisticTo = 16;
+  // puspakom执行项目
+  uint32 puspakomItem = 6;
+  // 执行项目名称
+  string puspakomItemName = 15;
   // 附件列表
   repeated string enclosures = 7;
   // 开始时间
@@ -175,4 +175,16 @@ message CarCostItemProtoDto {
   uint64 updateTime = 13;
   // id
   uint64 id = 14;
+  // pic的id
+  uint64 picId = 17;
+  // 整备门店id
+  uint64 workshopId = 18;
+  // 整备门店id
+  string workshopName = 19;
+  // 整备项目id
+  repeated uint64 reconditionTypeIds = 20;
+  // 整备项目
+  string reconditionTypes = 21;
+  // 备注
+  string remark = 22;
 }
