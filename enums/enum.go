@@ -34,6 +34,8 @@ const (
 	EnumNameCampaignStatus = "CarCampaignStatus"
 	// 整备类型
 	EnumNameCarReconditionCategory = "CarReconditionCategory"
+	// 保修是否有最大里程限制
+	EnumNameWarrantyMaxMileageLimit = "WarrantyMaxMileageLimit"
 )
 
 // 燃油类型：fuelType
@@ -194,4 +196,13 @@ const (
 	CarReconditionCategoryCleanSpa
 	// 整备类型：Painting
 	CarReconditionCategoryPainting
+)
+
+// 保修是否有最大里程限制
+const (
+	carWarrantyMaxMileageLimit uint32 = iota
+	// 保修是否有最大里程限制：有限制
+	CarWarrantyMaxMileageLimited
+	// 保修是否有最大里程限制：无限制
+	CarWarrantyMaxMileageUnlimited
 )

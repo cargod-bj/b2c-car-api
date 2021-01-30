@@ -241,6 +241,8 @@ message CarDto {
   uint64 warranty_expiration_date = 217;
   // 主机厂保修最大公里
   uint64 warranty_max_mileage = 218;
+  // 主机厂保修最大公里是否有限制：1有限制，2无限制
+  uint32 warranty_max_mileage_status = 219;
 
   // 车照片url
   string image = 301;
