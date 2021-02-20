@@ -129,6 +129,10 @@ message CarCostDetailProtoDto {
   uint32 carDealerType = 9;
   // 车辆id
   uint64 carId = 10;
+  // 政府保险费用
+  CarCostGroupProtoDto governmentInsurance = 11;
+  // 政府保险费用
+  CarCostGroupProtoDto roadTax = 12;
 }
 
 message CarCostGroupProtoDto {
