@@ -131,7 +131,7 @@ message CarCostDetailProtoDto {
   uint64 carId = 10;
   // 政府保险费用
   CarCostGroupProtoDto governmentInsurance = 11;
-  // 政府保险费用
+  // 道路税缴费用
   CarCostGroupProtoDto roadTax = 12;
 }
 

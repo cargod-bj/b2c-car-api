@@ -525,7 +525,7 @@ type CarCostDetailProtoDto struct {
 	CarId uint64 `protobuf:"varint,10,opt,name=carId,proto3" json:"carId,omitempty"`
 	// 政府保险费用
 	GovernmentInsurance *CarCostGroupProtoDto `protobuf:"bytes,11,opt,name=governmentInsurance,proto3" json:"governmentInsurance,omitempty"`
-	// 政府保险费用
+	// 道路税缴费用
 	RoadTax *CarCostGroupProtoDto `protobuf:"bytes,12,opt,name=roadTax,proto3" json:"roadTax,omitempty"`
 }
 
