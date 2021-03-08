@@ -52,7 +52,7 @@ service Car {
   // 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
   rpc GetCarDetailAccessData(CarNoReq) returns (common.Response) {}
   // 获取指定carNo或licensePlate的车辆：返回 data: CarDto
-  rpc GetCarByCarNoAndLicensePlate(CarNoAndLicensePlateDto) returns (common.Response) {}
+  rpc GetCarByCarNoOrLicensePlate(CarNoOrLicensePlateDto) returns (common.Response) {}
 }
 
 
@@ -430,7 +430,7 @@ message CarDetailAccessDataResp {
   string url = 2;
 }
 // 车辆的no或lp
-message CarNoAndLicensePlateDto {
+message CarNoOrLicensePlateDto {
   // 车辆id
   string carNo = 1;
   string licensePlate = 2;

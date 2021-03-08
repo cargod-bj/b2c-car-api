@@ -82,7 +82,7 @@ type CarService interface {
 	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
 	GetCarDetailAccessData(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error)
 	// 获取指定carNo或licensePlate的车辆：返回 data: CarDto
-	GetCarByCarNoAndLicensePlate(ctx context.Context, in *CarNoAndLicensePlateDto, opts ...client.CallOption) (*common.Response, error)
+	GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -277,8 +277,8 @@ func (c *carService) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, o
 	return out, nil
 }
 
-func (c *carService) GetCarByCarNoAndLicensePlate(ctx context.Context, in *CarNoAndLicensePlateDto, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "Car.GetCarByCarNoAndLicensePlate", in)
+func (c *carService) GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarByCarNoOrLicensePlate", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -328,7 +328,7 @@ type CarHandler interface {
 	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
 	GetCarDetailAccessData(context.Context, *CarNoReq, *common.Response) error
 	// 获取指定carNo或licensePlate的车辆：返回 data: CarDto
-	GetCarByCarNoAndLicensePlate(context.Context, *CarNoAndLicensePlateDto, *common.Response) error
+	GetCarByCarNoOrLicensePlate(context.Context, *CarNoOrLicensePlateDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -351,7 +351,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		GetCarByCarNo(ctx context.Context, in *CarNoDto, out *common.Response) error
 		GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *common.Response) error
 		GetCarDetailAccessData(ctx context.Context, in *CarNoReq, out *common.Response) error
-		GetCarByCarNoAndLicensePlate(ctx context.Context, in *CarNoAndLicensePlateDto, out *common.Response) error
+		GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -436,6 +436,6 @@ func (h *carHandler) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, o
 	return h.CarHandler.GetCarDetailAccessData(ctx, in, out)
 }
 
-func (h *carHandler) GetCarByCarNoAndLicensePlate(ctx context.Context, in *CarNoAndLicensePlateDto, out *common.Response) error {
-	return h.CarHandler.GetCarByCarNoAndLicensePlate(ctx, in, out)
+func (h *carHandler) GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, out *common.Response) error {
+	return h.CarHandler.GetCarByCarNoOrLicensePlate(ctx, in, out)
 }
