@@ -444,14 +444,13 @@ message CarTransferStore {
 }
 // 车辆变更门店记录
 message CarTransferStoreList {
-  uint32 page = 1;
-  uint32 pageSize = 2;
-  string carNo = 3;
-  string licensePlate = 4;
-  uint32 fromStoreId = 5;
-  uint32 toStoreId = 6;
-  uint64 operatorId = 7;
-  uint64 beginTime = 8;
-  uint64 endTime = 9;
+  common.Page page = 1;
+  string carNo = 2;
+  string licensePlate = 3;
+  uint32 fromStoreId = 4;
+  uint32 toStoreId = 5;
+  uint64 operatorId = 6;
+  uint64 beginTime = 7;
+  uint64 endTime = 8;
 
 }
