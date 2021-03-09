@@ -468,4 +468,10 @@ message CarTransferStoreDto {
   string remark = 6;
   uint64 createTime = 7;
   uint64 updateTime = 8;
+  string carNo = 9;
+  string licensePlate = 10;
+  string carName = 11;
+  string operator = 12;
+  string fromStore = 13;
+  string toStore = 14;
 }
