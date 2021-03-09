@@ -449,12 +449,14 @@ message CarTransferStore {
 // 车辆变更门店记录
 message CarTransferStoreList {
   common.Page page = 1;
-  uint64 carId = 2;
-  uint64 fromStoreId = 4;
-  uint64 toStoreId = 5;
+  string carNo = 2;
+  string licensePlate = 3;
+  uint32 fromStoreId = 4;
+  uint32 toStoreId = 5;
   uint64 operatorId = 6;
   uint64 beginTime = 7;
   uint64 endTime = 8;
+  string local = 9;
 }
 
 message CarTransferStoreDto {
