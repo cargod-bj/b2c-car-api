@@ -460,11 +460,11 @@ message CarTransferStoreList {
 
 message CarTransferStoreDto {
   uint64 id = 1;
-  uint64 car_id = 2;
-  uint32 from_store_id = 3;
-  uint32 to_store_id = 4;
-  uint64 operator_id = 5;
+  uint64 carId = 2;
+  uint32 fromStoreId = 3;
+  uint32 toStoreId = 4;
+  uint64 operatorId = 5;
   string remark = 6;
-  uint64 create_time = 7;
-  uint64 update_time = 8;
+  uint64 createTime = 7;
+  uint64 updateTime = 8;
 }
