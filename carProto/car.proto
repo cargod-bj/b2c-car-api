@@ -53,6 +53,10 @@ service Car {
   rpc GetCarDetailAccessData(CarNoReq) returns (common.Response) {}
   // 获取指定carNo或licensePlate的车辆：返回 data: CarDto
   rpc GetCarByCarNoOrLicensePlate(CarNoOrLicensePlateDto) returns (common.Response) {}
+  //  车辆变更门店
+  rpc TransferStore(CarTransferStore) returns (common.Response){}
+  // 车辆变更门店记录
+  rpc TransferStoreList(CarTransferStoreList) returns (common.Response){}
 }
 
 
