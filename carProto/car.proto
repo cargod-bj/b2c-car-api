@@ -474,4 +474,5 @@ message CarTransferStoreDto {
   string operator = 12;
   string fromStore = 13;
   string toStore = 14;
+  string local = 15;
 }
