@@ -434,5 +434,22 @@ message CarNoOrLicensePlateDto {
   // 车辆id
   string carNo = 1;
   string licensePlate = 2;
-  string local = 5;
+}
+// 车辆变更门店参数
+message CarTransferStore {
+  // 车辆id
+  uint64 carId = 1;
+  uint64 storeId = 2;
+  string remark = 3;
+}
+// 车辆变更门店记录
+message CarTransferStoreList {
+  common.Page page = 1;
+  string carNo = 2;
+  string licensePlate = 3;
+  uint32 fromStoreId = 4;
+  uint32 toStoreId = 5;
+  uint64 operatorId = 6;
+  uint64 beginTime = 7;
+  uint64 endTime = 8;
 }
