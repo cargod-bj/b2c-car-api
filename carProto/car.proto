@@ -451,8 +451,8 @@ message CarTransferStoreList {
   common.Page page = 1;
   string carNo = 2;
   string licensePlate = 3;
-  uint32 fromStoreId = 4;
-  uint32 toStoreId = 5;
+  repeated uint32 fromStoreId = 4;
+  repeated uint32 toStoreId = 5;
   uint64 operatorId = 6;
   uint64 beginTime = 7;
   uint64 endTime = 8;
