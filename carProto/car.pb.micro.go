@@ -81,6 +81,12 @@ type CarService interface {
 	GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
 	GetCarDetailAccessData(ctx context.Context, in *CarNoReq, opts ...client.CallOption) (*common.Response, error)
+	// 获取指定carNo或licensePlate的车辆：返回 data: CarDto
+	GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, opts ...client.CallOption) (*common.Response, error)
+	//  车辆变更门店
+	TransferStore(ctx context.Context, in *CarTransferStoreDto, opts ...client.CallOption) (*common.Response, error)
+	// 车辆变更门店记录
+	TransferStoreList(ctx context.Context, in *CarTransferStoreList, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -275,6 +281,36 @@ func (c *carService) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, o
 	return out, nil
 }
 
+func (c *carService) GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarByCarNoOrLicensePlate", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carService) TransferStore(ctx context.Context, in *CarTransferStoreDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.TransferStore", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carService) TransferStoreList(ctx context.Context, in *CarTransferStoreList, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.TransferStoreList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -315,6 +351,12 @@ type CarHandler interface {
 	GetCarByNoFuzzy(context.Context, *CarNoDto, *common.Response) error
 	// 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
 	GetCarDetailAccessData(context.Context, *CarNoReq, *common.Response) error
+	// 获取指定carNo或licensePlate的车辆：返回 data: CarDto
+	GetCarByCarNoOrLicensePlate(context.Context, *CarNoOrLicensePlateDto, *common.Response) error
+	//  车辆变更门店
+	TransferStore(context.Context, *CarTransferStoreDto, *common.Response) error
+	// 车辆变更门店记录
+	TransferStoreList(context.Context, *CarTransferStoreList, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -337,6 +379,9 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		GetCarByCarNo(ctx context.Context, in *CarNoDto, out *common.Response) error
 		GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *common.Response) error
 		GetCarDetailAccessData(ctx context.Context, in *CarNoReq, out *common.Response) error
+		GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, out *common.Response) error
+		TransferStore(ctx context.Context, in *CarTransferStoreDto, out *common.Response) error
+		TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -419,4 +464,16 @@ func (h *carHandler) GetCarByNoFuzzy(ctx context.Context, in *CarNoDto, out *com
 
 func (h *carHandler) GetCarDetailAccessData(ctx context.Context, in *CarNoReq, out *common.Response) error {
 	return h.CarHandler.GetCarDetailAccessData(ctx, in, out)
+}
+
+func (h *carHandler) GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, out *common.Response) error {
+	return h.CarHandler.GetCarByCarNoOrLicensePlate(ctx, in, out)
+}
+
+func (h *carHandler) TransferStore(ctx context.Context, in *CarTransferStoreDto, out *common.Response) error {
+	return h.CarHandler.TransferStore(ctx, in, out)
+}
+
+func (h *carHandler) TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error {
+	return h.CarHandler.TransferStoreList(ctx, in, out)
 }

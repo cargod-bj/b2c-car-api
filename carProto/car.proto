@@ -51,6 +51,12 @@ service Car {
   rpc GetCarByNoFuzzy(CarNoDto) returns (common.Response) {}
   // 获取车辆详情页的访问token：返回 Data = CarDetailAccessDataResp
   rpc GetCarDetailAccessData(CarNoReq) returns (common.Response) {}
+  // 获取指定carNo或licensePlate的车辆：返回 data: CarDto
+  rpc GetCarByCarNoOrLicensePlate(CarNoOrLicensePlateDto) returns (common.Response) {}
+  //  车辆变更门店
+  rpc TransferStore(CarTransferStoreDto) returns (common.Response){}
+  // 车辆变更门店记录
+  rpc TransferStoreList(CarTransferStoreList) returns (common.Response){}
 }
 
 
@@ -439,4 +445,47 @@ message CarNoReq {
 message CarDetailAccessDataResp {
   string token = 1;
   string url = 2;
+}
+// 车辆的no或lp
+message CarNoOrLicensePlateDto {
+  // 车辆id
+  string carNo = 1;
+  string licensePlate = 2;
+}
+// 车辆变更门店参数
+message CarTransferStore {
+  // 车辆id
+  uint64 carId = 1;
+  uint64 storeId = 2;
+  string remark = 3;
+}
+// 车辆变更门店记录
+message CarTransferStoreList {
+  common.Page page = 1;
+  string carNo = 2;
+  string licensePlate = 3;
+  uint32 fromStoreId = 4;
+  uint32 toStoreId = 5;
+  uint64 operatorId = 6;
+  uint64 beginTime = 7;
+  uint64 endTime = 8;
+  string local = 9;
+}
+
+message CarTransferStoreDto {
+  uint64 id = 1;
+  uint64 carId = 2;
+  uint64 fromStoreId = 3;
+  uint64 toStoreId = 4;
+  uint64 operatorId = 5;
+  string remark = 6;
+  uint64 createTime = 7;
+  uint64 updateTime = 8;
+  string carNo = 9;
+  string licensePlate = 10;
+  string carName = 11;
+  string operator = 12;
+  string fromStore = 13;
+  string toStore = 14;
+  string local = 15;
 }
