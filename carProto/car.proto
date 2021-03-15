@@ -310,6 +310,19 @@ message CarDto {
   uint32 logisticTimes = 427;
   // 运费总数
   string logisticCostCount = 428;
+  // 政府保险次数
+  uint32 governmentInsuranceTimes = 429;
+  // 政府保险费用总计
+  string governmentInsuranceCount = 430;
+  // 道路税缴次数
+  uint32 roadTaxTimes = 431;
+  // 道路税缴费用总计
+  string roadTaxCount = 432;
+  //政府保险到期时间
+  uint64 governmentInsuranceExpiry = 433;
+  //道路税到期时间
+  uint64 roadTaxExpiry = 434;
+
 
   // 卖价
   string exp_selling_price = 501;

@@ -161,6 +161,10 @@ const (
 	CarCostTypeMaintenance
 	// 车辆费用类型: 车检
 	CarCostTypePuspakom
+	//政府保险费用
+	CarCostTypeGovernmentInsurance
+	//道路税费用
+	CarCostTypeRoadTax
 )
 
 // 车辆活动类型

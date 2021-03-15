@@ -106,6 +106,14 @@ message CarCostListProtoDto {
   uint64 updateTime = 12;
   // 车辆导入时间
   uint64 createTime = 13;
+  // 政府保险次数
+  uint32 governmentInsuranceTimes = 16;
+  // 政府保险费用
+  string governmentInsuranceCost = 17;
+  // 道路税次数
+  uint32 roadTaxTimes = 18;
+  // 道路税费用
+  string roadTaxCost = 19;
   // 车辆id
   uint64 id = 50;
 }
@@ -129,6 +137,10 @@ message CarCostDetailProtoDto {
   uint32 carDealerType = 9;
   // 车辆id
   uint64 carId = 10;
+  // 政府保险费用
+  CarCostGroupProtoDto governmentInsurance = 11;
+  // 道路税缴费用
+  CarCostGroupProtoDto roadTax = 12;
 }
 
 message CarCostGroupProtoDto {
