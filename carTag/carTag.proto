@@ -37,18 +37,24 @@ message CarTagDto {
   // tag的更新时间，如果为新增，或更新，则此字段无效
   uint64 update_time = 6;
   string type_name = 7;
+  string update_by = 8;
+  uint32 tag_type = 9;
 }
 
 // Tag搜索条件
 message CarTagConditionDto {
   // tag的id
-  uint64 id = 1;
-  string name = 2;
-  uint32 type_id = 3;
-  string type_name = 6;
+  //uint64 id = 1;
+  //string name = 2;
+  //uint32 type_id = 3;
+  //string type_name = 6;
+  //uint32 page = 4;
+  //uint32 limit = 5;
+  uint32 tag_type = 1;
+  uint32 status = 2;
+  string name = 3;
   uint32 page = 4;
   uint32 limit = 5;
-
 }
 message CarTagType {
   uint64 id = 1;
@@ -56,4 +62,14 @@ message CarTagType {
 }
 message CarTagTypes {
   repeated CarTagType carTagType = 1;
+}
+
+//新建加的   car_tag 枚举
+message CarTagsType {
+  uint64 id = 1;
+  string name = 2;
+}
+
+message CarTagsTypes {
+  repeated CarTagsType carTagsType = 1;
 }
