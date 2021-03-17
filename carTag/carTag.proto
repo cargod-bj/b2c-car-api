@@ -46,16 +46,13 @@ message CarTagDto {
 message CarTagConditionDto {
   // tag的id
   uint64 id = 1;
-  //string name = 2;
-  //uint32 type_id = 3;
-  //string type_name = 6;
-  //uint32 page = 4;
-  //uint32 limit = 5;
-  uint32 tag_type = 2;
-  uint32 status = 3;
-  string name = 4;
+  string name = 2;
+  uint32 type_id = 3;
+  string type_name = 4;
   uint32 page = 5;
   uint32 limit = 6;
+  uint32 tag_type = 7;
+  uint32 status = 8;
 }
 message CarTagType {
   uint64 id = 1;
