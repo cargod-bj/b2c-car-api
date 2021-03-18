@@ -54,6 +54,7 @@ message CarTagConditionDto {
   uint32 limit = 6;
   string tag_type = 7;
   uint32 status = 8;
+  string update_by = 9;
 }
 /*
 message CarTagType {
