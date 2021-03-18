@@ -52,7 +52,8 @@ type CarTagService interface {
 	//获取Tag信息: 返回data：common.PagedList
 	List(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error)
 	//获取Tag类型
-	TagType(ctx context.Context, in *CarTagType, opts ...client.CallOption) (*common.Response, error)
+	//rpc TagType(CarTagType) returns (common.Response){}
+	//获取 Tag Type
 	TagsType(ctx context.Context, in *CarTagsType, opts ...client.CallOption) (*common.Response, error)
 }
 
@@ -108,16 +109,6 @@ func (c *carTagService) List(ctx context.Context, in *CarTagConditionDto, opts .
 	return out, nil
 }
 
-func (c *carTagService) TagType(ctx context.Context, in *CarTagType, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarTag.TagType", in)
-	out := new(common.Response)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *carTagService) TagsType(ctx context.Context, in *CarTagsType, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarTag.TagsType", in)
 	out := new(common.Response)
@@ -140,7 +131,8 @@ type CarTagHandler interface {
 	//获取Tag信息: 返回data：common.PagedList
 	List(context.Context, *CarTagConditionDto, *common.Response) error
 	//获取Tag类型
-	TagType(context.Context, *CarTagType, *common.Response) error
+	//rpc TagType(CarTagType) returns (common.Response){}
+	//获取 Tag Type
 	TagsType(context.Context, *CarTagsType, *common.Response) error
 }
 
@@ -150,7 +142,6 @@ func RegisterCarTagHandler(s server.Server, hdlr CarTagHandler, opts ...server.H
 		Delete(ctx context.Context, in *CarTagConditionDto, out *common.Response) error
 		Update(ctx context.Context, in *CarTagDto, out *common.Response) error
 		List(ctx context.Context, in *CarTagConditionDto, out *common.Response) error
-		TagType(ctx context.Context, in *CarTagType, out *common.Response) error
 		TagsType(ctx context.Context, in *CarTagsType, out *common.Response) error
 	}
 	type CarTag struct {
@@ -178,10 +169,6 @@ func (h *carTagHandler) Update(ctx context.Context, in *CarTagDto, out *common.R
 
 func (h *carTagHandler) List(ctx context.Context, in *CarTagConditionDto, out *common.Response) error {
 	return h.CarTagHandler.List(ctx, in, out)
-}
-
-func (h *carTagHandler) TagType(ctx context.Context, in *CarTagType, out *common.Response) error {
-	return h.CarTagHandler.TagType(ctx, in, out)
 }
 
 func (h *carTagHandler) TagsType(ctx context.Context, in *CarTagsType, out *common.Response) error {
