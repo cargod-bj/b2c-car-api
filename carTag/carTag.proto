@@ -19,7 +19,8 @@ service CarTag {
   rpc List(CarTagConditionDto) returns (common.Response){}
 
   //获取Tag类型
-  rpc TagType(CarTagType) returns (common.Response){}
+  //rpc TagType(CarTagType) returns (common.Response){}
+  //获取 Tag Type
   rpc TagsType(CarTagsType) returns (common.Response){}
 }
 
@@ -54,13 +55,14 @@ message CarTagConditionDto {
   uint32 tag_type = 7;
   uint32 status = 8;
 }
+/*
 message CarTagType {
   uint64 id = 1;
   string name = 2;
 }
 message CarTagTypes {
   repeated CarTagType carTagType = 1;
-}
+}*/
 
 //新建加的   car_tag 枚举
 message CarTagsType {
