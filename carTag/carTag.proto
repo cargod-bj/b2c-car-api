@@ -40,7 +40,7 @@ message CarTagDto {
   uint64 update_time = 6;
   string type_name = 7;
   string update_by = 8;
-  uint32 tag_type = 9;
+  string tag_type = 9;
 }
 
 // Tag搜索条件
@@ -52,7 +52,7 @@ message CarTagConditionDto {
   string type_name = 4;
   uint32 page = 5;
   uint32 limit = 6;
-  uint32 tag_type = 7;
+  string tag_type = 7;
   uint32 status = 8;
 }
 /*
