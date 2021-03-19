@@ -36,6 +36,10 @@ const (
 	EnumNameCarReconditionCategory = "CarReconditionCategory"
 	// 保修是否有最大里程限制
 	EnumNameWarrantyMaxMileageLimit = "WarrantyMaxMileageLimit"
+	// 车辆的 CarTag service类型
+	EnumNameCarTagType = "TagType"
+	//车辆的 CarTag service 对应的状态
+	EnumNameCarTagStatus = "Status"
 )
 
 // 燃油类型：fuelType
@@ -46,6 +50,20 @@ const (
 	FuelTypeDiesel
 	FuelTypeDieselWithNGV
 	FuelTypeHybridElectric
+)
+
+// car tag type
+const (
+	TagType uint32 = iota
+	CarCard
+	HighlightDetailPage
+)
+
+// car_tag Status
+const (
+	CarTagTypeStatus uint32 = iota
+	Active
+	Inactive
 )
 
 // 车辆颜色
