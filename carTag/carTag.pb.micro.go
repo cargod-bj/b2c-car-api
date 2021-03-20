@@ -51,8 +51,6 @@ type CarTagService interface {
 	Update(ctx context.Context, in *CarTagDto, opts ...client.CallOption) (*common.Response, error)
 	//获取Tag信息: 返回data：common.PagedList
 	List(ctx context.Context, in *CarTagConditionDto, opts ...client.CallOption) (*common.Response, error)
-	//获取Tag类型
-	//rpc TagType(CarTagType) returns (common.Response){}
 	//获取 Tag Type
 	TagsType(ctx context.Context, in *CarTagsType, opts ...client.CallOption) (*common.Response, error)
 }
@@ -130,8 +128,6 @@ type CarTagHandler interface {
 	Update(context.Context, *CarTagDto, *common.Response) error
 	//获取Tag信息: 返回data：common.PagedList
 	List(context.Context, *CarTagConditionDto, *common.Response) error
-	//获取Tag类型
-	//rpc TagType(CarTagType) returns (common.Response){}
 	//获取 Tag Type
 	TagsType(context.Context, *CarTagsType, *common.Response) error
 }

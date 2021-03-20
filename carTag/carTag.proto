@@ -18,8 +18,6 @@ service CarTag {
   //获取Tag信息: 返回data：common.PagedList
   rpc List(CarTagConditionDto) returns (common.Response){}
 
-  //获取Tag类型
-  //rpc TagType(CarTagType) returns (common.Response){}
   //获取 Tag Type
   rpc TagsType(CarTagsType) returns (common.Response){}
 }
@@ -38,8 +36,8 @@ message CarTagDto {
   uint64 create_time = 5;
   // tag的更新时间，如果为新增，或更新，则此字段无效
   uint64 update_time = 6;
-  //type name
-  string type_name = 7;
+  //type name 1 Green background 2 Red background 3 Yellow background
+  uint32 type_name = 7;
   // 1 Car card 2 Highlight (Detail page)
   uint32 tag_type = 8;
   // 最后操作人 id
