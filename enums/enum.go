@@ -40,8 +40,8 @@ const (
 	EnumNameCarTagType = "TagType"
 	//车辆的 CarTag Status service 对应的状态
 	EnumNameCarTagStatus = "Status"
-	//车辆的 CarTag TagName service 对应的状态
-	EnumNameCarTagName = "TagName"
+	//车辆的 CarTag TypeName service 对应的状态
+	EnumNameCarTagName = "TypeName"
 )
 
 // 燃油类型：fuelType
@@ -70,7 +70,7 @@ const (
 
 // cat_tag tagName 1 Green background 2 Red background 3 Yellow background
 const (
-	TagName uint32 = iota
+	TypeName uint32 = iota
 	GreenBackground
 	RedBackground
 	YellowBackground
