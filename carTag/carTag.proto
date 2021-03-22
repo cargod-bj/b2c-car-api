@@ -41,7 +41,7 @@ message CarTagDto {
   // 1 Car card 2 Highlight (Detail page)
   uint32 tag_type = 8;
   // 最后操作人 id
-  string update_by = 9;
+  uint64 update_by = 9;
 }
 
 // Tag搜索条件
