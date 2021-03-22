@@ -39,7 +39,7 @@ const (
 	// 车辆的 CarTag TagType service类型
 	EnumNameCarTagType = "TagType"
 	//车辆的 CarTag Status service 对应的状态
-	EnumNameCarTagStatus = "Status"
+	EnumNameCarTagStatus = "StatusTag"
 	//车辆的 CarTag TypeName service 对应的状态
 	EnumNameCarTagName = "TypeName"
 )
@@ -61,7 +61,7 @@ const (
 	HighlightDetailPage
 )
 
-// car_tag Status
+// car_tag StatusTag
 const (
 	CarTagTypeStatus uint32 = iota
 	Active

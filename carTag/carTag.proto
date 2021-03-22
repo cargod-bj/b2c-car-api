@@ -43,6 +43,8 @@ message CarTagDto {
   // 最后操作人 id
   string update_by = 9;
   uint64 update_id = 10;
+  //状态 1 active 2 inactive
+  uint32 status_tag = 11;
 }
 
 // Tag搜索条件
