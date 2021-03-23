@@ -53,14 +53,14 @@ message CarTagConditionDto {
   uint64 id = 1;
   //tag name
   string name = 2;
-  //uint32 type_id = 3;
-  //string type_name = 4;
-  uint32 page = 3;
-  uint32 limit = 4;
+  uint32 type_id = 3;
+  string type_name = 4;
+  uint32 page = 5;
+  uint32 limit = 6;
   //tag type
-  uint32 status_tag = 5;
+  uint32 status_tag = 7;
   //statusTag
-  uint32 tag_type = 6;
+  uint32 tag_type = 8;
 }
 /*
 message CarTagType {
