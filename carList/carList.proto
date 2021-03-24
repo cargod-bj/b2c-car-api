@@ -145,6 +145,7 @@ message CarListDto {
   uint32 principleWarranty = 830;
   uint64 warrantyExpirationDate = 831;
   uint64 warrantyMaxMileage = 832;
+  string highlight_tag = 833;
 }
 
 
@@ -186,6 +187,7 @@ message CarListCondition {
   uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
   uint32 isHomePage = 35;//是否是首页
   uint64 campaignId = 36;//活动id
+  string highlight_tag = 37;
 }
 
 

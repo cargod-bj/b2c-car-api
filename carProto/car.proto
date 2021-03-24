@@ -171,6 +171,7 @@ message CarListParams{
   string maxPrice = 59;
   // 查询时忽略的车辆id
   repeated uint64 ignoreIds = 60;
+  string highlight_tag = 61;
 }
 
 
@@ -371,6 +372,8 @@ message CarDto {
   string resH5DetailPriceBar = 1006;//限时活动详情图片
   string resH5ListItemTag = 1007;//限时活动背景
 
+  //car tag 的 highlight_tag
+  string highlight_tag = 1008;
 }
 
 // 车辆更新Dto
