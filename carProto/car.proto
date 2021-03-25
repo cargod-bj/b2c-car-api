@@ -57,6 +57,8 @@ service Car {
   rpc TransferStore(CarTransferStoreDto) returns (common.Response){}
   // 车辆变更门店记录
   rpc TransferStoreList(CarTransferStoreList) returns (common.Response){}
+  // 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
+  rpc GetCarByLicensePlateFuzzy(CarLicensePlateReq) returns (common.Response) {}
 }
 
 
@@ -310,19 +312,6 @@ message CarDto {
   uint32 logisticTimes = 427;
   // 运费总数
   string logisticCostCount = 428;
-  // 政府保险次数
-  uint32 governmentInsuranceTimes = 429;
-  // 政府保险费用总计
-  string governmentInsuranceCount = 430;
-  // 道路税缴次数
-  uint32 roadTaxTimes = 431;
-  // 道路税缴费用总计
-  string roadTaxCount = 432;
-  //政府保险到期时间
-  uint64 governmentInsuranceExpiry = 433;
-  //道路税到期时间
-  uint64 roadTaxExpiry = 434;
-
 
   // 卖价
   string exp_selling_price = 501;
@@ -490,4 +479,10 @@ message CarTransferStoreDto {
   string fromStore = 13;
   string toStore = 14;
   string local = 15;
+}
+
+message CarLicensePlateReq {
+  // 车辆id
+  string carLicensePlate = 1;
+  string local = 2;
 }

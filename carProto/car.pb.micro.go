@@ -87,6 +87,8 @@ type CarService interface {
 	TransferStore(ctx context.Context, in *CarTransferStoreDto, opts ...client.CallOption) (*common.Response, error)
 	// 车辆变更门店记录
 	TransferStoreList(ctx context.Context, in *CarTransferStoreList, opts ...client.CallOption) (*common.Response, error)
+	// 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
+	GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -311,6 +313,16 @@ func (c *carService) TransferStoreList(ctx context.Context, in *CarTransferStore
 	return out, nil
 }
 
+func (c *carService) GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarByLicensePlateFuzzy", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -357,6 +369,8 @@ type CarHandler interface {
 	TransferStore(context.Context, *CarTransferStoreDto, *common.Response) error
 	// 车辆变更门店记录
 	TransferStoreList(context.Context, *CarTransferStoreList, *common.Response) error
+	// 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
+	GetCarByLicensePlateFuzzy(context.Context, *CarLicensePlateReq, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -382,6 +396,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		GetCarByCarNoOrLicensePlate(ctx context.Context, in *CarNoOrLicensePlateDto, out *common.Response) error
 		TransferStore(ctx context.Context, in *CarTransferStoreDto, out *common.Response) error
 		TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error
+		GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -476,4 +491,8 @@ func (h *carHandler) TransferStore(ctx context.Context, in *CarTransferStoreDto,
 
 func (h *carHandler) TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error {
 	return h.CarHandler.TransferStoreList(ctx, in, out)
+}
+
+func (h *carHandler) GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, out *common.Response) error {
+	return h.CarHandler.GetCarByLicensePlateFuzzy(ctx, in, out)
 }
