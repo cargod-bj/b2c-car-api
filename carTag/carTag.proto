@@ -48,6 +48,7 @@ message CarTagConditionDto {
   string type_name = 6;
   uint32 page = 4;
   uint32 limit = 5;
+  uint64 status = 7;
 
 }
 message CarTagType {
