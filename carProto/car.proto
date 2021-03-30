@@ -323,7 +323,7 @@ message CarDto {
   //道路税到期时间
   uint64 roadTaxExpiry = 434;
   // 车辆上绑定的HighlightTag,多选
-  string highlightTags = 435;
+  repeated uint64 highlightTags = 435;
 
   // 卖价
   string exp_selling_price = 501;
