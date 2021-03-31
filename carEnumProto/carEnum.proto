@@ -83,8 +83,9 @@ message CarEnumConfigDTO{
   string LangZh = 11;
   uint32 Order = 12;
   uint32 Status = 13;
-  uint64 create_time = 14;
-  uint64 update_time = 15;
+  uint64 createTime = 14;
+  uint64 updateTime = 15;
+  uint64 updateUserId = 16;
 }
 
 message CarEnumConfigCondition {
