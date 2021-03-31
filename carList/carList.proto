@@ -145,6 +145,9 @@ message CarListDto {
   uint32 principleWarranty = 830;
   uint64 warrantyExpirationDate = 831;
   uint64 warrantyMaxMileage = 832;
+  uint64 roadTaxExpiry = 833;
+  uint64 governmentInsuranceExpiry = 834;
+
 }
 
 
