@@ -28,7 +28,7 @@ message CarTagDto {
   uint64 id = 1;
   //tag名称
   string name = 2;
-  // tag类型id
+  // tag 显示位置 id
   uint32 type_id = 3;
   // tag是否可用
   uint32 status = 4;
@@ -37,6 +37,9 @@ message CarTagDto {
   // tag的更新时间，如果为新增，或更新，则此字段无效
   uint64 update_time = 6;
   string type_name = 7;
+  uint64 tagType = 8;//tag 类型 1.Car card,2Highlight tag
+  uint64 operatorId = 9;//操作人员ID
+
 }
 
 // Tag搜索条件
@@ -48,6 +51,8 @@ message CarTagConditionDto {
   string type_name = 6;
   uint32 page = 4;
   uint32 limit = 5;
+  uint64 status = 7;
+  uint64 tagType = 8;
 
 }
 message CarTagType {

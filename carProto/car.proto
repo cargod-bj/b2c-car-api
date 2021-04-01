@@ -322,7 +322,8 @@ message CarDto {
   uint64 governmentInsuranceExpiry = 433;
   //道路税到期时间
   uint64 roadTaxExpiry = 434;
-
+  // 车辆上绑定的HighlightTag,多选
+  repeated uint64 highlightTags = 435;
 
   // 卖价
   string exp_selling_price = 501;
@@ -417,6 +418,7 @@ message CarDtoList{
 message CarTags {
   uint64 id = 1;
   string name = 3;
+  uint64 order = 4;
 }
 
 message CarResourceDto {
