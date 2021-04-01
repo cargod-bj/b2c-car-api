@@ -335,6 +335,8 @@ message CarDto {
 
   // 来源
   string source = 601;
+
+  uint32 carSource = 602;
   // 城市地区
   string location = 701;
   // 城市地区id
