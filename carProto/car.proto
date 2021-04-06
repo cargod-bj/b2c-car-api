@@ -114,6 +114,8 @@ message AddPartnerCarReq{
   uint32 transmission = 9;
   string licensePlateNumber = 10;
   string vinCode = 11;
+  uint32 dealerType = 12;
+  uint32 source = 13;
 }
 
 message CarListParams{
@@ -334,6 +336,8 @@ message CarDto {
 
   // 来源
   string source = 601;
+
+  uint32 carSource = 602;
   // 城市地区
   string location = 701;
   // 城市地区id
