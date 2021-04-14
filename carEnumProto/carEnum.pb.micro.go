@@ -55,6 +55,11 @@ type CarEnumService interface {
 	// 专供website使用的，根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
 	// 返回：common.Response -> Data = EnumsDto
 	GetCarEnumsForWebsite(ctx context.Context, in *EnumTypesDto, opts ...client.CallOption) (*common.Response, error)
+	Add(ctx context.Context, in *CarEnumConfigDTO, opts ...client.CallOption) (*common.Response, error)
+	// 更新Tag，返回 data：nil
+	Update(ctx context.Context, in *CarEnumConfigDTO, opts ...client.CallOption) (*common.Response, error)
+	//获取Tag信息: 返回data：common.PagedList
+	List(ctx context.Context, in *CarEnumConfigCondition, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carEnumService struct {
@@ -99,6 +104,36 @@ func (c *carEnumService) GetCarEnumsForWebsite(ctx context.Context, in *EnumType
 	return out, nil
 }
 
+func (c *carEnumService) Add(ctx context.Context, in *CarEnumConfigDTO, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarEnum.Add", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carEnumService) Update(ctx context.Context, in *CarEnumConfigDTO, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarEnum.Update", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carEnumService) List(ctx context.Context, in *CarEnumConfigCondition, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarEnum.List", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarEnum service
 
 type CarEnumHandler interface {
@@ -114,6 +149,11 @@ type CarEnumHandler interface {
 	// 专供website使用的，根据一组指定类型取枚举结果，支持："Color"、"BodyType"、"Transmission"、"Seat"、"RegistrationType"、"CarState"、"InventoryStatus"、"ReconditionPointType"等等
 	// 返回：common.Response -> Data = EnumsDto
 	GetCarEnumsForWebsite(context.Context, *EnumTypesDto, *common.Response) error
+	Add(context.Context, *CarEnumConfigDTO, *common.Response) error
+	// 更新Tag，返回 data：nil
+	Update(context.Context, *CarEnumConfigDTO, *common.Response) error
+	//获取Tag信息: 返回data：common.PagedList
+	List(context.Context, *CarEnumConfigCondition, *common.Response) error
 }
 
 func RegisterCarEnumHandler(s server.Server, hdlr CarEnumHandler, opts ...server.HandlerOption) error {
@@ -121,6 +161,9 @@ func RegisterCarEnumHandler(s server.Server, hdlr CarEnumHandler, opts ...server
 		GetCarEnum(ctx context.Context, in *EnumTypeDto, out *common.Response) error
 		GetCarEnums(ctx context.Context, in *EnumTypesDto, out *common.Response) error
 		GetCarEnumsForWebsite(ctx context.Context, in *EnumTypesDto, out *common.Response) error
+		Add(ctx context.Context, in *CarEnumConfigDTO, out *common.Response) error
+		Update(ctx context.Context, in *CarEnumConfigDTO, out *common.Response) error
+		List(ctx context.Context, in *CarEnumConfigCondition, out *common.Response) error
 	}
 	type CarEnum struct {
 		carEnum
@@ -143,4 +186,16 @@ func (h *carEnumHandler) GetCarEnums(ctx context.Context, in *EnumTypesDto, out 
 
 func (h *carEnumHandler) GetCarEnumsForWebsite(ctx context.Context, in *EnumTypesDto, out *common.Response) error {
 	return h.CarEnumHandler.GetCarEnumsForWebsite(ctx, in, out)
+}
+
+func (h *carEnumHandler) Add(ctx context.Context, in *CarEnumConfigDTO, out *common.Response) error {
+	return h.CarEnumHandler.Add(ctx, in, out)
+}
+
+func (h *carEnumHandler) Update(ctx context.Context, in *CarEnumConfigDTO, out *common.Response) error {
+	return h.CarEnumHandler.Update(ctx, in, out)
+}
+
+func (h *carEnumHandler) List(ctx context.Context, in *CarEnumConfigCondition, out *common.Response) error {
+	return h.CarEnumHandler.List(ctx, in, out)
 }
