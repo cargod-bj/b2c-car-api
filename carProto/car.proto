@@ -439,6 +439,7 @@ message CarNoDto {
   uint64 storeId = 2;
   repeated uint32 carStatus = 4;
   string local = 5;
+  string licensePlate = 3;
 }
 
 // 车辆no的请求实体
