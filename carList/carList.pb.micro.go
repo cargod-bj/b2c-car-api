@@ -68,6 +68,8 @@ type CarListService interface {
 	SaveTopCarList(ctx context.Context, in *TopCarListDto, opts ...client.CallOption) (*common.Response, error)
 	// 刷新车辆置顶排序
 	RefreshTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
+	// 根据日期获取保养车辆
+	GetNextMaintenanceCarList(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -202,6 +204,16 @@ func (c *carListService) RefreshTopCarList(ctx context.Context, in *common.Empty
 	return out, nil
 }
 
+func (c *carListService) GetNextMaintenanceCarList(ctx context.Context, in *common.Page, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetNextMaintenanceCarList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarList service
 
 type CarListHandler interface {
@@ -229,6 +241,8 @@ type CarListHandler interface {
 	SaveTopCarList(context.Context, *TopCarListDto, *common.Response) error
 	// 刷新车辆置顶排序
 	RefreshTopCarList(context.Context, *common.EmptyDto, *common.Response) error
+	// 根据日期获取保养车辆
+	GetNextMaintenanceCarList(context.Context, *common.Page, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -245,6 +259,7 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error
 		SaveTopCarList(ctx context.Context, in *TopCarListDto, out *common.Response) error
 		RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
+		GetNextMaintenanceCarList(ctx context.Context, in *common.Page, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -303,4 +318,8 @@ func (h *carListHandler) SaveTopCarList(ctx context.Context, in *TopCarListDto, 
 
 func (h *carListHandler) RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
 	return h.CarListHandler.RefreshTopCarList(ctx, in, out)
+}
+
+func (h *carListHandler) GetNextMaintenanceCarList(ctx context.Context, in *common.Page, out *common.Response) error {
+	return h.CarListHandler.GetNextMaintenanceCarList(ctx, in, out)
 }

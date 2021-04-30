@@ -34,6 +34,8 @@ service CarList {
   rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
   // 刷新车辆置顶排序
   rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
+  // 根据日期获取保养车辆
+  rpc GetNextMaintenanceCarList(common.Page) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
@@ -148,6 +150,8 @@ message CarListDto {
   uint64 roadTaxExpiry = 833;
   uint64 governmentInsuranceExpiry = 834;
 
+  uint64 next_maintenance_date = 835;
+  string license_plate = 836;
 }
 
 
