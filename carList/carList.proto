@@ -35,7 +35,7 @@ service CarList {
   // 刷新车辆置顶排序
   rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
   // 根据日期获取保养车辆
-  rpc GetNextMaintenanceCarList(common.Page) returns (common.Response) {}
+  rpc GetNextMaintenanceCarList(MaintenanceCarListParams) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
@@ -258,4 +258,10 @@ message TopCarListDto {
   // 车辆排序DTO
   repeated TopCarDto TopCarListDto = 1;
 
+}
+
+//获取保养车辆params
+message MaintenanceCarListParams {
+  common.Page page = 1;
+  string dueDateTime = 2;
 }
