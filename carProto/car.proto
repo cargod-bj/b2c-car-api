@@ -59,6 +59,8 @@ service Car {
   rpc TransferStoreList(CarTransferStoreList) returns (common.Response){}
   // 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
   rpc GetCarByLicensePlateFuzzy(CarLicensePlateReq) returns (common.Response) {}
+  // 获取保养到期车辆
+  rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
 }
 
 message GetValidStateReq {
