@@ -34,8 +34,6 @@ service CarList {
   rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
   // 刷新车辆置顶排序
   rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
-  // 根据日期获取保养车辆
-  rpc GetNextMaintenanceCarList(MaintenanceCarListParams) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
