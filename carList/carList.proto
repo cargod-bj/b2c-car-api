@@ -150,8 +150,6 @@ message CarListDto {
   uint64 roadTaxExpiry = 833;
   uint64 governmentInsuranceExpiry = 834;
 
-  uint64 next_maintenance_date = 835;
-  string license_plate = 836;
 }
 
 
@@ -258,10 +256,4 @@ message TopCarListDto {
   // 车辆排序DTO
   repeated TopCarDto TopCarListDto = 1;
 
-}
-
-//获取保养车辆params
-message MaintenanceCarListParams {
-  common.Page page = 1;
-  string dueDateTime = 2;
 }
