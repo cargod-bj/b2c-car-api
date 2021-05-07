@@ -148,6 +148,9 @@ message CarListDto {
   uint64 roadTaxExpiry = 833;
   uint64 governmentInsuranceExpiry = 834;
 
+  repeated string highLightTags = 835;//highLightTags
+
+
 }
 
 
