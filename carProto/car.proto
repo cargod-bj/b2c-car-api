@@ -79,8 +79,6 @@ message ChangeCarStateReq {
   string city = 3;
   string cityName = 4;
   uint64 storeId = 5;
-  string stateId = 6;
-  string stateName = 7;
 }
 
 message SourceParams{
