@@ -420,6 +420,9 @@ message CarSimpleInfoParams {
 
 message CarDtoList{
   repeated CarDto CarDtoList = 1;
+  uint32 pageNo = 2;
+  uint32 pageSize = 3;
+  uint64 total = 5;
 }
 
 message CarTags {
@@ -442,8 +445,6 @@ message CarNoDto {
   repeated uint32 carStatus = 4;
   string local = 5;
   string licensePlate = 3;
-  uint64 pageNo = 6;
-  uint64 pageSize = 7;
 }
 
 // 车辆no的请求实体
@@ -508,4 +509,14 @@ message CarLicensePlateReq {
   // 车辆id
   string carLicensePlate = 1;
   string local = 2;
+}
+
+message CarByNoFuzzyReq {
+  string carNo = 1;
+  uint64 storeId = 2;
+  string licensePlate = 3;
+  repeated uint32 carStatus = 4;
+  string local = 5;
+  uint32 pageNo = 6;
+  uint32 pageSize = 7;
 }
