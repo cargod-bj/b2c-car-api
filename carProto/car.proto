@@ -61,6 +61,8 @@ service Car {
   rpc GetCarByLicensePlateFuzzy(CarLicensePlateReq) returns (common.Response) {}
   // 获取保养到期车辆
   rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
+  // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
+  rpc GetCarByNoFuzzyPagination(CarByNoFuzzyReq) returns (common.Response) {}
 }
 
 message GetValidStateReq {
