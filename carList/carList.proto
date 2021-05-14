@@ -149,8 +149,7 @@ message CarListDto {
   uint64 governmentInsuranceExpiry = 834;
 
   repeated string highLightTags = 835;//highLightTags
-
-
+  string licensePlate = 836;//车牌号
 }
 
 
