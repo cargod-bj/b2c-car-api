@@ -28,8 +28,8 @@ service CarList {
   rpc GetCarListDetail(CarListNo) returns (common.Response) {}
   // 查询置顶车辆信息：返回 data: CarListDtoList
   rpc GetTopCarList(LocationDto) returns (common.Response) {}
-  // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
-  rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
+  // 获取车辆No/LP模糊搜索车辆信息：返回 data: CarListDtoList
+  rpc GetCarListByNoOrLPFuzzy(CarListNo) returns (common.Response) {}
   // 保存车辆置顶排序
   rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
   // 刷新车辆置顶排序
@@ -237,10 +237,12 @@ message CarListDetailResult {
 message CarListNo {
   // 车辆No
   string CarNo = 1;
-  uint32 recommendCount = 2;
+  // 车牌号
+  string licensePlate = 2;
+  uint32 recommendCount = 3;
   // 本地化
-  string local = 3;
-  string token = 4;
+  string local = 4;
+  string token = 5;
 }
 
 //保存车辆置顶排序
