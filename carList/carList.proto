@@ -179,7 +179,7 @@ message CarListCondition {
   repeated string source = 22;//来源
   string location = 23;//城市
   repeated string location_id = 27;//地址id
-  string state_name = 37;//州
+  string state_name = 37;//州名
   repeated string state_id = 38;//州id
   repeated uint64 dealer_id = 24;//经销商id
   repeated uint32 car_type_id = 30;//汽车类型

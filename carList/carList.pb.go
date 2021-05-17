@@ -752,7 +752,7 @@ type CarListCondition struct {
 	Source              []string `protobuf:"bytes,22,rep,name=source,proto3" json:"source,omitempty"`                                  //来源
 	Location            string   `protobuf:"bytes,23,opt,name=location,proto3" json:"location,omitempty"`                              //城市
 	LocationId          []string `protobuf:"bytes,27,rep,name=location_id,json=locationId,proto3" json:"location_id,omitempty"`        //地址id
-	StateName           string   `protobuf:"bytes,37,opt,name=state_name,json=stateName,proto3" json:"state_name,omitempty"`           //州
+	StateName           string   `protobuf:"bytes,37,opt,name=state_name,json=stateName,proto3" json:"state_name,omitempty"`           //州名
 	StateId             []string `protobuf:"bytes,38,rep,name=state_id,json=stateId,proto3" json:"state_id,omitempty"`                 //州id
 	DealerId            []uint64 `protobuf:"varint,24,rep,packed,name=dealer_id,json=dealerId,proto3" json:"dealer_id,omitempty"`      //经销商id
 	CarTypeId           []uint32 `protobuf:"varint,30,rep,packed,name=car_type_id,json=carTypeId,proto3" json:"car_type_id,omitempty"` //汽车类型
