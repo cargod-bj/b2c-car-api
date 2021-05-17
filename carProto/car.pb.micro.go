@@ -91,6 +91,7 @@ type CarService interface {
 	GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, opts ...client.CallOption) (*common.Response, error)
 	// 获取保养到期车辆
 	GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
+	GetCarFinancingList(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -335,6 +336,16 @@ func (c *carService) GetCarByNextMaintenanceDate(ctx context.Context, in *CarLis
 	return out, nil
 }
 
+func (c *carService) GetCarFinancingList(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarFinancingList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -385,6 +396,7 @@ type CarHandler interface {
 	GetCarByLicensePlateFuzzy(context.Context, *CarLicensePlateReq, *common.Response) error
 	// 获取保养到期车辆
 	GetCarByNextMaintenanceDate(context.Context, *CarListParams, *common.Response) error
+	GetCarFinancingList(context.Context, *CarListParams, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -412,6 +424,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error
 		GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, out *common.Response) error
 		GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, out *common.Response) error
+		GetCarFinancingList(ctx context.Context, in *CarListParams, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -514,4 +527,8 @@ func (h *carHandler) GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicen
 
 func (h *carHandler) GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, out *common.Response) error {
 	return h.CarHandler.GetCarByNextMaintenanceDate(ctx, in, out)
+}
+
+func (h *carHandler) GetCarFinancingList(ctx context.Context, in *CarListParams, out *common.Response) error {
+	return h.CarHandler.GetCarFinancingList(ctx, in, out)
 }
