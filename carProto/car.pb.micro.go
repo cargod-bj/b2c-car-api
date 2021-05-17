@@ -89,6 +89,8 @@ type CarService interface {
 	TransferStoreList(ctx context.Context, in *CarTransferStoreList, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, opts ...client.CallOption) (*common.Response, error)
+	// 获取保养到期车辆
+	GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -323,6 +325,16 @@ func (c *carService) GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicen
 	return out, nil
 }
 
+func (c *carService) GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.GetCarByNextMaintenanceDate", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -371,6 +383,8 @@ type CarHandler interface {
 	TransferStoreList(context.Context, *CarTransferStoreList, *common.Response) error
 	// 获取车辆licenseplate模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByLicensePlateFuzzy(context.Context, *CarLicensePlateReq, *common.Response) error
+	// 获取保养到期车辆
+	GetCarByNextMaintenanceDate(context.Context, *CarListParams, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -397,6 +411,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		TransferStore(ctx context.Context, in *CarTransferStoreDto, out *common.Response) error
 		TransferStoreList(ctx context.Context, in *CarTransferStoreList, out *common.Response) error
 		GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, out *common.Response) error
+		GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -495,4 +510,8 @@ func (h *carHandler) TransferStoreList(ctx context.Context, in *CarTransferStore
 
 func (h *carHandler) GetCarByLicensePlateFuzzy(ctx context.Context, in *CarLicensePlateReq, out *common.Response) error {
 	return h.CarHandler.GetCarByLicensePlateFuzzy(ctx, in, out)
+}
+
+func (h *carHandler) GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, out *common.Response) error {
+	return h.CarHandler.GetCarByNextMaintenanceDate(ctx, in, out)
 }
