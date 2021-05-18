@@ -153,6 +153,8 @@ message CarListDto {
 
   repeated string highLightTags = 835;//highLightTags
 
+  string licensePlate = 837;//车牌号
+
 
 }
 
