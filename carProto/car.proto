@@ -510,3 +510,8 @@ message CarLicensePlateReq {
   string carLicensePlate = 1;
   string local = 2;
 }
+
+message CarFinancingReq {
+  string carNo = 1;
+  uint64 financingStatus = 2;
+}
