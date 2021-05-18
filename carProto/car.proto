@@ -62,6 +62,7 @@ service Car {
   // 获取保养到期车辆
   rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
   rpc GetCarFinancingList(CarListParams) returns (common.Response) {}
+  rpc UpdateCarFinancing(CarFinancingReq) returns (common.Response) {}
 }
 
 message GetValidStateReq {
