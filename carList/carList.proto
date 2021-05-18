@@ -54,6 +54,7 @@ message CarListDto {
   uint64 store_id = 103;
   // 停车场id
   uint64 parking_id = 104;
+  string car_state_name = 105;
   // 品牌id
   uint32 brand_id = 201;
   // 车型id
@@ -139,6 +140,8 @@ message CarListDto {
   string resWebListItemTag = 825;//限时活动背景
   string resH5DetailPriceBar = 826;//限时活动详情图片
   string resH5ListItemTag = 827;//限时活动背景
+  string discountedAmount = 836;//活动补贴金额
+
 
   uint32 spareKey = 828;
   uint32 serviceBook = 829;
@@ -234,7 +237,7 @@ message CarListDetailResult {
   repeated report.ReportDamageCategoryDto report = 3;
 }
 
-//根据车辆No查询车辆信息
+//根据车辆No或者车牌号查询车辆信息
 message CarListNo {
   // 车辆No
   string CarNo = 1;
@@ -242,6 +245,7 @@ message CarListNo {
   // 本地化
   string local = 3;
   string token = 4;
+  string LicensePlate = 5;
 }
 
 //保存车辆置顶排序
