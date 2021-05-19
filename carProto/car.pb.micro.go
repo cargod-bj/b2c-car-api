@@ -93,7 +93,7 @@ type CarService interface {
 	GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 	GetCarFinancingList(ctx context.Context, in *CarListParams, opts ...client.CallOption) (*common.Response, error)
 	UpdateCarFinancing(ctx context.Context, in *CarFinancingReq, opts ...client.CallOption) (*common.Response, error)
-	AddCarFinancing(ctx context.Context, in *CarFinancingReq, opts ...client.CallOption) (*common.Response, error)
+	AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -358,7 +358,7 @@ func (c *carService) UpdateCarFinancing(ctx context.Context, in *CarFinancingReq
 	return out, nil
 }
 
-func (c *carService) AddCarFinancing(ctx context.Context, in *CarFinancingReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *carService) AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "Car.AddCarFinancing", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -420,7 +420,7 @@ type CarHandler interface {
 	GetCarByNextMaintenanceDate(context.Context, *CarListParams, *common.Response) error
 	GetCarFinancingList(context.Context, *CarListParams, *common.Response) error
 	UpdateCarFinancing(context.Context, *CarFinancingReq, *common.Response) error
-	AddCarFinancing(context.Context, *CarFinancingReq, *common.Response) error
+	AddCarFinancing(context.Context, *CarFinancingParamReq, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -450,7 +450,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		GetCarByNextMaintenanceDate(ctx context.Context, in *CarListParams, out *common.Response) error
 		GetCarFinancingList(ctx context.Context, in *CarListParams, out *common.Response) error
 		UpdateCarFinancing(ctx context.Context, in *CarFinancingReq, out *common.Response) error
-		AddCarFinancing(ctx context.Context, in *CarFinancingReq, out *common.Response) error
+		AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -563,6 +563,6 @@ func (h *carHandler) UpdateCarFinancing(ctx context.Context, in *CarFinancingReq
 	return h.CarHandler.UpdateCarFinancing(ctx, in, out)
 }
 
-func (h *carHandler) AddCarFinancing(ctx context.Context, in *CarFinancingReq, out *common.Response) error {
+func (h *carHandler) AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, out *common.Response) error {
 	return h.CarHandler.AddCarFinancing(ctx, in, out)
 }

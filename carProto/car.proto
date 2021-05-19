@@ -63,7 +63,7 @@ service Car {
   rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
   rpc GetCarFinancingList(CarListParams) returns (common.Response) {}
   rpc UpdateCarFinancing(CarFinancingReq) returns (common.Response) {}
-  rpc AddCarFinancing(CarFinancingReq) returns (common.Response) {}
+  rpc AddCarFinancing(CarFinancingParamReq) returns (common.Response) {}
 }
 
 message GetValidStateReq {
@@ -512,7 +512,9 @@ message CarLicensePlateReq {
   string carLicensePlate = 1;
   string local = 2;
 }
-
+message CarFinancingParamReq{
+  repeated CarFinancingReq list = 1;
+}
 message CarFinancingReq {
   string carNo = 1;
   uint64 financingStatus = 2;
