@@ -63,6 +63,7 @@ service Car {
   rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
   rpc GetCarFinancingList(CarListParams) returns (common.Response) {}
   rpc UpdateCarFinancing(CarFinancingReq) returns (common.Response) {}
+  rpc AddCarFinancing(CarFinancingReq) returns (common.Response) {}
 }
 
 message GetValidStateReq {
