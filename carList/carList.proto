@@ -54,7 +54,7 @@ message CarListDto {
   uint64 store_id = 103;
   // 停车场id
   uint64 parking_id = 104;
-  string car_state_name = 105;
+  string carStateName = 105;
   // 品牌id
   uint32 brand_id = 201;
   // 车型id
