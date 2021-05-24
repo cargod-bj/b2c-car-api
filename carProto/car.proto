@@ -61,6 +61,12 @@ service Car {
   rpc GetCarByLicensePlateFuzzy(CarLicensePlateReq) returns (common.Response) {}
   // 获取保养到期车辆
   rpc GetCarByNextMaintenanceDate(CarListParams) returns (common.Response) {}
+  // 获取车辆抵押列表
+  rpc GetCarFinancingList(CarListParams) returns (common.Response) {}
+  // 更新车辆抵押状态
+  rpc UpdateCarFinancing(CarFinancingReq) returns (common.Response) {}
+  // 增加车辆抵押
+  rpc AddCarFinancing(CarFinancingParamReq) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
   rpc GetCarByNoFuzzyPagination(CarByNoFuzzyReq) returns (common.Response) {}
 }
@@ -178,6 +184,8 @@ message CarListParams{
   string maxPrice = 59;
   // 查询时忽略的车辆id
   repeated uint64 ignoreIds = 60;
+  // financing status
+  uint64 financing_status = 61;
 }
 
 
@@ -513,6 +521,13 @@ message CarLicensePlateReq {
   // 车辆id
   string carLicensePlate = 1;
   string local = 2;
+}
+message CarFinancingParamReq{
+  repeated CarFinancingReq list = 1;
+}
+message CarFinancingReq {
+  string carNo = 1;
+  uint64 financingStatus = 2;
 }
 
 message CarByNoFuzzyReq {
