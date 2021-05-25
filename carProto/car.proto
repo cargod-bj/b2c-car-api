@@ -186,6 +186,7 @@ message CarListParams{
   repeated uint64 ignoreIds = 60;
   // financing status
   uint64 financing_status = 61;
+  uint64 financing_type = 62;
 }
 
 
