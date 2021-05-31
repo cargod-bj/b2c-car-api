@@ -39,6 +39,7 @@ service CarList {
 
 // 新增上架车辆dto
 message CarListDto {
+
     // 车辆id，如果为新增，则此字段为0，否则为车辆id
     uint64 id = 1;
     //车辆在car表里的id
@@ -55,6 +56,7 @@ message CarListDto {
     uint64 store_id = 103;
     // 停车场id
     uint64 parking_id = 104;
+    string carStateName = 105;
     // 品牌id
     uint32 brand_id = 201;
     // 车型id
@@ -140,24 +142,14 @@ message CarListDto {
     string resWebListItemTag = 825;//限时活动背景
     string resH5DetailPriceBar = 826;//限时活动详情图片
     string resH5ListItemTag = 827;//限时活动背景
-
-    uint32 spareKey = 828;
-    uint32 serviceBook = 829;
-    uint32 principleWarranty = 830;
-    uint64 warrantyExpirationDate = 831;
-    uint64 warrantyMaxMileage = 832;
-    uint64 roadTaxExpiry = 833;
-    uint64 governmentInsuranceExpiry = 834;
-
     repeated string highLightTags = 835;//highLightTags
-
-    string resWebBannerDetailPageRight = 836; // 活动页面图片资源
-    string bannerBgColorLeftLabel = 837; //banner左侧label背景颜色
-    string bannerBgColorRightLabel = 838; //banner右侧label背景颜色
-    string bannerTitleColor = 839; //banner title 颜色
-    string bannerDateColor = 840; //banner date 颜色
-
-
+    string discountedAmount = 836;//活动补贴金额
+    string resWebBannerDetailPageRight = 837; // 活动页面图片资源
+    string bannerBgColorLeftLabel = 838; //banner左侧label背景颜色
+    string bannerBgColorRightLabel = 839; //banner右侧label背景颜色
+    string bannerTitleColor = 840; //banner title 颜色
+    string bannerDateColor = 841; //banner date 颜色
+    string licensePlate = 842;//车牌号
 }
 
 
@@ -243,14 +235,15 @@ message CarListDetailResult {
     repeated report.ReportDamageCategoryDto report = 3;
 }
 
-//根据车辆No查询车辆信息
+//根据车辆No或者车牌号查询车辆信息
 message CarListNo {
     // 车辆No
-    string CarNo = 1;
-    uint32 recommendCount = 2;
-    // 本地化
-    string local = 3;
-    string token = 4;
+        string CarNo = 1;
+        uint32 recommendCount = 2;
+// 本地化
+        string local = 3;
+        string token = 4;
+        string LicensePlate = 5;
 }
 
 //保存车辆置顶排序
