@@ -277,6 +277,7 @@ message CarReqIds {
 message CarReport {
   map<uint64, CarDetailReport> CarReportList = 1;
   map<uint64, CarDetailImg> CarDetailInfoImg = 2;
+  map<uint64, CarDetailOutImg> CarOutImg = 3;
 }
 
 message CarDetailReport {
@@ -285,5 +286,8 @@ message CarDetailReport {
 
 message CarDetailImg {
   repeated string InnerImage = 1;
+
+}
+message CarDetailOutImg {
   repeated string OuterImage = 2;
 }
