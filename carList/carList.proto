@@ -276,8 +276,14 @@ message CarReqIds {
 //返回质检报告
 message CarReport {
   map<uint64, CarDetailReport> CarReportList = 1;
+  map<uint64, CarDetailImg> CarDetailInfoImg = 2;
 }
 
 message CarDetailReport {
   repeated report.ReportDamageCategoryDto report = 1;
+}
+
+message CarDetailImg {
+  repeated string InnerImage = 1;
+  repeated string OuterImage = 2;
 }
