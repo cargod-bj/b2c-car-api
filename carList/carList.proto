@@ -34,6 +34,7 @@ service CarList {
   rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
   // 刷新车辆置顶排序
   rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
+  rpc GetReportByCarId(CarReqIds) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
@@ -265,4 +266,14 @@ message TopCarListDto {
   // 车辆排序DTO
   repeated TopCarDto TopCarListDto = 1;
 
+}
+
+message CarReqIds {
+  //carIds
+  repeated uint64 CarIds = 1;
+}
+
+//返回质检报告
+message CarDetailResult {
+  repeated report.ReportDamageCategoryDto report = 1;
 }
