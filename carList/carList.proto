@@ -274,6 +274,10 @@ message CarReqIds {
 }
 
 //返回质检报告
-message CarDetailResult {
+message CarReport {
+  map<uint64, CarDetailReport> enums = 1;
+}
+
+message CarDetailReport {
   repeated report.ReportDamageCategoryDto report = 1;
 }
