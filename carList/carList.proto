@@ -275,7 +275,7 @@ message CarReqIds {
 
 //返回质检报告
 message CarReport {
-  map<uint64, CarDetailReport> enums = 1;
+  map<uint64, CarDetailReport> CarReportList = 1;
 }
 
 message CarDetailReport {
