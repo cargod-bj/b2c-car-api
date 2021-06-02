@@ -184,6 +184,16 @@ message CarCampaignDetail {
   string resH5FilterTagUnselected = 15;
   // 活动是否有效：1有效，2无效
   uint32 activeStatus = 16;
+  // 活动页面图片资源
+  string resWebBannerDetailPageRight = 17;
+  //banner左侧label背景颜色
+  string bannerBgColorLeftLabel = 18;
+  //banner右侧label背景颜色
+  string bannerBgColorRightLabel = 19;
+  //banner title 颜色
+  string bannerTitleColor = 20;
+  //banner date 颜色
+  string bannerDateColor = 21;
 }
 
 // 活动车辆
