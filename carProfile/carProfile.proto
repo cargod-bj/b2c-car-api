@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package car;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carProfile";
+
+/*
+  获取车辆服务
+ */
+service CarProfile {
+  // 添加指定车辆，返回 data：CarDto 类型
+  rpc Analysis(common.EmptyDto) returns (common.Response) {}
+}
