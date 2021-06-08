@@ -340,6 +340,7 @@ message CarDto {
   uint64 roadTaxExpiry = 434;
   // 车辆上绑定的HighlightTag,多选
   repeated uint64 highlightTags = 435;
+  string carTypeName = 436;
 
   // 卖价
   string exp_selling_price = 501;
