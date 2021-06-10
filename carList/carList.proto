@@ -36,6 +36,9 @@ service CarList {
   // 刷新车辆置顶排序
   rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
   rpc GetReportByCarId(CarReqIds) returns (common.Response) {}
+    //提供给第三方wapCar使用
+    rpc ListWapCarCondition(CarListCondition) returns (common.Response){}
+
 }
 
 // 新增上架车辆dto
