@@ -17,7 +17,7 @@ service Report {
   // 返回：common.Response -> Data = common.PagedList {
   //                  List<Any> = List<ReportDamageCategoryDto>
   //              }
-  rpc GetDamageInfo(common.IdDto) returns (common.Response)
+  rpc GetDamageInfo(common.IdDto) returns (common.Response);
   // 对指定pointId的检测点做整备
   // 返回：common.Response  -> Data = nil
   rpc DoPointRecondition(PointReconditionDto) returns (common.Response);
@@ -182,5 +182,5 @@ message CarDto {
 }
 
 message InspectionPointInfo {
-
+  map<string, string> result = 1;
 }
