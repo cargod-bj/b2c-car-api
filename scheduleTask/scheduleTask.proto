@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ScheduleTask;
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/ScheduleTask";
+
+/*
+  car 计划任务，提供对外接口，方便schedule调用
+ */
+service ScheduleTask {
+  rpc UpdateBrandModelTask(common.EmptyDto) returns (common.Response) {}
+  rpc UpdateEnumConfig(common.EmptyDto) returns (common.Response) {}
+  rpc UpdateCarListStatistical(common.EmptyDto) returns (common.Response) {}
+  rpc KeywordsCacheRefresh(common.EmptyDto) returns (common.Response) {}
+  rpc UpdateCarValuationGuidesSync(common.EmptyDto) returns (common.Response) {}
+  rpc PublishActiveCarCampaign(common.EmptyDto) returns (common.Response) {}
+  rpc UpdateCarLibSync(common.EmptyDto) returns (common.Response) {}
+  rpc ValidateCarWarranty(common.EmptyDto) returns (common.Response) {}
+}
