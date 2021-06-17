@@ -239,3 +239,8 @@ message CheckImportCarsItem {
   // 导入车辆时指定的活动价格
   string campaignPrice = 6;
 }
+
+message CampaignAction {
+  int64 id = 1; //任务ID
+  int32 action = 2; //1上架，2下架
+}
