@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package car;
+
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 import "reportProto/report.proto";
 
@@ -10,263 +11,265 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carList";
   获取上架车辆服务
  */
 service CarList {
-  // 添加指定车辆，返回 data：nil
-  rpc Add(CarListDto) returns (common.Response) {}
-  // 根据车辆id删除车辆，返回 data：nil
-  rpc Delete(CarListIdDto) returns (common.Response) {}
-  // 更新指定车辆，返回 data：nil
-  rpc Update(CarListDto) returns (common.Response) {}
-  // 获取指定id的车辆（多个）：返回 data: CarListDto
-  rpc Get(CarListIdDto) returns (common.Response) {}
-  //获取车辆列表信息: 返回data：common.PagedList
-  rpc List(common.Page) returns (common.Response){}
-  //根据条件查询carlist
-  rpc ListCondition(CarListCondition) returns (common.Response){}
-  //根据查询carlist的location
-  rpc ListLocation(common.Page) returns (common.Response){}
-  // 获取指定id的车辆：返回 data: CarListDto
-  rpc GetCarListDetail(CarListNo) returns (common.Response) {}
-  // 查询置顶车辆信息：返回 data: CarListDtoList
-  rpc GetTopCarList(LocationDto) returns (common.Response) {}
-  // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
-  rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
-  // 保存车辆置顶排序
-  rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
-  // 刷新车辆置顶排序
-  rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
+    // 添加指定车辆，返回 data：nil
+    rpc Add(CarListDto) returns (common.Response) {}
+    // 根据车辆id删除车辆，返回 data：nil
+    rpc Delete(CarListIdDto) returns (common.Response) {}
+    // 更新指定车辆，返回 data：nil
+    rpc Update(CarListDto) returns (common.Response) {}
+    // 获取指定id的车辆（多个）：返回 data: CarListDto
+    rpc Get(CarListIdDto) returns (common.Response) {}
+    //获取车辆列表信息: 返回data：common.PagedList
+    rpc List(common.Page) returns (common.Response) {}
+    //根据条件查询carlist
+    rpc ListCondition(CarListCondition) returns (common.Response) {}
+    //根据查询carlist的location
+    rpc ListLocation(common.Page) returns (common.Response) {}
+    // 获取指定id的车辆：返回 data: CarListDto
+    rpc GetCarListDetail(CarListNo) returns (common.Response) {}
+    // 查询置顶车辆信息：返回 data: CarListDtoList
+    rpc GetTopCarList(LocationDto) returns (common.Response) {}
+    // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
+    rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
+    // 保存车辆置顶排序
+    rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
+    // 刷新车辆置顶排序
+    rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
 }
 
 // 新增上架车辆dto
 message CarListDto {
-  // 车辆id，如果为新增，则此字段为0，否则为车辆id
-  uint64 id = 1;
-  //车辆在car表里的id
-  uint64 car_id = 2;
-  // 车辆的创建时间，如果为新增，或更新，则此字段无效
-  uint64 create_time = 3;
-  // 车辆的更新时间，如果为新增，或更新，则此字段无效
-  uint64 update_time = 4;
-  // 检查报告id
-  uint64 inspection_id = 101;
-  // 车辆状态
-  uint32 status = 102;
-  // 门店id
-  uint64 store_id = 103;
-  // 停车场id
-  uint64 parking_id = 104;
-  string carStateName = 105;
-  // 品牌id
-  uint32 brand_id = 201;
-  // 车型id
-  uint32 model_id = 202;
-  // 车variant
-  string car_variant = 203;
-  // 车照片url
-  string image = 301;
-  // 排量
-  string car_engine = 401;
-  // 年份
-  uint32 car_year = 402;
-  // 里程
-  uint32 car_mileage = 403;
-  // 驾驶类型 手动,自动
-  uint32 car_transmission = 404;
-  // 卖价
-  string exp_selling_price = 501;
-  // 来源
-  string source = 601;
-  // 城市地区
-  string location = 701;
-  // 城市地区
-  string location_address = 702;
-  //经销商id
-  uint64 dealer_id = 708;
-  // 经销商类型
-  uint32 dealer_type = 704;
-  // dealerTypeName
-  string dealer_type_name = 705;
-  //汽车类型例如suv
-  uint32 car_type_id = 707;
-  //燃油类型
-  uint32 fuel_type = 709;
-  //座椅个数
-  uint32 seat = 710;
-  //车漆颜色
-  uint32 color = 711;
-  // spinCar链接
-  string spin_car_url = 303;
-  //车辆特征
-  string  car_type_name = 712;
-  // 车variant
-  int64 variant_id = 206;
-  string  model_name = 205;
-  string  brand_name = 706;
-  uint32  recommend_order = 713;
-  uint32 type = 714;
-  string url = 715;
-  string location_id = 716;
-  string car_transmission_name = 717;
-  string registration_type_name = 718;
-  string fuel_type_name = 719;
-  string colorName = 720;
-  uint64 registration_date = 721;
-  uint32 registration_type = 722;
-  repeated string inner_image = 723;
-  repeated string outer_image = 724;
-  uint64  show_time = 725;//浏览时间
+
+    // 车辆id，如果为新增，则此字段为0，否则为车辆id
+    uint64 id = 1;
+    //车辆在car表里的id
+    uint64 car_id = 2;
+    // 车辆的创建时间，如果为新增，或更新，则此字段无效
+    uint64 create_time = 3;
+    // 车辆的更新时间，如果为新增，或更新，则此字段无效
+    uint64 update_time = 4;
+    // 检查报告id
+    uint64 inspection_id = 101;
+    // 车辆状态
+    uint32 status = 102;
+    // 门店id
+    uint64 store_id = 103;
+    // 停车场id
+    uint64 parking_id = 104;
+    string carStateName = 105;
+    // 品牌id
+    uint32 brand_id = 201;
+    // 车型id
+    uint32 model_id = 202;
+    // 车variant
+    string car_variant = 203;
+    // 车照片url
+    string image = 301;
+    // 排量
+    string car_engine = 401;
+    // 年份
+    uint32 car_year = 402;
+    // 里程
+    uint32 car_mileage = 403;
+    // 驾驶类型 手动,自动
+    uint32 car_transmission = 404;
+    // 卖价
+    string exp_selling_price = 501;
+    // 来源
+    string source = 601;
+    // 城市地区
+    string location = 701;
+    // 城市地区
+    string location_address = 702;
+    //经销商id
+    uint64 dealer_id = 708;
+    // 经销商类型
+    uint32 dealer_type = 704;
+    // dealerTypeName
+    string dealer_type_name = 705;
+    //汽车类型例如suv
+    uint32 car_type_id = 707;
+    //燃油类型
+    uint32 fuel_type = 709;
+    //座椅个数
+    uint32 seat = 710;
+    //车漆颜色
+    uint32 color = 711;
+    // spinCar链接
+    string spin_car_url = 303;
+    //车辆特征
+    string  car_type_name = 712;
+    // 车variant
+    int64 variant_id = 206;
+    string  model_name = 205;
+    string  brand_name = 706;
+    uint32  recommend_order = 713;
+    uint32 type = 714;
+    string url = 715;
+    string location_id = 716;
+    string car_transmission_name = 717;
+    string registration_type_name = 718;
+    string fuel_type_name = 719;
+    string colorName = 720;
+    uint64 registration_date = 721;
+    uint32 registration_type = 722;
+    repeated string inner_image = 723;
+    repeated string outer_image = 724;
+    uint64  show_time = 725;//浏览时间
   //排序
-  uint32 seq = 800;
-  uint32 seqTmp = 810;
-  string carNo = 801;
-  string vinCode = 802;
-  string storeCity = 803;
-  string openHours = 804;
-  string testDriverServiceHours = 805;
-  string storeName = 806;
-  string storeAddress = 807;
-  string storePhone = 808;
-  uint32 carState = 809;
-  //座椅个数
-  string seatSize = 811;
-  string skipUrl = 812;//广告位跳转url
-  uint32 saleStatus = 813;//是否上架
-  string mapUrl = 814;//地图
-  string carTag = 815;//标签
-  uint32 carTagType = 816;//标签类型
-  string description = 817;//第三方车描述
-  string storeBusinessHours = 818;//门店营业时间
-  uint64 campaignStartTime = 819;//限时活动开始时间
-  uint64 campaignEndTime = 820;//限时活动结束时间
-  string campaignPrice = 821;//限时活动车价
-  uint64 campaignId = 822;//限时活动id
-  string campaignName = 823;//限时活动名称
-  string resWebDetailPriceBar = 824;//限时活动详情图片
-  string resWebListItemTag = 825;//限时活动背景
-  string resH5DetailPriceBar = 826;//限时活动详情图片
-  string resH5ListItemTag = 827;//限时活动背景
-  string discountedAmount = 836;//活动补贴金额
+    uint32 seq = 800;
+    uint32 seqTmp = 810;
+    string carNo = 801;
+    string vinCode = 802;
+    string storeCity = 803;
+    string openHours = 804;
+    string testDriverServiceHours = 805;
+    string storeName = 806;
+    string storeAddress = 807;
+    string storePhone = 808;
+    uint32 carState = 809;
+    //座椅个数
+    string seatSize = 811;
+    string skipUrl = 812;//广告位跳转url
+    uint32 saleStatus = 813;//是否上架
+    string mapUrl = 814;//地图
+    string carTag = 815;//标签
+    uint32 carTagType = 816;//标签类型
+    string description = 817;//第三方车描述
+    string storeBusinessHours = 818;//门店营业时间
+    uint64 campaignStartTime = 819;//限时活动开始时间
+    uint64 campaignEndTime = 820;//限时活动结束时间
+    string campaignPrice = 821;//限时活动车价
+    uint64 campaignId = 822;//限时活动id
+    string campaignName = 823;//限时活动名称
+    string resWebDetailPriceBar = 824;//限时活动详情图片
+    string resWebListItemTag = 825;//限时活动背景
+    string resH5DetailPriceBar = 826;//限时活动详情图片
+    string resH5ListItemTag = 827;//限时活动背景
 
+    uint32 spareKey = 828;
+    uint32 serviceBook = 829;
+    uint32 principleWarranty = 830;
+    uint64 warrantyExpirationDate = 831;
+    uint64 warrantyMaxMileage = 832;
+    uint64 roadTaxExpiry = 833;
+    uint64 governmentInsuranceExpiry = 834;
 
-  uint32 spareKey = 828;
-  uint32 serviceBook = 829;
-  uint32 principleWarranty = 830;
-  uint64 warrantyExpirationDate = 831;
-  uint64 warrantyMaxMileage = 832;
-  uint64 roadTaxExpiry = 833;
-  uint64 governmentInsuranceExpiry = 834;
-
-  repeated string highLightTags = 835;//highLightTags
-
-  string licensePlate = 837;//车牌号
-
-
+    repeated string highLightTags = 835;//highLightTags
+    string discountedAmount = 836;//活动补贴金额
+    string resWebBannerDetailPageRight = 837; // 活动页面图片资源
+    string bannerBgColorLeftLabel = 838; //banner左侧label背景颜色
+    string bannerBgColorRightLabel = 839; //banner右侧label背景颜色
+    string bannerTitleColor = 840; //banner title 颜色
+    string bannerDateColor = 841; //banner date 颜色
+    string licensePlate = 842;//车牌号
 }
 
 
 
 //carlist查询条件
 message CarListCondition {
-  uint64 exp_selling_price_from = 1;//卖价
-  uint64 exp_selling_price_to = 2;
-  repeated uint64 model_id = 3; //车系
-  repeated string model_name = 4;
-  repeated uint64 brand_id = 5; //品牌
-  repeated string brand_name = 6;
-  repeated string variant = 7; //型号
-  uint32 status = 8;
-  uint32 year_from = 9;//年份
-  uint32 year_to = 10;
-  uint64 milage_from = 11;//里程
-  uint64 milage_to = 12;
-  repeated string transmission = 13;//驾驶类型 手动，自动
-  repeated string engine = 14; //排量
-  repeated uint32 color = 15;//颜色
-  repeated uint32 fuel_type = 16;/*燃油*/
-  repeated uint32 seat_type = 17;//座位数
-  repeated uint64 parking_id = 18;//停车场
-  repeated uint64 store_id = 20;//店铺
-  repeated string source = 22;//来源
-  string location = 23;//城市
-  repeated string location_id = 27;//地址id
-  string state_name = 37;//州名
-  repeated string state_id = 38;//州id
-  repeated uint64 dealer_id = 24;//经销商id
-  repeated uint32 car_type_id = 30;//汽车类型
-  uint32 recommendCount = 31; //推荐个数
-  string keywords = 32; //关键字
-  uint32 dealerType = 33;//经销商类型
+    uint64 exp_selling_price_from = 1;//卖价
+    uint64 exp_selling_price_to = 2;
+    repeated uint64 model_id = 3; //车系
+    repeated string model_name = 4;
+    repeated uint64 brand_id = 5; //品牌
+    repeated string brand_name = 6;
+    repeated string variant = 7; //型号
+    uint32 status = 8;
+    uint32 year_from = 9;//年份
+    uint32 year_to = 10;
+    uint64 milage_from = 11;//里程
+    uint64 milage_to = 12;
+    repeated string transmission = 13;//驾驶类型 手动，自动
+    repeated string engine = 14; //排量
+    repeated uint32 color = 15;//颜色
+    repeated uint32 fuel_type = 16;/*燃油*/
+    repeated uint32 seat_type = 17;//座位数
+    repeated uint64 parking_id = 18;//停车场
+    repeated uint64 store_id = 20;//店铺
+    repeated string source = 22;//来源
+    string location = 23;//城市
+    repeated string location_id = 27;//地址id
+    string state_name = 37;//州名
+    repeated string state_id = 38;//州id
+    repeated uint64 dealer_id = 24;//经销商id
+    repeated uint32 car_type_id = 30;//汽车类型
+    uint32 recommendCount = 31; //推荐个数
+    string keywords = 32; //关键字
+    uint32 dealerType = 33;//经销商类型
   //carlist排序条件
-  string sort_key = 25;
-  uint32 sort_type = 26;
-  uint32 page = 28;
-  uint32 limit = 29;
-  uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
-  uint32 isHomePage = 35;//是否是首页
-  uint64 campaignId = 36;//活动id
+    string sort_key = 25;
+    uint32 sort_type = 26;
+    uint32 page = 28;
+    uint32 limit = 29;
+    uint64 car_price = 34;//这里是单个车推荐位价格，排序使用
+    uint32 isHomePage = 35;//是否是首页
+    uint64 campaignId = 36;//活动id
 }
 
 
 // 上架车辆的id
 message CarListIdDto {
-  // 车辆id
-  repeated uint64 ids = 1;
-  // 本地化
-  string local = 3;
+    // 车辆id
+    repeated uint64 ids = 1;
+    // 本地化
+    string local = 3;
 }
 //查询单个车辆
 message CarListId {
-  // 车辆id
-  uint64 id = 1;
-  uint32 recommendCount = 2;
-  // 本地化
-  string local = 3;
+    // 车辆id
+    uint64 id = 1;
+    uint32 recommendCount = 2;
+    // 本地化
+    string local = 3;
 }
 // 上架车辆的位置
 message LocationDto {
-  // 车辆位置
-  string location = 1;
-  string location_id = 2;
+    // 车辆位置
+    string location = 1;
+    string location_id = 2;
 }
-message CarListDtoList{
-  repeated CarListDto CarListDto = 1;
+message CarListDtoList {
+    repeated CarListDto CarListDto = 1;
 }
 //返回包含推荐位的结果
 message ResultList {
-  repeated CarListDto carLists = 1;
-  repeated CarListDto recommendList = 2;
-  uint32 total = 3;
-  uint32 advertSize = 4;
+    repeated CarListDto carLists = 1;
+    repeated CarListDto recommendList = 2;
+    uint32 total = 3;
+    uint32 advertSize = 4;
 }
 
 //返回包含推荐位的车辆详情结果
 message CarListDetailResult {
-  CarListDto carList = 1;
-  repeated CarListDto recommendList = 2;
-  repeated report.ReportDamageCategoryDto report = 3;
+    CarListDto carList = 1;
+    repeated CarListDto recommendList = 2;
+    repeated report.ReportDamageCategoryDto report = 3;
 }
 
 //根据车辆No或者车牌号查询车辆信息
 message CarListNo {
-  // 车辆No
-  string CarNo = 1;
-  uint32 recommendCount = 2;
-  // 本地化
-  string local = 3;
-  string token = 4;
-  string LicensePlate = 5;
+    // 车辆No
+        string CarNo = 1;
+        uint32 recommendCount = 2;
+// 本地化
+        string local = 3;
+        string token = 4;
+        string LicensePlate = 5;
 }
 
 //保存车辆置顶排序
 message TopCarDto {
-  // 车辆Id
-  uint64 id = 1;
-  // 排序
-  uint32 tmpSeq = 3;
+    // 车辆Id
+    uint64 id = 1;
+    // 排序
+    uint32 tmpSeq = 3;
 }
 
 //保存车辆置顶排序
 message TopCarListDto {
-  // 车辆排序DTO
-  repeated TopCarDto TopCarListDto = 1;
+    // 车辆排序DTO
+    repeated TopCarDto TopCarListDto = 1;
 
 }
