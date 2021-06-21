@@ -142,6 +142,15 @@ message CarListDto {
     string resWebListItemTag = 825;//限时活动背景
     string resH5DetailPriceBar = 826;//限时活动详情图片
     string resH5ListItemTag = 827;//限时活动背景
+
+    uint32 spareKey = 828;
+    uint32 serviceBook = 829;
+    uint32 principleWarranty = 830;
+    uint64 warrantyExpirationDate = 831;
+    uint64 warrantyMaxMileage = 832;
+    uint64 roadTaxExpiry = 833;
+    uint64 governmentInsuranceExpiry = 834;
+
     repeated string highLightTags = 835;//highLightTags
     string discountedAmount = 836;//活动补贴金额
     string resWebBannerDetailPageRight = 837; // 活动页面图片资源

@@ -63,6 +63,8 @@ type ReportService interface {
 	// 根据车辆id完成整备
 	// 返回：common.Response -> Data = nil
 	CompleteRecondition(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取所有检测点
+	GetAllInspectionPoint(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type reportService struct {
@@ -137,6 +139,16 @@ func (c *reportService) CompleteRecondition(ctx context.Context, in *common.IdDt
 	return out, nil
 }
 
+func (c *reportService) GetAllInspectionPoint(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Report.GetAllInspectionPoint", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Report service
 
 type ReportHandler interface {
@@ -160,6 +172,8 @@ type ReportHandler interface {
 	// 根据车辆id完成整备
 	// 返回：common.Response -> Data = nil
 	CompleteRecondition(context.Context, *common.IdDto, *common.Response) error
+	// 获取所有检测点
+	GetAllInspectionPoint(context.Context, *common.EmptyDto, *common.Response) error
 }
 
 func RegisterReportHandler(s server.Server, hdlr ReportHandler, opts ...server.HandlerOption) error {
@@ -170,6 +184,7 @@ func RegisterReportHandler(s server.Server, hdlr ReportHandler, opts ...server.H
 		BindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
 		UnbindPointPhotos(ctx context.Context, in *BindPointPhotoDto, out *common.Response) error
 		CompleteRecondition(ctx context.Context, in *common.IdDto, out *common.Response) error
+		GetAllInspectionPoint(ctx context.Context, in *common.EmptyDto, out *common.Response) error
 	}
 	type Report struct {
 		report
@@ -204,4 +219,8 @@ func (h *reportHandler) UnbindPointPhotos(ctx context.Context, in *BindPointPhot
 
 func (h *reportHandler) CompleteRecondition(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.ReportHandler.CompleteRecondition(ctx, in, out)
+}
+
+func (h *reportHandler) GetAllInspectionPoint(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
+	return h.ReportHandler.GetAllInspectionPoint(ctx, in, out)
 }
