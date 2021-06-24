@@ -30,6 +30,9 @@ service Report {
   // 根据车辆id完成整备
   // 返回：common.Response -> Data = nil
   rpc CompleteRecondition(common.IdDto) returns (common.Response);
+
+  // 获取所有检测点
+  rpc GetAllInspectionPoint(common.EmptyDto) returns (common.Response);
 }
 
 // report的详细信息
@@ -176,4 +179,8 @@ message CarDto {
   string location = 701;
   // 城市地区id
   uint64 locationId = 702;
+}
+
+message InspectionPointInfo {
+  map<string, string> result = 1;
 }
