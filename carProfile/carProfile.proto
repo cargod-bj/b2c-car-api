@@ -10,6 +10,28 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carProfile";
   获取车辆服务
  */
 service CarProfile {
-  // 添加指定车辆，返回 data：CarDto 类型
+  // 解析车辆资料
   rpc Analysis(common.EmptyDto) returns (common.Response) {}
+  // 获取车辆资料
+  rpc Detail(CarProfileCond) returns (common.Response) {}
+}
+
+message CarProfileCond {
+  string carModel = 1;
+}
+
+message CarProfileResp {
+  uint64 id = 1;
+  string brand = 2;
+  string model = 3;
+  string variant = 4;
+  string year = 5;
+  string engine = 6;
+  string transmission = 7;
+  string bodyType = 8;
+  string uniqueCode = 9;
+  string profile = 10;
+  int64 typicalId = 11;
+  uint64 createTime = 12;
+  uint64 updateTime = 13;
 }

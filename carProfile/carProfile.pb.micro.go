@@ -43,8 +43,10 @@ func NewCarProfileEndpoints() []*api.Endpoint {
 // Client API for CarProfile service
 
 type CarProfileService interface {
-	// 添加指定车辆，返回 data：CarDto 类型
+	// 解析车辆资料
 	Analysis(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取车辆资料
+	Detail(ctx context.Context, in *CarProfileCond, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carProfileService struct {
@@ -69,16 +71,29 @@ func (c *carProfileService) Analysis(ctx context.Context, in *common.EmptyDto, o
 	return out, nil
 }
 
+func (c *carProfileService) Detail(ctx context.Context, in *CarProfileCond, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarProfile.Detail", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarProfile service
 
 type CarProfileHandler interface {
-	// 添加指定车辆，返回 data：CarDto 类型
+	// 解析车辆资料
 	Analysis(context.Context, *common.EmptyDto, *common.Response) error
+	// 获取车辆资料
+	Detail(context.Context, *CarProfileCond, *common.Response) error
 }
 
 func RegisterCarProfileHandler(s server.Server, hdlr CarProfileHandler, opts ...server.HandlerOption) error {
 	type carProfile interface {
 		Analysis(ctx context.Context, in *common.EmptyDto, out *common.Response) error
+		Detail(ctx context.Context, in *CarProfileCond, out *common.Response) error
 	}
 	type CarProfile struct {
 		carProfile
@@ -93,4 +108,8 @@ type carProfileHandler struct {
 
 func (h *carProfileHandler) Analysis(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
 	return h.CarProfileHandler.Analysis(ctx, in, out)
+}
+
+func (h *carProfileHandler) Detail(ctx context.Context, in *CarProfileCond, out *common.Response) error {
+	return h.CarProfileHandler.Detail(ctx, in, out)
 }
