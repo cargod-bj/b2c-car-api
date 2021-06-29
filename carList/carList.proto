@@ -11,35 +11,38 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carList";
   获取上架车辆服务
  */
 service CarList {
-    // 添加指定车辆，返回 data：nil
-    rpc Add(CarListDto) returns (common.Response) {}
-    // 根据车辆id删除车辆，返回 data：nil
-    rpc Delete(CarListIdDto) returns (common.Response) {}
-    // 更新指定车辆，返回 data：nil
-    rpc Update(CarListDto) returns (common.Response) {}
-    // 获取指定id的车辆（多个）：返回 data: CarListDto
-    rpc Get(CarListIdDto) returns (common.Response) {}
-    //获取车辆列表信息: 返回data：common.PagedList
-    rpc List(common.Page) returns (common.Response) {}
-    //根据条件查询carlist
-    rpc ListCondition(CarListCondition) returns (common.Response) {}
-    //根据查询carlist的location
-    rpc ListLocation(common.Page) returns (common.Response) {}
-    // 获取指定id的车辆：返回 data: CarListDto
-    rpc GetCarListDetail(CarListNo) returns (common.Response) {}
-    // 查询置顶车辆信息：返回 data: CarListDtoList
-    rpc GetTopCarList(LocationDto) returns (common.Response) {}
-    // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
-    rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
-    // 保存车辆置顶排序
-    rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
-    // 刷新车辆置顶排序
-    rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
+  // 添加指定车辆，返回 data：nil
+  rpc Add(CarListDto) returns (common.Response) {}
+  // 根据车辆id删除车辆，返回 data：nil
+  rpc Delete(CarListIdDto) returns (common.Response) {}
+  // 更新指定车辆，返回 data：nil
+  rpc Update(CarListDto) returns (common.Response) {}
+  // 获取指定id的车辆（多个）：返回 data: CarListDto
+  rpc Get(CarListIdDto) returns (common.Response) {}
+  //获取车辆列表信息: 返回data：common.PagedList
+  rpc List(common.Page) returns (common.Response){}
+  //根据条件查询carlist
+  rpc ListCondition(CarListCondition) returns (common.Response){}
+  //根据查询carlist的location
+  rpc ListLocation(common.Page) returns (common.Response){}
+  // 获取指定id的车辆：返回 data: CarListDto
+  rpc GetCarListDetail(CarListNo) returns (common.Response) {}
+  // 查询置顶车辆信息：返回 data: CarListDtoList
+  rpc GetTopCarList(LocationDto) returns (common.Response) {}
+  // 获取车辆No模糊搜索车辆信息：返回 data: CarListDtoList
+  rpc GetCarListByNoFuzzy(CarListNo) returns (common.Response) {}
+  // 保存车辆置顶排序
+  rpc SaveTopCarList(TopCarListDto) returns (common.Response) {}
+  // 刷新车辆置顶排序
+  rpc RefreshTopCarList(common.EmptyDto) returns (common.Response) {}
+  rpc GetReportByCarId(CarReqIds) returns (common.Response) {}
+    //提供给第三方wapCar使用
+    rpc ListWapCarCondition(CarListCondition) returns (common.Response){}
+
 }
 
 // 新增上架车辆dto
 message CarListDto {
-
     // 车辆id，如果为新增，则此字段为0，否则为车辆id
     uint64 id = 1;
     //车辆在car表里的id
@@ -268,4 +271,28 @@ message TopCarListDto {
     // 车辆排序DTO
     repeated TopCarDto TopCarListDto = 1;
 
+}
+
+message CarReqIds {
+  //carIds
+  repeated uint64 CarIds = 1;
+}
+
+//返回质检报告
+message CarReport {
+  map<uint64, CarDetailReport> CarReportList = 1;
+  map<uint64, CarDetailImg> CarDetailInfoImg = 2;
+  map<uint64, CarDetailOutImg> CarOutImg = 3;
+}
+
+message CarDetailReport {
+  repeated report.ReportDamageCategoryDto report = 1;
+}
+
+message CarDetailImg {
+  repeated string InnerImage = 1;
+
+}
+message CarDetailOutImg {
+  repeated string OuterImage = 2;
 }

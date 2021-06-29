@@ -68,6 +68,9 @@ type CarListService interface {
 	SaveTopCarList(ctx context.Context, in *TopCarListDto, opts ...client.CallOption) (*common.Response, error)
 	// 刷新车辆置顶排序
 	RefreshTopCarList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
+	GetReportByCarId(ctx context.Context, in *CarReqIds, opts ...client.CallOption) (*common.Response, error)
+	//提供给第三方wapCar使用
+	ListWapCarCondition(ctx context.Context, in *CarListCondition, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carListService struct {
@@ -202,6 +205,26 @@ func (c *carListService) RefreshTopCarList(ctx context.Context, in *common.Empty
 	return out, nil
 }
 
+func (c *carListService) GetReportByCarId(ctx context.Context, in *CarReqIds, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.GetReportByCarId", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carListService) ListWapCarCondition(ctx context.Context, in *CarListCondition, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarList.ListWapCarCondition", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarList service
 
 type CarListHandler interface {
@@ -229,6 +252,9 @@ type CarListHandler interface {
 	SaveTopCarList(context.Context, *TopCarListDto, *common.Response) error
 	// 刷新车辆置顶排序
 	RefreshTopCarList(context.Context, *common.EmptyDto, *common.Response) error
+	GetReportByCarId(context.Context, *CarReqIds, *common.Response) error
+	//提供给第三方wapCar使用
+	ListWapCarCondition(context.Context, *CarListCondition, *common.Response) error
 }
 
 func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server.HandlerOption) error {
@@ -245,6 +271,8 @@ func RegisterCarListHandler(s server.Server, hdlr CarListHandler, opts ...server
 		GetCarListByNoFuzzy(ctx context.Context, in *CarListNo, out *common.Response) error
 		SaveTopCarList(ctx context.Context, in *TopCarListDto, out *common.Response) error
 		RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
+		GetReportByCarId(ctx context.Context, in *CarReqIds, out *common.Response) error
+		ListWapCarCondition(ctx context.Context, in *CarListCondition, out *common.Response) error
 	}
 	type CarList struct {
 		carList
@@ -303,4 +331,12 @@ func (h *carListHandler) SaveTopCarList(ctx context.Context, in *TopCarListDto, 
 
 func (h *carListHandler) RefreshTopCarList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
 	return h.CarListHandler.RefreshTopCarList(ctx, in, out)
+}
+
+func (h *carListHandler) GetReportByCarId(ctx context.Context, in *CarReqIds, out *common.Response) error {
+	return h.CarListHandler.GetReportByCarId(ctx, in, out)
+}
+
+func (h *carListHandler) ListWapCarCondition(ctx context.Context, in *CarListCondition, out *common.Response) error {
+	return h.CarListHandler.ListWapCarCondition(ctx, in, out)
 }
