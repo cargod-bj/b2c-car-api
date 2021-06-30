@@ -163,6 +163,8 @@ message CarListDto {
     string bannerTitleColor = 840; //banner title 颜色
     string bannerDateColor = 841; //banner date 颜色
     string licensePlate = 842;//车牌号
+    string state_name = 843;//州名
+    string state_id = 844;//州id
 }
 
 
