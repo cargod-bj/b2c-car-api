@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package carPurchaseProto;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseProto";
+
+service CarPurchase {
+  rpc GetCarByInspection(InspectionReq) returns (common.Response) {};
+}
+
+message InspectionReq {
+  uint64 inspectionId = 1;
+}
