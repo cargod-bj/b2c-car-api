@@ -198,6 +198,8 @@ message CarCampaignDetail {
   string cardDiscountWordsColor = 22;
   // 卡片图片
   string cardDiscountTag = 23;
+  // 卡片折扣文字背景颜色
+  string cardDiscountWordsBackgroundColor = 24;
 }
 
 // 活动车辆
