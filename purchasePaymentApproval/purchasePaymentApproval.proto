@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package car;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/purchasePaymentApproval";
+
+/*
+  采购付款审批服务
+ */
+service PurchasePaymentApproval {
+    // 扫描生成审批记录数据
+    rpc Scan(ApprovalScanDto) returns (common.Response) {}
+}
+
+message ApprovalScanDto {
+}
