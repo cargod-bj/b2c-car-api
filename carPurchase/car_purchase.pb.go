@@ -80,14 +80,14 @@ type CreateC2BReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InspectionId  uint64 `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`  //C2B唯一标识
-	PurchaseType  uint32 `protobuf:"varint,2,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`  //采购类型
-	PurchasePrice string `protobuf:"bytes,3,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"` //采购价格
-	HandingFee    string `protobuf:"bytes,4,opt,name=handingFee,proto3" json:"handingFee,omitempty"`       //手续费
-	State         uint32 `protobuf:"varint,5,opt,name=state,proto3" json:"state,omitempty"`                //州
-	City          uint32 `protobuf:"varint,6,opt,name=city,proto3" json:"city,omitempty"`                  //市
-	Address       string `protobuf:"bytes,7,opt,name=address,proto3" json:"address,omitempty"`             //地址
-	OperatorId    uint64 `protobuf:"varint,8,opt,name=operatorId,proto3" json:"operatorId,omitempty"`      //操作人
+	InspectionId  uint64  `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`    //C2B唯一标识
+	PurchaseType  uint32  `protobuf:"varint,2,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`    //采购类型
+	PurchasePrice float64 `protobuf:"fixed64,3,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"` //采购价格
+	HandingFee    float64 `protobuf:"fixed64,4,opt,name=handingFee,proto3" json:"handingFee,omitempty"`       //手续费
+	State         uint32  `protobuf:"varint,5,opt,name=state,proto3" json:"state,omitempty"`                  //州
+	City          uint32  `protobuf:"varint,6,opt,name=city,proto3" json:"city,omitempty"`                    //市
+	Address       string  `protobuf:"bytes,7,opt,name=address,proto3" json:"address,omitempty"`               //地址
+	OperatorId    uint64  `protobuf:"varint,8,opt,name=operatorId,proto3" json:"operatorId,omitempty"`        //操作人
 }
 
 func (x *CreateC2BReq) Reset() {
@@ -136,18 +136,18 @@ func (x *CreateC2BReq) GetPurchaseType() uint32 {
 	return 0
 }
 
-func (x *CreateC2BReq) GetPurchasePrice() string {
+func (x *CreateC2BReq) GetPurchasePrice() float64 {
 	if x != nil {
 		return x.PurchasePrice
 	}
-	return ""
+	return 0
 }
 
-func (x *CreateC2BReq) GetHandingFee() string {
+func (x *CreateC2BReq) GetHandingFee() float64 {
 	if x != nil {
 		return x.HandingFee
 	}
-	return ""
+	return 0
 }
 
 func (x *CreateC2BReq) GetState() uint32 {
@@ -198,9 +198,9 @@ var file_carPurchase_car_purchase_proto_rawDesc = []byte{
 	0x61, 0x73, 0x65, 0x54, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0c, 0x70,
 	0x75, 0x72, 0x63, 0x68, 0x61, 0x73, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x70,
 	0x75, 0x72, 0x63, 0x68, 0x61, 0x73, 0x65, 0x50, 0x72, 0x69, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0d, 0x70, 0x75, 0x72, 0x63, 0x68, 0x61, 0x73, 0x65, 0x50, 0x72, 0x69, 0x63,
+	0x28, 0x01, 0x52, 0x0d, 0x70, 0x75, 0x72, 0x63, 0x68, 0x61, 0x73, 0x65, 0x50, 0x72, 0x69, 0x63,
 	0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x68, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x46, 0x65, 0x65, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x68, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x46, 0x65,
+	0x04, 0x20, 0x01, 0x28, 0x01, 0x52, 0x0a, 0x68, 0x61, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x46, 0x65,
 	0x65, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0d,
 	0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x69, 0x74, 0x79, 0x18,
 	0x06, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x63, 0x69, 0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x61,

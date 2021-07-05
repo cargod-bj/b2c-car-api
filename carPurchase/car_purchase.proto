@@ -21,8 +21,8 @@ message InspectionReq {
 message CreateC2BReq {
   uint64 inspectionId = 1;  //C2B唯一标识
   uint32 purchaseType = 2;  //采购类型
-  string purchasePrice = 3; //采购价格
-  string handingFee = 4;    //手续费
+  double purchasePrice = 3; //采购价格
+  double handingFee = 4;    //手续费
   uint32 state = 5;         //州
   uint32 city = 6;          //市
   string address = 7;       //地址
