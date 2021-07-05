@@ -7,9 +7,24 @@ import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseProto";
 
 service CarPurchase {
+  // 用inspectionId查询车辆
   rpc GetCarByInspection(InspectionReq) returns (common.Response) {};
+  // 创建C2B来的采购单
+  rpc CreateC2B(CreateC2BReq) returns (common.Response) {};
 }
 
+//用inspectionId查询车辆请求参数
 message InspectionReq {
   uint64 inspectionId = 1;
+}
+//创建C2B来的采购单请求参数
+message CreateC2BReq {
+  uint64 inspectionId = 1;  //C2B唯一标识
+  uint32 purchaseType = 2;  //采购类型
+  string purchasePrice = 3; //采购价格
+  string handingFee = 4;    //手续费
+  uint32 state = 5;         //州
+  uint32 city = 6;          //市
+  string address = 7;       //地址
+  uint64 operatorId = 8;    //操作人
 }

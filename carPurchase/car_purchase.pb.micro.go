@@ -43,7 +43,10 @@ func NewCarPurchaseEndpoints() []*api.Endpoint {
 // Client API for CarPurchase service
 
 type CarPurchaseService interface {
+	// 用inspectionId查询车辆
 	GetCarByInspection(ctx context.Context, in *InspectionReq, opts ...client.CallOption) (*common.Response, error)
+	// 创建C2B来的采购单
+	CreateC2B(ctx context.Context, in *CreateC2BReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carPurchaseService struct {
@@ -68,15 +71,29 @@ func (c *carPurchaseService) GetCarByInspection(ctx context.Context, in *Inspect
 	return out, nil
 }
 
+func (c *carPurchaseService) CreateC2B(ctx context.Context, in *CreateC2BReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchase.CreateC2B", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarPurchase service
 
 type CarPurchaseHandler interface {
+	// 用inspectionId查询车辆
 	GetCarByInspection(context.Context, *InspectionReq, *common.Response) error
+	// 创建C2B来的采购单
+	CreateC2B(context.Context, *CreateC2BReq, *common.Response) error
 }
 
 func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts ...server.HandlerOption) error {
 	type carPurchase interface {
 		GetCarByInspection(ctx context.Context, in *InspectionReq, out *common.Response) error
+		CreateC2B(ctx context.Context, in *CreateC2BReq, out *common.Response) error
 	}
 	type CarPurchase struct {
 		carPurchase
@@ -91,4 +108,8 @@ type carPurchaseHandler struct {
 
 func (h *carPurchaseHandler) GetCarByInspection(ctx context.Context, in *InspectionReq, out *common.Response) error {
 	return h.CarPurchaseHandler.GetCarByInspection(ctx, in, out)
+}
+
+func (h *carPurchaseHandler) CreateC2B(ctx context.Context, in *CreateC2BReq, out *common.Response) error {
+	return h.CarPurchaseHandler.CreateC2B(ctx, in, out)
 }
