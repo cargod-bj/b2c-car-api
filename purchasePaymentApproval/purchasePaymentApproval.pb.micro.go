@@ -44,7 +44,8 @@ func NewPurchasePaymentApprovalEndpoints() []*api.Endpoint {
 
 type PurchasePaymentApprovalService interface {
 	// 扫描生成审批记录数据
-	Scan(ctx context.Context, in *ApprovalScanDto, opts ...client.CallOption) (*common.Response, error)
+	Scan(ctx context.Context, in *ApprovalScanReq, opts ...client.CallOption) (*common.Response, error)
+	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
 }
 
 type purchasePaymentApprovalService struct {
@@ -59,8 +60,18 @@ func NewPurchasePaymentApprovalService(name string, c client.Client) PurchasePay
 	}
 }
 
-func (c *purchasePaymentApprovalService) Scan(ctx context.Context, in *ApprovalScanDto, opts ...client.CallOption) (*common.Response, error) {
+func (c *purchasePaymentApprovalService) Scan(ctx context.Context, in *ApprovalScanReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.Scan", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *purchasePaymentApprovalService) List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.List", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -73,12 +84,14 @@ func (c *purchasePaymentApprovalService) Scan(ctx context.Context, in *ApprovalS
 
 type PurchasePaymentApprovalHandler interface {
 	// 扫描生成审批记录数据
-	Scan(context.Context, *ApprovalScanDto, *common.Response) error
+	Scan(context.Context, *ApprovalScanReq, *common.Response) error
+	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
 }
 
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
 	type purchasePaymentApproval interface {
-		Scan(ctx context.Context, in *ApprovalScanDto, out *common.Response) error
+		Scan(ctx context.Context, in *ApprovalScanReq, out *common.Response) error
+		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
 	}
 	type PurchasePaymentApproval struct {
 		purchasePaymentApproval
@@ -91,6 +104,10 @@ type purchasePaymentApprovalHandler struct {
 	PurchasePaymentApprovalHandler
 }
 
-func (h *purchasePaymentApprovalHandler) Scan(ctx context.Context, in *ApprovalScanDto, out *common.Response) error {
+func (h *purchasePaymentApprovalHandler) Scan(ctx context.Context, in *ApprovalScanReq, out *common.Response) error {
 	return h.PurchasePaymentApprovalHandler.Scan(ctx, in, out)
+}
+
+func (h *purchasePaymentApprovalHandler) List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error {
+	return h.PurchasePaymentApprovalHandler.List(ctx, in, out)
 }
