@@ -8,13 +8,13 @@ option go_package = "github.com/cargod-bj/b2c-car-api/uploadPurchaseFile";
 
 
 service UploadPurchaseFile {
-  // 保存文件上传地址到数据库
-  rpc SaveAdress(InspectionReq) returns (common.Response) {};
+  // save fileadress to mysql service
+  rpc SaveAdress(SaveAdressReq) returns (common.Response) {};
 }
 
-//用inspectionId查询车辆请求参数
-message InspectionReq {
-    uint64 userId = 1;
+//save PurchaseFile req
+message SaveAdressReq {
+    uint64 pOrderId= 1;
     string salesUrl = 2;
     string othersUrl = 3;
 }

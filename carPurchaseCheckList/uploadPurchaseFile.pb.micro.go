@@ -43,8 +43,8 @@ func NewUploadPurchaseFileEndpoints() []*api.Endpoint {
 // Client API for UploadPurchaseFile service
 
 type UploadPurchaseFileService interface {
-	// 保存文件上传地址到数据库
-	SaveAdress(ctx context.Context, in *InspectionReq, opts ...client.CallOption) (*common.Response, error)
+	// save fileadress to mysql service
+	SaveAdress(ctx context.Context, in *SaveAdressReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type uploadPurchaseFileService struct {
@@ -59,7 +59,7 @@ func NewUploadPurchaseFileService(name string, c client.Client) UploadPurchaseFi
 	}
 }
 
-func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *InspectionReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *SaveAdressReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "UploadPurchaseFile.SaveAdress", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -72,13 +72,13 @@ func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *Inspecti
 // Server API for UploadPurchaseFile service
 
 type UploadPurchaseFileHandler interface {
-	// 保存文件上传地址到数据库
-	SaveAdress(context.Context, *InspectionReq, *common.Response) error
+	// save fileadress to mysql service
+	SaveAdress(context.Context, *SaveAdressReq, *common.Response) error
 }
 
 func RegisterUploadPurchaseFileHandler(s server.Server, hdlr UploadPurchaseFileHandler, opts ...server.HandlerOption) error {
 	type uploadPurchaseFile interface {
-		SaveAdress(ctx context.Context, in *InspectionReq, out *common.Response) error
+		SaveAdress(ctx context.Context, in *SaveAdressReq, out *common.Response) error
 	}
 	type UploadPurchaseFile struct {
 		uploadPurchaseFile
@@ -91,6 +91,6 @@ type uploadPurchaseFileHandler struct {
 	UploadPurchaseFileHandler
 }
 
-func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *InspectionReq, out *common.Response) error {
+func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *SaveAdressReq, out *common.Response) error {
 	return h.UploadPurchaseFileHandler.SaveAdress(ctx, in, out)
 }
