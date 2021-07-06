@@ -11,6 +11,8 @@ service CarPurchase {
   rpc GetCarByInspection(InspectionReq) returns (common.Response) {};
   // 创建C2B来的采购单
   rpc CreateC2B(CreateC2BReq) returns (common.Response) {};
+  // 创建采购单
+  rpc Create(CreateReq) returns (common.Response) {};
 }
 
 //用inspectionId查询车辆请求参数
@@ -27,4 +29,23 @@ message CreateC2BReq {
   uint32 city = 6;          //市
   string address = 7;       //地址
   uint64 operatorId = 8;    //操作人
+}
+
+//创建采购单请求参数
+message CreateReq {
+  uint32 carSource = 1;   //来源
+  uint32 brandId = 2;
+  uint32 modelId = 3;
+  uint32 year = 4;
+  uint32 variantId = 5;
+  string carEngine = 6;
+  uint32 carTransmission = 7;
+  string plateNumber = 8;
+  uint32 purchaseType = 9;
+  string purchasePrice = 10;
+  string handingFee = 11;
+  uint32 state = 12;
+  uint32 city = 13;
+  string address = 14;
+  uint64 operatorId = 15;
 }
