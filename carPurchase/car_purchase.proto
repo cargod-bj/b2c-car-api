@@ -13,6 +13,10 @@ service CarPurchase {
   rpc CreateC2B(CreateC2BReq) returns (common.Response) {};
   // 创建采购单
   rpc Create(CreateReq) returns (common.Response) {};
+  // 获取采购单列表
+  rpc List(ListReq) returns (common.Response) {};
+  // 采购单详情
+  rpc Detail(common.IdDto) returns (common.Response) {};
 }
 
 //用inspectionId查询车辆请求参数
@@ -48,4 +52,57 @@ message CreateReq {
   uint32 city = 13;
   string address = 14;
   uint64 operatorId = 15;
+}
+
+message ListReq {
+  common.Page page = 1;
+  string purchaseNo = 2;
+  uint32 purchaseStatus = 3;
+  uint32 carSource = 4;
+  string carNo = 5;
+  uint64 inspectionId = 6;
+  string plateNumber = 7;
+  uint32 purchaseType = 8;
+  uint64 createdTimeBegin = 9;
+  uint64 createdTimeEnd = 10;
+  uint32 applyStatus = 11;
+  uint32 uploadResult = 12;
+  uint32 checklistResult = 13;
+}
+
+message PurchaseDto {
+  uint64 id = 1;
+  string purchaseNo = 2;
+  string carNo = 3;
+  uint64 inspectionId = 4;
+  uint32 carSource = 5;
+  uint64 brandId = 6;
+  uint64 modelId = 7;
+  uint32 year = 8;
+  uint64 variantId = 9;
+  string carEngine = 10;
+  uint32 carTransmission = 11;
+  string plateNumber = 12;
+  uint32 purchaseType = 13;
+  string purchasePrice = 14;
+  string handingFee = 15;
+  uint32 state = 16;
+  uint32 city = 17;
+  string address = 18;
+  uint64 createTime = 19;
+  uint64 createBy = 20;
+  uint64 updateTime = 21;
+  uint32 purchaseStatus = 22;
+  uint32 rejectedReason = 23;
+  string remark = 24;
+  uint64 collectionDate = 25;
+  uint32 uploadResult = 26;
+  uint32 checklistResult = 27;
+}
+
+message PurchaseDtoList{
+  repeated PurchaseDto PurchaseDtoList = 1;
+  uint32 pageNo = 2;
+  uint32 pageSize = 3;
+  uint64 total = 5;
 }

@@ -49,6 +49,10 @@ type CarPurchaseService interface {
 	CreateC2B(ctx context.Context, in *CreateC2BReq, opts ...client.CallOption) (*common.Response, error)
 	// 创建采购单
 	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
+	// 获取采购单列表
+	List(ctx context.Context, in *ListReq, opts ...client.CallOption) (*common.Response, error)
+	// 采购单详情
+	Detail(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carPurchaseService struct {
@@ -93,6 +97,26 @@ func (c *carPurchaseService) Create(ctx context.Context, in *CreateReq, opts ...
 	return out, nil
 }
 
+func (c *carPurchaseService) List(ctx context.Context, in *ListReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchase.List", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carPurchaseService) Detail(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchase.Detail", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarPurchase service
 
 type CarPurchaseHandler interface {
@@ -102,6 +126,10 @@ type CarPurchaseHandler interface {
 	CreateC2B(context.Context, *CreateC2BReq, *common.Response) error
 	// 创建采购单
 	Create(context.Context, *CreateReq, *common.Response) error
+	// 获取采购单列表
+	List(context.Context, *ListReq, *common.Response) error
+	// 采购单详情
+	Detail(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts ...server.HandlerOption) error {
@@ -109,6 +137,8 @@ func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts .
 		GetCarByInspection(ctx context.Context, in *InspectionReq, out *common.Response) error
 		CreateC2B(ctx context.Context, in *CreateC2BReq, out *common.Response) error
 		Create(ctx context.Context, in *CreateReq, out *common.Response) error
+		List(ctx context.Context, in *ListReq, out *common.Response) error
+		Detail(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type CarPurchase struct {
 		carPurchase
@@ -131,4 +161,12 @@ func (h *carPurchaseHandler) CreateC2B(ctx context.Context, in *CreateC2BReq, ou
 
 func (h *carPurchaseHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
 	return h.CarPurchaseHandler.Create(ctx, in, out)
+}
+
+func (h *carPurchaseHandler) List(ctx context.Context, in *ListReq, out *common.Response) error {
+	return h.CarPurchaseHandler.List(ctx, in, out)
+}
+
+func (h *carPurchaseHandler) Detail(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.CarPurchaseHandler.Detail(ctx, in, out)
 }
