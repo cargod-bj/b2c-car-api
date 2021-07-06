@@ -44,7 +44,7 @@ func NewUploadPurchaseFileEndpoints() []*api.Endpoint {
 
 type UploadPurchaseFileService interface {
 	// save fileadress to mysql service
-	SaveAdress(ctx context.Context, in *SaveAdressReq, opts ...client.CallOption) (*common.Response, error)
+	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type uploadPurchaseFileService struct {
@@ -59,7 +59,7 @@ func NewUploadPurchaseFileService(name string, c client.Client) UploadPurchaseFi
 	}
 }
 
-func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *SaveAdressReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "UploadPurchaseFile.SaveAdress", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -73,12 +73,12 @@ func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *SaveAdre
 
 type UploadPurchaseFileHandler interface {
 	// save fileadress to mysql service
-	SaveAdress(context.Context, *SaveAdressReq, *common.Response) error
+	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
 }
 
 func RegisterUploadPurchaseFileHandler(s server.Server, hdlr UploadPurchaseFileHandler, opts ...server.HandlerOption) error {
 	type uploadPurchaseFile interface {
-		SaveAdress(ctx context.Context, in *SaveAdressReq, out *common.Response) error
+		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
 	}
 	type UploadPurchaseFile struct {
 		uploadPurchaseFile
@@ -91,6 +91,6 @@ type uploadPurchaseFileHandler struct {
 	UploadPurchaseFileHandler
 }
 
-func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *SaveAdressReq, out *common.Response) error {
+func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error {
 	return h.UploadPurchaseFileHandler.SaveAdress(ctx, in, out)
 }
