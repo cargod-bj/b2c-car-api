@@ -47,6 +47,8 @@ type CarPurchaseService interface {
 	GetCarByInspection(ctx context.Context, in *InspectionReq, opts ...client.CallOption) (*common.Response, error)
 	// 创建C2B来的采购单
 	CreateC2B(ctx context.Context, in *CreateC2BReq, opts ...client.CallOption) (*common.Response, error)
+	// 创建采购单
+	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carPurchaseService struct {
@@ -81,6 +83,16 @@ func (c *carPurchaseService) CreateC2B(ctx context.Context, in *CreateC2BReq, op
 	return out, nil
 }
 
+func (c *carPurchaseService) Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchase.Create", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarPurchase service
 
 type CarPurchaseHandler interface {
@@ -88,12 +100,15 @@ type CarPurchaseHandler interface {
 	GetCarByInspection(context.Context, *InspectionReq, *common.Response) error
 	// 创建C2B来的采购单
 	CreateC2B(context.Context, *CreateC2BReq, *common.Response) error
+	// 创建采购单
+	Create(context.Context, *CreateReq, *common.Response) error
 }
 
 func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts ...server.HandlerOption) error {
 	type carPurchase interface {
 		GetCarByInspection(ctx context.Context, in *InspectionReq, out *common.Response) error
 		CreateC2B(ctx context.Context, in *CreateC2BReq, out *common.Response) error
+		Create(ctx context.Context, in *CreateReq, out *common.Response) error
 	}
 	type CarPurchase struct {
 		carPurchase
@@ -112,4 +127,8 @@ func (h *carPurchaseHandler) GetCarByInspection(ctx context.Context, in *Inspect
 
 func (h *carPurchaseHandler) CreateC2B(ctx context.Context, in *CreateC2BReq, out *common.Response) error {
 	return h.CarPurchaseHandler.CreateC2B(ctx, in, out)
+}
+
+func (h *carPurchaseHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
+	return h.CarPurchaseHandler.Create(ctx, in, out)
 }
