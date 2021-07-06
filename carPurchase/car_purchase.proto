@@ -55,19 +55,20 @@ message CreateReq {
 }
 
 message ListReq {
-  common.Page page = 1;
-  string purchaseNo = 2;
-  uint32 purchaseStatus = 3;
-  uint32 carSource = 4;
-  string carNo = 5;
-  uint64 inspectionId = 6;
-  string plateNumber = 7;
-  uint32 purchaseType = 8;
-  uint64 createdTimeBegin = 9;
-  uint64 createdTimeEnd = 10;
-  uint32 applyStatus = 11;
-  uint32 uploadResult = 12;
-  uint32 checklistResult = 13;
+  uint32 pageNo = 1;
+  uint32 pageSize = 2;
+  string purchaseNo = 3;
+  uint32 purchaseStatus = 4;
+  uint32 carSource = 5;
+  string carNo = 6;
+  uint64 inspectionId = 7;
+  string plateNumber = 8;
+  uint32 purchaseType = 9;
+  uint64 createdTimeBegin = 10;
+  uint64 createdTimeEnd = 11;
+  uint32 applyStatus = 12;
+  uint32 uploadResult = 13;
+  uint32 checklistResult = 14;
 }
 
 message PurchaseDto {
