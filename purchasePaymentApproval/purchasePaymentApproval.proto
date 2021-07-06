@@ -13,6 +13,7 @@ service PurchasePaymentApproval {
     // 扫描生成审批记录数据
     rpc Scan(ApprovalScanReq) returns (common.Response) {}
     rpc List(ApprovalApprovalCondition) returns (common.Response) {}
+    rpc Apply(common.IdDto) returns (common.Response) {}
 }
 
 message ApprovalScanReq {

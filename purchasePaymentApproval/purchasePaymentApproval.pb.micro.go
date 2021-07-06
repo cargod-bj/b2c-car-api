@@ -46,6 +46,7 @@ type PurchasePaymentApprovalService interface {
 	// 扫描生成审批记录数据
 	Scan(ctx context.Context, in *ApprovalScanReq, opts ...client.CallOption) (*common.Response, error)
 	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
+	Apply(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type purchasePaymentApprovalService struct {
@@ -80,18 +81,30 @@ func (c *purchasePaymentApprovalService) List(ctx context.Context, in *ApprovalA
 	return out, nil
 }
 
+func (c *purchasePaymentApprovalService) Apply(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.Apply", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for PurchasePaymentApproval service
 
 type PurchasePaymentApprovalHandler interface {
 	// 扫描生成审批记录数据
 	Scan(context.Context, *ApprovalScanReq, *common.Response) error
 	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
+	Apply(context.Context, *common.IdDto, *common.Response) error
 }
 
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
 	type purchasePaymentApproval interface {
 		Scan(ctx context.Context, in *ApprovalScanReq, out *common.Response) error
 		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
+		Apply(ctx context.Context, in *common.IdDto, out *common.Response) error
 	}
 	type PurchasePaymentApproval struct {
 		purchasePaymentApproval
@@ -110,4 +123,8 @@ func (h *purchasePaymentApprovalHandler) Scan(ctx context.Context, in *ApprovalS
 
 func (h *purchasePaymentApprovalHandler) List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error {
 	return h.PurchasePaymentApprovalHandler.List(ctx, in, out)
+}
+
+func (h *purchasePaymentApprovalHandler) Apply(ctx context.Context, in *common.IdDto, out *common.Response) error {
+	return h.PurchasePaymentApprovalHandler.Apply(ctx, in, out)
 }
