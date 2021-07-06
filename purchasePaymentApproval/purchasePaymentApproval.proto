@@ -19,26 +19,26 @@ message ApprovalScanReq {
 }
 
 message ApprovalApprovalCondition {
-    string car_no = 1;
-    string plate_number = 2;
-    uint64 inspection_id = 3;
-    string purchase_no = 4;
-    uint64 dt_status = 5;
-    uint64 approval_start_date = 6;
-    uint64 approval_end_date = 7;
-    uint32 page = 8;
-    uint32 limit = 9;
+    string carNo = 1;
+    string plateNumber = 2;
+    uint64 inspectionId = 3;
+    string purchaseNo = 4;
+    uint64 dtStatus = 5;
+    uint64 approvalStartDate = 6;
+    uint64 approvalEndDate = 7;
+    uint32 pageNo = 8;
+    uint32 pageSize = 9;
 }
 
 message ApprovalDto {
     uint64 id = 1;// 审批编号
-    string purchase_no = 2;
-    string car_no = 3;
-    uint64 inspection_id = 4;
-    string car_model = 5;
-    string plate_number = 6;
-    uint64 dt_status = 7;
-    uint64 approval_start_date = 8;
-    uint64 approval_end_date = 9;
-    uint64 po_status = 10;
+    string purchaseNo = 2;
+    string carNo = 3;
+    uint64 inspectionId = 4;
+    string carModel = 5;
+    string plateNumber = 6;
+    uint64 dtStatus = 7;
+    uint64 approvalStart_date = 8;
+    uint64 approvalEndDate = 9;
+    uint64 poStatus = 10;
 }
