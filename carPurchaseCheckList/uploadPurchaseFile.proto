@@ -15,6 +15,7 @@ service UploadPurchaseFile {
 //save PurchaseFile req
 message SaveAdressReq {
     uint64 pOrderId= 1;
-    string salesUrl = 2;
-    string othersUrl = 3;
+    uint64 type = 2;
+    string salesUrl = 3;
+    string othersUrl = 4;
 }
