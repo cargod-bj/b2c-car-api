@@ -9,13 +9,18 @@ option go_package = "github.com/cargod-bj/b2c-car-api/uploadPurchaseFile";
 
 service UploadPurchaseFile {
   // save fileadress to mysql service
-  rpc SaveAdress(SaveAdressReq) returns (common.Response) {};
+  rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 }
 
-//save PurchaseFile req
-message SaveAdressReq {
-    uint64 pOrderId= 1;
-    uint64 type = 2;
-    string salesUrl = 3;
-    string othersUrl = 4;
+message PurchaseFileDto {
+    //purchasefile urls
+  repeated CarPurchaseFileDto urls_info = 1;
+}
+
+
+message CarPurchaseFileDto {
+  uint64 id = 1;
+  uint64 type = 2;
+  string name = 3;
+  string url = 4;
 }
