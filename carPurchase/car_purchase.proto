@@ -19,6 +19,8 @@ service CarPurchase {
   rpc List(ListReq) returns (common.Response) {};
   // 采购单详情
   rpc Detail(common.IdDto) returns (common.Response) {};
+  // 删除采购单
+  rpc Delete(common.IdDto) returns (common.Response) {};
 }
 
 //用inspectionId查询车辆请求参数
