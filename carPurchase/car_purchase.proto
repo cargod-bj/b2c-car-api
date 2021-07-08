@@ -134,6 +134,8 @@ message PurchaseDto {
   string purchaseTypeName = 30;
   string biddingResultName = 31;
   string purchaseStatusName = 32;
+  uint32 applyStatus = 33;
+  string applyStatusName = 34;
 }
 
 message PurchaseDtoList{
