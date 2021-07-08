@@ -129,6 +129,11 @@ message PurchaseDto {
   uint64 collectionDate = 25;
   uint32 uploadResult = 26;
   uint32 checklistResult = 27;
+  string carSourceName = 28;
+  string carModel = 29;
+  string purchaseTypeName = 30;
+  string biddingResultName = 31;
+  string purchaseStatusName = 32;
 }
 
 message PurchaseDtoList{

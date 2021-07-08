@@ -36,6 +36,15 @@ const (
 	EnumNameCarReconditionCategory = "CarReconditionCategory"
 	// 保修是否有最大里程限制
 	EnumNameWarrantyMaxMileageLimit = "WarrantyMaxMileageLimit"
+
+	//采购单类型
+	EnumNamePurchaseType = "PurchaseType"
+	//采购单状态
+	EnumNamePurchaseStatus = "PurchaseStatus"
+	//采购单审批状态
+	EnumNamePurchaseApplyStatus = "PurchaseApply"
+	//采购单文件上传结果|检查项结果
+	EnumNameResult = "Result"
 )
 
 // 燃油类型：fuelType
@@ -209,4 +218,39 @@ const (
 	CarWarrantyMaxMileageLimited
 	// 保修是否有最大里程限制：无限制
 	CarWarrantyMaxMileageUnlimited
+)
+
+//采购单类型
+const (
+	PurchaseTypeBidding = iota + 1
+	PurchaseTypeBuyout
+)
+
+//采购单状态
+const (
+	//初始
+	PurchaseStatusInit = iota + 1
+	//待确认
+	PurchaseStatusPendingConfirm
+	//待收车
+	PurchaseStatusPendingCollection
+	//已完成
+	PurchaseStatusCompleted
+	//关闭|撤销
+	PurchaseStatusClosed
+)
+
+//采购单审批状态
+const (
+	PurchaseApplyWaitSubmit = iota + 1
+	PurchaseApplyWaitApproval
+	PurchaseApplyPass
+	PurchaseApplyFail
+	PurchaseApplyCancel
+)
+
+//采购单文件上传结果
+const (
+	ResultIncomplete = iota + 1
+	ResultCompleted
 )
