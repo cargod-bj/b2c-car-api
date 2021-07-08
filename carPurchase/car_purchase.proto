@@ -21,6 +21,8 @@ service CarPurchase {
   rpc Detail(common.IdDto) returns (common.Response) {};
   // 删除采购单
   rpc Delete(common.IdDto) returns (common.Response) {};
+  // 获取采购单日志
+  rpc LogList(LogReq) returns (common.Response) {};
 }
 
 //用inspectionId查询车辆请求参数
@@ -142,5 +144,29 @@ message PurchaseDtoList{
   repeated PurchaseDto PurchaseDtoList = 1;
   uint32 pageNo = 2;
   uint32 pageSize = 3;
-  uint64 total = 5;
+  uint64 total = 4;
+}
+
+message LogReq {
+  uint32 pageNo = 1;
+  uint32 pageSize = 2;
+  string purchaseId = 3;
+}
+
+message PurchaseLogDto {
+  uint64 id = 1;
+  uint64 purchaseId = 2;
+  uint32 purchaseStatus = 3;
+  string purchasePrice = 4;
+  string handingFee = 5;
+  uint64 createBy = 6;
+  uint64 createTime = 7;
+  string createByName = 8;
+}
+
+message PurchaseLogDtoList{
+  repeated PurchaseLogDto PurchaseLogDtoList = 1;
+  uint32 pageNo = 2;
+  uint32 pageSize = 3;
+  uint64 total = 4;
 }
