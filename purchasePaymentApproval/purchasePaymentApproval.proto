@@ -45,6 +45,12 @@ message ApprovalDto {
   uint64 poStatus = 10;
   uint64 uploadResult = 11;
   uint64 purchaseId = 12;
+  uint64 year = 13;
+  uint64 brandId = 14;
+  uint64 modelId = 15;
+  uint64 variantId = 16;
+  string carEngine = 17;
+  uint64 carTransmission = 18;
 }
 
 message ApplyReq {
