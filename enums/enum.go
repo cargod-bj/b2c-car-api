@@ -36,6 +36,11 @@ const (
 	EnumNameCarReconditionCategory = "CarReconditionCategory"
 	// 保修是否有最大里程限制
 	EnumNameWarrantyMaxMileageLimit = "WarrantyMaxMileageLimit"
+
+	//采购单类型
+	EnumNamePurchaseType = "PurchaseType"
+	//采购单状态
+	EnumNamePurchaseStatus = "PurchaseStatus"
 )
 
 // 燃油类型：fuelType
