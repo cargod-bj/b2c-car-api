@@ -41,6 +41,10 @@ const (
 	EnumNamePurchaseType = "PurchaseType"
 	//采购单状态
 	EnumNamePurchaseStatus = "PurchaseStatus"
+	//采购单审批状态
+	EnumNamePurchaseApplyStatus = "PurchaseApply"
+	//采购单文件上传结果|检查项结果
+	EnumNameResult = "Result"
 )
 
 // 燃油类型：fuelType
@@ -234,4 +238,19 @@ const (
 	PurchaseStatusCompleted
 	//关闭|撤销
 	PurchaseStatusClosed
+)
+
+//采购单审批状态
+const (
+	PurchaseApplyWaitSubmit = iota + 1
+	PurchaseApplyWaitApproval
+	PurchaseApplyPass
+	PurchaseApplyFail
+	PurchaseApplyCancel
+)
+
+//采购单文件上传结果
+const (
+	ResultIncomplete = iota + 1
+	ResultCompleted
 )
