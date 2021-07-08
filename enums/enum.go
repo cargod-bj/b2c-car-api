@@ -210,3 +210,23 @@ const (
 	// 保修是否有最大里程限制：无限制
 	CarWarrantyMaxMileageUnlimited
 )
+
+//采购单类型
+const (
+	PurchaseTypeBidding = iota + 1
+	PurchaseTypeBuyout
+)
+
+//采购单状态
+const (
+	//初始
+	PurchaseStatusInit = iota + 1
+	//待确认
+	PurchaseStatusPendingConfirm
+	//待收车
+	PurchaseStatusPendingCollection
+	//已完成
+	PurchaseStatusCompleted
+	//关闭|撤销
+	PurchaseStatusClosed
+)
