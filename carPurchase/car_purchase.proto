@@ -162,6 +162,7 @@ message PurchaseLogDto {
   uint64 createBy = 6;
   uint64 createTime = 7;
   string createByName = 8;
+  string purchaseStatusName = 9;
 }
 
 message PurchaseLogDtoList{
