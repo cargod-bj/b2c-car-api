@@ -42,6 +42,7 @@ message ApprovalDto {
   uint64 approvalStart_date = 8;
   uint64 approvalEndDate = 9;
   uint64 poStatus = 10;
+  uint64 uploadResult = 11;
 }
 
 message ApplyReq {
