@@ -14,6 +14,7 @@ service PurchasePaymentApproval {
   rpc Scan(ApprovalScanReq) returns (common.Response) {}
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc Apply(ApplyReq) returns (common.Response) {}
+  rpc Cancel(IdWithUserReq) returns (common.Response) {}
 }
 
 message ApprovalScanReq {
@@ -48,4 +49,10 @@ message ApprovalDto {
 message ApplyReq {
   uint64 id = 1;// 审批编号
   string userId = 2;
+}
+
+message IdWithUserReq {
+  uint64 id = 1;// 审批编号
+  string userId = 2;
+  uint64 sysUserId = 3;
 }
