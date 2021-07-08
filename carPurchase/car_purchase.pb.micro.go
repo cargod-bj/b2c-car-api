@@ -57,6 +57,8 @@ type CarPurchaseService interface {
 	Detail(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
 	// 删除采购单
 	Delete(ctx context.Context, in *common.IdDto, opts ...client.CallOption) (*common.Response, error)
+	// 获取采购单日志
+	LogList(ctx context.Context, in *LogReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carPurchaseService struct {
@@ -141,6 +143,16 @@ func (c *carPurchaseService) Delete(ctx context.Context, in *common.IdDto, opts 
 	return out, nil
 }
 
+func (c *carPurchaseService) LogList(ctx context.Context, in *LogReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchase.LogList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for CarPurchase service
 
 type CarPurchaseHandler interface {
@@ -158,6 +170,8 @@ type CarPurchaseHandler interface {
 	Detail(context.Context, *common.IdDto, *common.Response) error
 	// 删除采购单
 	Delete(context.Context, *common.IdDto, *common.Response) error
+	// 获取采购单日志
+	LogList(context.Context, *LogReq, *common.Response) error
 }
 
 func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts ...server.HandlerOption) error {
@@ -169,6 +183,7 @@ func RegisterCarPurchaseHandler(s server.Server, hdlr CarPurchaseHandler, opts .
 		List(ctx context.Context, in *ListReq, out *common.Response) error
 		Detail(ctx context.Context, in *common.IdDto, out *common.Response) error
 		Delete(ctx context.Context, in *common.IdDto, out *common.Response) error
+		LogList(ctx context.Context, in *LogReq, out *common.Response) error
 	}
 	type CarPurchase struct {
 		carPurchase
@@ -207,4 +222,8 @@ func (h *carPurchaseHandler) Detail(ctx context.Context, in *common.IdDto, out *
 
 func (h *carPurchaseHandler) Delete(ctx context.Context, in *common.IdDto, out *common.Response) error {
 	return h.CarPurchaseHandler.Delete(ctx, in, out)
+}
+
+func (h *carPurchaseHandler) LogList(ctx context.Context, in *LogReq, out *common.Response) error {
+	return h.CarPurchaseHandler.LogList(ctx, in, out)
 }

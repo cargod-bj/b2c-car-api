@@ -45,6 +45,8 @@ const (
 	EnumNamePurchaseApplyStatus = "PurchaseApply"
 	//采购单文件上传结果|检查项结果
 	EnumNameResult = "Result"
+	//车辆来源
+	EnumNameCarSource = "CarSource"
 )
 
 // 燃油类型：fuelType

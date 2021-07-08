@@ -43,8 +43,16 @@ func NewUploadPurchaseFileEndpoints() []*api.Endpoint {
 // Client API for UploadPurchaseFile service
 
 type UploadPurchaseFileService interface {
-	// save fileadress to mysql service
+	// save fileadress to database table carsource
 	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
+	//create a checklist based on the car-purchase ID
+	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
+	//get a checklist according to the car-purchase ID
+	GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
+	//update checklist according to the ID
+	Update(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
+	//drop checklist according to the ID
+	Delete(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type uploadPurchaseFileService struct {
@@ -69,16 +77,68 @@ func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *Purchase
 	return out, nil
 }
 
+func (c *uploadPurchaseFileService) Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Create", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadPurchaseFileService) GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "UploadPurchaseFile.GetList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadPurchaseFileService) Update(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Update", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadPurchaseFileService) Delete(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Delete", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for UploadPurchaseFile service
 
 type UploadPurchaseFileHandler interface {
-	// save fileadress to mysql service
+	// save fileadress to database table carsource
 	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
+	//create a checklist based on the car-purchase ID
+	Create(context.Context, *CreateReq, *common.Response) error
+	//get a checklist according to the car-purchase ID
+	GetList(context.Context, *CarPurchaseIdReq, *common.Response) error
+	//update checklist according to the ID
+	Update(context.Context, *IdReq, *common.Response) error
+	//drop checklist according to the ID
+	Delete(context.Context, *IdReq, *common.Response) error
 }
 
 func RegisterUploadPurchaseFileHandler(s server.Server, hdlr UploadPurchaseFileHandler, opts ...server.HandlerOption) error {
 	type uploadPurchaseFile interface {
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
+		Create(ctx context.Context, in *CreateReq, out *common.Response) error
+		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
+		Update(ctx context.Context, in *IdReq, out *common.Response) error
+		Delete(ctx context.Context, in *IdReq, out *common.Response) error
 	}
 	type UploadPurchaseFile struct {
 		uploadPurchaseFile
@@ -93,4 +153,20 @@ type uploadPurchaseFileHandler struct {
 
 func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error {
 	return h.UploadPurchaseFileHandler.SaveAdress(ctx, in, out)
+}
+
+func (h *uploadPurchaseFileHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
+	return h.UploadPurchaseFileHandler.Create(ctx, in, out)
+}
+
+func (h *uploadPurchaseFileHandler) GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error {
+	return h.UploadPurchaseFileHandler.GetList(ctx, in, out)
+}
+
+func (h *uploadPurchaseFileHandler) Update(ctx context.Context, in *IdReq, out *common.Response) error {
+	return h.UploadPurchaseFileHandler.Update(ctx, in, out)
+}
+
+func (h *uploadPurchaseFileHandler) Delete(ctx context.Context, in *IdReq, out *common.Response) error {
+	return h.UploadPurchaseFileHandler.Delete(ctx, in, out)
 }
