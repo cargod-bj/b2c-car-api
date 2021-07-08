@@ -14,6 +14,7 @@ service PurchasePaymentApproval {
   rpc Scan(ApprovalScanReq) returns (common.Response) {}
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc Apply(ApplyReq) returns (common.Response) {}
+  rpc Cancel(IdWithUserReq) returns (common.Response) {}
 }
 
 message ApprovalScanReq {
@@ -39,13 +40,20 @@ message ApprovalDto {
   string carModel = 5;
   string plateNumber = 6;
   uint64 dtStatus = 7;
-  uint64 approvalStart_date = 8;
+  uint64 approvalStartDate = 8;
   uint64 approvalEndDate = 9;
   uint64 poStatus = 10;
   uint64 uploadResult = 11;
+  uint64 purchaseId = 12;
 }
 
 message ApplyReq {
   uint64 id = 1;// 审批编号
   string userId = 2;
+}
+
+message IdWithUserReq {
+  uint64 id = 1;// 审批编号
+  string userId = 2;
+  uint64 sysUserId = 3;
 }
