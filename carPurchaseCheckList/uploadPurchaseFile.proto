@@ -8,8 +8,20 @@ option go_package = "github.com/cargod-bj/b2c-car-api/uploadPurchaseFile";
 
 
 service UploadPurchaseFile {
-  // save fileadress to mysql service
+  // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
+
+  //create a checklist based on the car-purchase ID
+  rpc Create(CreateReq) returns (common.Response) {};
+
+  //get a checklist according to the car-purchase ID
+  rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
+
+  //update checklist according to the ID
+  rpc Update(IdReq) returns (common.Response) {};
+
+  //drop checklist according to the ID
+  rpc Delete(IdReq) returns (common.Response) {};
 }
 
 message PurchaseFileDto {
@@ -24,3 +36,26 @@ message CarPurchaseFileDto {
   string name = 3;
   string url = 4;
 }
+
+
+//create checklist request params
+message CreateReq {
+  uint32 purchaseId = 1;
+  string name = 2;
+  string code = 3;
+  uint32 required = 4;
+  uint32 sequence = 5;
+  uint32 states = 6;
+}
+
+//carPurchaseId query ckecklist req params
+message CarPurchaseIdReq {
+  uint64 carPurchaseId = 1;
+}
+
+//IdReq update or delete checklist req params
+message IdReq {
+  uint64 carPurchaseId = 1;
+}
+
+
