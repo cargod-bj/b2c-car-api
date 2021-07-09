@@ -47,6 +47,7 @@ type UploadPurchaseFileService interface {
 	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
 	//create a checklist based on the car-purchase ID
 	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
+	Creates(ctx context.Context, in *BatchCreate, opts ...client.CallOption) (*common.Response, error)
 	//get a checklist according to the car-purchase ID
 	GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
 	//update checklist according to the ID
@@ -79,6 +80,16 @@ func (c *uploadPurchaseFileService) SaveAdress(ctx context.Context, in *Purchase
 
 func (c *uploadPurchaseFileService) Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Create", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadPurchaseFileService) Creates(ctx context.Context, in *BatchCreate, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Creates", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -124,6 +135,7 @@ type UploadPurchaseFileHandler interface {
 	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
 	//create a checklist based on the car-purchase ID
 	Create(context.Context, *CreateReq, *common.Response) error
+	Creates(context.Context, *BatchCreate, *common.Response) error
 	//get a checklist according to the car-purchase ID
 	GetList(context.Context, *CarPurchaseIdReq, *common.Response) error
 	//update checklist according to the ID
@@ -136,6 +148,7 @@ func RegisterUploadPurchaseFileHandler(s server.Server, hdlr UploadPurchaseFileH
 	type uploadPurchaseFile interface {
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
 		Create(ctx context.Context, in *CreateReq, out *common.Response) error
+		Creates(ctx context.Context, in *BatchCreate, out *common.Response) error
 		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
 		Update(ctx context.Context, in *UpdateReq, out *common.Response) error
 		Delete(ctx context.Context, in *IdReq, out *common.Response) error
@@ -157,6 +170,10 @@ func (h *uploadPurchaseFileHandler) SaveAdress(ctx context.Context, in *Purchase
 
 func (h *uploadPurchaseFileHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
 	return h.UploadPurchaseFileHandler.Create(ctx, in, out)
+}
+
+func (h *uploadPurchaseFileHandler) Creates(ctx context.Context, in *BatchCreate, out *common.Response) error {
+	return h.UploadPurchaseFileHandler.Creates(ctx, in, out)
 }
 
 func (h *uploadPurchaseFileHandler) GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error {

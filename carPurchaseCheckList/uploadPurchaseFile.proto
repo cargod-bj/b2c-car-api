@@ -14,6 +14,8 @@ service UploadPurchaseFile {
   //create a checklist based on the car-purchase ID
   rpc Create(CreateReq) returns (common.Response) {};
 
+  rpc Creates(BatchCreate) returns (common.Response) {};
+
   //get a checklist according to the car-purchase ID
   rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
 
@@ -37,6 +39,9 @@ message CarPurchaseFileDto {
   string url = 4;
 }
 
+message BatchCreate{
+    repeated CreateReq Infos=1;
+}
 
 //create checklist request params
 message CreateReq {
