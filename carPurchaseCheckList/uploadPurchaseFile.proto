@@ -18,7 +18,7 @@ service UploadPurchaseFile {
   rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
 
   //update checklist according to the ID
-  rpc Update(IdReq) returns (common.Response) {};
+  rpc Update(UpdateReq) returns (common.Response) {};
 
   //drop checklist according to the ID
   rpc Delete(IdReq) returns (common.Response) {};
@@ -40,13 +40,22 @@ message CarPurchaseFileDto {
 
 //create checklist request params
 message CreateReq {
+  uint32 purchaseId = 1;
+  string name = 2;
+  string code = 3;
+  uint32 required = 4;
+  uint32 sequence = 5;
+  uint32 states = 6;
+}
+
+//update checklist request params
+message UpdateReq {
   uint32 id = 1;
-  uint32 purchaseId = 2;
-  string name = 3;
-  string code = 4;
-  uint32 required = 5;
-  uint32 sequence = 6;
-  uint32 states = 7;
+  string name = 2;
+  string code = 3;
+  uint32 required = 4;
+  uint32 sequence = 5;
+  uint32 states = 6;
 }
 
 //carPurchaseId query ckecklist req params
@@ -57,6 +66,16 @@ message CarPurchaseIdReq {
 //IdReq update or delete checklist req params
 message IdReq {
   uint64 carPurchaseId = 1;
+}
+
+message ChecklistDto {
+  uint32 id = 1;
+  uint32 purchaseId = 2;
+  string name = 3;
+  string code = 4;
+  uint32 required = 5;
+  uint32 sequence = 6;
+  uint32 states = 7;
 }
 
 

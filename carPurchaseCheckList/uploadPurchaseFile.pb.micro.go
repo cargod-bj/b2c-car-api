@@ -50,7 +50,7 @@ type UploadPurchaseFileService interface {
 	//get a checklist according to the car-purchase ID
 	GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
 	//update checklist according to the ID
-	Update(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
+	Update(ctx context.Context, in *UpdateReq, opts ...client.CallOption) (*common.Response, error)
 	//drop checklist according to the ID
 	Delete(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
 }
@@ -97,7 +97,7 @@ func (c *uploadPurchaseFileService) GetList(ctx context.Context, in *CarPurchase
 	return out, nil
 }
 
-func (c *uploadPurchaseFileService) Update(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *uploadPurchaseFileService) Update(ctx context.Context, in *UpdateReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "UploadPurchaseFile.Update", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -127,7 +127,7 @@ type UploadPurchaseFileHandler interface {
 	//get a checklist according to the car-purchase ID
 	GetList(context.Context, *CarPurchaseIdReq, *common.Response) error
 	//update checklist according to the ID
-	Update(context.Context, *IdReq, *common.Response) error
+	Update(context.Context, *UpdateReq, *common.Response) error
 	//drop checklist according to the ID
 	Delete(context.Context, *IdReq, *common.Response) error
 }
@@ -137,7 +137,7 @@ func RegisterUploadPurchaseFileHandler(s server.Server, hdlr UploadPurchaseFileH
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
 		Create(ctx context.Context, in *CreateReq, out *common.Response) error
 		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
-		Update(ctx context.Context, in *IdReq, out *common.Response) error
+		Update(ctx context.Context, in *UpdateReq, out *common.Response) error
 		Delete(ctx context.Context, in *IdReq, out *common.Response) error
 	}
 	type UploadPurchaseFile struct {
@@ -163,7 +163,7 @@ func (h *uploadPurchaseFileHandler) GetList(ctx context.Context, in *CarPurchase
 	return h.UploadPurchaseFileHandler.GetList(ctx, in, out)
 }
 
-func (h *uploadPurchaseFileHandler) Update(ctx context.Context, in *IdReq, out *common.Response) error {
+func (h *uploadPurchaseFileHandler) Update(ctx context.Context, in *UpdateReq, out *common.Response) error {
 	return h.UploadPurchaseFileHandler.Update(ctx, in, out)
 }
 
