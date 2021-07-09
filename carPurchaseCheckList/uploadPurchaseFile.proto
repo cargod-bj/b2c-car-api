@@ -45,7 +45,7 @@ message CreateReq {
   string code = 3;
   uint32 required = 4;
   uint32 sequence = 5;
-  uint32 states = 6;
+  uint32 status = 6;
 }
 
 //update checklist request params
@@ -55,7 +55,7 @@ message UpdateReq {
   string code = 3;
   uint32 required = 4;
   uint32 sequence = 5;
-  uint32 states = 6;
+  uint32 status = 6;
 }
 
 //carPurchaseId query ckecklist req params
@@ -75,7 +75,7 @@ message ChecklistDto {
   string code = 4;
   uint32 required = 5;
   uint32 sequence = 6;
-  uint32 states = 7;
+  uint32 status = 7;
 }
 
 
