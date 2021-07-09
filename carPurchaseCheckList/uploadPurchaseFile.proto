@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package uploadPurchaseFile;
+package CarPurCheckList;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-car-api/uploadPurchaseFile";
+option go_package = "github.com/cargod-bj/b2c-car-api/CarPurCheckList";
 
 
-service UploadPurchaseFile {
+service CheckListService {
   // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 
@@ -31,16 +31,11 @@ message PurchaseFileDto {
   repeated CarPurchaseFileDto urls_info = 1;
 }
 
-
 message CarPurchaseFileDto {
   uint64 id = 1;
   uint64 type = 2;
   string name = 3;
   string url = 4;
-}
-
-message BatchCreate{
-    repeated CreateReq Infos=1;
 }
 
 //create checklist request params
@@ -51,6 +46,10 @@ message CreateReq {
   uint32 required = 4;
   uint32 sequence = 5;
   uint32 status = 6;
+}
+//batch create checklist
+message BatchCreate{
+    repeated CreateReq Infos=1;
 }
 
 //update checklist request params
