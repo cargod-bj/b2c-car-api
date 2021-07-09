@@ -11,6 +11,8 @@ service CheckListService {
   // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 
+  rpc GenerateCheckList(IdReq) returns (common.Response) {};
+
   //create a checklist based on the car-purchase ID
   rpc Create(CreateReq) returns (common.Response) {};
 

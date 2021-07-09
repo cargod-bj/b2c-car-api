@@ -45,6 +45,7 @@ func NewCheckListServiceEndpoints() []*api.Endpoint {
 type CheckListService interface {
 	// save fileadress to database table carsource
 	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
+	GenerateCheckList(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
 	//create a checklist based on the car-purchase ID
 	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
 	Creates(ctx context.Context, in *BatchCreate, opts ...client.CallOption) (*common.Response, error)
@@ -70,6 +71,16 @@ func NewCheckListService(name string, c client.Client) CheckListService {
 
 func (c *checkListService) SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CheckListService.SaveAdress", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checkListService) GenerateCheckList(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CheckListService.GenerateCheckList", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -133,6 +144,7 @@ func (c *checkListService) Delete(ctx context.Context, in *IdReq, opts ...client
 type CheckListServiceHandler interface {
 	// save fileadress to database table carsource
 	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
+	GenerateCheckList(context.Context, *IdReq, *common.Response) error
 	//create a checklist based on the car-purchase ID
 	Create(context.Context, *CreateReq, *common.Response) error
 	Creates(context.Context, *BatchCreate, *common.Response) error
@@ -147,6 +159,7 @@ type CheckListServiceHandler interface {
 func RegisterCheckListServiceHandler(s server.Server, hdlr CheckListServiceHandler, opts ...server.HandlerOption) error {
 	type checkListService interface {
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
+		GenerateCheckList(ctx context.Context, in *IdReq, out *common.Response) error
 		Create(ctx context.Context, in *CreateReq, out *common.Response) error
 		Creates(ctx context.Context, in *BatchCreate, out *common.Response) error
 		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
@@ -166,6 +179,10 @@ type checkListServiceHandler struct {
 
 func (h *checkListServiceHandler) SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error {
 	return h.CheckListServiceHandler.SaveAdress(ctx, in, out)
+}
+
+func (h *checkListServiceHandler) GenerateCheckList(ctx context.Context, in *IdReq, out *common.Response) error {
+	return h.CheckListServiceHandler.GenerateCheckList(ctx, in, out)
 }
 
 func (h *checkListServiceHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
