@@ -40,7 +40,7 @@ message CarPurchaseFileDto {
 
 //create checklist request params
 message CreateReq {
-  uint32 purchaseId = 1;
+  uint64 purchaseId = 1;
   string name = 2;
   string code = 3;
   uint32 required = 4;
@@ -54,7 +54,7 @@ message BatchCreate{
 
 //update checklist request params
 message UpdateReq {
-  uint32 id = 1;
+  uint64 id = 1;
   string name = 2;
   string code = 3;
   uint32 required = 4;
@@ -73,8 +73,8 @@ message IdReq {
 }
 
 message ChecklistDto {
-  uint32 id = 1;
-  uint32 purchaseId = 2;
+  uint64 id = 1;
+  uint64 purchaseId = 2;
   string name = 3;
   string code = 4;
   uint32 required = 5;
