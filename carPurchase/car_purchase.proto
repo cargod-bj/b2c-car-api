@@ -173,3 +173,13 @@ message PurchaseLogDtoList{
   uint32 pageSize = 3;
   uint64 total = 4;
 }
+
+message CarPurChaseChecklistDto {
+  uint64 id = 1;
+  uint64 purchaseId = 2;
+  string name = 3;
+  string code = 4;
+  uint32 required = 5;
+  uint32 sequence = 6;
+  uint32 status = 7;
+}
