@@ -1,18 +1,25 @@
 syntax = "proto3";
 
-package uploadPurchaseFile;
+package CarPurCheckList;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-car-api/uploadPurchaseFile";
+option go_package = "github.com/cargod-bj/b2c-car-api/CarPurCheckList";
 
 
-service UploadPurchaseFile {
+service CheckListService {
   // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 
+  rpc GenerateCheckList(IdReq) returns (common.Response) {};
+
+  //updates checklist according to the ID
+  rpc Updates(UpdatesReq) returns (common.Response) {};
+
   //create a checklist based on the car-purchase ID
   rpc Create(CreateReq) returns (common.Response) {};
+
+  rpc Creates(BatchCreate) returns (common.Response) {};
 
   //get a checklist according to the car-purchase ID
   rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
@@ -29,7 +36,6 @@ message PurchaseFileDto {
   repeated CarPurchaseFileDto urls_info = 1;
 }
 
-
 message CarPurchaseFileDto {
   uint64 id = 1;
   uint64 type = 2;
@@ -37,20 +43,27 @@ message CarPurchaseFileDto {
   string url = 4;
 }
 
-
 //create checklist request params
 message CreateReq {
-  uint32 purchaseId = 1;
+  uint64 purchaseId = 1;
   string name = 2;
   string code = 3;
   uint32 required = 4;
   uint32 sequence = 5;
   uint32 status = 6;
 }
+//batch create checklist
+message BatchCreate{
+    repeated CreateReq Infos=1;
+}
 
+
+message UpdatesReq{
+    repeated UpdateReq lists=1;
+}
 //update checklist request params
 message UpdateReq {
-  uint32 id = 1;
+  uint64 id = 1;
   string name = 2;
   string code = 3;
   uint32 required = 4;
@@ -69,8 +82,8 @@ message IdReq {
 }
 
 message ChecklistDto {
-  uint32 id = 1;
-  uint32 purchaseId = 2;
+  uint64 id = 1;
+  uint64 purchaseId = 2;
   string name = 3;
   string code = 4;
   uint32 required = 5;
