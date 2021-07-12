@@ -5,7 +5,6 @@ package carPurchaseProto
 
 import (
 	fmt "fmt"
-	_ "github.com/cargod-bj/b2c-car-api/CarPurCheckList"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"

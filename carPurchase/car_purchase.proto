@@ -3,7 +3,6 @@ syntax = "proto3";
 package carPurchaseProto;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
-import "carPurchaseCheckList/uploadPurchaseFile.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseProto";
 
@@ -139,7 +138,7 @@ message PurchaseDto {
   string purchaseStatusName = 32;
   uint32 applyStatus = 33;
   string applyStatusName = 34;
-  repeated CarPurCheckList.ChecklistDto checkList= 35;
+  repeated CarPurChaseChecklistDto checkList= 35;
 }
 
 message PurchaseDtoList{
@@ -172,4 +171,14 @@ message PurchaseLogDtoList{
   uint32 pageNo = 2;
   uint32 pageSize = 3;
   uint64 total = 4;
+}
+
+message CarPurChaseChecklistDto {
+  uint64 id = 1;
+  uint64 purchaseId = 2;
+  string name = 3;
+  string code = 4;
+  uint32 required = 5;
+  uint32 sequence = 6;
+  uint32 status = 7;
 }
