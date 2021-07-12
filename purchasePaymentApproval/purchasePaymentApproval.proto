@@ -15,6 +15,7 @@ service PurchasePaymentApproval {
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc Apply(ApplyReq) returns (common.Response) {}
   rpc Cancel(IdWithUserReq) returns (common.Response) {}
+  rpc Callback(DingTalkCallbackReq) returns (common.Response) {}
 }
 
 message ApprovalScanReq {
@@ -62,4 +63,18 @@ message IdWithUserReq {
   uint64 id = 1;// 审批编号
   string userId = 2;
   uint64 sysUserId = 3;
+}
+
+message DingTalkCallbackReq {
+  string signature = 1;
+  string timestamp = 2;
+  string nonce = 3;
+  string encrypt = 4;
+}
+
+message DingTalkCallbackRes {
+  string msg_signature = 1;
+  string timeStamp = 2;
+  string nonce = 3;
+  string encrypt = 4;
 }

@@ -48,6 +48,7 @@ type PurchasePaymentApprovalService interface {
 	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
 	Apply(ctx context.Context, in *ApplyReq, opts ...client.CallOption) (*common.Response, error)
 	Cancel(ctx context.Context, in *IdWithUserReq, opts ...client.CallOption) (*common.Response, error)
+	Callback(ctx context.Context, in *DingTalkCallbackReq, opts ...client.CallOption) (*common.Response, error)
 }
 
 type purchasePaymentApprovalService struct {
@@ -102,6 +103,16 @@ func (c *purchasePaymentApprovalService) Cancel(ctx context.Context, in *IdWithU
 	return out, nil
 }
 
+func (c *purchasePaymentApprovalService) Callback(ctx context.Context, in *DingTalkCallbackReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.Callback", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for PurchasePaymentApproval service
 
 type PurchasePaymentApprovalHandler interface {
@@ -110,6 +121,7 @@ type PurchasePaymentApprovalHandler interface {
 	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
 	Apply(context.Context, *ApplyReq, *common.Response) error
 	Cancel(context.Context, *IdWithUserReq, *common.Response) error
+	Callback(context.Context, *DingTalkCallbackReq, *common.Response) error
 }
 
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
@@ -118,6 +130,7 @@ func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymen
 		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
 		Apply(ctx context.Context, in *ApplyReq, out *common.Response) error
 		Cancel(ctx context.Context, in *IdWithUserReq, out *common.Response) error
+		Callback(ctx context.Context, in *DingTalkCallbackReq, out *common.Response) error
 	}
 	type PurchasePaymentApproval struct {
 		purchasePaymentApproval
@@ -144,4 +157,8 @@ func (h *purchasePaymentApprovalHandler) Apply(ctx context.Context, in *ApplyReq
 
 func (h *purchasePaymentApprovalHandler) Cancel(ctx context.Context, in *IdWithUserReq, out *common.Response) error {
 	return h.PurchasePaymentApprovalHandler.Cancel(ctx, in, out)
+}
+
+func (h *purchasePaymentApprovalHandler) Callback(ctx context.Context, in *DingTalkCallbackReq, out *common.Response) error {
+	return h.PurchasePaymentApprovalHandler.Callback(ctx, in, out)
 }
