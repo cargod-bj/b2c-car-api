@@ -62,7 +62,6 @@ message CreateReq {
 }
 
 message UpdateReq {
-  //	//todo checklist
   uint64 id = 1;
   uint32 carSource = 2;
   uint64 inspectionId = 3;
@@ -85,6 +84,7 @@ message UpdateReq {
   uint32 rejectReason = 20;
   string remark = 21;
   uint64 operatorId = 22;
+  repeated CarPurCheckList.ChecklistDto checkList= 23;
 }
 
 message ListReq {
