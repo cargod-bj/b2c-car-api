@@ -78,13 +78,12 @@ message UpdateReq {
   uint32 state = 14;
   uint32 city = 15;
   string address = 16;
-  uint32 biddingResult = 17;
-  uint32 purchaseStatus = 18;
-  uint64 collectionDate = 19;
-  uint32 rejectReason = 20;
-  string remark = 21;
-  uint64 operatorId = 22;
-  repeated carPurchaseCheckList.ChecklistDto checkList= 23;
+  uint32 purchaseStatus = 17;
+  uint64 collectionDate = 18;
+  uint32 rejectReason = 19;
+  string remark = 20;
+  uint64 operatorId = 21;
+  repeated carPurchaseCheckList.ChecklistDto checkList= 22;
 }
 
 message ListReq {
