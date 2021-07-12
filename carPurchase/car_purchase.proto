@@ -140,6 +140,7 @@ message PurchaseDto {
   uint32 applyStatus = 33;
   string applyStatusName = 34;
   repeated carPurchaseCheckList.ChecklistDto checkList= 35;
+  uint32 carState = 36;
 }
 
 message PurchaseDtoList{
