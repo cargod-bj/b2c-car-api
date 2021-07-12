@@ -13,6 +13,9 @@ service CheckListService {
 
   rpc GenerateCheckList(IdReq) returns (common.Response) {};
 
+  //updates checklist according to the ID
+  rpc Updates(UpdatesReq) returns (common.Response) {};
+
   //create a checklist based on the car-purchase ID
   rpc Create(CreateReq) returns (common.Response) {};
 
@@ -54,6 +57,10 @@ message BatchCreate{
     repeated CreateReq Infos=1;
 }
 
+
+message UpdatesReq{
+    repeated UpdateReq lists=1;
+}
 //update checklist request params
 message UpdateReq {
   uint64 id = 1;
