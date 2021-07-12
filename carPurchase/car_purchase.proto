@@ -3,6 +3,7 @@ syntax = "proto3";
 package carPurchaseProto;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+import "carPurchaseCheckList/uploadPurchaseFile.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseProto";
 
@@ -138,7 +139,7 @@ message PurchaseDto {
   string purchaseStatusName = 32;
   uint32 applyStatus = 33;
   string applyStatusName = 34;
-  repeated CarPurChaseChecklistDto checkList= 35;
+  repeated CarPurCheckList.ChecklistDto checkList= 35;
 }
 
 message PurchaseDtoList{
