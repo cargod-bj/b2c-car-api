@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package CarPurchaseCheckList;
+package carPurchaseCheckList;
 
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
-option go_package = "github.com/cargod-bj/b2c-car-api/CarPurchaseCheckList";
+option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseCheckList";
 
 
-service CarPurchaseCheckListService {
+service CarPurchaseCheckList {
   // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 

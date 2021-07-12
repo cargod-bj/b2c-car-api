@@ -7,7 +7,7 @@
 package carPurchaseProto
 
 import (
-	CarPurchaseCheckList "github.com/cargod-bj/b2c-car-api/CarPurchaseCheckList"
+	carPurchaseCheckList "github.com/cargod-bj/b2c-car-api/carPurchaseCheckList"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -366,7 +366,7 @@ type UpdateReq struct {
 	RejectReason    uint32                               `protobuf:"varint,20,opt,name=rejectReason,proto3" json:"rejectReason,omitempty"`
 	Remark          string                               `protobuf:"bytes,21,opt,name=remark,proto3" json:"remark,omitempty"`
 	OperatorId      uint64                               `protobuf:"varint,22,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
-	CheckList       []*CarPurchaseCheckList.ChecklistDto `protobuf:"bytes,23,rep,name=checkList,proto3" json:"checkList,omitempty"`
+	CheckList       []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,23,rep,name=checkList,proto3" json:"checkList,omitempty"`
 }
 
 func (x *UpdateReq) Reset() {
@@ -555,7 +555,7 @@ func (x *UpdateReq) GetOperatorId() uint64 {
 	return 0
 }
 
-func (x *UpdateReq) GetCheckList() []*CarPurchaseCheckList.ChecklistDto {
+func (x *UpdateReq) GetCheckList() []*carPurchaseCheckList.ChecklistDto {
 	if x != nil {
 		return x.CheckList
 	}
@@ -752,7 +752,7 @@ type PurchaseDto struct {
 	PurchaseStatusName string                               `protobuf:"bytes,32,opt,name=purchaseStatusName,proto3" json:"purchaseStatusName,omitempty"`
 	ApplyStatus        uint32                               `protobuf:"varint,33,opt,name=applyStatus,proto3" json:"applyStatus,omitempty"`
 	ApplyStatusName    string                               `protobuf:"bytes,34,opt,name=applyStatusName,proto3" json:"applyStatusName,omitempty"`
-	CheckList          []*CarPurchaseCheckList.ChecklistDto `protobuf:"bytes,35,rep,name=checkList,proto3" json:"checkList,omitempty"`
+	CheckList          []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,35,rep,name=checkList,proto3" json:"checkList,omitempty"`
 }
 
 func (x *PurchaseDto) Reset() {
@@ -1025,7 +1025,7 @@ func (x *PurchaseDto) GetApplyStatusName() string {
 	return ""
 }
 
-func (x *PurchaseDto) GetCheckList() []*CarPurchaseCheckList.ChecklistDto {
+func (x *PurchaseDto) GetCheckList() []*carPurchaseCheckList.ChecklistDto {
 	if x != nil {
 		return x.CheckList
 	}
@@ -1548,7 +1548,7 @@ var file_carPurchase_car_purchase_proto_rawDesc = []byte{
 	0x72, 0x6b, 0x12, 0x1e, 0x0a, 0x0a, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x49, 0x64,
 	0x18, 0x16, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
 	0x49, 0x64, 0x12, 0x40, 0x0a, 0x09, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x4c, 0x69, 0x73, 0x74, 0x18,
-	0x17, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x43, 0x61, 0x72, 0x50, 0x75, 0x72, 0x63, 0x68,
+	0x17, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x63, 0x61, 0x72, 0x50, 0x75, 0x72, 0x63, 0x68,
 	0x61, 0x73, 0x65, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4c, 0x69, 0x73, 0x74, 0x2e, 0x43, 0x68, 0x65,
 	0x63, 0x6b, 0x6c, 0x69, 0x73, 0x74, 0x44, 0x74, 0x6f, 0x52, 0x09, 0x63, 0x68, 0x65, 0x63, 0x6b,
 	0x4c, 0x69, 0x73, 0x74, 0x22, 0xe7, 0x03, 0x0a, 0x07, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71,
@@ -1653,7 +1653,7 @@ var file_carPurchase_car_purchase_proto_rawDesc = []byte{
 	0x61, 0x70, 0x70, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4e, 0x61, 0x6d, 0x65, 0x18,
 	0x22, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x61, 0x70, 0x70, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x09, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x4c,
-	0x69, 0x73, 0x74, 0x18, 0x23, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x43, 0x61, 0x72, 0x50,
+	0x69, 0x73, 0x74, 0x18, 0x23, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x63, 0x61, 0x72, 0x50,
 	0x75, 0x72, 0x63, 0x68, 0x61, 0x73, 0x65, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4c, 0x69, 0x73, 0x74,
 	0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x6c, 0x69, 0x73, 0x74, 0x44, 0x74, 0x6f, 0x52, 0x09, 0x63,
 	0x68, 0x65, 0x63, 0x6b, 0x4c, 0x69, 0x73, 0x74, 0x22, 0xa4, 0x01, 0x0a, 0x0f, 0x50, 0x75, 0x72,
@@ -1777,13 +1777,13 @@ var file_carPurchase_car_purchase_proto_goTypes = []interface{}{
 	(*PurchaseLogDto)(nil),                    // 8: carPurchaseProto.PurchaseLogDto
 	(*PurchaseLogDtoList)(nil),                // 9: carPurchaseProto.PurchaseLogDtoList
 	(*CarPurChaseChecklistDto)(nil),           // 10: carPurchaseProto.CarPurChaseChecklistDto
-	(*CarPurchaseCheckList.ChecklistDto)(nil), // 11: CarPurchaseCheckList.ChecklistDto
+	(*carPurchaseCheckList.ChecklistDto)(nil), // 11: carPurchaseCheckList.ChecklistDto
 	(*common.IdDto)(nil),                      // 12: common.IdDto
 	(*common.Response)(nil),                   // 13: common.Response
 }
 var file_carPurchase_car_purchase_proto_depIdxs = []int32{
-	11, // 0: carPurchaseProto.UpdateReq.checkList:type_name -> CarPurchaseCheckList.ChecklistDto
-	11, // 1: carPurchaseProto.PurchaseDto.checkList:type_name -> CarPurchaseCheckList.ChecklistDto
+	11, // 0: carPurchaseProto.UpdateReq.checkList:type_name -> carPurchaseCheckList.ChecklistDto
+	11, // 1: carPurchaseProto.PurchaseDto.checkList:type_name -> carPurchaseCheckList.ChecklistDto
 	5,  // 2: carPurchaseProto.PurchaseDtoList.PurchaseDtoList:type_name -> carPurchaseProto.PurchaseDto
 	8,  // 3: carPurchaseProto.PurchaseLogDtoList.PurchaseLogDtoList:type_name -> carPurchaseProto.PurchaseLogDto
 	0,  // 4: carPurchaseProto.CarPurchase.GetCarByInspection:input_type -> carPurchaseProto.InspectionReq

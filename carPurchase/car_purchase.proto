@@ -84,7 +84,7 @@ message UpdateReq {
   uint32 rejectReason = 20;
   string remark = 21;
   uint64 operatorId = 22;
-  repeated CarPurchaseCheckList.ChecklistDto checkList= 23;
+  repeated carPurchaseCheckList.ChecklistDto checkList= 23;
 }
 
 message ListReq {
@@ -139,7 +139,7 @@ message PurchaseDto {
   string purchaseStatusName = 32;
   uint32 applyStatus = 33;
   string applyStatusName = 34;
-  repeated CarPurchaseCheckList.ChecklistDto checkList= 35;
+  repeated carPurchaseCheckList.ChecklistDto checkList= 35;
 }
 
 message PurchaseDtoList{
