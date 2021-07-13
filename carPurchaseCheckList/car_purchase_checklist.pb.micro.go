@@ -43,6 +43,8 @@ func NewCarPurchaseCheckListEndpoints() []*api.Endpoint {
 // Client API for CarPurchaseCheckList service
 
 type CarPurchaseCheckListService interface {
+	// get fileadress to carpurchase file
+	GetAdress(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
 	// save fileadress to database table carsource
 	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
 	GenerateCheckList(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
@@ -69,6 +71,16 @@ func NewCarPurchaseCheckListService(name string, c client.Client) CarPurchaseChe
 		c:    c,
 		name: name,
 	}
+}
+
+func (c *carPurchaseCheckListService) GetAdress(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.GetAdress", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *carPurchaseCheckListService) SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error) {
@@ -154,6 +166,8 @@ func (c *carPurchaseCheckListService) Delete(ctx context.Context, in *IdReq, opt
 // Server API for CarPurchaseCheckList service
 
 type CarPurchaseCheckListHandler interface {
+	// get fileadress to carpurchase file
+	GetAdress(context.Context, *CarPurchaseIdReq, *common.Response) error
 	// save fileadress to database table carsource
 	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
 	GenerateCheckList(context.Context, *IdReq, *common.Response) error
@@ -172,6 +186,7 @@ type CarPurchaseCheckListHandler interface {
 
 func RegisterCarPurchaseCheckListHandler(s server.Server, hdlr CarPurchaseCheckListHandler, opts ...server.HandlerOption) error {
 	type carPurchaseCheckList interface {
+		GetAdress(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
 		GenerateCheckList(ctx context.Context, in *IdReq, out *common.Response) error
 		Updates(ctx context.Context, in *UpdatesReq, out *common.Response) error
@@ -190,6 +205,10 @@ func RegisterCarPurchaseCheckListHandler(s server.Server, hdlr CarPurchaseCheckL
 
 type carPurchaseCheckListHandler struct {
 	CarPurchaseCheckListHandler
+}
+
+func (h *carPurchaseCheckListHandler) GetAdress(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error {
+	return h.CarPurchaseCheckListHandler.GetAdress(ctx, in, out)
 }
 
 func (h *carPurchaseCheckListHandler) SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error {

@@ -8,6 +8,9 @@ option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseCheckList";
 
 
 service CarPurchaseCheckList {
+ // get fileadress to carpurchase file
+  rpc GetAdress(CarPurchaseIdReq) returns (common.Response) {};
+
   // save fileadress to database table carsource
   rpc SaveAdress(PurchaseFileDto) returns (common.Response) {};
 
