@@ -15,7 +15,7 @@ service PurchasePaymentApproval {
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc Apply(ApplyReq) returns (common.Response) {}
   rpc Cancel(IdWithUserReq) returns (common.Response) {}
-  rpc Callback(DingTalkCallbackReq) returns (common.Response) {}
+  rpc Callback(DingTalkCallback) returns (common.Response) {}
 }
 
 message ApprovalScanReq {
@@ -77,4 +77,8 @@ message DingTalkCallbackRes {
   string timeStamp = 2;
   string nonce = 3;
   string encrypt = 4;
+}
+
+message DingTalkCallback {
+  string result = 1;
 }
