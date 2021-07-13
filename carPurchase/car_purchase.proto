@@ -78,13 +78,14 @@ message UpdateReq {
   uint32 state = 14;
   uint32 city = 15;
   string address = 16;
-  uint32 biddingResult = 17;
-  uint32 purchaseStatus = 18;
-  uint64 collectionDate = 19;
-  uint32 rejectReason = 20;
-  string remark = 21;
-  uint64 operatorId = 22;
-  repeated carPurchaseCheckList.ChecklistDto checkList= 23;
+  uint32 purchaseStatus = 17;
+  uint64 collectionDate = 18;
+  uint32 rejectReason = 19;
+  string remark = 20;
+  uint64 operatorId = 21;
+  repeated carPurchaseCheckList.ChecklistDto checkList = 22;
+  uint32 biddingResult = 23;
+  uint32 collectionResult = 24;
 }
 
 message ListReq {
@@ -139,8 +140,10 @@ message PurchaseDto {
   string purchaseStatusName = 32;
   uint32 applyStatus = 33;
   string applyStatusName = 34;
-  repeated carPurchaseCheckList.ChecklistDto checkList= 35;
+  repeated carPurchaseCheckList.ChecklistDto checkList = 35;
   uint32 carState = 36;
+  uint32 biddingResult = 37;
+  uint32 collectionResult = 38;
 }
 
 message PurchaseDtoList{
@@ -173,14 +176,4 @@ message PurchaseLogDtoList{
   uint32 pageNo = 2;
   uint32 pageSize = 3;
   uint64 total = 4;
-}
-
-message CarPurChaseChecklistDto {
-  uint64 id = 1;
-  uint64 purchaseId = 2;
-  string name = 3;
-  string code = 4;
-  uint32 required = 5;
-  uint32 sequence = 6;
-  uint32 status = 7;
 }
