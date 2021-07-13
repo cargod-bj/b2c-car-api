@@ -449,7 +449,7 @@ message CarResourceDto {
   uint64 id = 1;
   string name = 2;
   string url = 3;
-  uint32 sequence = 4;
+  uint32 order = 4;
 }
 
 // 车辆的id
