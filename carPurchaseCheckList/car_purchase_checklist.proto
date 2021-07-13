@@ -41,9 +41,10 @@ message PurchaseFileDto {
 
 message CarPurchaseFileDto {
   uint64 id = 1;
-  uint64 type = 2;
-  string name = 3;
-  string url = 4;
+  uint64 sourceId = 2;
+  uint64 type = 3;
+  string name = 4;
+  string url = 5;
 }
 
 //create checklist request params
