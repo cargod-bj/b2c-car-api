@@ -24,6 +24,8 @@ service CarPurchase {
   rpc Delete(common.IdDto) returns (common.Response) {};
   // 获取采购单日志
   rpc LogList(LogReq) returns (common.Response) {};
+  // 用车牌号获取采购单
+  rpc GetByPlateNumber(PlateNumberReq) returns (common.Response) {};
 }
 
 //用inspectionId查询车辆请求参数
@@ -176,4 +178,9 @@ message PurchaseLogDtoList{
   uint32 pageNo = 2;
   uint32 pageSize = 3;
   uint64 total = 4;
+}
+
+message PlateNumberReq {
+  uint64 id = 1;
+  string plateNumber = 2;
 }
