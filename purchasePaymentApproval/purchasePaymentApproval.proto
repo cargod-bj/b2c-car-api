@@ -10,15 +10,10 @@ option go_package = "github.com/cargod-bj/b2c-car-api/purchasePaymentApproval";
   采购付款审批服务
  */
 service PurchasePaymentApproval {
-  // 扫描生成审批记录数据
-  rpc Scan(ApprovalScanReq) returns (common.Response) {}
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc Apply(ApplyReq) returns (common.Response) {}
   rpc Cancel(IdWithUserReq) returns (common.Response) {}
   rpc Callback(DingTalkCallback) returns (common.Response) {}
-}
-
-message ApprovalScanReq {
 }
 
 message ApprovalApprovalCondition {

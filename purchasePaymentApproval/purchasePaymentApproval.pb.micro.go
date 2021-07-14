@@ -43,8 +43,6 @@ func NewPurchasePaymentApprovalEndpoints() []*api.Endpoint {
 // Client API for PurchasePaymentApproval service
 
 type PurchasePaymentApprovalService interface {
-	// 扫描生成审批记录数据
-	Scan(ctx context.Context, in *ApprovalScanReq, opts ...client.CallOption) (*common.Response, error)
 	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
 	Apply(ctx context.Context, in *ApplyReq, opts ...client.CallOption) (*common.Response, error)
 	Cancel(ctx context.Context, in *IdWithUserReq, opts ...client.CallOption) (*common.Response, error)
@@ -61,16 +59,6 @@ func NewPurchasePaymentApprovalService(name string, c client.Client) PurchasePay
 		c:    c,
 		name: name,
 	}
-}
-
-func (c *purchasePaymentApprovalService) Scan(ctx context.Context, in *ApprovalScanReq, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.Scan", in)
-	out := new(common.Response)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *purchasePaymentApprovalService) List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error) {
@@ -116,8 +104,6 @@ func (c *purchasePaymentApprovalService) Callback(ctx context.Context, in *DingT
 // Server API for PurchasePaymentApproval service
 
 type PurchasePaymentApprovalHandler interface {
-	// 扫描生成审批记录数据
-	Scan(context.Context, *ApprovalScanReq, *common.Response) error
 	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
 	Apply(context.Context, *ApplyReq, *common.Response) error
 	Cancel(context.Context, *IdWithUserReq, *common.Response) error
@@ -126,7 +112,6 @@ type PurchasePaymentApprovalHandler interface {
 
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
 	type purchasePaymentApproval interface {
-		Scan(ctx context.Context, in *ApprovalScanReq, out *common.Response) error
 		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
 		Apply(ctx context.Context, in *ApplyReq, out *common.Response) error
 		Cancel(ctx context.Context, in *IdWithUserReq, out *common.Response) error
@@ -141,10 +126,6 @@ func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymen
 
 type purchasePaymentApprovalHandler struct {
 	PurchasePaymentApprovalHandler
-}
-
-func (h *purchasePaymentApprovalHandler) Scan(ctx context.Context, in *ApprovalScanReq, out *common.Response) error {
-	return h.PurchasePaymentApprovalHandler.Scan(ctx, in, out)
 }
 
 func (h *purchasePaymentApprovalHandler) List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error {
