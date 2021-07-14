@@ -63,7 +63,7 @@ message BatchCreate{
 
 
 message UpdatesReq{
-    repeated UpdateReq Infos=1;
+    repeated ChecklistDto Infos=1;
     uint64 purchaseId = 2;
 }
 //update checklist request params
