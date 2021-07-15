@@ -368,6 +368,8 @@ message CarDto {
   // 车辆名称
   string carName = 707;
 
+  map<string, string> sourceInfo = 708;
+
   // 整备渠道
   string recondition_channel = 801;
   // 整备金
