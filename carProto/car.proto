@@ -250,6 +250,7 @@ message CarDto {
   uint32 car_type_id = 209;
   // 车辆原始信息
   string car_original_info = 210;
+  string car_original_info_str = 221;
   // 车辆钥匙：1有、2没有
   uint32 spare_key = 211;
   string spare_key_name = 212;
@@ -367,8 +368,6 @@ message CarDto {
   string location_address = 706;
   // 车辆名称
   string carName = 707;
-
-  map<string, string> sourceInfo = 708;
 
   // 整备渠道
   string recondition_channel = 801;
