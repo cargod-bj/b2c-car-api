@@ -37,6 +37,8 @@ service CarPurchaseCheckList {
 message PurchaseFileDto {
     //purchasefile urls
   repeated CarPurchaseFileDto urls_info = 1;
+  uint64 purchaseId = 2;
+
 }
 
 message CarPurchaseFileDto {
