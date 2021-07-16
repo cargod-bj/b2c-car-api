@@ -392,6 +392,9 @@ message CarDto {
   string resWebListItemTag = 1005;//限时活动背景
   string resH5DetailPriceBar = 1006;//限时活动详情图片
   string resH5ListItemTag = 1007;//限时活动背景
+  string cardDiscountWordsColor = 1008;//卡片折扣文字颜色
+  string cardDiscountTag = 1009;//卡片图片
+  string cardDiscountWordsBackgroundColor = 1010;//卡片折扣文字背景颜色
 
 }
 

@@ -20,4 +20,7 @@ for X in $(find . -name "*.proto" | sed "s|^\./||"); do
 	protoc -I$(pwd) --go_out=paths=source_relative:.  --micro_out=paths=source_relative:. $X
 done
 
+for X in $(find . -name "*.pb.go" | sed "s|^\./||"); do
+	sed s/,omitempty// $X > $X.tmp && mv $X{.tmp,}
+done
 rm -rf 'github.com'

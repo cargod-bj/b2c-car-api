@@ -194,6 +194,12 @@ message CarCampaignDetail {
   string bannerTitleColor = 20;
   //banner date 颜色
   string bannerDateColor = 21;
+  // 卡片折扣文字颜色
+  string cardDiscountWordsColor = 22;
+  // 卡片图片
+  string cardDiscountTag = 23;
+  // 卡片折扣文字背景颜色
+  string cardDiscountWordsBackgroundColor = 24;
 }
 
 // 活动车辆
