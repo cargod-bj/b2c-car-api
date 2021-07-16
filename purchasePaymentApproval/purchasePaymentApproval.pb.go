@@ -31,15 +31,15 @@ type ApprovalApprovalCondition struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarNo             string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo,omitempty"`
-	PlateNumber       string `protobuf:"bytes,2,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	InspectionId      uint64 `protobuf:"varint,3,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
-	PurchaseNo        string `protobuf:"bytes,4,opt,name=purchaseNo,proto3" json:"purchaseNo,omitempty"`
-	DtStatus          uint64 `protobuf:"varint,5,opt,name=dtStatus,proto3" json:"dtStatus,omitempty"`
-	ApprovalStartDate uint64 `protobuf:"varint,6,opt,name=approvalStartDate,proto3" json:"approvalStartDate,omitempty"`
-	ApprovalEndDate   uint64 `protobuf:"varint,7,opt,name=approvalEndDate,proto3" json:"approvalEndDate,omitempty"`
-	PageNo            uint32 `protobuf:"varint,8,opt,name=pageNo,proto3" json:"pageNo,omitempty"`
-	PageSize          uint32 `protobuf:"varint,9,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	CarNo             string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo"`
+	PlateNumber       string `protobuf:"bytes,2,opt,name=plateNumber,proto3" json:"plateNumber"`
+	InspectionId      uint64 `protobuf:"varint,3,opt,name=inspectionId,proto3" json:"inspectionId"`
+	PurchaseNo        string `protobuf:"bytes,4,opt,name=purchaseNo,proto3" json:"purchaseNo"`
+	DtStatus          uint64 `protobuf:"varint,5,opt,name=dtStatus,proto3" json:"dtStatus"`
+	ApprovalStartDate uint64 `protobuf:"varint,6,opt,name=approvalStartDate,proto3" json:"approvalStartDate"`
+	ApprovalEndDate   uint64 `protobuf:"varint,7,opt,name=approvalEndDate,proto3" json:"approvalEndDate"`
+	PageNo            uint32 `protobuf:"varint,8,opt,name=pageNo,proto3" json:"pageNo"`
+	PageSize          uint32 `protobuf:"varint,9,opt,name=pageSize,proto3" json:"pageSize"`
 }
 
 func (x *ApprovalApprovalCondition) Reset() {
@@ -142,24 +142,24 @@ type ApprovalDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // 审批编号
-	PurchaseNo        string `protobuf:"bytes,2,opt,name=purchaseNo,proto3" json:"purchaseNo,omitempty"`
-	CarNo             string `protobuf:"bytes,3,opt,name=carNo,proto3" json:"carNo,omitempty"`
-	InspectionId      uint64 `protobuf:"varint,4,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
-	CarModel          string `protobuf:"bytes,5,opt,name=carModel,proto3" json:"carModel,omitempty"`
-	PlateNumber       string `protobuf:"bytes,6,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	DtStatus          uint64 `protobuf:"varint,7,opt,name=dtStatus,proto3" json:"dtStatus,omitempty"`
-	ApprovalStartDate uint64 `protobuf:"varint,8,opt,name=approvalStartDate,proto3" json:"approvalStartDate,omitempty"`
-	ApprovalEndDate   uint64 `protobuf:"varint,9,opt,name=approvalEndDate,proto3" json:"approvalEndDate,omitempty"`
-	PoStatus          uint64 `protobuf:"varint,10,opt,name=poStatus,proto3" json:"poStatus,omitempty"`
-	UploadResult      uint64 `protobuf:"varint,11,opt,name=uploadResult,proto3" json:"uploadResult,omitempty"`
-	PurchaseId        uint64 `protobuf:"varint,12,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
-	Year              uint64 `protobuf:"varint,13,opt,name=year,proto3" json:"year,omitempty"`
-	BrandId           uint64 `protobuf:"varint,14,opt,name=brandId,proto3" json:"brandId,omitempty"`
-	ModelId           uint64 `protobuf:"varint,15,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	VariantId         uint64 `protobuf:"varint,16,opt,name=variantId,proto3" json:"variantId,omitempty"`
-	CarEngine         string `protobuf:"bytes,17,opt,name=carEngine,proto3" json:"carEngine,omitempty"`
-	CarTransmission   uint64 `protobuf:"varint,18,opt,name=carTransmission,proto3" json:"carTransmission,omitempty"`
+	Id                uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"` // 审批编号
+	PurchaseNo        string `protobuf:"bytes,2,opt,name=purchaseNo,proto3" json:"purchaseNo"`
+	CarNo             string `protobuf:"bytes,3,opt,name=carNo,proto3" json:"carNo"`
+	InspectionId      uint64 `protobuf:"varint,4,opt,name=inspectionId,proto3" json:"inspectionId"`
+	CarModel          string `protobuf:"bytes,5,opt,name=carModel,proto3" json:"carModel"`
+	PlateNumber       string `protobuf:"bytes,6,opt,name=plateNumber,proto3" json:"plateNumber"`
+	DtStatus          uint64 `protobuf:"varint,7,opt,name=dtStatus,proto3" json:"dtStatus"`
+	ApprovalStartDate uint64 `protobuf:"varint,8,opt,name=approvalStartDate,proto3" json:"approvalStartDate"`
+	ApprovalEndDate   uint64 `protobuf:"varint,9,opt,name=approvalEndDate,proto3" json:"approvalEndDate"`
+	PoStatus          uint64 `protobuf:"varint,10,opt,name=poStatus,proto3" json:"poStatus"`
+	UploadResult      uint64 `protobuf:"varint,11,opt,name=uploadResult,proto3" json:"uploadResult"`
+	PurchaseId        uint64 `protobuf:"varint,12,opt,name=purchaseId,proto3" json:"purchaseId"`
+	Year              uint64 `protobuf:"varint,13,opt,name=year,proto3" json:"year"`
+	BrandId           uint64 `protobuf:"varint,14,opt,name=brandId,proto3" json:"brandId"`
+	ModelId           uint64 `protobuf:"varint,15,opt,name=modelId,proto3" json:"modelId"`
+	VariantId         uint64 `protobuf:"varint,16,opt,name=variantId,proto3" json:"variantId"`
+	CarEngine         string `protobuf:"bytes,17,opt,name=carEngine,proto3" json:"carEngine"`
+	CarTransmission   uint64 `protobuf:"varint,18,opt,name=carTransmission,proto3" json:"carTransmission"`
 }
 
 func (x *ApprovalDto) Reset() {
@@ -325,8 +325,8 @@ type ApplyReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // 审批编号
-	UserId string `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
+	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"` // 审批编号
+	UserId string `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId"`
 }
 
 func (x *ApplyReq) Reset() {
@@ -380,9 +380,9 @@ type IdWithUserReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // 审批编号
-	UserId    string `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	SysUserId uint64 `protobuf:"varint,3,opt,name=sysUserId,proto3" json:"sysUserId,omitempty"`
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"` // 审批编号
+	UserId    string `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId"`
+	SysUserId uint64 `protobuf:"varint,3,opt,name=sysUserId,proto3" json:"sysUserId"`
 }
 
 func (x *IdWithUserReq) Reset() {
@@ -443,10 +443,10 @@ type DingTalkCallbackReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Signature string `protobuf:"bytes,1,opt,name=signature,proto3" json:"signature,omitempty"`
-	Timestamp string `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Nonce     string `protobuf:"bytes,3,opt,name=nonce,proto3" json:"nonce,omitempty"`
-	Encrypt   string `protobuf:"bytes,4,opt,name=encrypt,proto3" json:"encrypt,omitempty"`
+	Signature string `protobuf:"bytes,1,opt,name=signature,proto3" json:"signature"`
+	Timestamp string `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp"`
+	Nonce     string `protobuf:"bytes,3,opt,name=nonce,proto3" json:"nonce"`
+	Encrypt   string `protobuf:"bytes,4,opt,name=encrypt,proto3" json:"encrypt"`
 }
 
 func (x *DingTalkCallbackReq) Reset() {
@@ -514,10 +514,10 @@ type DingTalkCallbackRes struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MsgSignature string `protobuf:"bytes,1,opt,name=msg_signature,json=msgSignature,proto3" json:"msg_signature,omitempty"`
-	TimeStamp    string `protobuf:"bytes,2,opt,name=timeStamp,proto3" json:"timeStamp,omitempty"`
-	Nonce        string `protobuf:"bytes,3,opt,name=nonce,proto3" json:"nonce,omitempty"`
-	Encrypt      string `protobuf:"bytes,4,opt,name=encrypt,proto3" json:"encrypt,omitempty"`
+	MsgSignature string `protobuf:"bytes,1,opt,name=msg_signature,json=msgSignature,proto3" json:"msg_signature"`
+	TimeStamp    string `protobuf:"bytes,2,opt,name=timeStamp,proto3" json:"timeStamp"`
+	Nonce        string `protobuf:"bytes,3,opt,name=nonce,proto3" json:"nonce"`
+	Encrypt      string `protobuf:"bytes,4,opt,name=encrypt,proto3" json:"encrypt"`
 }
 
 func (x *DingTalkCallbackRes) Reset() {
@@ -585,7 +585,7 @@ type DingTalkCallback struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result"`
 }
 
 func (x *DingTalkCallback) Reset() {

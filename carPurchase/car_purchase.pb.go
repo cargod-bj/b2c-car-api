@@ -33,7 +33,7 @@ type InspectionReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InspectionId uint64 `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
+	InspectionId uint64 `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId"`
 }
 
 func (x *InspectionReq) Reset() {
@@ -81,14 +81,14 @@ type CreateC2BReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InspectionId  uint64 `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`  //C2B唯一标识
-	PurchaseType  uint32 `protobuf:"varint,2,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`  //采购类型
-	PurchasePrice string `protobuf:"bytes,3,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"` //采购价格
-	HandingFee    string `protobuf:"bytes,4,opt,name=handingFee,proto3" json:"handingFee,omitempty"`       //手续费
-	State         uint32 `protobuf:"varint,5,opt,name=state,proto3" json:"state,omitempty"`                //州
-	City          uint32 `protobuf:"varint,6,opt,name=city,proto3" json:"city,omitempty"`                  //市
-	Address       string `protobuf:"bytes,7,opt,name=address,proto3" json:"address,omitempty"`             //地址
-	OperatorId    uint64 `protobuf:"varint,8,opt,name=operatorId,proto3" json:"operatorId,omitempty"`      //操作人
+	InspectionId  uint64 `protobuf:"varint,1,opt,name=inspectionId,proto3" json:"inspectionId"`  //C2B唯一标识
+	PurchaseType  uint32 `protobuf:"varint,2,opt,name=purchaseType,proto3" json:"purchaseType"`  //采购类型
+	PurchasePrice string `protobuf:"bytes,3,opt,name=purchasePrice,proto3" json:"purchasePrice"` //采购价格
+	HandingFee    string `protobuf:"bytes,4,opt,name=handingFee,proto3" json:"handingFee"`       //手续费
+	State         uint32 `protobuf:"varint,5,opt,name=state,proto3" json:"state"`                //州
+	City          uint32 `protobuf:"varint,6,opt,name=city,proto3" json:"city"`                  //市
+	Address       string `protobuf:"bytes,7,opt,name=address,proto3" json:"address"`             //地址
+	OperatorId    uint64 `protobuf:"varint,8,opt,name=operatorId,proto3" json:"operatorId"`      //操作人
 }
 
 func (x *CreateC2BReq) Reset() {
@@ -185,21 +185,21 @@ type CreateReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarSource       uint32 `protobuf:"varint,1,opt,name=carSource,proto3" json:"carSource,omitempty"` //来源
-	BrandId         uint32 `protobuf:"varint,2,opt,name=brandId,proto3" json:"brandId,omitempty"`
-	ModelId         uint32 `protobuf:"varint,3,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	Year            uint32 `protobuf:"varint,4,opt,name=year,proto3" json:"year,omitempty"`
-	VariantId       uint32 `protobuf:"varint,5,opt,name=variantId,proto3" json:"variantId,omitempty"`
-	CarEngine       string `protobuf:"bytes,6,opt,name=carEngine,proto3" json:"carEngine,omitempty"`
-	CarTransmission uint32 `protobuf:"varint,7,opt,name=carTransmission,proto3" json:"carTransmission,omitempty"`
-	PlateNumber     string `protobuf:"bytes,8,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	PurchaseType    uint32 `protobuf:"varint,9,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`
-	PurchasePrice   string `protobuf:"bytes,10,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"`
-	HandingFee      string `protobuf:"bytes,11,opt,name=handingFee,proto3" json:"handingFee,omitempty"`
-	State           uint32 `protobuf:"varint,12,opt,name=state,proto3" json:"state,omitempty"`
-	City            uint32 `protobuf:"varint,13,opt,name=city,proto3" json:"city,omitempty"`
-	Address         string `protobuf:"bytes,14,opt,name=address,proto3" json:"address,omitempty"`
-	OperatorId      uint64 `protobuf:"varint,15,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
+	CarSource       uint32 `protobuf:"varint,1,opt,name=carSource,proto3" json:"carSource"` //来源
+	BrandId         uint32 `protobuf:"varint,2,opt,name=brandId,proto3" json:"brandId"`
+	ModelId         uint32 `protobuf:"varint,3,opt,name=modelId,proto3" json:"modelId"`
+	Year            uint32 `protobuf:"varint,4,opt,name=year,proto3" json:"year"`
+	VariantId       uint32 `protobuf:"varint,5,opt,name=variantId,proto3" json:"variantId"`
+	CarEngine       string `protobuf:"bytes,6,opt,name=carEngine,proto3" json:"carEngine"`
+	CarTransmission uint32 `protobuf:"varint,7,opt,name=carTransmission,proto3" json:"carTransmission"`
+	PlateNumber     string `protobuf:"bytes,8,opt,name=plateNumber,proto3" json:"plateNumber"`
+	PurchaseType    uint32 `protobuf:"varint,9,opt,name=purchaseType,proto3" json:"purchaseType"`
+	PurchasePrice   string `protobuf:"bytes,10,opt,name=purchasePrice,proto3" json:"purchasePrice"`
+	HandingFee      string `protobuf:"bytes,11,opt,name=handingFee,proto3" json:"handingFee"`
+	State           uint32 `protobuf:"varint,12,opt,name=state,proto3" json:"state"`
+	City            uint32 `protobuf:"varint,13,opt,name=city,proto3" json:"city"`
+	Address         string `protobuf:"bytes,14,opt,name=address,proto3" json:"address"`
+	OperatorId      uint64 `protobuf:"varint,15,opt,name=operatorId,proto3" json:"operatorId"`
 }
 
 func (x *CreateReq) Reset() {
@@ -344,30 +344,30 @@ type UpdateReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id               uint64                               `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	CarSource        uint32                               `protobuf:"varint,2,opt,name=carSource,proto3" json:"carSource,omitempty"`
-	InspectionId     uint64                               `protobuf:"varint,3,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
-	BrandId          uint32                               `protobuf:"varint,4,opt,name=brandId,proto3" json:"brandId,omitempty"`
-	ModelId          uint32                               `protobuf:"varint,5,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	Year             uint32                               `protobuf:"varint,6,opt,name=year,proto3" json:"year,omitempty"`
-	VariantId        uint32                               `protobuf:"varint,7,opt,name=variantId,proto3" json:"variantId,omitempty"`
-	CarEngine        string                               `protobuf:"bytes,8,opt,name=carEngine,proto3" json:"carEngine,omitempty"`
-	CarTransmission  uint32                               `protobuf:"varint,9,opt,name=carTransmission,proto3" json:"carTransmission,omitempty"`
-	PlateNumber      string                               `protobuf:"bytes,10,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	PurchaseType     uint32                               `protobuf:"varint,11,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`
-	PurchasePrice    string                               `protobuf:"bytes,12,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"`
-	HandingFee       string                               `protobuf:"bytes,13,opt,name=handingFee,proto3" json:"handingFee,omitempty"`
-	State            uint32                               `protobuf:"varint,14,opt,name=state,proto3" json:"state,omitempty"`
-	City             uint32                               `protobuf:"varint,15,opt,name=city,proto3" json:"city,omitempty"`
-	Address          string                               `protobuf:"bytes,16,opt,name=address,proto3" json:"address,omitempty"`
-	PurchaseStatus   uint32                               `protobuf:"varint,17,opt,name=purchaseStatus,proto3" json:"purchaseStatus,omitempty"`
-	CollectionDate   uint64                               `protobuf:"varint,18,opt,name=collectionDate,proto3" json:"collectionDate,omitempty"`
-	RejectReason     uint32                               `protobuf:"varint,19,opt,name=rejectReason,proto3" json:"rejectReason,omitempty"`
-	Remark           string                               `protobuf:"bytes,20,opt,name=remark,proto3" json:"remark,omitempty"`
-	OperatorId       uint64                               `protobuf:"varint,21,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
-	CheckList        []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,22,rep,name=checkList,proto3" json:"checkList,omitempty"`
-	BiddingResult    uint32                               `protobuf:"varint,23,opt,name=biddingResult,proto3" json:"biddingResult,omitempty"`
-	CollectionResult uint32                               `protobuf:"varint,24,opt,name=collectionResult,proto3" json:"collectionResult,omitempty"`
+	Id               uint64                               `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	CarSource        uint32                               `protobuf:"varint,2,opt,name=carSource,proto3" json:"carSource"`
+	InspectionId     uint64                               `protobuf:"varint,3,opt,name=inspectionId,proto3" json:"inspectionId"`
+	BrandId          uint32                               `protobuf:"varint,4,opt,name=brandId,proto3" json:"brandId"`
+	ModelId          uint32                               `protobuf:"varint,5,opt,name=modelId,proto3" json:"modelId"`
+	Year             uint32                               `protobuf:"varint,6,opt,name=year,proto3" json:"year"`
+	VariantId        uint32                               `protobuf:"varint,7,opt,name=variantId,proto3" json:"variantId"`
+	CarEngine        string                               `protobuf:"bytes,8,opt,name=carEngine,proto3" json:"carEngine"`
+	CarTransmission  uint32                               `protobuf:"varint,9,opt,name=carTransmission,proto3" json:"carTransmission"`
+	PlateNumber      string                               `protobuf:"bytes,10,opt,name=plateNumber,proto3" json:"plateNumber"`
+	PurchaseType     uint32                               `protobuf:"varint,11,opt,name=purchaseType,proto3" json:"purchaseType"`
+	PurchasePrice    string                               `protobuf:"bytes,12,opt,name=purchasePrice,proto3" json:"purchasePrice"`
+	HandingFee       string                               `protobuf:"bytes,13,opt,name=handingFee,proto3" json:"handingFee"`
+	State            uint32                               `protobuf:"varint,14,opt,name=state,proto3" json:"state"`
+	City             uint32                               `protobuf:"varint,15,opt,name=city,proto3" json:"city"`
+	Address          string                               `protobuf:"bytes,16,opt,name=address,proto3" json:"address"`
+	PurchaseStatus   uint32                               `protobuf:"varint,17,opt,name=purchaseStatus,proto3" json:"purchaseStatus"`
+	CollectionDate   uint64                               `protobuf:"varint,18,opt,name=collectionDate,proto3" json:"collectionDate"`
+	RejectReason     uint32                               `protobuf:"varint,19,opt,name=rejectReason,proto3" json:"rejectReason"`
+	Remark           string                               `protobuf:"bytes,20,opt,name=remark,proto3" json:"remark"`
+	OperatorId       uint64                               `protobuf:"varint,21,opt,name=operatorId,proto3" json:"operatorId"`
+	CheckList        []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,22,rep,name=checkList,proto3" json:"checkList"`
+	BiddingResult    uint32                               `protobuf:"varint,23,opt,name=biddingResult,proto3" json:"biddingResult"`
+	CollectionResult uint32                               `protobuf:"varint,24,opt,name=collectionResult,proto3" json:"collectionResult"`
 }
 
 func (x *UpdateReq) Reset() {
@@ -575,20 +575,20 @@ type ListReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PageNo           uint32 `protobuf:"varint,1,opt,name=pageNo,proto3" json:"pageNo,omitempty"`
-	PageSize         uint32 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	PurchaseNo       string `protobuf:"bytes,3,opt,name=purchaseNo,proto3" json:"purchaseNo,omitempty"`
-	PurchaseStatus   uint32 `protobuf:"varint,4,opt,name=purchaseStatus,proto3" json:"purchaseStatus,omitempty"`
-	CarSource        uint32 `protobuf:"varint,5,opt,name=carSource,proto3" json:"carSource,omitempty"`
-	CarNo            string `protobuf:"bytes,6,opt,name=carNo,proto3" json:"carNo,omitempty"`
-	InspectionId     uint64 `protobuf:"varint,7,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
-	PlateNumber      string `protobuf:"bytes,8,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	PurchaseType     uint32 `protobuf:"varint,9,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`
-	CreatedTimeBegin uint64 `protobuf:"varint,10,opt,name=createdTimeBegin,proto3" json:"createdTimeBegin,omitempty"`
-	CreatedTimeEnd   uint64 `protobuf:"varint,11,opt,name=createdTimeEnd,proto3" json:"createdTimeEnd,omitempty"`
-	ApplyStatus      uint32 `protobuf:"varint,12,opt,name=applyStatus,proto3" json:"applyStatus,omitempty"`
-	UploadResult     uint32 `protobuf:"varint,13,opt,name=uploadResult,proto3" json:"uploadResult,omitempty"`
-	ChecklistResult  uint32 `protobuf:"varint,14,opt,name=checklistResult,proto3" json:"checklistResult,omitempty"`
+	PageNo           uint32 `protobuf:"varint,1,opt,name=pageNo,proto3" json:"pageNo"`
+	PageSize         uint32 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize"`
+	PurchaseNo       string `protobuf:"bytes,3,opt,name=purchaseNo,proto3" json:"purchaseNo"`
+	PurchaseStatus   uint32 `protobuf:"varint,4,opt,name=purchaseStatus,proto3" json:"purchaseStatus"`
+	CarSource        uint32 `protobuf:"varint,5,opt,name=carSource,proto3" json:"carSource"`
+	CarNo            string `protobuf:"bytes,6,opt,name=carNo,proto3" json:"carNo"`
+	InspectionId     uint64 `protobuf:"varint,7,opt,name=inspectionId,proto3" json:"inspectionId"`
+	PlateNumber      string `protobuf:"bytes,8,opt,name=plateNumber,proto3" json:"plateNumber"`
+	PurchaseType     uint32 `protobuf:"varint,9,opt,name=purchaseType,proto3" json:"purchaseType"`
+	CreatedTimeBegin uint64 `protobuf:"varint,10,opt,name=createdTimeBegin,proto3" json:"createdTimeBegin"`
+	CreatedTimeEnd   uint64 `protobuf:"varint,11,opt,name=createdTimeEnd,proto3" json:"createdTimeEnd"`
+	ApplyStatus      uint32 `protobuf:"varint,12,opt,name=applyStatus,proto3" json:"applyStatus"`
+	UploadResult     uint32 `protobuf:"varint,13,opt,name=uploadResult,proto3" json:"uploadResult"`
+	ChecklistResult  uint32 `protobuf:"varint,14,opt,name=checklistResult,proto3" json:"checklistResult"`
 }
 
 func (x *ListReq) Reset() {
@@ -726,44 +726,44 @@ type PurchaseDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                 uint64                               `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	PurchaseNo         string                               `protobuf:"bytes,2,opt,name=purchaseNo,proto3" json:"purchaseNo,omitempty"`
-	CarNo              string                               `protobuf:"bytes,3,opt,name=carNo,proto3" json:"carNo,omitempty"`
-	InspectionId       uint64                               `protobuf:"varint,4,opt,name=inspectionId,proto3" json:"inspectionId,omitempty"`
-	CarSource          uint32                               `protobuf:"varint,5,opt,name=carSource,proto3" json:"carSource,omitempty"`
-	BrandId            uint64                               `protobuf:"varint,6,opt,name=brandId,proto3" json:"brandId,omitempty"`
-	ModelId            uint64                               `protobuf:"varint,7,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	Year               uint32                               `protobuf:"varint,8,opt,name=year,proto3" json:"year,omitempty"`
-	VariantId          uint64                               `protobuf:"varint,9,opt,name=variantId,proto3" json:"variantId,omitempty"`
-	CarEngine          string                               `protobuf:"bytes,10,opt,name=carEngine,proto3" json:"carEngine,omitempty"`
-	CarTransmission    uint32                               `protobuf:"varint,11,opt,name=carTransmission,proto3" json:"carTransmission,omitempty"`
-	PlateNumber        string                               `protobuf:"bytes,12,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
-	PurchaseType       uint32                               `protobuf:"varint,13,opt,name=purchaseType,proto3" json:"purchaseType,omitempty"`
-	PurchasePrice      string                               `protobuf:"bytes,14,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"`
-	HandingFee         string                               `protobuf:"bytes,15,opt,name=handingFee,proto3" json:"handingFee,omitempty"`
-	State              uint32                               `protobuf:"varint,16,opt,name=state,proto3" json:"state,omitempty"`
-	City               uint32                               `protobuf:"varint,17,opt,name=city,proto3" json:"city,omitempty"`
-	Address            string                               `protobuf:"bytes,18,opt,name=address,proto3" json:"address,omitempty"`
-	CreateTime         uint64                               `protobuf:"varint,19,opt,name=createTime,proto3" json:"createTime,omitempty"`
-	CreateBy           uint64                               `protobuf:"varint,20,opt,name=createBy,proto3" json:"createBy,omitempty"`
-	UpdateTime         uint64                               `protobuf:"varint,21,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
-	PurchaseStatus     uint32                               `protobuf:"varint,22,opt,name=purchaseStatus,proto3" json:"purchaseStatus,omitempty"`
-	RejectedReason     uint32                               `protobuf:"varint,23,opt,name=rejectedReason,proto3" json:"rejectedReason,omitempty"`
-	Remark             string                               `protobuf:"bytes,24,opt,name=remark,proto3" json:"remark,omitempty"`
-	CollectionDate     uint64                               `protobuf:"varint,25,opt,name=collectionDate,proto3" json:"collectionDate,omitempty"`
-	UploadResult       uint32                               `protobuf:"varint,26,opt,name=uploadResult,proto3" json:"uploadResult,omitempty"`
-	ChecklistResult    uint32                               `protobuf:"varint,27,opt,name=checklistResult,proto3" json:"checklistResult,omitempty"`
-	CarSourceName      string                               `protobuf:"bytes,28,opt,name=carSourceName,proto3" json:"carSourceName,omitempty"`
-	CarModel           string                               `protobuf:"bytes,29,opt,name=carModel,proto3" json:"carModel,omitempty"`
-	PurchaseTypeName   string                               `protobuf:"bytes,30,opt,name=purchaseTypeName,proto3" json:"purchaseTypeName,omitempty"`
-	BiddingResultName  string                               `protobuf:"bytes,31,opt,name=biddingResultName,proto3" json:"biddingResultName,omitempty"`
-	PurchaseStatusName string                               `protobuf:"bytes,32,opt,name=purchaseStatusName,proto3" json:"purchaseStatusName,omitempty"`
-	ApplyStatus        uint32                               `protobuf:"varint,33,opt,name=applyStatus,proto3" json:"applyStatus,omitempty"`
-	ApplyStatusName    string                               `protobuf:"bytes,34,opt,name=applyStatusName,proto3" json:"applyStatusName,omitempty"`
-	CheckList          []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,35,rep,name=checkList,proto3" json:"checkList,omitempty"`
-	CarState           uint32                               `protobuf:"varint,36,opt,name=carState,proto3" json:"carState,omitempty"`
-	BiddingResult      uint32                               `protobuf:"varint,37,opt,name=biddingResult,proto3" json:"biddingResult,omitempty"`
-	CollectionResult   uint32                               `protobuf:"varint,38,opt,name=collectionResult,proto3" json:"collectionResult,omitempty"`
+	Id                 uint64                               `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	PurchaseNo         string                               `protobuf:"bytes,2,opt,name=purchaseNo,proto3" json:"purchaseNo"`
+	CarNo              string                               `protobuf:"bytes,3,opt,name=carNo,proto3" json:"carNo"`
+	InspectionId       uint64                               `protobuf:"varint,4,opt,name=inspectionId,proto3" json:"inspectionId"`
+	CarSource          uint32                               `protobuf:"varint,5,opt,name=carSource,proto3" json:"carSource"`
+	BrandId            uint64                               `protobuf:"varint,6,opt,name=brandId,proto3" json:"brandId"`
+	ModelId            uint64                               `protobuf:"varint,7,opt,name=modelId,proto3" json:"modelId"`
+	Year               uint32                               `protobuf:"varint,8,opt,name=year,proto3" json:"year"`
+	VariantId          uint64                               `protobuf:"varint,9,opt,name=variantId,proto3" json:"variantId"`
+	CarEngine          string                               `protobuf:"bytes,10,opt,name=carEngine,proto3" json:"carEngine"`
+	CarTransmission    uint32                               `protobuf:"varint,11,opt,name=carTransmission,proto3" json:"carTransmission"`
+	PlateNumber        string                               `protobuf:"bytes,12,opt,name=plateNumber,proto3" json:"plateNumber"`
+	PurchaseType       uint32                               `protobuf:"varint,13,opt,name=purchaseType,proto3" json:"purchaseType"`
+	PurchasePrice      string                               `protobuf:"bytes,14,opt,name=purchasePrice,proto3" json:"purchasePrice"`
+	HandingFee         string                               `protobuf:"bytes,15,opt,name=handingFee,proto3" json:"handingFee"`
+	State              uint32                               `protobuf:"varint,16,opt,name=state,proto3" json:"state"`
+	City               uint32                               `protobuf:"varint,17,opt,name=city,proto3" json:"city"`
+	Address            string                               `protobuf:"bytes,18,opt,name=address,proto3" json:"address"`
+	CreateTime         uint64                               `protobuf:"varint,19,opt,name=createTime,proto3" json:"createTime"`
+	CreateBy           uint64                               `protobuf:"varint,20,opt,name=createBy,proto3" json:"createBy"`
+	UpdateTime         uint64                               `protobuf:"varint,21,opt,name=updateTime,proto3" json:"updateTime"`
+	PurchaseStatus     uint32                               `protobuf:"varint,22,opt,name=purchaseStatus,proto3" json:"purchaseStatus"`
+	RejectedReason     uint32                               `protobuf:"varint,23,opt,name=rejectedReason,proto3" json:"rejectedReason"`
+	Remark             string                               `protobuf:"bytes,24,opt,name=remark,proto3" json:"remark"`
+	CollectionDate     uint64                               `protobuf:"varint,25,opt,name=collectionDate,proto3" json:"collectionDate"`
+	UploadResult       uint32                               `protobuf:"varint,26,opt,name=uploadResult,proto3" json:"uploadResult"`
+	ChecklistResult    uint32                               `protobuf:"varint,27,opt,name=checklistResult,proto3" json:"checklistResult"`
+	CarSourceName      string                               `protobuf:"bytes,28,opt,name=carSourceName,proto3" json:"carSourceName"`
+	CarModel           string                               `protobuf:"bytes,29,opt,name=carModel,proto3" json:"carModel"`
+	PurchaseTypeName   string                               `protobuf:"bytes,30,opt,name=purchaseTypeName,proto3" json:"purchaseTypeName"`
+	BiddingResultName  string                               `protobuf:"bytes,31,opt,name=biddingResultName,proto3" json:"biddingResultName"`
+	PurchaseStatusName string                               `protobuf:"bytes,32,opt,name=purchaseStatusName,proto3" json:"purchaseStatusName"`
+	ApplyStatus        uint32                               `protobuf:"varint,33,opt,name=applyStatus,proto3" json:"applyStatus"`
+	ApplyStatusName    string                               `protobuf:"bytes,34,opt,name=applyStatusName,proto3" json:"applyStatusName"`
+	CheckList          []*carPurchaseCheckList.ChecklistDto `protobuf:"bytes,35,rep,name=checkList,proto3" json:"checkList"`
+	CarState           uint32                               `protobuf:"varint,36,opt,name=carState,proto3" json:"carState"`
+	BiddingResult      uint32                               `protobuf:"varint,37,opt,name=biddingResult,proto3" json:"biddingResult"`
+	CollectionResult   uint32                               `protobuf:"varint,38,opt,name=collectionResult,proto3" json:"collectionResult"`
 }
 
 func (x *PurchaseDto) Reset() {
@@ -1069,10 +1069,10 @@ type PurchaseDtoList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PurchaseDtoList []*PurchaseDto `protobuf:"bytes,1,rep,name=PurchaseDtoList,proto3" json:"PurchaseDtoList,omitempty"`
-	PageNo          uint32         `protobuf:"varint,2,opt,name=pageNo,proto3" json:"pageNo,omitempty"`
-	PageSize        uint32         `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	Total           uint64         `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+	PurchaseDtoList []*PurchaseDto `protobuf:"bytes,1,rep,name=PurchaseDtoList,proto3" json:"PurchaseDtoList"`
+	PageNo          uint32         `protobuf:"varint,2,opt,name=pageNo,proto3" json:"pageNo"`
+	PageSize        uint32         `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize"`
+	Total           uint64         `protobuf:"varint,4,opt,name=total,proto3" json:"total"`
 }
 
 func (x *PurchaseDtoList) Reset() {
@@ -1140,9 +1140,9 @@ type LogReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PageNo     uint32 `protobuf:"varint,1,opt,name=pageNo,proto3" json:"pageNo,omitempty"`
-	PageSize   uint32 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	PurchaseId string `protobuf:"bytes,3,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
+	PageNo     uint32 `protobuf:"varint,1,opt,name=pageNo,proto3" json:"pageNo"`
+	PageSize   uint32 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize"`
+	PurchaseId string `protobuf:"bytes,3,opt,name=purchaseId,proto3" json:"purchaseId"`
 }
 
 func (x *LogReq) Reset() {
@@ -1203,15 +1203,15 @@ type PurchaseLogDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                 uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	PurchaseId         uint64 `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
-	PurchaseStatus     uint32 `protobuf:"varint,3,opt,name=purchaseStatus,proto3" json:"purchaseStatus,omitempty"`
-	PurchasePrice      string `protobuf:"bytes,4,opt,name=purchasePrice,proto3" json:"purchasePrice,omitempty"`
-	HandingFee         string `protobuf:"bytes,5,opt,name=handingFee,proto3" json:"handingFee,omitempty"`
-	CreateBy           uint64 `protobuf:"varint,6,opt,name=createBy,proto3" json:"createBy,omitempty"`
-	CreateTime         uint64 `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime,omitempty"`
-	CreateByName       string `protobuf:"bytes,8,opt,name=createByName,proto3" json:"createByName,omitempty"`
-	PurchaseStatusName string `protobuf:"bytes,9,opt,name=purchaseStatusName,proto3" json:"purchaseStatusName,omitempty"`
+	Id                 uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	PurchaseId         uint64 `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId"`
+	PurchaseStatus     uint32 `protobuf:"varint,3,opt,name=purchaseStatus,proto3" json:"purchaseStatus"`
+	PurchasePrice      string `protobuf:"bytes,4,opt,name=purchasePrice,proto3" json:"purchasePrice"`
+	HandingFee         string `protobuf:"bytes,5,opt,name=handingFee,proto3" json:"handingFee"`
+	CreateBy           uint64 `protobuf:"varint,6,opt,name=createBy,proto3" json:"createBy"`
+	CreateTime         uint64 `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime"`
+	CreateByName       string `protobuf:"bytes,8,opt,name=createByName,proto3" json:"createByName"`
+	PurchaseStatusName string `protobuf:"bytes,9,opt,name=purchaseStatusName,proto3" json:"purchaseStatusName"`
 }
 
 func (x *PurchaseLogDto) Reset() {
@@ -1314,10 +1314,10 @@ type PurchaseLogDtoList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PurchaseLogDtoList []*PurchaseLogDto `protobuf:"bytes,1,rep,name=PurchaseLogDtoList,proto3" json:"PurchaseLogDtoList,omitempty"`
-	PageNo             uint32            `protobuf:"varint,2,opt,name=pageNo,proto3" json:"pageNo,omitempty"`
-	PageSize           uint32            `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	Total              uint64            `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
+	PurchaseLogDtoList []*PurchaseLogDto `protobuf:"bytes,1,rep,name=PurchaseLogDtoList,proto3" json:"PurchaseLogDtoList"`
+	PageNo             uint32            `protobuf:"varint,2,opt,name=pageNo,proto3" json:"pageNo"`
+	PageSize           uint32            `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize"`
+	Total              uint64            `protobuf:"varint,4,opt,name=total,proto3" json:"total"`
 }
 
 func (x *PurchaseLogDtoList) Reset() {
@@ -1385,8 +1385,8 @@ type PlateNumberReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id          uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	PlateNumber string `protobuf:"bytes,2,opt,name=plateNumber,proto3" json:"plateNumber,omitempty"`
+	Id          uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	PlateNumber string `protobuf:"bytes,2,opt,name=plateNumber,proto3" json:"plateNumber"`
 }
 
 func (x *PlateNumberReq) Reset() {
