@@ -11,9 +11,10 @@ option go_package = "github.com/cargod-bj/b2c-car-api/purchasePaymentApproval";
  */
 service PurchasePaymentApproval {
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
-  rpc Apply(ApplyReq) returns (common.Response) {}
-  rpc Cancel(IdWithUserReq) returns (common.Response) {}
-  rpc Callback(DingTalkCallback) returns (common.Response) {}
+  rpc SaveApply(ApplyReq) returns (common.Response) {}
+  rpc SaveCancel(ApplyReq) returns (common.Response) {}
+  rpc GetCallback(DingTalkCallback) returns (common.Response) {}
+  rpc SaveCallback(DingTalkCallback) returns (common.Response) {}
 }
 
 message ApprovalApprovalCondition {
@@ -26,6 +27,7 @@ message ApprovalApprovalCondition {
   uint64 approvalEndDate = 7;
   uint32 pageNo = 8;
   uint32 pageSize = 9;
+  uint64 id = 10;
 }
 
 message ApprovalDto {
@@ -47,6 +49,12 @@ message ApprovalDto {
   uint64 variantId = 16;
   string carEngine = 17;
   uint64 carTransmission = 18;
+  string remark = 19;
+  string purchasePrice = 20;
+  string handingFee = 21;
+  string salesAgreement = 22;
+  string poStatusName = 23;
+  string dtStatusName = 24;
 }
 
 message ApplyReq {
