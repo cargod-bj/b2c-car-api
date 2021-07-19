@@ -395,7 +395,7 @@ message CarDto {
   string cardDiscountWordsColor = 1008;//卡片折扣文字颜色
   string cardDiscountTag = 1009;//卡片图片
   string cardDiscountWordsBackgroundColor = 1010;//卡片折扣文字背景颜色
-  repeated uint64 highlightTagsName = 1011;//highlightTags
+  repeated string highlightTagsName = 1011;//highlightTags
 
 }
 
