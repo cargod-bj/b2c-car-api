@@ -44,7 +44,7 @@ func NewPurchasePaymentApprovalEndpoints() []*api.Endpoint {
 
 type PurchasePaymentApprovalService interface {
 	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
-	SaveApply(ctx context.Context, in *ApplyReq, opts ...client.CallOption) (*common.Response, error)
+	SaveApply(ctx context.Context, in *SaveApplyReq, opts ...client.CallOption) (*common.Response, error)
 	SaveCancel(ctx context.Context, in *ApplyReq, opts ...client.CallOption) (*common.Response, error)
 	GetCallback(ctx context.Context, in *DingTalkCallback, opts ...client.CallOption) (*common.Response, error)
 	SaveCallback(ctx context.Context, in *DingTalkCallback, opts ...client.CallOption) (*common.Response, error)
@@ -72,7 +72,7 @@ func (c *purchasePaymentApprovalService) List(ctx context.Context, in *ApprovalA
 	return out, nil
 }
 
-func (c *purchasePaymentApprovalService) SaveApply(ctx context.Context, in *ApplyReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *purchasePaymentApprovalService) SaveApply(ctx context.Context, in *SaveApplyReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.SaveApply", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -116,7 +116,7 @@ func (c *purchasePaymentApprovalService) SaveCallback(ctx context.Context, in *D
 
 type PurchasePaymentApprovalHandler interface {
 	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
-	SaveApply(context.Context, *ApplyReq, *common.Response) error
+	SaveApply(context.Context, *SaveApplyReq, *common.Response) error
 	SaveCancel(context.Context, *ApplyReq, *common.Response) error
 	GetCallback(context.Context, *DingTalkCallback, *common.Response) error
 	SaveCallback(context.Context, *DingTalkCallback, *common.Response) error
@@ -125,7 +125,7 @@ type PurchasePaymentApprovalHandler interface {
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
 	type purchasePaymentApproval interface {
 		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
-		SaveApply(ctx context.Context, in *ApplyReq, out *common.Response) error
+		SaveApply(ctx context.Context, in *SaveApplyReq, out *common.Response) error
 		SaveCancel(ctx context.Context, in *ApplyReq, out *common.Response) error
 		GetCallback(ctx context.Context, in *DingTalkCallback, out *common.Response) error
 		SaveCallback(ctx context.Context, in *DingTalkCallback, out *common.Response) error
@@ -145,7 +145,7 @@ func (h *purchasePaymentApprovalHandler) List(ctx context.Context, in *ApprovalA
 	return h.PurchasePaymentApprovalHandler.List(ctx, in, out)
 }
 
-func (h *purchasePaymentApprovalHandler) SaveApply(ctx context.Context, in *ApplyReq, out *common.Response) error {
+func (h *purchasePaymentApprovalHandler) SaveApply(ctx context.Context, in *SaveApplyReq, out *common.Response) error {
 	return h.PurchasePaymentApprovalHandler.SaveApply(ctx, in, out)
 }
 
