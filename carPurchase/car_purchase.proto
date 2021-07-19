@@ -139,6 +139,7 @@ message PurchaseDto {
   string carModel = 29;
   string purchaseTypeName = 30;
   string biddingResultName = 31;
+  string checklistResultName = 39;
   string purchaseStatusName = 32;
   uint32 applyStatus = 33;
   string applyStatusName = 34;

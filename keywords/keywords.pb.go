@@ -33,11 +33,11 @@ type KeywordsDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// keywords id，如果为新增，则此字段为0
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	//keywords名称
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// keywords类型
-	Type string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Type string `protobuf:"bytes,3,opt,name=type,proto3" json:"type"`
 }
 
 func (x *KeywordsDto) Reset() {

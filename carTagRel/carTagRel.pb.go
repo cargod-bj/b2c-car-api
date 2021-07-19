@@ -33,15 +33,15 @@ type CarTagRelDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 标签id，如果为新增，则此字段为0
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	//tag的id
-	TagId uint64 `protobuf:"varint,2,opt,name=tagId,proto3" json:"tagId,omitempty"`
+	TagId uint64 `protobuf:"varint,2,opt,name=tagId,proto3" json:"tagId"`
 	// taglist类型id
-	CarListId uint64 `protobuf:"varint,3,opt,name=carListId,proto3" json:"carListId,omitempty"`
+	CarListId uint64 `protobuf:"varint,3,opt,name=carListId,proto3" json:"carListId"`
 	//tagrel新增时间
-	CreateTime uint64 `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	CreateTime uint64 `protobuf:"varint,5,opt,name=createTime,proto3" json:"createTime"`
 	// tagrel的更新时间，如果为新增，或更新，则此字段无效
-	UpdateTime uint64 `protobuf:"varint,6,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,6,opt,name=updateTime,proto3" json:"updateTime"`
 }
 
 func (x *CarTagRelDto) Reset() {

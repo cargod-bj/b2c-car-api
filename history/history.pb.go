@@ -31,9 +31,9 @@ type History struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarId  uint64 `protobuf:"varint,1,opt,name=CarId,proto3" json:"CarId,omitempty"`
-	UserId uint64 `protobuf:"varint,2,opt,name=UserId,proto3" json:"UserId,omitempty"`
-	Local  string `protobuf:"bytes,3,opt,name=Local,proto3" json:"Local,omitempty"`
+	CarId  uint64 `protobuf:"varint,1,opt,name=CarId,proto3" json:"CarId"`
+	UserId uint64 `protobuf:"varint,2,opt,name=UserId,proto3" json:"UserId"`
+	Local  string `protobuf:"bytes,3,opt,name=Local,proto3" json:"Local"`
 }
 
 func (x *History) Reset() {

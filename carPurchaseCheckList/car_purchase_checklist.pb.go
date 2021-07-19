@@ -33,8 +33,8 @@ type PurchaseFileDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	//purchasefile urls
-	UrlsInfo   []*CarPurchaseFileDto `protobuf:"bytes,1,rep,name=urls_info,json=urlsInfo,proto3" json:"urls_info,omitempty"`
-	PurchaseId uint64                `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
+	UrlsInfo   []*CarPurchaseFileDto `protobuf:"bytes,1,rep,name=urls_info,json=urlsInfo,proto3" json:"urls_info"`
+	PurchaseId uint64                `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId"`
 }
 
 func (x *PurchaseFileDto) Reset() {
@@ -88,11 +88,11 @@ type CarPurchaseFileDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	SourceId uint64 `protobuf:"varint,2,opt,name=sourceId,proto3" json:"sourceId,omitempty"`
-	Type     uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
-	Name     string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Url      string `protobuf:"bytes,5,opt,name=url,proto3" json:"url,omitempty"`
+	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	SourceId uint64 `protobuf:"varint,2,opt,name=sourceId,proto3" json:"sourceId"`
+	Type     uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
+	Name     string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	Url      string `protobuf:"bytes,5,opt,name=url,proto3" json:"url"`
 }
 
 func (x *CarPurchaseFileDto) Reset() {
@@ -168,12 +168,12 @@ type CreateReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PurchaseId uint64 `protobuf:"varint,1,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
-	Name       string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Code       string `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
-	Required   uint32 `protobuf:"varint,4,opt,name=required,proto3" json:"required,omitempty"`
-	Sequence   uint32 `protobuf:"varint,5,opt,name=sequence,proto3" json:"sequence,omitempty"`
-	Status     uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
+	PurchaseId uint64 `protobuf:"varint,1,opt,name=purchaseId,proto3" json:"purchaseId"`
+	Name       string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	Code       string `protobuf:"bytes,3,opt,name=code,proto3" json:"code"`
+	Required   uint32 `protobuf:"varint,4,opt,name=required,proto3" json:"required"`
+	Sequence   uint32 `protobuf:"varint,5,opt,name=sequence,proto3" json:"sequence"`
+	Status     uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status"`
 }
 
 func (x *CreateReq) Reset() {
@@ -256,7 +256,7 @@ type BatchCreate struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Infos []*CreateReq `protobuf:"bytes,1,rep,name=Infos,proto3" json:"Infos,omitempty"`
+	Infos []*CreateReq `protobuf:"bytes,1,rep,name=Infos,proto3" json:"Infos"`
 }
 
 func (x *BatchCreate) Reset() {
@@ -303,8 +303,8 @@ type UpdatesReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Infos      []*ChecklistDto `protobuf:"bytes,1,rep,name=Infos,proto3" json:"Infos,omitempty"`
-	PurchaseId uint64          `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
+	Infos      []*ChecklistDto `protobuf:"bytes,1,rep,name=Infos,proto3" json:"Infos"`
+	PurchaseId uint64          `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId"`
 }
 
 func (x *UpdatesReq) Reset() {
@@ -359,12 +359,12 @@ type UpdateReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Code     string `protobuf:"bytes,4,opt,name=code,proto3" json:"code,omitempty"`
-	Required uint32 `protobuf:"varint,5,opt,name=required,proto3" json:"required,omitempty"`
-	Sequence uint32 `protobuf:"varint,6,opt,name=sequence,proto3" json:"sequence,omitempty"`
-	Status   uint32 `protobuf:"varint,7,opt,name=status,proto3" json:"status,omitempty"`
+	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Name     string `protobuf:"bytes,3,opt,name=name,proto3" json:"name"`
+	Code     string `protobuf:"bytes,4,opt,name=code,proto3" json:"code"`
+	Required uint32 `protobuf:"varint,5,opt,name=required,proto3" json:"required"`
+	Sequence uint32 `protobuf:"varint,6,opt,name=sequence,proto3" json:"sequence"`
+	Status   uint32 `protobuf:"varint,7,opt,name=status,proto3" json:"status"`
 }
 
 func (x *UpdateReq) Reset() {
@@ -447,7 +447,7 @@ type CarPurchaseIdReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarPurchaseId uint64 `protobuf:"varint,1,opt,name=carPurchaseId,proto3" json:"carPurchaseId,omitempty"`
+	CarPurchaseId uint64 `protobuf:"varint,1,opt,name=carPurchaseId,proto3" json:"carPurchaseId"`
 }
 
 func (x *CarPurchaseIdReq) Reset() {
@@ -495,7 +495,7 @@ type IdReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarPurchaseId uint64 `protobuf:"varint,1,opt,name=carPurchaseId,proto3" json:"carPurchaseId,omitempty"`
+	CarPurchaseId uint64 `protobuf:"varint,1,opt,name=carPurchaseId,proto3" json:"carPurchaseId"`
 }
 
 func (x *IdReq) Reset() {
@@ -542,13 +542,13 @@ type ChecklistDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	PurchaseId uint64 `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId,omitempty"`
-	Name       string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Code       string `protobuf:"bytes,4,opt,name=code,proto3" json:"code,omitempty"`
-	Required   uint32 `protobuf:"varint,5,opt,name=required,proto3" json:"required,omitempty"`
-	Sequence   uint32 `protobuf:"varint,6,opt,name=sequence,proto3" json:"sequence,omitempty"`
-	Status     uint32 `protobuf:"varint,7,opt,name=status,proto3" json:"status,omitempty"`
+	Id         uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	PurchaseId uint64 `protobuf:"varint,2,opt,name=purchaseId,proto3" json:"purchaseId"`
+	Name       string `protobuf:"bytes,3,opt,name=name,proto3" json:"name"`
+	Code       string `protobuf:"bytes,4,opt,name=code,proto3" json:"code"`
+	Required   uint32 `protobuf:"varint,5,opt,name=required,proto3" json:"required"`
+	Sequence   uint32 `protobuf:"varint,6,opt,name=sequence,proto3" json:"sequence"`
+	Status     uint32 `protobuf:"varint,7,opt,name=status,proto3" json:"status"`
 }
 
 func (x *ChecklistDto) Reset() {

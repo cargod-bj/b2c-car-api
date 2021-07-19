@@ -33,15 +33,15 @@ type BrandDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// id，如果为新增，则此字段为0，否则为id
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 创建时间，如果为新增，或更新，则此字段无效
-	CreateTime uint64 `protobuf:"varint,2,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime uint64 `protobuf:"varint,2,opt,name=create_time,json=createTime,proto3" json:"create_time"`
 	// 更新时间，如果为新增，或更新，则此字段无效
-	UpdateTime uint64 `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time"`
 	// 当前key的描述信息, 如果为更新，则此字段无效
-	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Status uint32 `protobuf:"varint,5,opt,name=status,proto3" json:"status,omitempty"`
-	Order  uint32 `protobuf:"varint,6,opt,name=order,proto3" json:"order,omitempty"`
+	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	Status uint32 `protobuf:"varint,5,opt,name=status,proto3" json:"status"`
+	Order  uint32 `protobuf:"varint,6,opt,name=order,proto3" json:"order"`
 }
 
 func (x *BrandDto) Reset() {
@@ -123,20 +123,20 @@ type NoticeCarMasterDTO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarMasterId       uint32 `protobuf:"varint,1,opt,name=CarMasterId,proto3" json:"CarMasterId,omitempty"`
-	CarBrandId        uint32 `protobuf:"varint,2,opt,name=CarBrandId,proto3" json:"CarBrandId,omitempty"`
-	CarModelId        uint32 `protobuf:"varint,3,opt,name=CarModelId,proto3" json:"CarModelId,omitempty"`
-	CarVariantId      uint32 `protobuf:"varint,4,opt,name=CarVariantId,proto3" json:"CarVariantId,omitempty"`
-	CarYearId         uint32 `protobuf:"varint,5,opt,name=CarYearId,proto3" json:"CarYearId,omitempty"`
-	CarEngineId       uint32 `protobuf:"varint,6,opt,name=CarEngineId,proto3" json:"CarEngineId,omitempty"`
-	CarTransmissionId uint32 `protobuf:"varint,7,opt,name=CarTransmissionId,proto3" json:"CarTransmissionId,omitempty"`
-	Year              uint32 `protobuf:"varint,8,opt,name=Year,proto3" json:"Year,omitempty"`
-	Transmission      string `protobuf:"bytes,9,opt,name=Transmission,proto3" json:"Transmission,omitempty"`
-	BrandName         string `protobuf:"bytes,10,opt,name=BrandName,proto3" json:"BrandName,omitempty"`
-	ModelName         string `protobuf:"bytes,11,opt,name=ModelName,proto3" json:"ModelName,omitempty"`
-	VariantName       string `protobuf:"bytes,12,opt,name=VariantName,proto3" json:"VariantName,omitempty"`
-	Engine            string `protobuf:"bytes,13,opt,name=Engine,proto3" json:"Engine,omitempty"`
-	BrandLogo         string `protobuf:"bytes,14,opt,name=BrandLogo,proto3" json:"BrandLogo,omitempty"`
+	CarMasterId       uint32 `protobuf:"varint,1,opt,name=CarMasterId,proto3" json:"CarMasterId"`
+	CarBrandId        uint32 `protobuf:"varint,2,opt,name=CarBrandId,proto3" json:"CarBrandId"`
+	CarModelId        uint32 `protobuf:"varint,3,opt,name=CarModelId,proto3" json:"CarModelId"`
+	CarVariantId      uint32 `protobuf:"varint,4,opt,name=CarVariantId,proto3" json:"CarVariantId"`
+	CarYearId         uint32 `protobuf:"varint,5,opt,name=CarYearId,proto3" json:"CarYearId"`
+	CarEngineId       uint32 `protobuf:"varint,6,opt,name=CarEngineId,proto3" json:"CarEngineId"`
+	CarTransmissionId uint32 `protobuf:"varint,7,opt,name=CarTransmissionId,proto3" json:"CarTransmissionId"`
+	Year              uint32 `protobuf:"varint,8,opt,name=Year,proto3" json:"Year"`
+	Transmission      string `protobuf:"bytes,9,opt,name=Transmission,proto3" json:"Transmission"`
+	BrandName         string `protobuf:"bytes,10,opt,name=BrandName,proto3" json:"BrandName"`
+	ModelName         string `protobuf:"bytes,11,opt,name=ModelName,proto3" json:"ModelName"`
+	VariantName       string `protobuf:"bytes,12,opt,name=VariantName,proto3" json:"VariantName"`
+	Engine            string `protobuf:"bytes,13,opt,name=Engine,proto3" json:"Engine"`
+	BrandLogo         string `protobuf:"bytes,14,opt,name=BrandLogo,proto3" json:"BrandLogo"`
 }
 
 func (x *NoticeCarMasterDTO) Reset() {

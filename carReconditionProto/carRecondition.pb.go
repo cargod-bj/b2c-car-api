@@ -33,19 +33,19 @@ type ReconditionTypePDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 整备类别id
-	CategoryId uint32 `protobuf:"varint,2,opt,name=categoryId,proto3" json:"categoryId,omitempty"`
+	CategoryId uint32 `protobuf:"varint,2,opt,name=categoryId,proto3" json:"categoryId"`
 	// 整备类别Name
-	CategoryName string `protobuf:"bytes,3,opt,name=categoryName,proto3" json:"categoryName,omitempty"`
+	CategoryName string `protobuf:"bytes,3,opt,name=categoryName,proto3" json:"categoryName"`
 	// 详细描述
-	ReconditionDetail string `protobuf:"bytes,4,opt,name=reconditionDetail,proto3" json:"reconditionDetail,omitempty"`
+	ReconditionDetail string `protobuf:"bytes,4,opt,name=reconditionDetail,proto3" json:"reconditionDetail"`
 	// 更新时间
-	UpdateTime uint64 `protobuf:"varint,5,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,5,opt,name=updateTime,proto3" json:"updateTime"`
 	// 创建时间
-	CreateTime uint64 `protobuf:"varint,6,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	CreateTime uint64 `protobuf:"varint,6,opt,name=createTime,proto3" json:"createTime"`
 	// 最后操作人员id
-	LastOptPic uint64 `protobuf:"varint,7,opt,name=lastOptPic,proto3" json:"lastOptPic,omitempty"`
+	LastOptPic uint64 `protobuf:"varint,7,opt,name=lastOptPic,proto3" json:"lastOptPic"`
 }
 
 func (x *ReconditionTypePDto) Reset() {
@@ -135,11 +135,11 @@ type ReconditionCategoryPDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 整备类别id
-	CategoryId uint32 `protobuf:"varint,1,opt,name=categoryId,proto3" json:"categoryId,omitempty"`
+	CategoryId uint32 `protobuf:"varint,1,opt,name=categoryId,proto3" json:"categoryId"`
 	// 整备类别Name
-	CategoryName string `protobuf:"bytes,2,opt,name=categoryName,proto3" json:"categoryName,omitempty"`
+	CategoryName string `protobuf:"bytes,2,opt,name=categoryName,proto3" json:"categoryName"`
 	// 当前类型下的detail列表
-	Details []*ReconditionTypePDto `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
+	Details []*ReconditionTypePDto `protobuf:"bytes,3,rep,name=details,proto3" json:"details"`
 }
 
 func (x *ReconditionCategoryPDto) Reset() {
@@ -202,11 +202,11 @@ type AddReconditionBatchPDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 整备类别id
-	CategoryId uint32 `protobuf:"varint,2,opt,name=categoryId,proto3" json:"categoryId,omitempty"`
+	CategoryId uint32 `protobuf:"varint,2,opt,name=categoryId,proto3" json:"categoryId"`
 	// 详细描述
-	Details []string `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
+	Details []string `protobuf:"bytes,3,rep,name=details,proto3" json:"details"`
 	// 最后操作人员id
-	LastOptPic uint64 `protobuf:"varint,6,opt,name=lastOptPic,proto3" json:"lastOptPic,omitempty"`
+	LastOptPic uint64 `protobuf:"varint,6,opt,name=lastOptPic,proto3" json:"lastOptPic"`
 }
 
 func (x *AddReconditionBatchPDto) Reset() {
@@ -269,9 +269,9 @@ type ReconditionTypeIdPDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 执行当前操作的用户id
-	OperatorId uint64 `protobuf:"varint,2,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
+	OperatorId uint64 `protobuf:"varint,2,opt,name=operatorId,proto3" json:"operatorId"`
 }
 
 func (x *ReconditionTypeIdPDto) Reset() {
@@ -327,11 +327,11 @@ type ReconditionTypeListReq struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆整备类别id
-	CategoryIds []uint64 `protobuf:"varint,1,rep,packed,name=categoryIds,proto3" json:"categoryIds,omitempty"`
+	CategoryIds []uint64 `protobuf:"varint,1,rep,packed,name=categoryIds,proto3" json:"categoryIds"`
 	// 车辆整备详情
-	Detail string `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail,omitempty"`
+	Detail string `protobuf:"bytes,2,opt,name=detail,proto3" json:"detail"`
 	// 分页信息
-	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page,omitempty"`
+	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page"`
 }
 
 func (x *ReconditionTypeListReq) Reset() {
@@ -394,25 +394,25 @@ type ReconditionWorkshopPDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 门店名称
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// 门店所属州
-	StateCode string `protobuf:"bytes,3,opt,name=stateCode,proto3" json:"stateCode,omitempty"`
+	StateCode string `protobuf:"bytes,3,opt,name=stateCode,proto3" json:"stateCode"`
 	// 门店所属城市
-	AreaCode string `protobuf:"bytes,4,opt,name=areaCode,proto3" json:"areaCode,omitempty"`
+	AreaCode string `protobuf:"bytes,4,opt,name=areaCode,proto3" json:"areaCode"`
 	// 门店详细地址
-	Address string `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
+	Address string `protobuf:"bytes,5,opt,name=address,proto3" json:"address"`
 	// 更新时间
-	UpdateTime uint64 `protobuf:"varint,6,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,6,opt,name=updateTime,proto3" json:"updateTime"`
 	// 创建时间
-	CreateTime uint64 `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	CreateTime uint64 `protobuf:"varint,7,opt,name=createTime,proto3" json:"createTime"`
 	// 最后操作人员id
-	LastOptPic uint64 `protobuf:"varint,8,opt,name=lastOptPic,proto3" json:"lastOptPic,omitempty"`
+	LastOptPic uint64 `protobuf:"varint,8,opt,name=lastOptPic,proto3" json:"lastOptPic"`
 	// 门店提供的具体整备服务数量
-	ReconditionCount uint64 `protobuf:"varint,9,opt,name=reconditionCount,proto3" json:"reconditionCount,omitempty"`
+	ReconditionCount uint64 `protobuf:"varint,9,opt,name=reconditionCount,proto3" json:"reconditionCount"`
 	// 门店提供的具体整备id
-	ReconditionDetailIds []uint64 `protobuf:"varint,10,rep,packed,name=reconditionDetailIds,proto3" json:"reconditionDetailIds,omitempty"`
+	ReconditionDetailIds []uint64 `protobuf:"varint,10,rep,packed,name=reconditionDetailIds,proto3" json:"reconditionDetailIds"`
 }
 
 func (x *ReconditionWorkshopPDto) Reset() {
@@ -524,9 +524,9 @@ type ReconditionWorkshopListReq struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 整备门店名称
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name"`
 	// 分页信息
-	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page,omitempty"`
+	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page"`
 }
 
 func (x *ReconditionWorkshopListReq) Reset() {

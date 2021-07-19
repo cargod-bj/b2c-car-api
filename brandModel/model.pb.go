@@ -33,16 +33,16 @@ type ModelDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// id，如果为新增，则此字段为0，否则为id
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 创建时间，如果为新增，或更新，则此字段无效
-	CreateTime uint64 `protobuf:"varint,2,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime uint64 `protobuf:"varint,2,opt,name=create_time,json=createTime,proto3" json:"create_time"`
 	// 更新时间，如果为新增，或更新，则此字段无效
-	UpdateTime uint64 `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time"`
 	// 当前key的描述信息, 如果为更新，则此字段无效
-	Name    string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	BrandId uint32 `protobuf:"varint,5,opt,name=brand_id,json=brandId,proto3" json:"brand_id,omitempty"`
-	Status  uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
-	Order   uint32 `protobuf:"varint,7,opt,name=order,proto3" json:"order,omitempty"`
+	Name    string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	BrandId uint32 `protobuf:"varint,5,opt,name=brand_id,json=brandId,proto3" json:"brand_id"`
+	Status  uint32 `protobuf:"varint,6,opt,name=status,proto3" json:"status"`
+	Order   uint32 `protobuf:"varint,7,opt,name=order,proto3" json:"order"`
 }
 
 func (x *ModelDto) Reset() {

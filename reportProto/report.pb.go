@@ -86,9 +86,9 @@ type ReportInfoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆信息
-	Car *CarDto `protobuf:"bytes,1,opt,name=car,proto3" json:"car,omitempty"`
+	Car *CarDto `protobuf:"bytes,1,opt,name=car,proto3" json:"car"`
 	// damage信息
-	DamagePoints []*ReportDamageCategoryDto `protobuf:"bytes,2,rep,name=damagePoints,proto3" json:"damagePoints,omitempty"`
+	DamagePoints []*ReportDamageCategoryDto `protobuf:"bytes,2,rep,name=damagePoints,proto3" json:"damagePoints"`
 }
 
 func (x *ReportInfoDto) Reset() {
@@ -144,19 +144,19 @@ type ReportDamageCategoryDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 当前category的id
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 当前category的Name
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// 当前category的子项，如果没有子项则为nil
-	Children []*ReportDamageSubCategoryDto `protobuf:"bytes,3,rep,name=children,proto3" json:"children,omitempty"`
+	Children []*ReportDamageSubCategoryDto `protobuf:"bytes,3,rep,name=children,proto3" json:"children"`
 	// 包含多少个point点
-	TotalPoint uint32 `protobuf:"varint,4,opt,name=totalPoint,proto3" json:"totalPoint,omitempty"`
+	TotalPoint uint32 `protobuf:"varint,4,opt,name=totalPoint,proto3" json:"totalPoint"`
 	// 包含多少个没有修复的损坏点
-	TotalDamage uint32 `protobuf:"varint,5,opt,name=totalDamage,proto3" json:"totalDamage,omitempty"`
+	TotalDamage uint32 `protobuf:"varint,5,opt,name=totalDamage,proto3" json:"totalDamage"`
 	// 包含多少个fixed数量
-	TotalFixed uint32 `protobuf:"varint,6,opt,name=totalFixed,proto3" json:"totalFixed,omitempty"`
+	TotalFixed uint32 `protobuf:"varint,6,opt,name=totalFixed,proto3" json:"totalFixed"`
 	// 包含多少个replaced数量
-	TotalReplaced uint32 `protobuf:"varint,7,opt,name=totalReplaced,proto3" json:"totalReplaced,omitempty"`
+	TotalReplaced uint32 `protobuf:"varint,7,opt,name=totalReplaced,proto3" json:"totalReplaced"`
 }
 
 func (x *ReportDamageCategoryDto) Reset() {
@@ -247,19 +247,19 @@ type ReportDamageSubCategoryDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 当前category的id
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 当前category的Name
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// 当前category的子项，如果没有子项则为nil
-	Points []*ReportDamagePointDto `protobuf:"bytes,3,rep,name=points,proto3" json:"points,omitempty"`
+	Points []*ReportDamagePointDto `protobuf:"bytes,3,rep,name=points,proto3" json:"points"`
 	// 包含多少个point点
-	TotalPoint uint32 `protobuf:"varint,4,opt,name=totalPoint,proto3" json:"totalPoint,omitempty"`
+	TotalPoint uint32 `protobuf:"varint,4,opt,name=totalPoint,proto3" json:"totalPoint"`
 	// 包含多少个没有修复的损坏点
-	TotalDamage uint32 `protobuf:"varint,5,opt,name=totalDamage,proto3" json:"totalDamage,omitempty"`
+	TotalDamage uint32 `protobuf:"varint,5,opt,name=totalDamage,proto3" json:"totalDamage"`
 	// 包含多少个fixed数量
-	TotalFixed uint32 `protobuf:"varint,6,opt,name=totalFixed,proto3" json:"totalFixed,omitempty"`
+	TotalFixed uint32 `protobuf:"varint,6,opt,name=totalFixed,proto3" json:"totalFixed"`
 	// 包含多少个replace数量
-	TotalReplaced uint32 `protobuf:"varint,7,opt,name=totalReplaced,proto3" json:"totalReplaced,omitempty"`
+	TotalReplaced uint32 `protobuf:"varint,7,opt,name=totalReplaced,proto3" json:"totalReplaced"`
 }
 
 func (x *ReportDamageSubCategoryDto) Reset() {
@@ -350,29 +350,29 @@ type ReportDamagePointDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 当前point的id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 当前point的Name
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// 当前point上的损坏点列表
-	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
+	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags"`
 	// 当前point上的损坏点图片
-	Photos []string `protobuf:"bytes,4,rep,name=photos,proto3" json:"photos,omitempty"`
+	Photos []string `protobuf:"bytes,4,rep,name=photos,proto3" json:"photos"`
 	// 是否已通过
-	IsPassed bool `protobuf:"varint,5,opt,name=isPassed,proto3" json:"isPassed,omitempty"`
+	IsPassed bool `protobuf:"varint,5,opt,name=isPassed,proto3" json:"isPassed"`
 	// 是否为na
-	IsNA bool `protobuf:"varint,6,opt,name=isNA,proto3" json:"isNA,omitempty"`
+	IsNA bool `protobuf:"varint,6,opt,name=isNA,proto3" json:"isNA"`
 	// 当前监测点上的value值
-	TagValue string `protobuf:"bytes,7,opt,name=tagValue,proto3" json:"tagValue,omitempty"`
+	TagValue string `protobuf:"bytes,7,opt,name=tagValue,proto3" json:"tagValue"`
 	// 当前监测点上备注的信息
-	Remark string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark,omitempty"`
+	Remark string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark"`
 	// 当前监测点的损坏照片
-	DamagePhotos []string `protobuf:"bytes,9,rep,name=damagePhotos,proto3" json:"damagePhotos,omitempty"`
+	DamagePhotos []string `protobuf:"bytes,9,rep,name=damagePhotos,proto3" json:"damagePhotos"`
 	// 当前监测点的整备照片
-	ReconditionPhotos []string `protobuf:"bytes,10,rep,name=reconditionPhotos,proto3" json:"reconditionPhotos,omitempty"`
+	ReconditionPhotos []string `protobuf:"bytes,10,rep,name=reconditionPhotos,proto3" json:"reconditionPhotos"`
 	// 当前点的整备状态：0未整备，1 passed，2 damage, 3 fixed, 4 replaced
-	ReconditionType uint32 `protobuf:"varint,11,opt,name=reconditionType,proto3" json:"reconditionType,omitempty"`
+	ReconditionType uint32 `protobuf:"varint,11,opt,name=reconditionType,proto3" json:"reconditionType"`
 	// 当前整备名称
-	ReconditionTypeName string `protobuf:"bytes,12,opt,name=reconditionTypeName,proto3" json:"reconditionTypeName,omitempty"`
+	ReconditionTypeName string `protobuf:"bytes,12,opt,name=reconditionTypeName,proto3" json:"reconditionTypeName"`
 }
 
 func (x *ReportDamagePointDto) Reset() {
@@ -498,11 +498,11 @@ type PointReconditionDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 当前point的id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 当前point的remark，可以为空
-	Remark string `protobuf:"bytes,2,opt,name=remark,proto3" json:"remark,omitempty"`
+	Remark string `protobuf:"bytes,2,opt,name=remark,proto3" json:"remark"`
 	// 当前point的整备类型：0 没有整备过，1 已修复，2 已更新
-	ReconditionType ReconditionType `protobuf:"varint,3,opt,name=reconditionType,proto3,enum=report.ReconditionType" json:"reconditionType,omitempty"`
+	ReconditionType ReconditionType `protobuf:"varint,3,opt,name=reconditionType,proto3,enum=report.ReconditionType" json:"reconditionType"`
 }
 
 func (x *PointReconditionDto) Reset() {
@@ -565,11 +565,11 @@ type BindPointPhotoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 当前point的Id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 要进行绑定的url或者解绑的url
-	Urls []string `protobuf:"bytes,2,rep,name=urls,proto3" json:"urls,omitempty"`
+	Urls []string `protobuf:"bytes,2,rep,name=urls,proto3" json:"urls"`
 	// 图片类型：0 damage，1 recondition
-	Type uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
+	Type uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
 }
 
 func (x *BindPointPhotoDto) Reset() {
@@ -632,43 +632,43 @@ type CarDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆id，如果为新增，则此字段为0，否则为车辆id
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// 线索id
-	LeadId uint64 `protobuf:"varint,105,opt,name=leadId,proto3" json:"leadId,omitempty"`
+	LeadId uint64 `protobuf:"varint,105,opt,name=leadId,proto3" json:"leadId"`
 	// 品牌id
-	BrandId uint32 `protobuf:"varint,201,opt,name=brandId,proto3" json:"brandId,omitempty"`
+	BrandId uint32 `protobuf:"varint,201,opt,name=brandId,proto3" json:"brandId"`
 	// 车型id
-	ModelId uint32 `protobuf:"varint,202,opt,name=modelId,proto3" json:"modelId,omitempty"`
+	ModelId uint32 `protobuf:"varint,202,opt,name=modelId,proto3" json:"modelId"`
 	// 品牌id
-	BrandName string `protobuf:"bytes,204,opt,name=brandName,proto3" json:"brandName,omitempty"`
+	BrandName string `protobuf:"bytes,204,opt,name=brandName,proto3" json:"brandName"`
 	// 车型id
-	ModelName string `protobuf:"bytes,205,opt,name=modelName,proto3" json:"modelName,omitempty"`
+	ModelName string `protobuf:"bytes,205,opt,name=modelName,proto3" json:"modelName"`
 	// 车variant
-	VariantId int64 `protobuf:"varint,206,opt,name=variantId,proto3" json:"variantId,omitempty"`
+	VariantId int64 `protobuf:"varint,206,opt,name=variantId,proto3" json:"variantId"`
 	// 车variant
-	Variant string `protobuf:"bytes,203,opt,name=variant,proto3" json:"variant,omitempty"`
+	Variant string `protobuf:"bytes,203,opt,name=variant,proto3" json:"variant"`
 	// 车照片url
-	Image string `protobuf:"bytes,301,opt,name=image,proto3" json:"image,omitempty"`
+	Image string `protobuf:"bytes,301,opt,name=image,proto3" json:"image"`
 	// 排量
-	Engine string `protobuf:"bytes,401,opt,name=engine,proto3" json:"engine,omitempty"`
+	Engine string `protobuf:"bytes,401,opt,name=engine,proto3" json:"engine"`
 	// 年份
-	Year uint32 `protobuf:"varint,402,opt,name=year,proto3" json:"year,omitempty"`
+	Year uint32 `protobuf:"varint,402,opt,name=year,proto3" json:"year"`
 	// 里程
-	Mileage uint32 `protobuf:"varint,403,opt,name=mileage,proto3" json:"mileage,omitempty"`
+	Mileage uint32 `protobuf:"varint,403,opt,name=mileage,proto3" json:"mileage"`
 	// 驾驶类型 手动,自动
-	Transmission     uint32 `protobuf:"varint,404,opt,name=transmission,proto3" json:"transmission,omitempty"`
-	TransmissionName string `protobuf:"bytes,405,opt,name=transmissionName,proto3" json:"transmissionName,omitempty"`
-	Seat             uint32 `protobuf:"varint,409,opt,name=seat,proto3" json:"seat,omitempty"`
-	FuelTypeName     string `protobuf:"bytes,412,opt,name=fuelTypeName,proto3" json:"fuelTypeName,omitempty"`
-	ColorName        string `protobuf:"bytes,413,opt,name=colorName,proto3" json:"colorName,omitempty"`
+	Transmission     uint32 `protobuf:"varint,404,opt,name=transmission,proto3" json:"transmission"`
+	TransmissionName string `protobuf:"bytes,405,opt,name=transmissionName,proto3" json:"transmissionName"`
+	Seat             uint32 `protobuf:"varint,409,opt,name=seat,proto3" json:"seat"`
+	FuelTypeName     string `protobuf:"bytes,412,opt,name=fuelTypeName,proto3" json:"fuelTypeName"`
+	ColorName        string `protobuf:"bytes,413,opt,name=colorName,proto3" json:"colorName"`
 	// 卖价
-	Price string `protobuf:"bytes,501,opt,name=price,proto3" json:"price,omitempty"`
+	Price string `protobuf:"bytes,501,opt,name=price,proto3" json:"price"`
 	// 来源
-	Source string `protobuf:"bytes,601,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,601,opt,name=source,proto3" json:"source"`
 	// 城市地区
-	Location string `protobuf:"bytes,701,opt,name=location,proto3" json:"location,omitempty"`
+	Location string `protobuf:"bytes,701,opt,name=location,proto3" json:"location"`
 	// 城市地区id
-	LocationId uint64 `protobuf:"varint,702,opt,name=locationId,proto3" json:"locationId,omitempty"`
+	LocationId uint64 `protobuf:"varint,702,opt,name=locationId,proto3" json:"locationId"`
 }
 
 func (x *CarDto) Reset() {
@@ -855,7 +855,7 @@ type InspectionPointInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result map[string]string `protobuf:"bytes,1,rep,name=result,proto3" json:"result,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Result map[string]string `protobuf:"bytes,1,rep,name=result,proto3" json:"result" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *InspectionPointInfo) Reset() {

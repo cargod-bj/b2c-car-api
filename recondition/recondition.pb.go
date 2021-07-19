@@ -32,14 +32,14 @@ type ReconditionDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         uint64 `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty"`
-	CarId      uint64 `protobuf:"varint,2,opt,name=CarId,proto3" json:"CarId,omitempty"`
-	StoreId    uint64 `protobuf:"varint,3,opt,name=StoreId,proto3" json:"StoreId,omitempty"`
-	Status     uint32 `protobuf:"varint,4,opt,name=Status,proto3" json:"Status,omitempty"`
-	StartTime  int64  `protobuf:"varint,5,opt,name=StartTime,proto3" json:"StartTime,omitempty"`
-	EndTime    int64  `protobuf:"varint,6,opt,name=EndTime,proto3" json:"EndTime,omitempty"`
-	CreateTime int64  `protobuf:"varint,7,opt,name=CreateTime,proto3" json:"CreateTime,omitempty"`
-	UpdateTime int64  `protobuf:"varint,8,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty"`
+	Id         uint64 `protobuf:"varint,1,opt,name=Id,proto3" json:"Id"`
+	CarId      uint64 `protobuf:"varint,2,opt,name=CarId,proto3" json:"CarId"`
+	StoreId    uint64 `protobuf:"varint,3,opt,name=StoreId,proto3" json:"StoreId"`
+	Status     uint32 `protobuf:"varint,4,opt,name=Status,proto3" json:"Status"`
+	StartTime  int64  `protobuf:"varint,5,opt,name=StartTime,proto3" json:"StartTime"`
+	EndTime    int64  `protobuf:"varint,6,opt,name=EndTime,proto3" json:"EndTime"`
+	CreateTime int64  `protobuf:"varint,7,opt,name=CreateTime,proto3" json:"CreateTime"`
+	UpdateTime int64  `protobuf:"varint,8,opt,name=UpdateTime,proto3" json:"UpdateTime"`
 }
 
 func (x *ReconditionDto) Reset() {

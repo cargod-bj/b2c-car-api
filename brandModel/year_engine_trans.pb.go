@@ -33,7 +33,7 @@ type KeyDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// key
-	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key"`
 }
 
 func (x *KeyDto) Reset() {
@@ -81,8 +81,8 @@ type ModelYearReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Year    string `protobuf:"bytes,1,opt,name=year,proto3" json:"year,omitempty"`
-	ModelId uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId,omitempty"`
+	Year    string `protobuf:"bytes,1,opt,name=year,proto3" json:"year"`
+	ModelId uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId"`
 }
 
 func (x *ModelYearReq) Reset() {
@@ -137,9 +137,9 @@ type ModelYearVariantReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year,omitempty"`
-	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId,omitempty"`
+	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year"`
+	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId"`
+	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId"`
 }
 
 func (x *ModelYearVariantReq) Reset() {
@@ -201,11 +201,11 @@ type ModelYearVariantEngineReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year,omitempty"`
-	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId,omitempty"`
-	Engine    string `protobuf:"bytes,4,opt,name=engine,proto3" json:"engine,omitempty"`
-	BrandId   uint32 `protobuf:"varint,5,opt,name=brandId,proto3" json:"brandId,omitempty"`
+	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year"`
+	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId"`
+	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId"`
+	Engine    string `protobuf:"bytes,4,opt,name=engine,proto3" json:"engine"`
+	BrandId   uint32 `protobuf:"varint,5,opt,name=brandId,proto3" json:"brandId"`
 }
 
 func (x *ModelYearVariantEngineReq) Reset() {
@@ -281,8 +281,8 @@ type VariantEngineReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Engine    string `protobuf:"bytes,1,opt,name=engine,proto3" json:"engine,omitempty"`
-	VariantId int64  `protobuf:"varint,2,opt,name=variantId,proto3" json:"variantId,omitempty"`
+	Engine    string `protobuf:"bytes,1,opt,name=engine,proto3" json:"engine"`
+	VariantId int64  `protobuf:"varint,2,opt,name=variantId,proto3" json:"variantId"`
 }
 
 func (x *VariantEngineReq) Reset() {
@@ -337,9 +337,9 @@ type FindEngineByVariantHasCarReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year,omitempty"`
-	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId,omitempty"`
-	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId,omitempty"`
+	Year      string `protobuf:"bytes,1,opt,name=year,proto3" json:"year"`
+	ModelId   uint32 `protobuf:"varint,2,opt,name=modelId,proto3" json:"modelId"`
+	VariantId int64  `protobuf:"varint,3,opt,name=variantId,proto3" json:"variantId"`
 }
 
 func (x *FindEngineByVariantHasCarReq) Reset() {
@@ -400,8 +400,8 @@ type IdNameDto struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id   int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Id   int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 }
 
 func (x *IdNameDto) Reset() {

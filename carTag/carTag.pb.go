@@ -33,20 +33,20 @@ type CarTagDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 标签id，如果为新增，则此字段为0
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	//tag名称
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	// tag 显示位置 id
-	TypeId uint32 `protobuf:"varint,3,opt,name=type_id,json=typeId,proto3" json:"type_id,omitempty"`
+	TypeId uint32 `protobuf:"varint,3,opt,name=type_id,json=typeId,proto3" json:"type_id"`
 	// tag是否可用
-	Status uint32 `protobuf:"varint,4,opt,name=status,proto3" json:"status,omitempty"`
+	Status uint32 `protobuf:"varint,4,opt,name=status,proto3" json:"status"`
 	//tag新增时间
-	CreateTime uint64 `protobuf:"varint,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime uint64 `protobuf:"varint,5,opt,name=create_time,json=createTime,proto3" json:"create_time"`
 	// tag的更新时间，如果为新增，或更新，则此字段无效
-	UpdateTime uint64 `protobuf:"varint,6,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	TypeName   string `protobuf:"bytes,7,opt,name=type_name,json=typeName,proto3" json:"type_name,omitempty"`
-	TagType    uint64 `protobuf:"varint,8,opt,name=tagType,proto3" json:"tagType,omitempty"`       //tag 类型 1.Car card,2Highlight tag
-	OperatorId uint64 `protobuf:"varint,9,opt,name=operatorId,proto3" json:"operatorId,omitempty"` //操作人员ID
+	UpdateTime uint64 `protobuf:"varint,6,opt,name=update_time,json=updateTime,proto3" json:"update_time"`
+	TypeName   string `protobuf:"bytes,7,opt,name=type_name,json=typeName,proto3" json:"type_name"`
+	TagType    uint64 `protobuf:"varint,8,opt,name=tagType,proto3" json:"tagType"`       //tag 类型 1.Car card,2Highlight tag
+	OperatorId uint64 `protobuf:"varint,9,opt,name=operatorId,proto3" json:"operatorId"` //操作人员ID
 }
 
 func (x *CarTagDto) Reset() {
@@ -151,14 +151,14 @@ type CarTagConditionDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// tag的id
-	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	TypeId   uint32 `protobuf:"varint,3,opt,name=type_id,json=typeId,proto3" json:"type_id,omitempty"`
-	TypeName string `protobuf:"bytes,6,opt,name=type_name,json=typeName,proto3" json:"type_name,omitempty"`
-	Page     uint32 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	Limit    uint32 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
-	Status   uint64 `protobuf:"varint,7,opt,name=status,proto3" json:"status,omitempty"`
-	TagType  uint64 `protobuf:"varint,8,opt,name=tagType,proto3" json:"tagType,omitempty"`
+	Id       uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	TypeId   uint32 `protobuf:"varint,3,opt,name=type_id,json=typeId,proto3" json:"type_id"`
+	TypeName string `protobuf:"bytes,6,opt,name=type_name,json=typeName,proto3" json:"type_name"`
+	Page     uint32 `protobuf:"varint,4,opt,name=page,proto3" json:"page"`
+	Limit    uint32 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit"`
+	Status   uint64 `protobuf:"varint,7,opt,name=status,proto3" json:"status"`
+	TagType  uint64 `protobuf:"varint,8,opt,name=tagType,proto3" json:"tagType"`
 }
 
 func (x *CarTagConditionDto) Reset() {
@@ -254,8 +254,8 @@ type CarTagType struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id   uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Id   uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 }
 
 func (x *CarTagType) Reset() {
@@ -309,7 +309,7 @@ type CarTagTypes struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CarTagType []*CarTagType `protobuf:"bytes,1,rep,name=carTagType,proto3" json:"carTagType,omitempty"`
+	CarTagType []*CarTagType `protobuf:"bytes,1,rep,name=carTagType,proto3" json:"carTagType"`
 }
 
 func (x *CarTagTypes) Reset() {

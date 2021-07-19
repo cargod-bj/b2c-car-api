@@ -33,9 +33,9 @@ type AddCarCostReq struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 费用详情
-	CostItem *CarCostItemProtoDto `protobuf:"bytes,1,opt,name=costItem,proto3" json:"costItem,omitempty"`
+	CostItem *CarCostItemProtoDto `protobuf:"bytes,1,opt,name=costItem,proto3" json:"costItem"`
 	// 本地化类型
-	Local string `protobuf:"bytes,100,opt,name=local,proto3" json:"local,omitempty"`
+	Local string `protobuf:"bytes,100,opt,name=local,proto3" json:"local"`
 }
 
 func (x *AddCarCostReq) Reset() {
@@ -91,9 +91,9 @@ type DeleteCostReq struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 删除的费用id
-	Id uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id"`
 	// 执行当前操作的用户id
-	OperatorId uint64 `protobuf:"varint,3,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
+	OperatorId uint64 `protobuf:"varint,3,opt,name=operatorId,proto3" json:"operatorId"`
 }
 
 func (x *DeleteCostReq) Reset() {
@@ -149,39 +149,39 @@ type ListCostReq struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆id
-	CarId uint64 `protobuf:"varint,1,opt,name=carId,proto3" json:"carId,omitempty"`
+	CarId uint64 `protobuf:"varint,1,opt,name=carId,proto3" json:"carId"`
 	// 车牌号
-	LicensePlate string `protobuf:"bytes,2,opt,name=licensePlate,proto3" json:"licensePlate,omitempty"`
+	LicensePlate string `protobuf:"bytes,2,opt,name=licensePlate,proto3" json:"licensePlate"`
 	// 导入日期：开始
-	ImportTimeStart uint64 `protobuf:"varint,4,opt,name=importTimeStart,proto3" json:"importTimeStart,omitempty"`
+	ImportTimeStart uint64 `protobuf:"varint,4,opt,name=importTimeStart,proto3" json:"importTimeStart"`
 	// 导入日期：结束
-	ImportTimeEnd uint64 `protobuf:"varint,5,opt,name=importTimeEnd,proto3" json:"importTimeEnd,omitempty"`
+	ImportTimeEnd uint64 `protobuf:"varint,5,opt,name=importTimeEnd,proto3" json:"importTimeEnd"`
 	// 更新日期：开始
-	UpdateTimeStart uint64 `protobuf:"varint,6,opt,name=updateTimeStart,proto3" json:"updateTimeStart,omitempty"`
+	UpdateTimeStart uint64 `protobuf:"varint,6,opt,name=updateTimeStart,proto3" json:"updateTimeStart"`
 	// 更新日期：开始
-	UpdateTimeEnd uint64 `protobuf:"varint,7,opt,name=updateTimeEnd,proto3" json:"updateTimeEnd,omitempty"`
+	UpdateTimeEnd uint64 `protobuf:"varint,7,opt,name=updateTimeEnd,proto3" json:"updateTimeEnd"`
 	// 车型：品牌id
-	BrandId uint64 `protobuf:"varint,8,opt,name=brandId,proto3" json:"brandId,omitempty"`
+	BrandId uint64 `protobuf:"varint,8,opt,name=brandId,proto3" json:"brandId"`
 	// 车型：车系id
-	ModelId uint64 `protobuf:"varint,9,opt,name=modelId,proto3" json:"modelId,omitempty"`
+	ModelId uint64 `protobuf:"varint,9,opt,name=modelId,proto3" json:"modelId"`
 	// 车型：车型id
-	VariantId int64 `protobuf:"varint,10,opt,name=variantId,proto3" json:"variantId,omitempty"`
+	VariantId int64 `protobuf:"varint,10,opt,name=variantId,proto3" json:"variantId"`
 	// 车型：引擎
-	Engine string `protobuf:"bytes,11,opt,name=engine,proto3" json:"engine,omitempty"`
+	Engine string `protobuf:"bytes,11,opt,name=engine,proto3" json:"engine"`
 	// 车型：变速箱
-	Transmission uint32 `protobuf:"varint,12,opt,name=transmission,proto3" json:"transmission,omitempty"`
+	Transmission uint32 `protobuf:"varint,12,opt,name=transmission,proto3" json:"transmission"`
 	// 车辆编号
-	CarNo string `protobuf:"bytes,13,opt,name=carNo,proto3" json:"carNo,omitempty"`
+	CarNo string `protobuf:"bytes,13,opt,name=carNo,proto3" json:"carNo"`
 	// 检车：开始
-	PuspakomUntilDateStart uint64 `protobuf:"varint,15,opt,name=puspakomUntilDateStart,proto3" json:"puspakomUntilDateStart,omitempty"`
+	PuspakomUntilDateStart uint64 `protobuf:"varint,15,opt,name=puspakomUntilDateStart,proto3" json:"puspakomUntilDateStart"`
 	// 检车：结束
-	PuspakomUntilDateEnd uint64 `protobuf:"varint,16,opt,name=puspakomUntilDateEnd,proto3" json:"puspakomUntilDateEnd,omitempty"`
+	PuspakomUntilDateEnd uint64 `protobuf:"varint,16,opt,name=puspakomUntilDateEnd,proto3" json:"puspakomUntilDateEnd"`
 	// 门店ids
-	StoreIds []uint64 `protobuf:"varint,17,rep,packed,name=storeIds,proto3" json:"storeIds,omitempty"`
+	StoreIds []uint64 `protobuf:"varint,17,rep,packed,name=storeIds,proto3" json:"storeIds"`
 	// 本地化类型
-	Local string `protobuf:"bytes,100,opt,name=local,proto3" json:"local,omitempty"`
+	Local string `protobuf:"bytes,100,opt,name=local,proto3" json:"local"`
 	// 分页信息
-	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page,omitempty"`
+	Page *common.Page `protobuf:"bytes,101,opt,name=page,proto3" json:"page"`
 }
 
 func (x *ListCostReq) Reset() {
@@ -341,41 +341,41 @@ type CarCostListProtoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆no
-	CarNo string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo,omitempty"`
+	CarNo string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo"`
 	// 车辆描述
-	CarDesc string `protobuf:"bytes,2,opt,name=carDesc,proto3" json:"carDesc,omitempty"`
+	CarDesc string `protobuf:"bytes,2,opt,name=carDesc,proto3" json:"carDesc"`
 	// 车牌
-	LicensePlate string `protobuf:"bytes,3,opt,name=licensePlate,proto3" json:"licensePlate,omitempty"`
+	LicensePlate string `protobuf:"bytes,3,opt,name=licensePlate,proto3" json:"licensePlate"`
 	// 总费用
-	TotalCost string `protobuf:"bytes,4,opt,name=totalCost,proto3" json:"totalCost,omitempty"`
+	TotalCost string `protobuf:"bytes,4,opt,name=totalCost,proto3" json:"totalCost"`
 	// 整备保养次数
-	ReconditionTimes uint32 `protobuf:"varint,5,opt,name=reconditionTimes,proto3" json:"reconditionTimes,omitempty"`
+	ReconditionTimes uint32 `protobuf:"varint,5,opt,name=reconditionTimes,proto3" json:"reconditionTimes"`
 	// 整备保养总费用
-	ReconditionCost string `protobuf:"bytes,6,opt,name=reconditionCost,proto3" json:"reconditionCost,omitempty"`
+	ReconditionCost string `protobuf:"bytes,6,opt,name=reconditionCost,proto3" json:"reconditionCost"`
 	// 检车次数
-	PuspakomTimes uint32 `protobuf:"varint,9,opt,name=puspakomTimes,proto3" json:"puspakomTimes,omitempty"`
+	PuspakomTimes uint32 `protobuf:"varint,9,opt,name=puspakomTimes,proto3" json:"puspakomTimes"`
 	// 检车总费用
-	PuspakomCost string `protobuf:"bytes,10,opt,name=puspakomCost,proto3" json:"puspakomCost,omitempty"`
+	PuspakomCost string `protobuf:"bytes,10,opt,name=puspakomCost,proto3" json:"puspakomCost"`
 	// 检车:最晚有效期
-	PuspakomValidUntilDate uint64 `protobuf:"varint,11,opt,name=puspakomValidUntilDate,proto3" json:"puspakomValidUntilDate,omitempty"`
+	PuspakomValidUntilDate uint64 `protobuf:"varint,11,opt,name=puspakomValidUntilDate,proto3" json:"puspakomValidUntilDate"`
 	// 运费次数
-	LogisticTimes uint32 `protobuf:"varint,14,opt,name=logisticTimes,proto3" json:"logisticTimes,omitempty"`
+	LogisticTimes uint32 `protobuf:"varint,14,opt,name=logisticTimes,proto3" json:"logisticTimes"`
 	// 运费
-	LogisticCost string `protobuf:"bytes,15,opt,name=logisticCost,proto3" json:"logisticCost,omitempty"`
+	LogisticCost string `protobuf:"bytes,15,opt,name=logisticCost,proto3" json:"logisticCost"`
 	// CarCost最后更新时间
-	UpdateTime uint64 `protobuf:"varint,12,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,12,opt,name=updateTime,proto3" json:"updateTime"`
 	// 车辆导入时间
-	CreateTime uint64 `protobuf:"varint,13,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	CreateTime uint64 `protobuf:"varint,13,opt,name=createTime,proto3" json:"createTime"`
 	// 政府保险次数
-	GovernmentInsuranceTimes uint32 `protobuf:"varint,16,opt,name=governmentInsuranceTimes,proto3" json:"governmentInsuranceTimes,omitempty"`
+	GovernmentInsuranceTimes uint32 `protobuf:"varint,16,opt,name=governmentInsuranceTimes,proto3" json:"governmentInsuranceTimes"`
 	// 政府保险费用
-	GovernmentInsuranceCost string `protobuf:"bytes,17,opt,name=governmentInsuranceCost,proto3" json:"governmentInsuranceCost,omitempty"`
+	GovernmentInsuranceCost string `protobuf:"bytes,17,opt,name=governmentInsuranceCost,proto3" json:"governmentInsuranceCost"`
 	// 道路税次数
-	RoadTaxTimes uint32 `protobuf:"varint,18,opt,name=roadTaxTimes,proto3" json:"roadTaxTimes,omitempty"`
+	RoadTaxTimes uint32 `protobuf:"varint,18,opt,name=roadTaxTimes,proto3" json:"roadTaxTimes"`
 	// 道路税费用
-	RoadTaxCost string `protobuf:"bytes,19,opt,name=roadTaxCost,proto3" json:"roadTaxCost,omitempty"`
+	RoadTaxCost string `protobuf:"bytes,19,opt,name=roadTaxCost,proto3" json:"roadTaxCost"`
 	// 车辆id
-	Id uint64 `protobuf:"varint,50,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,50,opt,name=id,proto3" json:"id"`
 }
 
 func (x *CarCostListProtoDto) Reset() {
@@ -542,27 +542,27 @@ type CarCostDetailProtoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 车辆no
-	CarNo string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo,omitempty"`
+	CarNo string `protobuf:"bytes,1,opt,name=carNo,proto3" json:"carNo"`
 	// 车辆描述
-	CarDesc string `protobuf:"bytes,2,opt,name=carDesc,proto3" json:"carDesc,omitempty"`
+	CarDesc string `protobuf:"bytes,2,opt,name=carDesc,proto3" json:"carDesc"`
 	// 检车总费用
-	TotalCost string `protobuf:"bytes,3,opt,name=totalCost,proto3" json:"totalCost,omitempty"`
+	TotalCost string `protobuf:"bytes,3,opt,name=totalCost,proto3" json:"totalCost"`
 	// 整备和保养费用
-	Recondition *CarCostGroupProtoDto `protobuf:"bytes,4,opt,name=recondition,proto3" json:"recondition,omitempty"`
+	Recondition *CarCostGroupProtoDto `protobuf:"bytes,4,opt,name=recondition,proto3" json:"recondition"`
 	// 检车费用
-	Puspakom *CarCostGroupProtoDto `protobuf:"bytes,6,opt,name=puspakom,proto3" json:"puspakom,omitempty"`
+	Puspakom *CarCostGroupProtoDto `protobuf:"bytes,6,opt,name=puspakom,proto3" json:"puspakom"`
 	// 运费
-	Logistics *CarCostGroupProtoDto `protobuf:"bytes,7,opt,name=logistics,proto3" json:"logistics,omitempty"`
+	Logistics *CarCostGroupProtoDto `protobuf:"bytes,7,opt,name=logistics,proto3" json:"logistics"`
 	// 车辆storeId
-	CarStoreId uint64 `protobuf:"varint,8,opt,name=carStoreId,proto3" json:"carStoreId,omitempty"`
+	CarStoreId uint64 `protobuf:"varint,8,opt,name=carStoreId,proto3" json:"carStoreId"`
 	// 车辆dealerType
-	CarDealerType uint32 `protobuf:"varint,9,opt,name=carDealerType,proto3" json:"carDealerType,omitempty"`
+	CarDealerType uint32 `protobuf:"varint,9,opt,name=carDealerType,proto3" json:"carDealerType"`
 	// 车辆id
-	CarId uint64 `protobuf:"varint,10,opt,name=carId,proto3" json:"carId,omitempty"`
+	CarId uint64 `protobuf:"varint,10,opt,name=carId,proto3" json:"carId"`
 	// 政府保险费用
-	GovernmentInsurance *CarCostGroupProtoDto `protobuf:"bytes,11,opt,name=governmentInsurance,proto3" json:"governmentInsurance,omitempty"`
+	GovernmentInsurance *CarCostGroupProtoDto `protobuf:"bytes,11,opt,name=governmentInsurance,proto3" json:"governmentInsurance"`
 	// 道路税缴费用
-	RoadTax *CarCostGroupProtoDto `protobuf:"bytes,12,opt,name=roadTax,proto3" json:"roadTax,omitempty"`
+	RoadTax *CarCostGroupProtoDto `protobuf:"bytes,12,opt,name=roadTax,proto3" json:"roadTax"`
 }
 
 func (x *CarCostDetailProtoDto) Reset() {
@@ -680,13 +680,13 @@ type CarCostGroupProtoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 检车总次数
-	TotalTimes uint32 `protobuf:"varint,1,opt,name=totalTimes,proto3" json:"totalTimes,omitempty"`
+	TotalTimes uint32 `protobuf:"varint,1,opt,name=totalTimes,proto3" json:"totalTimes"`
 	// 检车总费用
-	TotalCost string `protobuf:"bytes,2,opt,name=totalCost,proto3" json:"totalCost,omitempty"`
+	TotalCost string `protobuf:"bytes,2,opt,name=totalCost,proto3" json:"totalCost"`
 	// 类型
-	Type uint32 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
+	Type uint32 `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
 	// 费用列表
-	Costs []*CarCostItemProtoDto `protobuf:"bytes,4,rep,name=costs,proto3" json:"costs,omitempty"`
+	Costs []*CarCostItemProtoDto `protobuf:"bytes,4,rep,name=costs,proto3" json:"costs"`
 }
 
 func (x *CarCostGroupProtoDto) Reset() {
@@ -755,49 +755,49 @@ type CarCostItemProtoDto struct {
 	unknownFields protoimpl.UnknownFields
 
 	// 添加费用的车辆id
-	CarId uint64 `protobuf:"varint,1,opt,name=carId,proto3" json:"carId,omitempty"`
+	CarId uint64 `protobuf:"varint,1,opt,name=carId,proto3" json:"carId"`
 	// 费用类型：1 recondition、2 maintenance、3 puspakom、4 logistic
-	Type uint32 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
+	Type uint32 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
 	// 费用
-	Cost string `protobuf:"bytes,3,opt,name=cost,proto3" json:"cost,omitempty"`
+	Cost string `protobuf:"bytes,3,opt,name=cost,proto3" json:"cost"`
 	// 运输提供商
-	LogisticProvider string `protobuf:"bytes,4,opt,name=logisticProvider,proto3" json:"logisticProvider,omitempty"`
+	LogisticProvider string `protobuf:"bytes,4,opt,name=logisticProvider,proto3" json:"logisticProvider"`
 	// 运输开始地址
-	LogisticFrom string `protobuf:"bytes,5,opt,name=logisticFrom,proto3" json:"logisticFrom,omitempty"`
+	LogisticFrom string `protobuf:"bytes,5,opt,name=logisticFrom,proto3" json:"logisticFrom"`
 	// 运输目的地
-	LogisticTo string `protobuf:"bytes,16,opt,name=logisticTo,proto3" json:"logisticTo,omitempty"`
+	LogisticTo string `protobuf:"bytes,16,opt,name=logisticTo,proto3" json:"logisticTo"`
 	// puspakom执行项目
-	PuspakomItem uint32 `protobuf:"varint,6,opt,name=puspakomItem,proto3" json:"puspakomItem,omitempty"`
+	PuspakomItem uint32 `protobuf:"varint,6,opt,name=puspakomItem,proto3" json:"puspakomItem"`
 	// 执行项目名称
-	PuspakomItemName string `protobuf:"bytes,15,opt,name=puspakomItemName,proto3" json:"puspakomItemName,omitempty"`
+	PuspakomItemName string `protobuf:"bytes,15,opt,name=puspakomItemName,proto3" json:"puspakomItemName"`
 	// 附件列表
-	Enclosures []string `protobuf:"bytes,7,rep,name=enclosures,proto3" json:"enclosures,omitempty"`
+	Enclosures []string `protobuf:"bytes,7,rep,name=enclosures,proto3" json:"enclosures"`
 	// 开始时间
-	StartDate uint64 `protobuf:"varint,8,opt,name=startDate,proto3" json:"startDate,omitempty"`
+	StartDate uint64 `protobuf:"varint,8,opt,name=startDate,proto3" json:"startDate"`
 	// 结束时间
-	EndDate uint64 `protobuf:"varint,9,opt,name=endDate,proto3" json:"endDate,omitempty"`
+	EndDate uint64 `protobuf:"varint,9,opt,name=endDate,proto3" json:"endDate"`
 	// pic名称
-	Pic string `protobuf:"bytes,10,opt,name=pic,proto3" json:"pic,omitempty"`
+	Pic string `protobuf:"bytes,10,opt,name=pic,proto3" json:"pic"`
 	// 操作人员id
-	OperatorId uint64 `protobuf:"varint,11,opt,name=operatorId,proto3" json:"operatorId,omitempty"`
+	OperatorId uint64 `protobuf:"varint,11,opt,name=operatorId,proto3" json:"operatorId"`
 	// 操作人员
-	OperatorName string `protobuf:"bytes,12,opt,name=operatorName,proto3" json:"operatorName,omitempty"`
+	OperatorName string `protobuf:"bytes,12,opt,name=operatorName,proto3" json:"operatorName"`
 	// 记录更新时间
-	UpdateTime uint64 `protobuf:"varint,13,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime uint64 `protobuf:"varint,13,opt,name=updateTime,proto3" json:"updateTime"`
 	// id
-	Id uint64 `protobuf:"varint,14,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint64 `protobuf:"varint,14,opt,name=id,proto3" json:"id"`
 	// pic的id
-	PicId uint64 `protobuf:"varint,17,opt,name=picId,proto3" json:"picId,omitempty"`
+	PicId uint64 `protobuf:"varint,17,opt,name=picId,proto3" json:"picId"`
 	// 整备门店id
-	WorkshopId uint64 `protobuf:"varint,18,opt,name=workshopId,proto3" json:"workshopId,omitempty"`
+	WorkshopId uint64 `protobuf:"varint,18,opt,name=workshopId,proto3" json:"workshopId"`
 	// 整备门店id
-	WorkshopName string `protobuf:"bytes,19,opt,name=workshopName,proto3" json:"workshopName,omitempty"`
+	WorkshopName string `protobuf:"bytes,19,opt,name=workshopName,proto3" json:"workshopName"`
 	// 整备项目id
-	ReconditionTypeIds []uint64 `protobuf:"varint,20,rep,packed,name=reconditionTypeIds,proto3" json:"reconditionTypeIds,omitempty"`
+	ReconditionTypeIds []uint64 `protobuf:"varint,20,rep,packed,name=reconditionTypeIds,proto3" json:"reconditionTypeIds"`
 	// 整备项目
-	ReconditionTypes string `protobuf:"bytes,21,opt,name=reconditionTypes,proto3" json:"reconditionTypes,omitempty"`
+	ReconditionTypes string `protobuf:"bytes,21,opt,name=reconditionTypes,proto3" json:"reconditionTypes"`
 	// 备注
-	Remark string `protobuf:"bytes,22,opt,name=remark,proto3" json:"remark,omitempty"`
+	Remark string `protobuf:"bytes,22,opt,name=remark,proto3" json:"remark"`
 }
 
 func (x *CarCostItemProtoDto) Reset() {
