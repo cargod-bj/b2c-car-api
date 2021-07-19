@@ -12,9 +12,6 @@ option go_package = "github.com/cargod-bj/b2c-car-api/purchasePaymentApproval";
 service PurchasePaymentApproval {
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc SaveApply(SaveApplyReq) returns (common.Response) {}
-  rpc SaveCancel(ApplyReq) returns (common.Response) {}
-  rpc GetCallback(DingTalkCallback) returns (common.Response) {}
-  rpc SaveCallback(DingTalkCallback) returns (common.Response) {}
 }
 
 message ApprovalApprovalCondition {
@@ -28,6 +25,7 @@ message ApprovalApprovalCondition {
   uint32 pageNo = 8;
   uint32 pageSize = 9;
   uint64 id = 10;
+  string processInstanceId = 11;
 }
 
 message ApprovalDto {
@@ -55,6 +53,7 @@ message ApprovalDto {
   string salesAgreement = 22;
   string poStatusName = 23;
   string dtStatusName = 24;
+  string processInstanceId = 25;
 }
 
 message SaveApplyReq {
@@ -65,33 +64,4 @@ message SaveApplyReq {
   uint64 approvalEndDate = 5;
   uint64 dtStatus = 6;
   string remark = 7;
-}
-
-message ApplyReq {
-  uint64 id = 1;// 审批编号
-  string userId = 2;
-}
-
-message IdWithUserReq {
-  uint64 id = 1;// 审批编号
-  string userId = 2;
-  uint64 sysUserId = 3;
-}
-
-message DingTalkCallbackReq {
-  string signature = 1;
-  string timestamp = 2;
-  string nonce = 3;
-  string encrypt = 4;
-}
-
-message DingTalkCallbackRes {
-  string msg_signature = 1;
-  string timeStamp = 2;
-  string nonce = 3;
-  string encrypt = 4;
-}
-
-message DingTalkCallback {
-  string result = 1;
 }
