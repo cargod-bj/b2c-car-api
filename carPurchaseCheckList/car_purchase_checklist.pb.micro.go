@@ -7,6 +7,7 @@ import (
 	fmt "fmt"
 	common "github.com/cargod-bj/b2c-proto-common/common"
 	proto "github.com/golang/protobuf/proto"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	math "math"
 )
 
@@ -48,13 +49,15 @@ type CarPurchaseCheckListService interface {
 	// save fileadress to database table carsource
 	SaveAdress(ctx context.Context, in *PurchaseFileDto, opts ...client.CallOption) (*common.Response, error)
 	GenerateCheckList(ctx context.Context, in *IdReq, opts ...client.CallOption) (*common.Response, error)
+	//get a checklist according to the car-purchase ID
+	GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
 	//updates checklist according to the ID
 	Updates(ctx context.Context, in *UpdatesReq, opts ...client.CallOption) (*common.Response, error)
+	//sync --> car to car_purchase
+	Sync(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*common.Response, error)
 	//create a checklist based on the car-purchase ID
 	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
 	Creates(ctx context.Context, in *BatchCreate, opts ...client.CallOption) (*common.Response, error)
-	//get a checklist according to the car-purchase ID
-	GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error)
 	//update checklist according to the ID
 	Update(ctx context.Context, in *UpdateReq, opts ...client.CallOption) (*common.Response, error)
 	//drop checklist according to the ID
@@ -103,8 +106,28 @@ func (c *carPurchaseCheckListService) GenerateCheckList(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *carPurchaseCheckListService) GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.GetList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *carPurchaseCheckListService) Updates(ctx context.Context, in *UpdatesReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.Updates", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *carPurchaseCheckListService) Sync(ctx context.Context, in *emptypb.Empty, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.Sync", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -125,16 +148,6 @@ func (c *carPurchaseCheckListService) Create(ctx context.Context, in *CreateReq,
 
 func (c *carPurchaseCheckListService) Creates(ctx context.Context, in *BatchCreate, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.Creates", in)
-	out := new(common.Response)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *carPurchaseCheckListService) GetList(ctx context.Context, in *CarPurchaseIdReq, opts ...client.CallOption) (*common.Response, error) {
-	req := c.c.NewRequest(c.name, "CarPurchaseCheckList.GetList", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -171,13 +184,15 @@ type CarPurchaseCheckListHandler interface {
 	// save fileadress to database table carsource
 	SaveAdress(context.Context, *PurchaseFileDto, *common.Response) error
 	GenerateCheckList(context.Context, *IdReq, *common.Response) error
+	//get a checklist according to the car-purchase ID
+	GetList(context.Context, *CarPurchaseIdReq, *common.Response) error
 	//updates checklist according to the ID
 	Updates(context.Context, *UpdatesReq, *common.Response) error
+	//sync --> car to car_purchase
+	Sync(context.Context, *emptypb.Empty, *common.Response) error
 	//create a checklist based on the car-purchase ID
 	Create(context.Context, *CreateReq, *common.Response) error
 	Creates(context.Context, *BatchCreate, *common.Response) error
-	//get a checklist according to the car-purchase ID
-	GetList(context.Context, *CarPurchaseIdReq, *common.Response) error
 	//update checklist according to the ID
 	Update(context.Context, *UpdateReq, *common.Response) error
 	//drop checklist according to the ID
@@ -189,10 +204,11 @@ func RegisterCarPurchaseCheckListHandler(s server.Server, hdlr CarPurchaseCheckL
 		GetAdress(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
 		SaveAdress(ctx context.Context, in *PurchaseFileDto, out *common.Response) error
 		GenerateCheckList(ctx context.Context, in *IdReq, out *common.Response) error
+		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
 		Updates(ctx context.Context, in *UpdatesReq, out *common.Response) error
+		Sync(ctx context.Context, in *emptypb.Empty, out *common.Response) error
 		Create(ctx context.Context, in *CreateReq, out *common.Response) error
 		Creates(ctx context.Context, in *BatchCreate, out *common.Response) error
-		GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error
 		Update(ctx context.Context, in *UpdateReq, out *common.Response) error
 		Delete(ctx context.Context, in *IdReq, out *common.Response) error
 	}
@@ -219,8 +235,16 @@ func (h *carPurchaseCheckListHandler) GenerateCheckList(ctx context.Context, in 
 	return h.CarPurchaseCheckListHandler.GenerateCheckList(ctx, in, out)
 }
 
+func (h *carPurchaseCheckListHandler) GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error {
+	return h.CarPurchaseCheckListHandler.GetList(ctx, in, out)
+}
+
 func (h *carPurchaseCheckListHandler) Updates(ctx context.Context, in *UpdatesReq, out *common.Response) error {
 	return h.CarPurchaseCheckListHandler.Updates(ctx, in, out)
+}
+
+func (h *carPurchaseCheckListHandler) Sync(ctx context.Context, in *emptypb.Empty, out *common.Response) error {
+	return h.CarPurchaseCheckListHandler.Sync(ctx, in, out)
 }
 
 func (h *carPurchaseCheckListHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
@@ -229,10 +253,6 @@ func (h *carPurchaseCheckListHandler) Create(ctx context.Context, in *CreateReq,
 
 func (h *carPurchaseCheckListHandler) Creates(ctx context.Context, in *BatchCreate, out *common.Response) error {
 	return h.CarPurchaseCheckListHandler.Creates(ctx, in, out)
-}
-
-func (h *carPurchaseCheckListHandler) GetList(ctx context.Context, in *CarPurchaseIdReq, out *common.Response) error {
-	return h.CarPurchaseCheckListHandler.GetList(ctx, in, out)
 }
 
 func (h *carPurchaseCheckListHandler) Update(ctx context.Context, in *UpdateReq, out *common.Response) error {

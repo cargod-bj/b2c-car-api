@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package carPurchaseCheckList;
 
+import "google/protobuf/empty.proto";
 import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 
 option go_package = "github.com/cargod-bj/b2c-car-api/carPurchaseCheckList";
@@ -16,16 +17,19 @@ service CarPurchaseCheckList {
 
   rpc GenerateCheckList(IdReq) returns (common.Response) {};
 
+  //get a checklist according to the car-purchase ID
+  rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
+
   //updates checklist according to the ID
   rpc Updates(UpdatesReq) returns (common.Response) {};
+
+  //sync --> car to car_purchase
+  rpc Sync(google.protobuf.Empty) returns (common.Response) {};
 
   //create a checklist based on the car-purchase ID
   rpc Create(CreateReq) returns (common.Response) {};
 
   rpc Creates(BatchCreate) returns (common.Response) {};
-
-  //get a checklist according to the car-purchase ID
-  rpc GetList(CarPurchaseIdReq) returns (common.Response) {};
 
   //update checklist according to the ID
   rpc Update(UpdateReq) returns (common.Response) {};
