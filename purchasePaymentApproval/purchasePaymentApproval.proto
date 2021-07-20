@@ -12,6 +12,7 @@ option go_package = "github.com/cargod-bj/b2c-car-api/purchasePaymentApproval";
 service PurchasePaymentApproval {
   rpc List(ApprovalApprovalCondition) returns (common.Response) {}
   rpc SaveApply(SaveApplyReq) returns (common.Response) {}
+  rpc SyncApplyList(common.EmptyDto) returns (common.Response) {}
 }
 
 message ApprovalApprovalCondition {
@@ -64,4 +65,13 @@ message SaveApplyReq {
   uint64 approvalEndDate = 5;
   uint64 dtStatus = 6;
   string remark = 7;
+  uint64 originStatus = 8;
+}
+
+message SyncApplyDto {
+  uint64 id = 1;
+  string processInstanceId = 2;
+  uint64 approvalStartDate = 3;
+  uint64 approvalEndDate = 4;
+  uint64 applyStatus = 5;
 }

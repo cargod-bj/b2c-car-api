@@ -45,6 +45,7 @@ func NewPurchasePaymentApprovalEndpoints() []*api.Endpoint {
 type PurchasePaymentApprovalService interface {
 	List(ctx context.Context, in *ApprovalApprovalCondition, opts ...client.CallOption) (*common.Response, error)
 	SaveApply(ctx context.Context, in *SaveApplyReq, opts ...client.CallOption) (*common.Response, error)
+	SyncApplyList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type purchasePaymentApprovalService struct {
@@ -79,17 +80,29 @@ func (c *purchasePaymentApprovalService) SaveApply(ctx context.Context, in *Save
 	return out, nil
 }
 
+func (c *purchasePaymentApprovalService) SyncApplyList(ctx context.Context, in *common.EmptyDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "PurchasePaymentApproval.SyncApplyList", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for PurchasePaymentApproval service
 
 type PurchasePaymentApprovalHandler interface {
 	List(context.Context, *ApprovalApprovalCondition, *common.Response) error
 	SaveApply(context.Context, *SaveApplyReq, *common.Response) error
+	SyncApplyList(context.Context, *common.EmptyDto, *common.Response) error
 }
 
 func RegisterPurchasePaymentApprovalHandler(s server.Server, hdlr PurchasePaymentApprovalHandler, opts ...server.HandlerOption) error {
 	type purchasePaymentApproval interface {
 		List(ctx context.Context, in *ApprovalApprovalCondition, out *common.Response) error
 		SaveApply(ctx context.Context, in *SaveApplyReq, out *common.Response) error
+		SyncApplyList(ctx context.Context, in *common.EmptyDto, out *common.Response) error
 	}
 	type PurchasePaymentApproval struct {
 		purchasePaymentApproval
@@ -108,4 +121,8 @@ func (h *purchasePaymentApprovalHandler) List(ctx context.Context, in *ApprovalA
 
 func (h *purchasePaymentApprovalHandler) SaveApply(ctx context.Context, in *SaveApplyReq, out *common.Response) error {
 	return h.PurchasePaymentApprovalHandler.SaveApply(ctx, in, out)
+}
+
+func (h *purchasePaymentApprovalHandler) SyncApplyList(ctx context.Context, in *common.EmptyDto, out *common.Response) error {
+	return h.PurchasePaymentApprovalHandler.SyncApplyList(ctx, in, out)
 }
