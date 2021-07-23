@@ -527,7 +527,7 @@ message CarTransferStoreDto {
   uint64 toWarehouseId = 17;
   string fromWarehouse = 18;
   string toWarehouse = 19;
-
+  uint32 transferType = 20;
 }
 
 message CarLicensePlateReq {
