@@ -523,6 +523,11 @@ message CarTransferStoreDto {
   string fromStore = 13;
   string toStore = 14;
   string local = 15;
+  uint64 fromWarehouseId = 16;
+  uint64 toWarehouseId = 17;
+  string fromWarehouse = 18;
+  string toWarehouse = 19;
+
 }
 
 message CarLicensePlateReq {
