@@ -88,6 +88,8 @@ message CarListDto {
     uint64 dealer_id = 708;
     // 经销商类型
     uint32 dealer_type = 704;
+    // dealerTypeName
+    string dealer_type_name = 705;
     //汽车类型例如suv
     uint32 car_type_id = 707;
     //燃油类型
@@ -100,7 +102,9 @@ message CarListDto {
     string spin_car_url = 303;
     //车辆特征
     string  car_type_name = 712;
-    string  model_name = 705;
+    // 车variant
+    int64 variant_id = 206;
+    string  model_name = 205;
     string  brand_name = 706;
     uint32  recommend_order = 713;
     uint32 type = 714;
@@ -165,6 +169,8 @@ message CarListDto {
     string cardDiscountWordsColor = 843;//卡片折扣文字颜色
     string cardDiscountTag = 844;//卡片图片
     string cardDiscountWordsBackgroundColor = 845;//卡片折扣文字背景颜色
+    string state_name = 846;//州名
+    string state_id = 847;//州id
 }
 
 
