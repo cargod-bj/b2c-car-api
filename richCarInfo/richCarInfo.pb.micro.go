@@ -43,7 +43,7 @@ func NewRichCarInfoEndpoints() []*api.Endpoint {
 // Client API for RichCarInfo service
 
 type RichCarInfoService interface {
-	Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error)
+	Create(ctx context.Context, in *CreatesReq, opts ...client.CallOption) (*common.Response, error)
 	List(ctx context.Context, in *ListReq, opts ...client.CallOption) (*common.Response, error)
 	Upadte(ctx context.Context, in *UpdateReq, opts ...client.CallOption) (*common.Response, error)
 	UpadteIcon(ctx context.Context, in *UpadteIconReq, opts ...client.CallOption) (*common.Response, error)
@@ -64,7 +64,7 @@ func NewRichCarInfoService(name string, c client.Client) RichCarInfoService {
 	}
 }
 
-func (c *richCarInfoService) Create(ctx context.Context, in *CreateReq, opts ...client.CallOption) (*common.Response, error) {
+func (c *richCarInfoService) Create(ctx context.Context, in *CreatesReq, opts ...client.CallOption) (*common.Response, error) {
 	req := c.c.NewRequest(c.name, "RichCarInfo.Create", in)
 	out := new(common.Response)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -137,7 +137,7 @@ func (c *richCarInfoService) UpadteCar(ctx context.Context, in *UpadteCarReq, op
 // Server API for RichCarInfo service
 
 type RichCarInfoHandler interface {
-	Create(context.Context, *CreateReq, *common.Response) error
+	Create(context.Context, *CreatesReq, *common.Response) error
 	List(context.Context, *ListReq, *common.Response) error
 	Upadte(context.Context, *UpdateReq, *common.Response) error
 	UpadteIcon(context.Context, *UpadteIconReq, *common.Response) error
@@ -148,7 +148,7 @@ type RichCarInfoHandler interface {
 
 func RegisterRichCarInfoHandler(s server.Server, hdlr RichCarInfoHandler, opts ...server.HandlerOption) error {
 	type richCarInfo interface {
-		Create(ctx context.Context, in *CreateReq, out *common.Response) error
+		Create(ctx context.Context, in *CreatesReq, out *common.Response) error
 		List(ctx context.Context, in *ListReq, out *common.Response) error
 		Upadte(ctx context.Context, in *UpdateReq, out *common.Response) error
 		UpadteIcon(ctx context.Context, in *UpadteIconReq, out *common.Response) error
@@ -167,7 +167,7 @@ type richCarInfoHandler struct {
 	RichCarInfoHandler
 }
 
-func (h *richCarInfoHandler) Create(ctx context.Context, in *CreateReq, out *common.Response) error {
+func (h *richCarInfoHandler) Create(ctx context.Context, in *CreatesReq, out *common.Response) error {
 	return h.RichCarInfoHandler.Create(ctx, in, out)
 }
 

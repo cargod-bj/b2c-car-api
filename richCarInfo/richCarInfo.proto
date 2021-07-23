@@ -7,7 +7,7 @@ import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
 option go_package = "github.com/cargod-bj/b2c-car-api/richCarInfo";
 
 service richCarInfo {
-    rpc Create(CreateReq) returns (common.Response) {};
+    rpc Create(CreatesReq) returns (common.Response) {};
 
     rpc List(ListReq) returns (common.Response) {};
 
