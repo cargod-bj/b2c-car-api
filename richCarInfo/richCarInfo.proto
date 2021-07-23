@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package richCarInfo;
+
+import "github.com/cargod-bj/b2c-proto-common/common/common.proto";
+
+option go_package = "github.com/cargod-bj/b2c-car-api/richCarInfo";
+
+service richCarInfo {
+    rpc Create(CreateReq) returns (common.Response) {};
+
+    rpc List(ListReq) returns (common.Response) {};
+
+    rpc Upadte(UpdateReq) returns (common.Response) {};
+
+    rpc UpadteIcon(UpadteIconReq) returns (common.Response) {};
+
+    rpc Delete(DeleteReq) returns (common.Response) {};
+
+    rpc Detial(common.EmptyDto) returns (common.Response) {};
+
+    rpc UpadteCar(UpadteCarReq) returns (common.Response) {};
+}
+
+message CreatesReq {
+    repeated CreateReq infos=1;
+}
+
+message CreateReq {
+    uint64 category = 1;
+    string item = 2;
+    uint64 displayOnWebsite = 3;
+    uint64 displayPriority = 4;
+    string remark = 5;
+    string icon = 6;
+}
+
+message ListReq {
+    uint64 category = 1;
+    uint64 displayOnWebsite = 2;
+    uint64 displayPriority = 3;
+    uint64 iconResult = 4;
+}
+
+message UpdateReq {
+    uint64 id =1;
+    uint64 category = 2;
+    string item = 3;
+    uint64 displayOnWebsite = 4;
+    uint64 displayPriority = 5;
+    string remark = 6;
+    string icon = 7;
+}
+
+message UpadteIconReq {
+    uint64 id =1;
+    string icon = 2;
+}
+
+message DeleteReq {
+    uint64 id =1;
+}
+
+message DetialReq{
+    uint64 carId =1;
+}
+
+message UpadteCarReq {
+    uint64 id =1;
+    uint64 category = 2;
+    uint64 condtion = 3;
+    string item = 4;
+    string remark = 5;
+    uint64 displayOnWebsite = 6;
+}
+
