@@ -99,6 +99,8 @@ type CarService interface {
 	AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, opts ...client.CallOption) (*common.Response, error)
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByNoFuzzyPagination(ctx context.Context, in *CarByNoFuzzyReq, opts ...client.CallOption) (*common.Response, error)
+	//  批量变更车辆门店
+	BatchTransferStore(ctx context.Context, in *CarBatchTransferStoreDto, opts ...client.CallOption) (*common.Response, error)
 }
 
 type carService struct {
@@ -383,6 +385,16 @@ func (c *carService) GetCarByNoFuzzyPagination(ctx context.Context, in *CarByNoF
 	return out, nil
 }
 
+func (c *carService) BatchTransferStore(ctx context.Context, in *CarBatchTransferStoreDto, opts ...client.CallOption) (*common.Response, error) {
+	req := c.c.NewRequest(c.name, "Car.BatchTransferStore", in)
+	out := new(common.Response)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Car service
 
 type CarHandler interface {
@@ -441,6 +453,8 @@ type CarHandler interface {
 	AddCarFinancing(context.Context, *CarFinancingParamReq, *common.Response) error
 	// 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
 	GetCarByNoFuzzyPagination(context.Context, *CarByNoFuzzyReq, *common.Response) error
+	//  批量变更车辆门店
+	BatchTransferStore(context.Context, *CarBatchTransferStoreDto, *common.Response) error
 }
 
 func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.HandlerOption) error {
@@ -472,6 +486,7 @@ func RegisterCarHandler(s server.Server, hdlr CarHandler, opts ...server.Handler
 		UpdateCarFinancing(ctx context.Context, in *CarFinancingReq, out *common.Response) error
 		AddCarFinancing(ctx context.Context, in *CarFinancingParamReq, out *common.Response) error
 		GetCarByNoFuzzyPagination(ctx context.Context, in *CarByNoFuzzyReq, out *common.Response) error
+		BatchTransferStore(ctx context.Context, in *CarBatchTransferStoreDto, out *common.Response) error
 	}
 	type Car struct {
 		car
@@ -590,4 +605,8 @@ func (h *carHandler) AddCarFinancing(ctx context.Context, in *CarFinancingParamR
 
 func (h *carHandler) GetCarByNoFuzzyPagination(ctx context.Context, in *CarByNoFuzzyReq, out *common.Response) error {
 	return h.CarHandler.GetCarByNoFuzzyPagination(ctx, in, out)
+}
+
+func (h *carHandler) BatchTransferStore(ctx context.Context, in *CarBatchTransferStoreDto, out *common.Response) error {
+	return h.CarHandler.BatchTransferStore(ctx, in, out)
 }

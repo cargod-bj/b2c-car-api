@@ -69,6 +69,9 @@ service Car {
   rpc AddCarFinancing(CarFinancingParamReq) returns (common.Response) {}
   // 获取车辆No模糊搜索车辆信息：返回 data: CarDtoList
   rpc GetCarByNoFuzzyPagination(CarByNoFuzzyReq) returns (common.Response) {}
+
+  //  批量变更车辆门店
+  rpc BatchTransferStore(CarBatchTransferStoreDto) returns (common.Response){}
 }
 
 message GetValidStateReq {
@@ -543,4 +546,8 @@ message CarByNoFuzzyReq {
   string local = 5;
   uint32 pageNo = 6;
   uint32 pageSize = 7;
+}
+
+message CarBatchTransferStoreDto{
+   repeated CarTransferStoreDto List = 1;
 }
